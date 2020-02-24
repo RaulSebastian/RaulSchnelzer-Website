@@ -2,7 +2,6 @@ import { Component, HostListener, Inject, NgModule, OnInit } from '@angular/core
 import { DOCUMENT } from '@angular/common';
 import { WINDOW } from './services/window.service';
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -13,7 +12,9 @@ export class AppComponent {
   title = 'Raul Schnelzer';
   overlayHeight = 80;
   overlayFontColor = 'white';
-  headerFontColor = 'black';
+  headerFontColor = '#6200ee';
+  overlayLogoSrc = 'assets/RS_logo_White400.png';
+  headerLogoSrc = 'assets/RS_logo_Solar400.png';
 
   constructor(
     @Inject(DOCUMENT) private document: Document,

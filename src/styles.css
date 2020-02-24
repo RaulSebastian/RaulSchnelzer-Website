@@ -1,4 +1,3 @@
-/* You can add global styles to this file, and also import other style files */
 
 html,
 body {
@@ -14,16 +13,16 @@ body {
 }
 
 .header-overlay {
-  padding: 0px 10px;
+  padding: 5px 0 0 7vw;
   position: fixed;
   top: 0;
   z-index: 99999;
   width: 100%;
-  background-color: blueviolet;
+  background-image: linear-gradient(to left, #00ffc3, #03ACCF, blueviolet);
 }
 
 .header {
-  padding: 0px 10px;
+  padding: 5px 0 0 7vw;
   position: fixed;
   top: 0;
   z-index: 9999;
@@ -36,21 +35,16 @@ body {
   height: inherit;
 }
 
-@media screen and (min-width: 0px) {
-  .header-title {
-    font-size: 24px;
-  }
-  #homeicon {
-    height: 32px;
-  }
-}
-
-@media screen and (min-width: 320px) {
+@media screen {
   .header-title {
     font-size: calc(24px + 24 * ((100vw - 320px) / 680));
   }
+  .header-subtitle {
+    font-size: calc(14px + 4 * ((100vw - 320px) / 680));
+  }
   #homeicon {
     height: calc(32px + 18 * ((100vw - 320px) / 680));
+    width: calc(32px + 18 * ((100vw - 320px) / 680));
   }
 }
 
@@ -58,8 +52,12 @@ body {
   .header-title {
     font-size: 48px;
   }
+  .header-subtitle {
+    font-size: 20px;
+  }
   #homeicon {
     height: 50px;
+    width: 50px;
   }
 }
 
@@ -68,4 +66,10 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: lighter;
+}
+
+.header-subtitle {
+  vertical-align: super;
+  font-weight: lighter;
+  opacity: 0.66;
 }

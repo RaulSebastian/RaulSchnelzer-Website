@@ -1,16 +1,18 @@
 <div class="header-overlay" [style.height.px]="overlayHeight">
   <app-header
     class="header-title-border"
-    #headerOverlay
     [fontColor]="overlayFontColor"
+    [logoSource]="overlayLogoSrc"
+    #headerOverlay
   ></app-header>
 </div>
 
 <div class="header">
   <app-header
     class="header-title-border"
-    #header
     [fontColor]="headerFontColor"
+    [logoSource]="headerLogoSrc"
+    #header
   ></app-header>
 </div>
 
