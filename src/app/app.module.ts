@@ -6,6 +6,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { WINDOW_PROVIDERS } from './services/window.service';
 import { HeaderComponent } from './header/header.component';
+import { registerLocaleData } from '@angular/common';
+import localeDe from '@angular/common/locales/de';
 
 @NgModule({
   declarations: [
@@ -22,3 +24,5 @@ import { HeaderComponent } from './header/header.component';
   providers: [ WINDOW_PROVIDERS ]
 })
 export class AppModule { }
+
+registerLocaleData(localeDe, 'de-DE');

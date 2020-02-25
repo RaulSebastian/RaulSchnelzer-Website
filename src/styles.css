@@ -27,6 +27,7 @@ body {
   top: 0;
   z-index: 9999;
   width: 100%;
+  background-image: linear-gradient(#FFFFFF,#FFFFFF, #FFFFFF00);
 }
 
 .header-title-border {
@@ -72,4 +73,9 @@ body {
   vertical-align: super;
   font-weight: lighter;
   opacity: 0.66;
+}
+
+.delimiter {
+  height: 330px;
+  background-color: #DDFFEE;
 }

@@ -43,8 +43,8 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   private switchTitle(): (value: number) => void {
     return () => {
       if (this.titlePrefix === 'Raul') {
-        this.titlePrefix = 'Reliable';
-        this.titleSufix = 'Software';
+        this.titlePrefix = 'Software';
+        this.titleSufix = 'Solutions';
       } else {
         this.titlePrefix = 'Raul';
         this.titleSufix = 'Schnelzer';
