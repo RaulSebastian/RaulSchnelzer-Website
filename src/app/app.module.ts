@@ -8,11 +8,15 @@ import { WINDOW_PROVIDERS } from './services/window.service';
 import { HeaderComponent } from './header/header.component';
 import { registerLocaleData } from '@angular/common';
 import localeDe from '@angular/common/locales/de';
+import { WordCloudComponent } from './word-cloud/word-cloud.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    WordCloudComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

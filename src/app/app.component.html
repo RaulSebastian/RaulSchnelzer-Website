@@ -1,6 +1,8 @@
 <div class="header-overlay" [style.height.px]="overlayHeight">
   <app-header
     class="header-title-border"
+    [titlePrefix]="titlePrefix"
+    [titleSufix]="titleSufix"
     [fontColor]="overlayFontColor"
     [logoSource]="overlayLogoSrc"
     #headerOverlay
@@ -10,6 +12,8 @@
 <div class="header">
   <app-header
     class="header-title-border"
+    [titlePrefix]="titlePrefix"
+    [titleSufix]="titleSufix"
     [fontColor]="headerFontColor"
     [logoSource]="headerLogoSrc"
     #header
@@ -18,6 +22,10 @@
 
 <div class="delimiter"></div>
 
+<div class="parallax-window" data-parallax="scroll" data-image-src="/assets/RsCreativityWallpaperRedesigned.png">
+  <span>just some test</span>
+</div>
+
 <div class="anchor">
   <a name="test"></a>
 </div>
@@ -25,8 +33,6 @@
 <a href="#test">Test</a>
 
 <div style="height:1000px"></div>
-
-<
 
 <div class="delimiter"></div>
 

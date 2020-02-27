@@ -1,5 +1,4 @@
 import { Component, Input, ViewChild, OnInit, AfterViewInit, ElementRef, QueryList } from '@angular/core';
-import { interval } from 'rxjs';
 import Typewriter from 't-writer.js';
 
 @Component({
@@ -24,9 +23,7 @@ import Typewriter from 't-writer.js';
   styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent implements OnInit, AfterViewInit {
-  titlePrefix = 'Raul';
-  titleSufix = 'Schnelzer';
+export class HeaderComponent implements AfterViewInit {
   subtitles = [
     'Full Stack Development',
     'Solutions Architecture',
@@ -36,24 +33,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('subtitleSpan', { static: false }) subtitleHolder: ElementRef;
   @Input() fontColor: string;
   @Input() logoSource: string;
+  @Input() titlePrefix: string;
+  @Input() titleSufix: string;
 
   constructor() {
-  }
-
-  private switchTitle(): (value: number) => void {
-    return () => {
-      if (this.titlePrefix === 'Raul') {
-        this.titlePrefix = 'Software';
-        this.titleSufix = 'Solutions';
-      } else {
-        this.titlePrefix = 'Raul';
-        this.titleSufix = 'Schnelzer';
-      }
-    };
-  }
-
-  ngOnInit(): void {
-    interval(30000).subscribe(this.switchTitle());
   }
 
   ngAfterViewInit(): void {

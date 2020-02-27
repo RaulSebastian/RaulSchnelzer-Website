@@ -1,6 +1,7 @@
-import { Component, HostListener, Inject, NgModule, OnInit } from '@angular/core';
+import { Component, HostListener, Inject, NgModule, OnInit, ViewChild } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { WINDOW } from './services/window.service';
+import { interval } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -8,10 +9,12 @@ import { WINDOW } from './services/window.service';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Raul Schnelzer';
+  titlePrefix = 'Raul';
+  titleSufix = 'Schnelzer';
   overlayHeight = 80;
-  overlayFontColor = 'white';
+  overlayFontColor = 'white'; // TODO: more elegant solution to pass styles onto child components?
   headerFontColor = '#6200ee';
   overlayLogoSrc = 'assets/RS_logo_White400.png';
   headerLogoSrc = 'assets/RS_logo_Solar400.png';
@@ -20,6 +23,22 @@ export class AppComponent {
     @Inject(DOCUMENT) private document: Document,
     @Inject(WINDOW) private window: Window
   ) {
+  }
+
+  ngOnInit(): void {
+    interval(30000).subscribe(this.switchTitle());
+  }
+
+  private switchTitle(): (value: number) => void {
+    return () => {
+      if (this.titlePrefix === 'Raul') {
+        this.titlePrefix = 'Software';
+        this.titleSufix = 'Solutions';
+      } else {
+        this.titlePrefix = 'Raul';
+        this.titleSufix = 'Schnelzer';
+      }
+    };
   }
 
   @HostListener('window:scroll', [])
