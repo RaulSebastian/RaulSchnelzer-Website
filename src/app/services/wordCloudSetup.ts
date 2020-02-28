@@ -6,10 +6,8 @@ export class WordCloudSetup {
     static provide(canvas: HTMLCanvasElement, words: ListEntry[] | any[]): void {
         const options: WordCloud.Options = {
             list: words,
-            // gridSize: Math.round(16 * canvas.width / 1024),
-            gridSize: Math.round(16 * 600 / 1024),
-            // weightFactor(size) {return Math.pow(size, 2.3) * canvas.width / 1024; },
-            weightFactor(size) {return Math.pow(size, 2.3) * 600 / 1024; },
+            gridSize: Math.round(16 * canvas.width / 1024),
+            weightFactor(size) {return Math.pow(size, 2.3) * canvas.width / 1024; },
             fontFamily: 'Segoe UI',
             drawOutOfBound: true,
             wait: 333,
