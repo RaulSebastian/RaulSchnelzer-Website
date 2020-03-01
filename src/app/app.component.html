@@ -1,6 +1,5 @@
 <div class="header-overlay" [style.height.px]="overlayHeight">
   <app-header
-    class="header-title-border"
     [titlePrefix]="titlePrefix"
     [titleSufix]="titleSufix"
     [fontColor]="overlayFontColor"
@@ -11,7 +10,6 @@
 
 <div class="header">
   <app-header
-    class="header-title-border"
     [titlePrefix]="titlePrefix"
     [titleSufix]="titleSufix"
     [fontColor]="headerFontColor"
@@ -20,17 +18,43 @@
   ></app-header>
 </div>
 
-<div class="delimiter"></div>
+<div style="height:80%"></div>
 
-<div class="parallax-window" data-parallax="scroll" data-image-src="/assets/RsCreativityWallpaperRedesigned.png">
-  <span>just some test</span>
+<div class="parallax-creativityIntro">
+  <div class="inspirational-text" [style]="creativityIntro">
+    Anything can be done without any creativity.
+  </div>
+</div>
+
+<div style="height:10%"></div>
+
+<div class="parallax-creativityOutro">
+  <div class="inspirational-text" [style]="creativityOutro">
+    But with some creativity
+    <br />
+    everything can be done.
+  </div>
 </div>
 
 <div class="anchor">
-  <a name="test"></a>
+  <a name="about"></a>
 </div>
-
-<a href="#test">Test</a>
+<div class="section-title">
+  <span>_</span><a href="#about">Who I am</a>
+</div>
+<div class="section-content" #aboutContent>
+  <p>Hi, I'm Raul!</p>
+  <p>
+    I am a creativity-driven and passionate developer who aspires towards better
+    software solutions. I thrive on challenge and constantly set goals for
+    myself to improve my knowledge, soft-skills, learning new methodologies and
+    technologies.
+  </p>
+  <p>
+    As such I read books (yes, the physical ones), use on-demand technology
+    courses, read blogs and am active on networks like StackOverflow.
+  </p>
+</div>
 
 <div style="height:1000px"></div>
 

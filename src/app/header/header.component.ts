@@ -3,7 +3,8 @@ import Typewriter from 't-writer.js';
 
 @Component({
   selector: 'app-header',
-  template: `<div class="header-title-border">
+  template: `<div class="header-wrapper">
+  <div class="header-title-border">
   <div>
     <span class="header-title" [style.color]="fontColor">{{
       titlePrefix
@@ -19,6 +20,16 @@ import Typewriter from 't-writer.js';
     #subtitleSpan
   ></span>
   </div>
+</div>
+<div class="header-menu-border">
+  <div class="header-menu-separator"></div>
+  <div class="header-menu-links">
+    <a [style.color]="fontColor"
+      [style.border-color]="fontColor"
+    href="#about"
+    >About</a>
+  </div>
+</div>
 </div>`,
   styleUrls: ['./header.component.css']
 })
@@ -41,8 +52,6 @@ export class HeaderComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     const target = this.subtitleHolder.nativeElement;
-    // const target = window.document.querySelector('.header-subtitle');
-    console.log(target);
     const writer = new Typewriter(target, {
       loop: true,
       typeColor: this.fontColor,
