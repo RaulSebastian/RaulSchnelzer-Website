@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js",
+    "start": "ng serve",
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
@@ -22,7 +22,6 @@
     "@angular/platform-browser": "^9.0.4",
     "@angular/platform-browser-dynamic": "^9.0.4",
     "@angular/router": "^9.0.4",
-    "express": "^4.17.1",
     "guid-typescript": "^1.0.9",
     "rxjs": "~6.5.4",
     "t-writer.js": "^1.0.4",
@@ -30,8 +29,6 @@
     "wordcloud": "^1.1.1",
     "zone.js": "~0.10.2"
   },
-  "engine": "node >=06.x",
-  "main": "server.js",
   "license": "./LICENSE.md",
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.900.3",
