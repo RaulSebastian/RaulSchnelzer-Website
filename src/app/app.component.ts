@@ -20,7 +20,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   headerLogoSrc = 'assets/RS_logo_Solar400.png';
   creativityIntro = 'font-size: 30vw;padding:20% 0 0 0;';
   creativityOutro = 'font-size: 5vw;padding:40% 0 0 0;';
-  welcomeScreenPadding: string;
   currentYear = new Date().getFullYear();
 
   servicesOffered = [
@@ -116,7 +115,6 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     interval(30000).subscribe(this.switchTitle());
-    this.welcomeScreenPadding = `${this.windowHeight / 2 - 100}px 0 0 ${this.windowWidth / 2 - 300}px`;
   }
 
   ngAfterViewInit(): void {
