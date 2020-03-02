@@ -1,10 +1,10 @@
-import { Component, Input, ViewChild, OnInit, AfterViewInit, ElementRef, QueryList } from '@angular/core';
+import { Component, Input, ViewChild, OnInit, AfterViewInit, ElementRef } from '@angular/core';
 import Typewriter from 't-writer.js';
 
 @Component({
   selector: 'app-header',
   template: `<div class="header-wrapper">
-  <div class="header-title-border">
+  <div [class]="headerClass">
   <div>
     <span class="header-title" [style.color]="fontColor">{{
       titlePrefix
@@ -24,17 +24,18 @@ import Typewriter from 't-writer.js';
 <div class="header-menu-border">
   <div class="header-menu-separator"></div>
   <div class="header-menu-links">
-    <a [style.color]="fontColor"
+    <a *ngFor="let nav of navigationItems"
+      [style.color]="fontColor"
       [style.border-color]="fontColor"
-    href="#about"
-    >About</a>
+      href="{{nav.href}}"
+    >{{nav.display}}</a>
   </div>
 </div>
 </div>`,
   styleUrls: ['./header.component.css']
 })
 
-export class HeaderComponent implements AfterViewInit {
+export class HeaderComponent implements OnInit, AfterViewInit {
   subtitles = [
     'Full Stack Development',
     'Solutions Architecture',
@@ -46,8 +47,21 @@ export class HeaderComponent implements AfterViewInit {
   @Input() logoSource: string;
   @Input() titlePrefix: string;
   @Input() titleSufix: string;
+  @Input() backlight = false;
+
+  headerClass = 'header-title-border';
+
+  navigationItems = [
+    { display: 'about', href: '#about' },
+    { display: 'services', href: '#services' },
+    { display: 'contact', href: '#contact' },
+  ];
 
   constructor() {
+  }
+
+  ngOnInit(): void {
+    this.headerClass = this.backlight ? 'header-title-border header-title-backlight' : 'header-title-border';
   }
 
   ngAfterViewInit(): void {

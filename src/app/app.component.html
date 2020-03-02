@@ -14,11 +14,16 @@
     [titleSufix]="titleSufix"
     [fontColor]="headerFontColor"
     [logoSource]="headerLogoSrc"
+    [backlight]="true"
     #header
   ></app-header>
 </div>
 
-<div style="height:80%"></div>
+<div style="height:80%;overflow:hidden">
+  <p class="landingpage-title">
+    Welcome
+  </p>
+</div>
 
 <div class="parallax-creativityIntro">
   <div class="inspirational-text" [style]="creativityIntro">
@@ -39,10 +44,11 @@
 <div class="anchor">
   <a name="about"></a>
 </div>
-<div class="section-title">
-  <span>_</span><a href="#about">Who I am</a>
+<div class="section-title"><span>_</span><a href="#about">Who I am</a></div>
+<div class="about-me-container">
+  <img class="about-me-image" src="../assets/images/me.png" />
 </div>
-<div class="section-content" #aboutContent>
+<div class="section-content hidden justify" #aboutContent>
   <p>Hi, I'm Raul!</p>
   <p>
     I am a creativity-driven and passionate developer who aspires towards better
@@ -56,13 +62,98 @@
   </p>
 </div>
 
-<div style="height:1000px"></div>
+<div class="anchor">
+  <a name="skills"></a>
+</div>
+<div class="section-title"><span>_</span><a href="#skills">Skills</a></div>
+<div class="section-content hidden" #skillsContent>
+<div class="skill-section">
+  <p>Methodologies</p>
+  <span *ngFor="let skill of skills.Methodologies" class="skill">{{skill}}</span>
+</div>
+<div class="skill-section">
+  <p>Architecture</p>
+  <span *ngFor="let skill of skills.Architecture" class="skill">{{skill}}</span>
+</div>
+<div class="skill-section">
+  <p>Paradigms</p>
+  <span *ngFor="let skill of skills.Paradigms" class="skill">{{skill}}</span>
+</div>
+<div class="skill-section">
+  <p>Programming Languages</p>
+  <span *ngFor="let skill of skills.ProgrammingLanguages" class="skill">{{skill}}</span>
+</div>
+<div class="skill-section">
+  <p>Frameworks</p>
+  <span *ngFor="let skill of skills.Frameworks" class="skill">{{skill}}</span>
+</div>
+<div class="skill-section">
+  <p>IDEs / Tools</p>
+  <span *ngFor="let skill of skills.Tools" class="skill">{{skill}}</span>
+</div>
+<div class="skill-section">
+  <p>DBMS</p>
+  <span *ngFor="let skill of skills.DBMS" class="skill">{{skill}}</span>
+</div>
+<div class="skill-section">
+  <p>Platforms</p>
+  <span *ngFor="let skill of skills.Platforms" class="skill">{{skill}}</span>
+</div>
+<div class="skill-section">
+  <p>Misc</p>
+  <span *ngFor="let skill of skills.Misc" class="skill">{{skill}}</span>
+</div>
+</div>
 
-<div class="delimiter"></div>
+<div class="anchor">
+  <a name="certifications"></a>
+</div>
+<div class="section-title">
+  <span>_</span><a href="#certifications">Certifications</a>
+</div>
+<div class="section-content hidden scrollable" #certsContent>
+  <div class="cert-wrapper" *ngFor="let certificate of certificates">
+    <img src="{{certificate.icon}}" class="cert-icon" />
+    <div class="cert-details">
+      <a class="cert-name" href="{{certificate.link}}" target="_blank">{{certificate.name}}</a>
+      <p class="cert-info">Issuer: {{certificate.issuer}}</p>
+      <p class="cert-info">
+        Issued: {{certificate.validFrom}} - {{certificate.validUntil}}
+      </p>
+    </div>
+  </div>
+  <p>Ask me for further certifications.</p>
+</div>
 
-<div style="height:1000px"></div>
+<div class="anchor">
+  <a name="services"></a>
+</div>
+<div class="section-title"><span>_</span><a href="#services">Services</a></div>
+<div class="section-content hidden" #servicesContent>
+  <ul>
+    <li *ngFor="let service of servicesOffered">
+      <p>{{service.description}}</p>
+    </li>
+  </ul>
+</div>
 
-<div>
+<div class="anchor">
+  <a name="contact"></a>
+</div>
+<div class="section-title"><span>_</span><a href="#contact">Contact</a></div>
+<div class="section-content hidden" #contactContent>
+  <p>Raul Schnelzer</p>
+  <a class="mail" href="mailto:mail@raulschnelzer.de">mail@raulschnelzer.de</a>
+  <p>+49 173 5227934</p>
+  <p>Ludwig-Ebner-Str. 1</p>
+  <p>94469 Deggendorf</p>
+</div>
+
+<div style="height:200px"></div>
+
+<div class="footer">
+  <div style="height:60px"></div>
+  <span style="padding-left:40px;font-size:22px;height: 40px;vertical-align: middle;display: inline-block;">Created using </span>
   <a href="https://github.com/angular/angular" target="_blank">
     <img
       width="40"
@@ -70,4 +161,6 @@
       src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg=="
     />
   </a>
+  <div style="height:40px"></div>
+  <p>© Raul Schnezer {{currentYear}}</p>
 </div>

@@ -15,18 +15,96 @@ export class AppComponent implements OnInit, AfterViewInit {
   titleSufix = 'Schnelzer';
   overlayHeight = 80;
   overlayFontColor = 'white'; // TODO: more elegant solution to pass styles onto child components?
-  headerFontColor = '#3c1177';
+  headerFontColor = '#444444';
   overlayLogoSrc = 'assets/RS_logo_White400.png';
   headerLogoSrc = 'assets/RS_logo_Solar400.png';
-  creativityIntro = 'font-size: 30vw;padding:20% 0;';
-  creativityOutro = 'font-size: 5vw;padding:40% 0;';
+  creativityIntro = 'font-size: 30vw;padding:20% 0 0 0;';
+  creativityOutro = 'font-size: 5vw;padding:40% 0 0 0;';
+  welcomeScreenPadding: string;
+  currentYear = new Date().getFullYear();
+
+  servicesOffered = [
+    { description: 'Tailor-made Software Development' },
+    { description: 'Solutions Architecture' },
+    { description: 'Enterprise Integration' },
+    { description: 'Coding Reviews' }
+  ];
+  certificates = [
+    {
+      name: 'Microsoft Certified: Azure Fundamentals',
+      icon: 'https://images.youracclaim.com/size/340x340/images/6a254dad-77e5-4e71-8049-94e5c7a15981/azure-fundamentals-600x600.png',
+      issuer: 'Microsoft',
+      validFrom: 'Jan 2020',
+      validUntil: 'No Expiration Date',
+      link: 'https://www.youracclaim.com/badges/1d7f7742-a5d5-468c-b6b8-4eecdb2726a2/linked_in_profile'
+    },
+    {
+      name: 'Professional Scrum Developer',
+      icon: 'https://static.scrum.org/web/badges/badge-psdi.svg',
+      issuer: 'Scrum.org', validFrom: 'Jul 2019', validUntil: 'No Expiration Date',
+      link: 'https://www.scrum.org/certificates/428766'
+    },
+    {
+      name: 'Google Analytics Individual Qualification',
+      icon: 'https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg',
+      issuer: 'Google',
+      validFrom: 'Jun 2019',
+      validUntil: 'Jun 2020',
+      link: 'https://skillshop.exceedlms.com/student/award/34095694'
+    },
+    {
+      name: 'SOA Done Right 2018 - DACH',
+      icon: 'https://particular.net/images/blog/logo-og-img.png',
+      issuer: 'Particular Software',
+      validFrom: 'Dec 2018',
+      validUntil: 'No Expiration Date',
+      link: 'https://www.credential.net/p33cqkid'
+    },
+  ];
+
+  skills = {
+    Methodologies: [
+      'Agile', 'Scrum', 'Kanban', 'Extreme Programming', 'DevOps',
+      'Pair Programming', 'RAD', 'TDD', 'BDD', 'Iterative Development',
+      'Requirements Engeneering'],
+    Architecture: [
+      'Microservices', 'N-Tier', 'MV*', 'Onion', 'Cloud first', 'RESTful'
+    ],
+    Paradigms: [
+      'OOP', 'Functional', 'Event-Driven'
+    ],
+    ProgrammingLanguages: [
+      'C#', 'T-SQL', 'TypeScript', 'Python', 'Dart'
+    ],
+    Frameworks: [
+      '.Net Core', 'Angular', 'Blazor', 'Aurelia', 'ASP.Net Core', 'NServiceBus', 'Node.js',
+      'WPF', 'Akka.Net'
+    ],
+    Tools: [
+      'Visual Studio', 'VS Code', 'Jetbrains Toolbox', 'Adobe Photoshop', 'Affinity Designer',
+      'Affinity Photo', 'MS BI Stack'
+    ],
+    DBMS: [
+      'SQL Server 2008R2 - 2019', 'RavenDB', 'MongoDB', 'CosmosDB', 'MySql', 'Oracle', 'EventStore'
+    ],
+    Platforms: [
+      'K8s', 'Docker', 'SharePoint'
+    ],
+    Misc: [
+      'Azure', 'Distributed Systems', 'CI/CD', 'Git', 'TFS VC'
+    ]
+  };
 
   @ViewChild('aboutContent', { static: false }) aboutContent: ElementRef;
+  @ViewChild('servicesContent', { static: false }) servicesContent: ElementRef;
+  @ViewChild('certsContent', { static: false }) certsContent: ElementRef;
+  @ViewChild('skillsContent', { static: false }) skillsContent: ElementRef;
+  @ViewChild('contactContent', { static: false }) contactContent: ElementRef;
 
   private offset = 0;
   private windowHeight: number;
   private windowWidth: number;
-  private sectionsObserved: [ElementRef];
+  private sectionsObserved: Array<ElementRef>;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -38,11 +116,16 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     interval(30000).subscribe(this.switchTitle());
+    this.welcomeScreenPadding = `${this.windowHeight / 2 - 100}px 0 0 ${this.windowWidth / 2 - 300}px`;
   }
 
   ngAfterViewInit(): void {
     this.sectionsObserved = [
-      this.aboutContent
+      this.aboutContent,
+      this.skillsContent,
+      this.certsContent,
+      this.servicesContent,
+      this.contactContent
     ];
 
     // TODO: css provider / access service
@@ -102,8 +185,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   private evalSectionAppear(section: ElementRef, offset: number, height: number): boolean {
     const position = section.nativeElement.offsetTop;
     const classes = section.nativeElement.classList;
-    if (position > offset && position <= (offset + height)
-      && !classes.contains('appear')) {
+    if (position > offset && position <= (offset + height)) {
+      classes.remove('hidden');
       classes.add('appear');
       return true;
     }
