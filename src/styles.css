@@ -69,7 +69,7 @@ a:hover {
     transparent 70%
   );
   background-image: radial-gradient(var(--theme-background), transparent 70%);
-  background-position: 40px -10px;
+  background-position: 20px -10px;
   background-repeat: no-repeat;
 }
 
@@ -180,14 +180,19 @@ _:default:not(:root:root), .header-title-backlight {
   text-align: justify;
 }
 
+.middle {
+  vertical-align: middle;
+}
+
 .scrollable {
   overflow: scroll;
   overflow-y: auto;
   overflow-x: auto;
 }
 
-.mail {
+.contactlink {
   color: var(--theme-accent);
+  margin-left: 10px;
 }
 
 .skill-section {
@@ -351,8 +356,24 @@ _:default:not(:root:root), .header-title-backlight {
   margin: 0 !important;
 }
 
+.impressum {
+  width: 90vw;
+  height: 90vh;
+  background: #FFFFFFEF;
+  z-index: 999999;
+  position: fixed;
+  top: 5vh;
+  left: 5vw;
+  overflow: auto;
+  border-radius: 32px 32px;
+}
+
 .hidden {
   opacity: 0;
+}
+
+.collapsed {
+  visibility: collapse;
 }
 
 .appear {

@@ -67,42 +67,10 @@
 </div>
 <div class="section-title"><span>_</span><a href="#skills">Skills</a></div>
 <div class="section-content hidden" #skillsContent>
-<div class="skill-section">
-  <p>Methodologies</p>
-  <span *ngFor="let skill of skills.Methodologies" class="skill">{{skill}}</span>
-</div>
-<div class="skill-section">
-  <p>Architecture</p>
-  <span *ngFor="let skill of skills.Architecture" class="skill">{{skill}}</span>
-</div>
-<div class="skill-section">
-  <p>Paradigms</p>
-  <span *ngFor="let skill of skills.Paradigms" class="skill">{{skill}}</span>
-</div>
-<div class="skill-section">
-  <p>Programming Languages</p>
-  <span *ngFor="let skill of skills.ProgrammingLanguages" class="skill">{{skill}}</span>
-</div>
-<div class="skill-section">
-  <p>Frameworks</p>
-  <span *ngFor="let skill of skills.Frameworks" class="skill">{{skill}}</span>
-</div>
-<div class="skill-section">
-  <p>IDEs / Tools</p>
-  <span *ngFor="let skill of skills.Tools" class="skill">{{skill}}</span>
-</div>
-<div class="skill-section">
-  <p>DBMS</p>
-  <span *ngFor="let skill of skills.DBMS" class="skill">{{skill}}</span>
-</div>
-<div class="skill-section">
-  <p>Platforms</p>
-  <span *ngFor="let skill of skills.Platforms" class="skill">{{skill}}</span>
-</div>
-<div class="skill-section">
-  <p>Misc</p>
-  <span *ngFor="let skill of skills.Misc" class="skill">{{skill}}</span>
-</div>
+  <div *ngFor="let skillset of skillsets" class="skill-section">
+    <p>{{skillset.category}}</p>
+    <span *ngFor="let skill of skillset.skills" class="skill">{{skill}}</span>
+  </div>
 </div>
 
 <div class="anchor">
@@ -142,14 +110,14 @@
 </div>
 <div class="section-title"><span>_</span><a href="#contact">Contact</a></div>
 <div class="section-content hidden" #contactContent>
-  <p>Raul Schnelzer</p>
-  <a class="mail" href="mailto:mail@raulschnelzer.de">mail@raulschnelzer.de</a>
-  <p>+49 173 5227934</p>
-  <p>Ludwig-Ebner-Str. 1</p>
-  <p>94469 Deggendorf</p>
+  <app-contact></app-contact>
 </div>
 
 <div style="height:200px"></div>
+
+<div class="impressum collapsed">
+  <span>OK</span>
+</div>
 
 <div class="footer">
   <div style="height:60px"></div>
@@ -163,4 +131,7 @@
   </a>
   <div style="height:40px"></div>
   <p>© Raul Schnezer {{currentYear}}</p>
+</div>
+
+<div>
 </div>

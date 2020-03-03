@@ -61,38 +61,56 @@ export class AppComponent implements OnInit, AfterViewInit {
     },
   ];
 
-  skills = {
-    Methodologies: [
-      'Agile', 'Scrum', 'Kanban', 'Extreme Programming', 'DevOps',
-      'Pair Programming', 'RAD', 'TDD', 'BDD', 'Iterative Development',
-      'Requirements Engeneering'],
-    Architecture: [
-      'Microservices', 'N-Tier', 'MV*', 'Onion', 'Cloud first', 'RESTful'
-    ],
-    Paradigms: [
-      'OOP', 'Functional', 'Event-Driven'
-    ],
-    ProgrammingLanguages: [
-      'C#', 'T-SQL', 'TypeScript', 'Python', 'Dart'
-    ],
-    Frameworks: [
-      '.Net Core', 'Angular', 'Blazor', 'Aurelia', 'ASP.Net Core', 'NServiceBus', 'Node.js',
-      'WPF', 'Akka.Net'
-    ],
-    Tools: [
-      'Visual Studio', 'VS Code', 'Jetbrains Toolbox', 'Adobe Photoshop', 'Affinity Designer',
-      'Affinity Photo', 'MS BI Stack'
-    ],
-    DBMS: [
-      'SQL Server 2008R2 - 2019', 'RavenDB', 'MongoDB', 'CosmosDB', 'MySql', 'Oracle', 'EventStore'
-    ],
-    Platforms: [
-      'K8s', 'Docker', 'SharePoint'
-    ],
-    Misc: [
-      'Azure', 'Distributed Systems', 'CI/CD', 'Git', 'TFS VC'
-    ]
-  };
+  skillsets = [
+    {
+      category: 'Methodologies', skills: [
+        'Agile', 'Scrum', 'Kanban', 'Extreme Programming', 'DevOps',
+        'Pair Programming', 'RAD', 'TDD', 'BDD', 'Iterative Development',
+        'Requirements Engeneering']
+    },
+    {
+      category: 'Architecture', skills: [
+        'Microservices', 'N-Tier', 'MV*', 'Onion', 'Cloud first', 'RESTful'
+      ]
+    },
+    {
+      category: 'Paradigms', skills: [
+        'OOP', 'Functional', 'Event-Driven'
+      ]
+    },
+    {
+      category: 'ProgrammingLanguages', skills: [
+        'C#', 'T-SQL', 'TypeScript', 'Python', 'Dart'
+      ]
+    },
+    {
+      category: 'Frameworks', skills: [
+        '.Net Core', 'Angular', 'Blazor', 'Aurelia', 'ASP.Net Core', 'NServiceBus', 'Node.js',
+        'WPF', 'Akka.Net'
+      ]
+    },
+    {
+      category: 'Tools', skills: [
+        'Visual Studio', 'VS Code', 'Jetbrains Toolbox', 'Adobe Photoshop', 'Affinity Designer',
+        'Affinity Photo', 'MS BI Stack'
+      ]
+    },
+    {
+      category: 'DBMS', skills: [
+        'SQL Server 2008R2 - 2019', 'RavenDB', 'MongoDB', 'CosmosDB', 'MySql', 'Oracle', 'EventStore'
+      ]
+    },
+    {
+      category: 'Platforms', skills: [
+        'K8s', 'Docker', 'SharePoint'
+      ]
+    },
+    {
+      category: 'Misc', skills: [
+        'Azure', 'Distributed Systems', 'CI/CD', 'Git', 'TFS VC'
+      ]
+    }
+  ];
 
   @ViewChild('aboutContent', { static: false }) aboutContent: ElementRef;
   @ViewChild('servicesContent', { static: false }) servicesContent: ElementRef;
