@@ -20,7 +20,6 @@ export class AppComponent implements OnInit, AfterViewInit {
   headerLogoSrc = 'assets/RS_logo_Solar400.png';
   creativityIntro = 'font-size: 30vw;padding:30vh 0 0 0;';
   creativityOutro = 'font-size: 5vw;padding:30vh 0 0 0;';
-  currentYear = new Date().getFullYear();
 
   servicesOffered = [
     { description: 'Tailor-made Software Development' },
@@ -70,7 +69,8 @@ export class AppComponent implements OnInit, AfterViewInit {
     },
     {
       category: 'Architecture', skills: [
-        'Microservices', 'N-Tier', 'MV*', 'Onion', 'Cloud first', 'RESTful'
+        'Microservices', 'N-Tier', 'MV*', 'Onion', 'Cloud first', 'RESTful',
+        'Distributed Systems'
       ]
     },
     {
@@ -79,20 +79,20 @@ export class AppComponent implements OnInit, AfterViewInit {
       ]
     },
     {
-      category: 'ProgrammingLanguages', skills: [
+      category: 'Programming Languages', skills: [
         'C#', 'T-SQL', 'TypeScript', 'Python', 'Dart'
       ]
     },
     {
       category: 'Frameworks', skills: [
         '.Net Core', 'Angular', 'Blazor', 'Aurelia', 'ASP.Net Core', 'NServiceBus', 'Node.js',
-        'WPF', 'Akka.Net'
+        'GraphQL', 'UWP', 'WPF', 'Akka.Net', 'Flutter'
       ]
     },
     {
       category: 'Tools', skills: [
-        'Visual Studio', 'VS Code', 'Jetbrains Toolbox', 'Adobe Photoshop', 'Affinity Designer',
-        'Affinity Photo', 'MS BI Stack'
+        'Visual Studio', 'VS Code', 'Jetbrains Toolbox', 'Git', 'TFS VC', 'MS BI Data Tools',
+        'Adobe Photoshop', 'Affinity Designer', 'Affinity Photo'
       ]
     },
     {
@@ -102,12 +102,7 @@ export class AppComponent implements OnInit, AfterViewInit {
     },
     {
       category: 'Platforms', skills: [
-        'K8s', 'Docker', 'SharePoint'
-      ]
-    },
-    {
-      category: 'Misc', skills: [
-        'Azure', 'Distributed Systems', 'CI/CD', 'Git', 'TFS VC'
+        'Azure', 'K8s', 'Docker', 'Azure DevOps (Server)', 'SharePoint'
       ]
     }
   ];
