@@ -18,8 +18,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   headerFontColor = '#444444';
   overlayLogoSrc = 'assets/RS_logo_White400.png';
   headerLogoSrc = 'assets/RS_logo_Solar400.png';
-  creativityIntro = 'font-size: 30vw;padding:20% 0 0 0;';
-  creativityOutro = 'font-size: 5vw;padding:40% 0 0 0;';
+  creativityIntro = 'font-size: 30vw;padding:30vh 0 0 0;';
+  creativityOutro = 'font-size: 5vw;padding:30vh 0 0 0;';
   currentYear = new Date().getFullYear();
 
   servicesOffered = [
@@ -104,6 +104,8 @@ export class AppComponent implements OnInit, AfterViewInit {
   private windowHeight: number;
   private windowWidth: number;
   private sectionsObserved: Array<ElementRef>;
+  private creativityIntroFontSize = 0;
+  private creativityOutroFontSize = 0;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -131,10 +133,9 @@ export class AppComponent implements OnInit, AfterViewInit {
       if (this.document.styleSheets[cssid] != null
         && this.document.styleSheets[cssid].type === 'text/css') {
         const element = document.styleSheets[cssid];
-        console.log(element);
+        // console.log(element);
       }
     }
-    console.log(document.styleSheets[5]);
     // this.headerFontColor = document.documentElement.style.getPropertyValue('--theme-accent');
   }
 
@@ -154,14 +155,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   onWindowScroll() {
     this.offset = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
     this.windowHeight = this.window.outerHeight;
-    console.log(this.offset);
     this.adjustHeaderOverlay();
     this.adjustCreativityIntro();
     this.adjustCreativityOutro();
 
-    console.log('aboutContent:', this.aboutContent.nativeElement.offsetTop);
-    console.log('win H:', this.windowHeight);
-    // if(this.aboutContent.offset())
+    // console.log('aboutContent:', this.aboutContent.nativeElement.offsetTop);
 
     this.observeSections();
   }
@@ -181,7 +179,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   private evalSectionAppear(section: ElementRef, offset: number, height: number): boolean {
-    const position = section.nativeElement.offsetTop;
+    const position = section.nativeElement.offsetTop * 1.1;
     const classes = section.nativeElement.classList;
     if (position > offset && position <= (offset + height)) {
       classes.remove('hidden');
@@ -192,34 +190,47 @@ export class AppComponent implements OnInit, AfterViewInit {
   }
 
   private adjustCreativityIntro(): void {
-    let fontsize = 30 * (1 - this.offset / this.windowHeight);
+    let fontsize = 28 * (1 - this.offset / this.windowHeight);
     if (fontsize < 2) {
       fontsize = 2;
     }
-    let paddingPercantage = fontsize + 20;
-    if (paddingPercantage > 20) {
-      paddingPercantage = 20;
+    let paddingPercantage = fontsize + 5;
+    if (paddingPercantage > 30) {
+      paddingPercantage = 30;
     }
-    this.creativityIntro = `font-size: ${fontsize}vw;padding: ${paddingPercantage}% 0 0 0;`;
+    if (Math.abs(this.creativityIntroFontSize - fontsize) < 0.05) {
+      return;
+    }
+    this.creativityIntroFontSize = fontsize;
+    this.creativityIntro = `font-size: ${fontsize}vw;padding: ${paddingPercantage}vh 0 0 0;`;
   }
 
   private adjustCreativityOutro(): void {
     const scale = this.windowHeight > this.windowWidth ? 10 : 4;
     let fontsize = scale * (this.offset / this.windowHeight) - 2;
+    if (fontsize < 0) {
+      return;
+    }
     if (fontsize > 9) {
       fontsize = 9;
     }
-    let paddingPercantage = fontsize * 3;
-    if (paddingPercantage > 20) {
-      paddingPercantage = 20;
+    const paddingPercantage = (10 - fontsize) * 2 + 10;
+    if (Math.abs(this.creativityOutroFontSize - fontsize) < 0.05) {
+      return;
     }
-    this.creativityOutro = `font-size: ${fontsize}vw;padding: ${paddingPercantage}% 0 0 0;`;
+    this.creativityOutroFontSize = fontsize;
+    this.creativityOutro = `font-size: ${fontsize}vw;padding: ${paddingPercantage}vh 0 0 0;`;
   }
 
   private adjustHeaderOverlay(): void {
     const minHeaderOverlayHeight = 80;
     const offsetCollapseBegin = 100.0;
     const offsetCollapseLimit = 200.0;
+
+    if (this.offset > this.windowHeight) {
+      this.overlayHeight = 0;
+      return;
+    }
 
     if (this.offset <= offsetCollapseBegin) {
       this.overlayHeight = minHeaderOverlayHeight;
@@ -234,14 +245,15 @@ export class AppComponent implements OnInit, AfterViewInit {
     if (overlayPercentage < 0.3) {
       overlayPercentage /= 1.3;
     }
-    if (overlayPercentage < 0.1) {
-      overlayPercentage = 0;
-    }
 
     let computedHeight = overlayPercentage * minHeaderOverlayHeight;
 
     if (computedHeight > minHeaderOverlayHeight) {
       computedHeight = minHeaderOverlayHeight;
+    }
+
+    if (Math.abs(this.overlayHeight - computedHeight) < 0.05) {
+      return;
     }
 
     this.overlayHeight = computedHeight;
