@@ -141,7 +141,7 @@ _:default:not(:root:root),
     background-size: 1px 90vw;
   }
   .footer-right {
-    font-size: 2vw;
+    font-size: 12px;
   }
 }
 
@@ -157,7 +157,7 @@ _:default:not(:root:root),
     font-size: 22px;
   }
   .footer-right {
-    font-size: 18px;
+    font-size: 2vw;
   }
 }
 
@@ -186,6 +186,9 @@ _:default:not(:root:root),
     height: 100vh;
     max-height: 100vh;
     background-size: 1px 100vh;
+  }
+  .footer-right {
+    font-size: 18px;
   }
 }
 
