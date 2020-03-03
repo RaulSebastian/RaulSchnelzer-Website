@@ -256,7 +256,8 @@ _:default:not(:root:root),
   max-height: 40px;
 }
 
-.footer:hover {
+.footer:hover, .footer:active
+{
   -webkit-animation: max-height 1s ease-in; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: max-height 1s ease-in; /* Firefox < 16 */
   -ms-animation: max-height 1s ease-in; /* Internet Explorer */
@@ -308,7 +309,8 @@ _:default:not(:root:root),
   -o-animation: color 1s; /* Opera < 12.1 */
   animation: color 1s;
 }
-.footer-middle-content a:hover {
+.footer-middle-content a:hover,
+.footer-middle-content a:active {
   color: var(--theme-accent) !important;
   cursor: pointer;
 }
@@ -329,7 +331,8 @@ _:default:not(:root:root),
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-.footer-right-copyright p:hover {
+.footer-right-copyright p:hover,
+.footer-right-copyright p:active {
   background: linear-gradient(to right, #ffa600, #ff0062 48px, #af0bd8);
   -webkit-background-clip: text;
   background-clip: text;
