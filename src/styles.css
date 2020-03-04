@@ -143,6 +143,11 @@ _:default:not(:root:root),
   .footer-right {
     font-size: 12px;
   }
+  .footer-left-text {
+    padding-left: 2vw;
+    font-size: 2vw;
+    line-height: 4vw;
+  }
 }
 
 @media screen and (min-width: 770px) {
@@ -189,6 +194,11 @@ _:default:not(:root:root),
   }
   .footer-right {
     font-size: 18px;
+  }
+  .footer-left-text {
+    padding-left: 40px;
+    font-size: 24px;
+    line-height: 40px;
   }
 }
 
@@ -257,8 +267,8 @@ _:default:not(:root:root),
   max-height: 40px;
 }
 
-.footer:hover, .footer:active
-{
+.footer:hover,
+.footer:active {
   -webkit-animation: max-height 1s ease-in; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: max-height 1s ease-in; /* Firefox < 16 */
   -ms-animation: max-height 1s ease-in; /* Internet Explorer */
@@ -281,11 +291,6 @@ _:default:not(:root:root),
   display: flex;
   justify-content: center;
 }
-.footer-left-text {
-  padding-left: 40px;
-  font-size: 24px;
-  line-height: 40px;
-}
 .footer-middle {
   float: left;
   width: 45vw;
@@ -304,6 +309,7 @@ _:default:not(:root:root),
 }
 .footer-middle-content a {
   color: #cccccc;
+  white-space: nowrap;
   -webkit-animation: color 1s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: color 1s; /* Firefox < 16 */
   -ms-animation: color 1s; /* Internet Explorer */
@@ -325,6 +331,7 @@ _:default:not(:root:root),
 .footer-right-copyright {
   position: absolute;
   top: 30%;
+  white-space: nowrap;
 }
 .footer-right-copyright p {
   background: linear-gradient(to right, #ffa600, #00ffbf 54px, blueviolet);
@@ -466,13 +473,13 @@ _:default:not(:root:root),
 
 .imprint {
   width: calc(90vw - 64px);
-  height: 90vh;
+  height: 95vh;
   max-width: 1024px;
   background: #ffffffef;
   z-index: 999999;
   position: fixed;
-  top: 10vh;
-  left: 10vw;
+  top: 5vh;
+  left: 5vw;
   overflow: hidden;
   border-radius: 32px 32px;
   padding: 32px;
@@ -488,6 +495,12 @@ _:default:not(:root:root),
 
 .imprintTitle {
   font-size: calc(2vh + 2vw);
+}
+
+.angular-log {
+  width: 2vw;
+  min-width: 24px;
+  max-width: 40px;
 }
 
 .hidden {

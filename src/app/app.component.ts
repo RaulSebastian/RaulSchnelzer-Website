@@ -12,7 +12,6 @@ import { AppRoute } from './app.routes';
 })
 
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
-  [x: string]: any;
   title = 'Raul Schnelzer';
   titlePrefix = 'Raul';
   titleSufix = 'Schnelzer';
@@ -124,7 +123,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private sectionsObserved: Array<ElementRef>;
   private creativityIntroFontSize = 0;
   private creativityOutroFontSize = 0;
-  private subscription;
+  private routeSubscription;
+  private registeredRoutes: Array<AppRoute>;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -139,23 +139,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ngOnInit(): void {
     interval(30000).subscribe(this.switchTitle());
 
-    this.subscription =
+    this.routeSubscription =
       this.router.events.subscribe(() => {
-        let r = this.route;
-        while (r.firstChild) {
-          r = r.firstChild;
+        let route = this.route;
+        while (route.firstChild) {
+          route = route.firstChild;
         }
-        r.params.subscribe(params => {
-          console.log('subsribed to', params);
-          if (params.route) {
-            const routeParameter: string = params.route;
-            console.log('param routing to:', { routeParameter });
+        route.params.subscribe(param => {
+          if (param.route !== undefined) {
+            const routeParameter: string = param.route;
             const directive = AppRoute[routeParameter];
             if (directive !== undefined) {
               this.navigate(directive);
-            } else {
-              console.log('unsubscribing', this);
-              this.subscription.unsubscribe(this);
             }
           }
         });
@@ -183,65 +178,46 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.routeSubscription.unsubscribe();
   }
 
   private navigate(route: AppRoute) {
-    console.log('navigation requested to', route);
-
+    console.log('navigation requested to', AppRoute[route]);
     if (route == null) {
+      this.hideImprint();
       this.router.navigateByUrl('');
       return;
     }
-
     let offsetPosition = 0;
     switch (route) {
       case AppRoute.home:
         this.hideImprint();
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+        this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.about:
         this.hideImprint();
         offsetPosition = this.aboutContent.nativeElement.offsetTop - 400;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+        this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.skills:
         this.hideImprint();
         offsetPosition = this.skillsContent.nativeElement.offsetTop - 200;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+        this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.certifications:
         this.hideImprint();
         offsetPosition = this.certsContent.nativeElement.offsetTop - 200;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+        this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.services:
         this.hideImprint();
         offsetPosition = this.servicesContent.nativeElement.offsetTop - 200;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+        this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.contact:
         this.hideImprint();
         offsetPosition = this.contactContent.nativeElement.offsetTop - 200;
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
+        this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.imprint:
         this.showImprint();
@@ -250,6 +226,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         this.hideImprint();
         break;
       default:
+        this.hideImprint();
         break;
     }
   }
@@ -274,8 +251,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.adjustCreativityIntro();
     this.adjustCreativityOutro();
 
-    // console.log('aboutContent:', this.aboutContent.nativeElement.offsetTop);
-
     this.observeSections();
   }
 
@@ -293,10 +268,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  public closeImprint() {
-    console.log('imprint closed.');
-    this.hideImprint();
-    this.navigate(null);
+  public closeImprint(): void {
+      this.hideImprint();
+  }
+
+  private smoothScrollTo(offsetPosition: number): void {
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth'
+    });
   }
 
   private evalSectionAppear(section: ElementRef, offset: number, height: number): boolean {
@@ -386,13 +366,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private showImprint() {
-    if (this.isImprintVisible) {
+    console.log('show:', { css: this.imprint }, this.isImprintVisible());
+    if (!this.isImprintVisible()) {
       this.imprint = this.imprint.replace('collapsed', 'fadein');
     }
   }
 
   private hideImprint() {
-    if (this.isImprintVisible) {
+    console.log('hide:', { css: this.imprint }, this.isImprintVisible());
+    if (this.isImprintVisible()) {
       this.imprint = this.imprint.replace('fadein', 'collapsed');
     }
   }
