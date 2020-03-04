@@ -12,6 +12,7 @@ import { WordCloudComponent } from './word-cloud/word-cloud.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import { MatIconModule } from '@angular/material/icon';
+import { ImprintComponent } from './imprint/imprint.component';
 
 @NgModule({
   declarations: [
@@ -19,13 +20,14 @@ import { MatIconModule } from '@angular/material/icon';
     HeaderComponent,
     WordCloudComponent,
     FooterComponent,
-    ContactComponent
+    ContactComponent,
+    ImprintComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
-    MatIconModule
+    MatIconModule,
+    AppRoutingModule,
   ],
   bootstrap: [AppComponent],
   providers: [ WINDOW_PROVIDERS ]

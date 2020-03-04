@@ -246,6 +246,7 @@ _:default:not(:root:root),
   width: 100%;
   background-color: black;
   position: fixed;
+  z-index: 9999999;
   bottom: 0;
   left: 0;
   overflow: hidden;
@@ -463,16 +464,30 @@ _:default:not(:root:root),
   margin: 0 !important;
 }
 
-.impressum {
-  width: 90vw;
+.imprint {
+  width: calc(90vw - 64px);
   height: 90vh;
+  max-width: 1024px;
   background: #ffffffef;
   z-index: 999999;
   position: fixed;
-  top: 5vh;
-  left: 5vw;
-  overflow: auto;
+  top: 10vh;
+  left: 10vw;
+  overflow: hidden;
   border-radius: 32px 32px;
+  padding: 32px;
+}
+
+.closeImprint {
+  position: absolute;
+  margin: 32px;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+
+.imprintTitle {
+  font-size: calc(2vh + 2vw);
 }
 
 .hidden {

@@ -27,7 +27,8 @@ import Typewriter from 't-writer.js';
     <a *ngFor="let nav of navigationItems"
       [style.color]="fontColor"
       [style.border-color]="fontColor"
-      href="{{nav.href}}"
+      routerLink="{{nav.href}}"
+      routerLinkActive="active"
     >{{nav.display}}</a>
   </div>
 </div>
@@ -52,9 +53,9 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   headerClass = 'header-title-border';
 
   navigationItems = [
-    { display: 'about', href: '#about' },
-    { display: 'services', href: '#services' },
-    { display: 'contact', href: '#contact' },
+    { display: 'about', href: '/about' },
+    { display: 'services', href: '/services' },
+    { display: 'contact', href: '/contact' },
   ];
 
   constructor() {

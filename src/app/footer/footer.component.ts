@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { version } from '../../../package.json';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -13,9 +14,10 @@ export class FooterComponent implements OnInit {
   version: string = version;
   copyrightPeriod = this.currentYear === this.startYear ? this.startYear : `${this.startYear} - ${this.currentYear}`;
 
-  constructor() { }
+  constructor(
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
   }
-
 }

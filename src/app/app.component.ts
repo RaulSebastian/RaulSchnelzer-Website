@@ -1,7 +1,9 @@
-import { Component, HostListener, Inject, NgModule, OnInit, ViewChild, AfterViewInit, ElementRef } from '@angular/core';
+import { Component, HostListener, Inject, NgModule, OnInit, ViewChild, AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router, ParamMap, RouteReuseStrategy } from '@angular/router';
 import { DOCUMENT } from '@angular/common';
 import { WINDOW } from './services/window.service';
 import { interval } from 'rxjs';
+import { AppRoute } from './app.routes';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,8 @@ import { interval } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 
-export class AppComponent implements OnInit, AfterViewInit {
+export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
+  [x: string]: any;
   title = 'Raul Schnelzer';
   titlePrefix = 'Raul';
   titleSufix = 'Schnelzer';
@@ -20,6 +23,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   headerLogoSrc = 'assets/RS_logo_Solar400.png';
   creativityIntro = 'font-size: 30vw;padding:30vh 0 0 0;';
   creativityOutro = 'font-size: 5vw;padding:30vh 0 0 0;';
+  imprint = 'imprint collapsed';
 
   servicesOffered = [
     { description: 'Tailor-made Software Development' },
@@ -112,6 +116,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   @ViewChild('certsContent', { static: false }) certsContent: ElementRef;
   @ViewChild('skillsContent', { static: false }) skillsContent: ElementRef;
   @ViewChild('contactContent', { static: false }) contactContent: ElementRef;
+  @ViewChild('imprintContent', { static: false }) imprintContent: ElementRef;
 
   private offset = 0;
   private windowHeight: number;
@@ -119,10 +124,13 @@ export class AppComponent implements OnInit, AfterViewInit {
   private sectionsObserved: Array<ElementRef>;
   private creativityIntroFontSize = 0;
   private creativityOutroFontSize = 0;
+  private subscription;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    @Inject(WINDOW) private window: Window
+    @Inject(WINDOW) private window: Window,
+    private router: Router,
+    private route: ActivatedRoute
   ) {
     this.windowHeight = this.window.outerHeight;
     this.windowWidth = this.window.outerWidth;
@@ -130,6 +138,28 @@ export class AppComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     interval(30000).subscribe(this.switchTitle());
+
+    this.subscription =
+      this.router.events.subscribe(() => {
+        let r = this.route;
+        while (r.firstChild) {
+          r = r.firstChild;
+        }
+        r.params.subscribe(params => {
+          console.log('subsribed to', params);
+          if (params.route) {
+            const routeParameter: string = params.route;
+            console.log('param routing to:', { routeParameter });
+            const directive = AppRoute[routeParameter];
+            if (directive !== undefined) {
+              this.navigate(directive);
+            } else {
+              console.log('unsubscribing', this);
+              this.subscription.unsubscribe(this);
+            }
+          }
+        });
+      });
   }
 
   ngAfterViewInit(): void {
@@ -150,6 +180,78 @@ export class AppComponent implements OnInit, AfterViewInit {
       }
     }
     // this.headerFontColor = document.documentElement.style.getPropertyValue('--theme-accent');
+  }
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  private navigate(route: AppRoute) {
+    console.log('navigation requested to', route);
+
+    if (route == null) {
+      this.router.navigateByUrl('');
+      return;
+    }
+
+    let offsetPosition = 0;
+    switch (route) {
+      case AppRoute.home:
+        this.hideImprint();
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        break;
+      case AppRoute.about:
+        this.hideImprint();
+        offsetPosition = this.aboutContent.nativeElement.offsetTop - 400;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        break;
+      case AppRoute.skills:
+        this.hideImprint();
+        offsetPosition = this.skillsContent.nativeElement.offsetTop - 200;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        break;
+      case AppRoute.certifications:
+        this.hideImprint();
+        offsetPosition = this.certsContent.nativeElement.offsetTop - 200;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        break;
+      case AppRoute.services:
+        this.hideImprint();
+        offsetPosition = this.servicesContent.nativeElement.offsetTop - 200;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        break;
+      case AppRoute.contact:
+        this.hideImprint();
+        offsetPosition = this.contactContent.nativeElement.offsetTop - 200;
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+        break;
+      case AppRoute.imprint:
+        this.showImprint();
+        break;
+      case AppRoute.privacy:
+        this.hideImprint();
+        break;
+      default:
+        break;
+    }
   }
 
   private switchTitle(): (value: number) => void {
@@ -189,6 +291,12 @@ export class AppComponent implements OnInit, AfterViewInit {
         }
       }
     }
+  }
+
+  public closeImprint() {
+    console.log('imprint closed.');
+    this.hideImprint();
+    this.navigate(null);
   }
 
   private evalSectionAppear(section: ElementRef, offset: number, height: number): boolean {
@@ -271,5 +379,21 @@ export class AppComponent implements OnInit, AfterViewInit {
 
     this.overlayHeight = computedHeight;
     return;
+  }
+
+  private isImprintVisible(): boolean {
+    return !this.imprint.includes('collapsed');
+  }
+
+  private showImprint() {
+    if (this.isImprintVisible) {
+      this.imprint = this.imprint.replace('collapsed', 'fadein');
+    }
+  }
+
+  private hideImprint() {
+    if (this.isImprintVisible) {
+      this.imprint = this.imprint.replace('fadein', 'collapsed');
+    }
   }
 }
