@@ -5,6 +5,6 @@ export enum AppRoute {
     certifications,
     services,
     contact,
-    imprint,
+    legal,
     privacy
 }

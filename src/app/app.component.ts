@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   headerLogoSrc = 'assets/RS_logo_Solar400.png';
   creativityIntro = 'font-size: 30vw;padding:30vh 0 0 0;';
   creativityOutro = 'font-size: 5vw;padding:30vh 0 0 0;';
-  imprint = 'imprint collapsed';
+  legal = 'legal collapsed';
 
   contactOptions = new Set([
     ContactOptions.name,
@@ -123,7 +123,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('certsContent', { static: false }) certsContent: ElementRef;
   @ViewChild('skillsContent', { static: false }) skillsContent: ElementRef;
   @ViewChild('contactContent', { static: false }) contactContent: ElementRef;
-  @ViewChild('imprintContent', { static: false }) imprintContent: ElementRef;
+  @ViewChild('legalContent', { static: false }) legalContent: ElementRef;
 
   private offset = 0;
   private windowHeight: number;
@@ -192,49 +192,49 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private navigate(route: AppRoute) {
     console.log('navigation requested to', AppRoute[route]);
     if (route == null) {
-      this.hideImprint();
+      this.hideLegal();
       this.router.navigateByUrl('');
       return;
     }
     let offsetPosition = 0;
     switch (route) {
       case AppRoute.home:
-        this.hideImprint();
+        this.hideLegal();
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.about:
-        this.hideImprint();
+        this.hideLegal();
         offsetPosition = this.aboutContent.nativeElement.offsetTop - 400;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.skills:
-        this.hideImprint();
+        this.hideLegal();
         offsetPosition = this.skillsContent.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.certifications:
-        this.hideImprint();
+        this.hideLegal();
         offsetPosition = this.certsContent.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.services:
-        this.hideImprint();
+        this.hideLegal();
         offsetPosition = this.servicesContent.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.contact:
-        this.hideImprint();
+        this.hideLegal();
         offsetPosition = this.contactContent.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
-      case AppRoute.imprint:
-        this.showImprint();
+      case AppRoute.legal:
+        this.showLegal();
         break;
       case AppRoute.privacy:
-        this.hideImprint();
+        this.hideLegal();
         break;
       default:
-        this.hideImprint();
+        this.hideLegal();
         break;
     }
   }
@@ -276,8 +276,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
-  public closeImprint(): void {
-    this.hideImprint();
+  public closeLegal(): void {
+    this.hideLegal();
   }
 
   private smoothScrollTo(offsetPosition: number): void {
@@ -370,20 +370,20 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private isImprintVisible(): boolean {
-    return !this.imprint.includes('collapsed');
+    return !this.legal.includes('collapsed');
   }
 
-  private showImprint() {
-    console.log('show:', { css: this.imprint }, this.isImprintVisible());
+  private showLegal() {
+    console.log('show:', { css: this.legal }, this.isImprintVisible());
     if (!this.isImprintVisible()) {
-      this.imprint = this.imprint.replace('collapsed', 'fadein');
+      this.legal = this.legal.replace('collapsed', 'fadein');
     }
   }
 
-  private hideImprint() {
-    console.log('hide:', { css: this.imprint }, this.isImprintVisible());
+  private hideLegal() {
+    console.log('hide:', { css: this.legal }, this.isImprintVisible());
     if (this.isImprintVisible()) {
-      this.imprint = this.imprint.replace('fadein', 'collapsed');
+      this.legal = this.legal.replace('fadein', 'collapsed');
     }
   }
 }

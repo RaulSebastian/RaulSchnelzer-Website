@@ -1,5 +1,6 @@
 :root {
   --theme-background: white;
+  --theme-background-alpha: #FFFFFF00;
   --theme-accent: #8133e1;
   --theme-font-color: #444444;
 }
@@ -44,7 +45,7 @@ a:hover {
   top: 0;
   z-index: 9999;
   width: 100%;
-  background-image: linear-gradient(var(--theme-background), #99999900);
+  background-image: linear-gradient(var(--theme-background), var(--theme-background-alpha));
 }
 
 .header-wrapper {
@@ -148,7 +149,7 @@ _:default:not(:root:root),
     font-size: 2vw;
     line-height: 4vw;
   }
-  .imprint {
+  .legal {
     width: calc(99vw - 64px);
     left: 1vw;
   }
@@ -170,7 +171,7 @@ _:default:not(:root:root),
   .footer-right {
     font-size: 2vw;
   }
-  .imprint {
+  .legal {
     width: calc(90vw - 64px);
     /* max-width: 90vw; */
     left: 5vw;
@@ -214,7 +215,7 @@ _:default:not(:root:root),
     font-size: 24px;
     line-height: 40px;
   }
-  .imprint {
+  .legal {
     width: calc(80vw - 64px);
     left: 10vw;
   }
@@ -497,7 +498,7 @@ _:default:not(:root:root),
   margin: 0 !important;
 }
 
-.imprint {
+.legal {
   height: calc(88vh - 40px);
   max-width: 1024px;
   background: #ffffffef;
@@ -509,7 +510,7 @@ _:default:not(:root:root),
   padding: 32px;
 }
 
-.closeImprint {
+.closeLegal {
   position: absolute;
   margin: 32px;
   top: 0;
