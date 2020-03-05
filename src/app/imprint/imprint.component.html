@@ -1,4 +1,60 @@
-<div style="text-align:center">
-  <p class="imprintTitle">Imprint</p>
+<div class="imprint-wrapper">
+  <div class="imprint-title">Legal Notice</div>
+  <div class="empty"></div>
+  <div class="imprint-mandatory imprint-text">
+    <div class="imprint-sub">
+      <p>Mandatory details</p>
+      <p>pursuant § 5 TMG</p>
+    </div>
+    <app-contact [contactOptions]="nameAdressOptions"></app-contact>
+
+    <div class="imprint-sub">
+      <p>Contact</p>
+    </div>
+    <app-contact [contactOptions]="contactOptions"></app-contact>
+    <br />
+  </div>
+
+  <div class="imprint-sub">
+    <p>Responsible for the content</p>
+    <p>according to § 55 RStV</p>
+  </div>
+  <app-contact [contactOptions]="nameAdressOptions"></app-contact>
+
+  <div class="imprint-sub">
+    <p>Disclaimer</p>
+  </div>
+  <div class="disclaimer imprint-text">
+    <p>
+      I take no responsibility for the content of external Internet sites. Other
+      websites that I link to are owned and operated by third parties and I has
+      no control over them.
+    </p>
+    <p>
+      The fact that I include links to other websites does not mean that I
+      approve of, or endorse, any other third party website or the content of
+      that website.
+    </p>
+    <p>
+      I accept no liability for any statements, information, products or
+      services that are published on, or are accessible through, any websites
+      owned or operated by third parties.
+    </p>
+  </div>
+
+  <div class="imprint-sub">
+    <p>Copyright</p>
+  </div>
+  <div class="disclaimer imprint-text">
+    <p>
+      This website and its content is copyright of Raul Schnelzer - ©2019. All
+      rights reserved.
+    </p>
+    <p>
+      For permission requests, write me an e-mail to
+      <a class="contactlink" href="mailto:"></a>.
+    </p>
+  </div>
+  <div class="empty"></div>
+  <div class="empty"></div>
 </div>
-<app-contact></app-contact>

@@ -1,22 +1,22 @@
-<div style="font-size:24px;line-height: 32px;">
-  <div style="font-size:28px">
+<div class="contact">
+  <div *ngIf="showName()" class="contact">
     <p>{{ contactDetails.name }}</p>
   </div>
-  <div>
+  <div *ngIf="showAddress()">
+    <i class="material-icons middle">home</i>
+    <span style="margin-left: 10px;">Ludwig-Ebner-Str. 1</span>
+    <p style="margin-left: 32px;">94469 Deggendorf</p>
+  </div>
+  <div *ngIf="showDirectContact()">
     <i class="material-icons middle">mail_outline</i>
     <a class="contactlink" href="mailto:{{ contactDetails.mail }}">
       {{ contactDetails.mail }}</a
     >
   </div>
-  <div>
+  <div *ngIf="showDirectContact()">
     <i class="material-icons middle">phone</i>
     <a class="contactlink" href="tel:{{ contactDetails.phone }}">
       {{ contactDetails.phone }}</a
     >
-  </div>
-  <div>
-    <i class="material-icons middle">home</i>
-    <span style="margin-left: 10px;">Ludwig-Ebner-Str. 1</span>
-    <p style="margin-left: 32px;">94469 Deggendorf</p>
   </div>
 </div>

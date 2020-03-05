@@ -4,6 +4,7 @@ import { DOCUMENT } from '@angular/common';
 import { WINDOW } from './services/window.service';
 import { interval } from 'rxjs';
 import { AppRoute } from './app.routes';
+import { ContactOptions } from './contact/contact.component';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   creativityIntro = 'font-size: 30vw;padding:30vh 0 0 0;';
   creativityOutro = 'font-size: 5vw;padding:30vh 0 0 0;';
   imprint = 'imprint collapsed';
+
+  contactOptions = new Set([
+    ContactOptions.name,
+    ContactOptions.address,
+    ContactOptions.directContact,
+    ContactOptions.socialMedia
+  ]);
 
   servicesOffered = [
     { description: 'Tailor-made Software Development' },
@@ -269,7 +277,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public closeImprint(): void {
-      this.hideImprint();
+    this.hideImprint();
   }
 
   private smoothScrollTo(offsetPosition: number): void {

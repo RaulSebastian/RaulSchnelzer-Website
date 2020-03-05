@@ -51,27 +51,31 @@
   <img class="about-me-image" src="../assets/images/me.png" />
 </div>
 <div class="section-content hidden justify" #aboutContent>
-  <p>Hi, I'm Raul!</p>
-  <p>
-    I am a creativity-driven and passionate developer who aspires towards better
-    software solutions. I thrive on challenge and constantly set goals for
-    myself to improve my knowledge, soft-skills, learning new methodologies and
-    technologies.
-  </p>
-  <p>
-    As such I read books (yes, the physical ones), use on-demand technology
-    courses, read blogs and am active on networks like StackOverflow.
-  </p>
+  <div>
+    <p>Hi, I'm Raul!</p>
+    <p>
+      I am a creativity-driven and passionate developer who aspires towards
+      better software solutions. I thrive on challenge and constantly set goals
+      for myself to improve my knowledge, soft-skills, learning new
+      methodologies and technologies.
+    </p>
+    <p>
+      As such I read books (yes, the physical ones), use on-demand technology
+      courses, read blogs and am active on networks like StackOverflow.
+    </p>
+  </div>
 </div>
 
 <div class="anchor">
   <a name="skills"></a>
 </div>
-<div class="section-title"><span>_</span><a routerLink="/skills" routerLinkActive="active">Skills</a></div>
+<div class="section-title">
+  <span>_</span><a routerLink="/skills" routerLinkActive="active">Skills</a>
+</div>
 <div class="section-content hidden" #skillsContent>
   <div *ngFor="let skillset of skillsets" class="skill-section">
-    <p>{{skillset.category}}</p>
-    <span *ngFor="let skill of skillset.skills" class="skill">{{skill}}</span>
+    <p>{{ skillset.category }}</p>
+    <span *ngFor="let skill of skillset.skills" class="skill">{{ skill }}</span>
   </div>
 </div>
 
@@ -79,16 +83,19 @@
   <a name="certifications"></a>
 </div>
 <div class="section-title">
-  <span>_</span><a routerLink="/certifications" routerLinkActive="active">Certifications</a>
+  <span>_</span
+  ><a routerLink="/certifications" routerLinkActive="active">Certifications</a>
 </div>
 <div class="section-content hidden scrollable" #certsContent>
   <div class="cert-wrapper" *ngFor="let certificate of certificates">
-    <img src="{{certificate.icon}}" class="cert-icon" />
+    <img src="{{ certificate.icon }}" class="cert-icon" />
     <div class="cert-details">
-      <a class="cert-name" href="{{certificate.link}}" target="_blank">{{certificate.name}}</a>
-      <p class="cert-info">Issuer: {{certificate.issuer}}</p>
+      <a class="cert-name" href="{{ certificate.link }}" target="_blank">{{
+        certificate.name
+      }}</a>
+      <p class="cert-info">Issuer: {{ certificate.issuer }}</p>
       <p class="cert-info">
-        Issued: {{certificate.validFrom}} - {{certificate.validUntil}}
+        Issued: {{ certificate.validFrom }} - {{ certificate.validUntil }}
       </p>
     </div>
   </div>
@@ -98,11 +105,13 @@
 <div class="anchor">
   <a name="services"></a>
 </div>
-<div class="section-title"><span>_</span><a routerLink="/services" routerLinkActive="active">Services</a></div>
+<div class="section-title">
+  <span>_</span><a routerLink="/services" routerLinkActive="active">Services</a>
+</div>
 <div class="section-content hidden" #servicesContent>
   <ul>
     <li *ngFor="let service of servicesOffered">
-      <p>{{service.description}}</p>
+      <p>{{ service.description }}</p>
     </li>
   </ul>
 </div>
@@ -110,9 +119,11 @@
 <div class="anchor">
   <a name="contact"></a>
 </div>
-<div class="section-title"><span>_</span><a routerLink="/contact" routerLinkActive="active">Contact</a></div>
+<div class="section-title">
+  <span>_</span><a routerLink="/contact" routerLinkActive="active">Contact</a>
+</div>
 <div class="section-content hidden" #contactContent>
-  <app-contact></app-contact>
+  <app-contact [contactOptions]="contactOptions"></app-contact>
 </div>
 
 <div style="height:200px"></div>
@@ -124,6 +135,9 @@
   <app-imprint></app-imprint>
 </div>
 
-<app-footer></app-footer>
+<div class="empty"></div>
+<div class="empty"></div>
+<div class="empty"></div>
+<div class="empty"></div>
 
-<div class="anchor">
+<app-footer></app-footer>
