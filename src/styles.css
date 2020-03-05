@@ -375,7 +375,6 @@ a:hover {
   cursor: none;
 }
 .parallax-creativityIntro {
-  background-image: url("./assets/images/violetGradient.png");
   background: -webkit-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
   background: -moz-linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
   background: -o-linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
@@ -384,6 +383,12 @@ a:hover {
   background-position: center;
   background-repeat: repeat-x;
   overflow: hidden;
+}
+
+_:default:not(:root:root),
+.parallax-creativityIntro {
+  background-image: url("./assets/images/violetGradient.png");
+  background-attachment: scroll;
 }
 
 .parallax-creativityOutro {
