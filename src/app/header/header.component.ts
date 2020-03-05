@@ -32,6 +32,23 @@ import Typewriter from 't-writer.js';
     >{{nav.display}}</a>
   </div>
 </div>
+
+<div class="nav-button-wrapper">
+  <button class="nav-button"
+    [style.color]="fontColor"
+    [style.border-color]="fontColor">
+    <i class="material-icons middle">{{menuIcon}}</i>
+  </button>
+</div>
+<div class="collapsed">
+  <a
+    *ngFor="let nav of navigationItems"
+    routerLink="{{ nav.href }}"
+    routerLinkActive="active"
+    >{{ nav.display }}</a
+  >
+</div>
+
 </div>`,
   styleUrls: ['./header.component.css']
 })
@@ -49,14 +66,10 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() titlePrefix: string;
   @Input() titleSufix: string;
   @Input() backlight = false;
+  @Input() navigationItems: [];
 
   headerClass = 'header-title-border';
-
-  navigationItems = [
-    { display: 'about', href: '/about' },
-    { display: 'services', href: '/services' },
-    { display: 'contact', href: '/contact' },
-  ];
+  menuIcon = 'menu';
 
   constructor() {
   }

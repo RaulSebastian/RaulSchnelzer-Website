@@ -17,13 +17,19 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   titlePrefix = 'Raul';
   titleSufix = 'Schnelzer';
   overlayHeight = 80;
-  overlayFontColor = 'white'; // TODO: more elegant solution to pass styles onto child components?
-  headerFontColor = '#444444';
+  overlayFontColor = 'white';
+  headerFontColor = 'var(--theme-font-color)';
   overlayLogoSrc = 'assets/RS_logo_White400.png';
   headerLogoSrc = 'assets/RS_logo_Solar400.png';
   creativityIntro = 'font-size: 30vw;padding:30vh 0 0 0;';
   creativityOutro = 'font-size: 5vw;padding:30vh 0 0 0;';
   legal = 'legal collapsed';
+
+  navigationItems = [
+    { display: 'about', href: '/about' },
+    { display: 'services', href: '/services' },
+    { display: 'contact', href: '/contact' },
+  ];
 
   contactOptions = new Set([
     ContactOptions.name,
@@ -132,7 +138,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private creativityIntroFontSize = 0;
   private creativityOutroFontSize = 0;
   private routeSubscription;
-  private registeredRoutes: Array<AppRoute>;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
@@ -258,7 +263,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.adjustHeaderOverlay();
     this.adjustCreativityIntro();
     this.adjustCreativityOutro();
-
+    // TODO: add darkening event here
     this.observeSections();
   }
 

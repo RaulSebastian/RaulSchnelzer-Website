@@ -1,6 +1,6 @@
 :root {
   --theme-background: white;
-  --theme-background-alpha: #FFFFFF00;
+  --theme-background-alpha: #ffffff00;
   --theme-accent: #8133e1;
   --theme-font-color: #444444;
 }
@@ -45,7 +45,10 @@ a:hover {
   top: 0;
   z-index: 9999;
   width: 100%;
-  background-image: linear-gradient(var(--theme-background), var(--theme-background-alpha));
+  background-image: linear-gradient(
+    var(--theme-background),
+    var(--theme-background-alpha)
+  );
 }
 
 .header-wrapper {
@@ -63,21 +66,6 @@ a:hover {
   float: left;
   padding-left: 10vw;
 }
-
-.header-title-backlight {
-  background-image: -webkit-radial-gradient(
-    var(--theme-background),
-    var(--theme-background-alpha) 70%
-  );
-  background-image: radial-gradient(var(--theme-background), var(--theme-background-alpha) 70%);
-  background-position: 20px -10px;
-  background-repeat: no-repeat;
-}
-
-/* _:default:not(:root:root),
-.header-title-backlight {
-  background-image: none;
-} */
 
 .header-menu-border {
   overflow: hidden;
@@ -129,17 +117,36 @@ a:hover {
   .header-menu-links {
     font-size: 3vw;
   }
+
+  .header-title-backlight {
+    background-image: -webkit-radial-gradient(
+      var(--theme-background),
+      var(--theme-background-alpha) 50%
+    );
+    background-image: radial-gradient(
+      var(--theme-background),
+      var(--theme-background-alpha) 50%
+    );
+    background-position: calc(-20vw - 40px) -10px;
+    background-repeat: no-repeat;
+  }
   .parallax-creativityIntro {
     min-height: 90vw;
     height: 90vw;
     max-height: 90vw;
     background-size: 1px 90vw;
+    background-image: url("./assets/images/violetGradient.png");
+    background-repeat: repeat-x;
+    background-attachment: scroll;
   }
   .parallax-creativityOutro {
     min-height: 90vw;
     height: 90vw;
     max-height: 90vw;
     background-size: 1px 90vw;
+    background-image: url("./assets/images/orangeGradient.png");
+    background-repeat: repeat-x;
+    background-attachment: scroll;
   }
   .footer-right {
     font-size: 12px;
@@ -150,8 +157,9 @@ a:hover {
     line-height: 4vw;
   }
   .legal {
-    width: calc(99vw - 64px);
+    width: calc(98vw - 16px);
     left: 1vw;
+    padding: 32px 8px 0 8px;
   }
   .legal-text {
     margin: 0 3vw;
@@ -162,7 +170,25 @@ a:hover {
   .header-menu-border {
     visibility: visible;
   }
+  .header-title-backlight {
+    background-image: -webkit-radial-gradient(
+      var(--theme-background),
+      var(--theme-background-alpha) 70%
+    );
+    background-image: radial-gradient(
+      var(--theme-background),
+      var(--theme-background-alpha) 70%
+    );
+    background-position: 0px -10px;
+    background-repeat: no-repeat;
+  }
   .menu-panel {
+    visibility: collapse;
+  }
+  .nav-button-wrapper {
+    visibility: collapse;
+  }
+  .nav-flyout {
     visibility: collapse;
   }
   .footer-middle {
@@ -172,9 +198,9 @@ a:hover {
     font-size: 2vw;
   }
   .legal {
-    width: calc(90vw - 64px);
-    /* max-width: 90vw; */
+    width: calc(85vw - 32px);
     left: 5vw;
+    padding: 32px 16px 0 16px;
   }
   .imprint-text {
     margin: 0 5vw;
@@ -200,12 +226,24 @@ a:hover {
     height: 100vh;
     max-height: 100vh;
     background-size: 1px 100vh;
+    background: -webkit-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
+    background: -moz-linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
+    background: -o-linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
+    background: linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
+    background-position: center;
+    background-attachment: fixed;
   }
   .parallax-creativityOutro {
     min-height: 100vh;
     height: 100vh;
     max-height: 100vh;
     background-size: 1px 100vh;
+    background: -webkit-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
+    background: -moz-linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
+    background: -o-linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
+    background: linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
+    background-position: center;
+    background-attachment: fixed;
   }
   .footer-right {
     font-size: 18px;
@@ -218,12 +256,38 @@ a:hover {
   .legal {
     width: calc(80vw - 64px);
     left: 10vw;
+    padding: 32px;
+    padding: 32px 32px 0 32px;
   }
   .imprint-text {
     margin: 0 10vw;
   }
 }
+.nav-flyout {
 
+}
+.nav-button-wrapper {
+  position: absolute;
+  z-index: 99999999;
+  top: 5px;
+  right: 15px;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  overflow: hidden;
+}
+.nav-button {
+  width: auto;
+  height: 40px;
+  background: transparent;
+  border-style: none;
+  border-width: 0px;
+  cursor: pointer;
+}
+.nav-button i {
+  font-size: 40px;
+  font-style: italic;
+}
 .contact {
   font-size: 24px;
   line-height: 32px;
@@ -320,7 +384,7 @@ a:hover {
 }
 .footer-middle {
   float: left;
-  width: 45vw;
+  width: 50vw;
   max-width: 600px;
   height: 100%;
   position: relative;
@@ -375,43 +439,11 @@ a:hover {
   cursor: none;
 }
 .parallax-creativityIntro {
-  background: -webkit-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
-  background: -moz-linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
-  background: -o-linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
-  background: linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: repeat-x;
   overflow: hidden;
-}
-
-_:default:not(:root:root),
-.parallax-creativityIntro {
-  background-image: url("./assets/images/violetGradient.png");
-  background-attachment: scroll;
 }
 
 .parallax-creativityOutro {
-  background-image: url("./assets/images/orangeGradient.png");
-  background: -webkit-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
-  background: -moz-linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
-  background: -o-linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
-  background: linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: repeat-x;
   overflow: hidden;
-}
-
-.parallax-skillBackground {
-  width: 100%;
-  height: auto;
-  background-image: linear-gradient(#00ffbf, #1798d2, blueviolet);
-  background-attachment: fixed;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: fixed;
-  padding: 30px 0;
 }
 
 .inspirational-text {
@@ -503,15 +535,14 @@ _:default:not(:root:root),
   margin: 0 !important;
 }
 .legal {
-  height: calc(88vh - 40px);
+  height: calc(100vh - 70px);
   max-width: 1024px;
   background: #ffffffef;
   z-index: 999999;
   position: fixed;
-  top: 5vh;
+  top: 70px;
   overflow: hidden;
-  border-radius: 32px 32px;
-  padding: 32px;
+  border-radius: 32px 32px 0 0;
 }
 .legal-wrapper {
   text-align: center;
@@ -533,7 +564,10 @@ _:default:not(:root:root),
     from(var(--theme-background)),
     to(var(--theme-background-alpha))
   );
-  background-image: linear-gradient(var(--theme-background), var(--theme-background-alpha));
+  background-image: linear-gradient(
+    var(--theme-background),
+    var(--theme-background-alpha)
+  );
 }
 .legal-sub {
   padding-top: 20px;
