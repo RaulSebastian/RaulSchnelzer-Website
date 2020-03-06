@@ -165,9 +165,6 @@ a:hover {
     width: calc(100% - 32px);
     right: 16px;
   }
-  .legal-text {
-    margin: 0 3vw;
-  }
 }
 
 @media screen and (min-width: 770px) {
@@ -591,8 +588,13 @@ a:hover {
 }
 .legal-text {
   width: auto;
+  margin: 0 4vw;
 }
 .disclaimer {
+  font-size: 22px;
+  text-align: justify;
+}
+.copyright {
   font-size: 22px;
 }
 .closeLegal {

@@ -13,6 +13,7 @@ import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import { MatIconModule } from '@angular/material/icon';
 import { LegalComponent } from './legal/legal.component';
+import { PrivacyComponent } from './privacy/privacy.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { LegalComponent } from './legal/legal.component';
     WordCloudComponent,
     FooterComponent,
     ContactComponent,
-    LegalComponent
+    LegalComponent,
+    PrivacyComponent
   ],
   imports: [
     BrowserModule,

@@ -25,6 +25,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   creativityOutro = 'font-size: 5vw;padding:30vh 0 0 0;';
   legal = 'legal collapsed';
 
+  navigationAlias = [
+    { synonym: 'me', reroute: AppRoute.about },
+    { synonym: 'impressum', reroute: AppRoute.legal },
+    { synonym: 'datenschutz', reroute: AppRoute.privacy }
+  ];
+
   navigationItems = [
     { display: 'about', href: '/about' },
     { display: 'services', href: '/services' },
@@ -160,11 +166,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         route.params.subscribe(param => {
           if (param.route !== undefined) {
-            const routeParameter: string = param.route;
-            const directive = AppRoute[routeParameter];
-            if (directive !== undefined) {
-              this.navigate(directive);
-            }
+            this.mapRouteToNavigation(param.route);
           }
         });
       });
@@ -192,6 +194,20 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.routeSubscription.unsubscribe();
+  }
+
+  private mapRouteToNavigation(route: string): void {
+    for (const alias of this.navigationAlias) {
+      if (route === alias.synonym) {
+        this.navigate(alias.reroute);
+        return;
+      }
+    }
+    const directive = AppRoute[route];
+    if (directive !== undefined) {
+      this.navigate(directive);
+    }
+    return;
   }
 
   private navigate(route: AppRoute) {
