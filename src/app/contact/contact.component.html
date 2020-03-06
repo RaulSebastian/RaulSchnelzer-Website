@@ -19,7 +19,23 @@
       {{ contactDetails.phone }}</a
     >
   </div>
-  <div *ngIf="showSocialMedia()">
-    <i class="material-icons middle"></i>
+
+  <br />
+
+  <div *ngIf="showSocialMedia()" class="socialmedia">
+    <a
+      *ngFor="let contact of onlineContact"
+      href="{{ contact.link }}"
+      target="_blank"
+      class="tooltip"
+    >
+      <img
+        [style.height]="contact.size"
+        class="contact-icon"
+        src="{{ contact.image }}"
+        alt="{{ contact.source }}"
+      />
+      <p class="tooltip-text">{{ contact.source }}</p>
+    </a>
   </div>
 </div>

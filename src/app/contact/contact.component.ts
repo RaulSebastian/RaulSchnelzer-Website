@@ -22,6 +22,39 @@ export class ContactComponent implements OnInit {
     phone: '+49 173 5227934'
   };
 
+  onlineContact = [
+    {
+      source: 'LinkedIn',
+      image: '../../assets/LinkedInIcon.png',
+      size: '6vh',
+      link: 'https://linkedin.com/in/raul-schnelzer'
+    },
+    {
+      source: 'Xing',
+      image: '../../assets/XingIcon.png',
+      size: '5.5vh',
+      link: 'https://www.xing.com/profile/Raul_Schnelzer/portfolio'
+    },
+    {
+      source: 'Stack Overflow',
+      image: '../../assets/StackOverflowIcon.png',
+      size: '9vh',
+      link: 'https://stackoverflow.com/users/story/3205951/'
+    },
+    {
+      source: 'Github',
+      image: '../../assets/GitHubIcon.png',
+      size: '6vh',
+      link: 'https://github.com/RaulSebastian'
+    },
+    {
+      source: 'Whatsapp',
+      image: '../../assets/WhatsAppIcon.png',
+      size: '7vh',
+      link: 'https://api.whatsapp.com/send?phone=+491735227934'
+    }
+  ];
+
   constructor() {
   }
 

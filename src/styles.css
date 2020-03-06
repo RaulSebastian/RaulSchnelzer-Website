@@ -605,10 +605,40 @@ a:hover {
   cursor: pointer;
 }
 
+.socialmedia {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.contact-icon {
+  margin-left: 5px;
+  padding: 2px;
+}
+
 .angular-log {
   width: 2vw;
   min-width: 24px;
   max-width: 40px;
+}
+
+.tooltip {
+  display: inline-block;
+}
+.tooltip-text {
+  position: absolute;
+  font-size: 20px;
+  padding: 1px 10px;
+}
+.tooltip .tooltip-text {
+  visibility: hidden;
+  background-color: #44444499;
+  color: white;
+  text-align: center;
+  border-radius: 6px;
+  z-index: 1;
+}
+.tooltip:hover .tooltip-text {
+  visibility: visible;
 }
 
 .hidden {
@@ -623,6 +653,15 @@ a:hover {
   height: 8vh;
 }
 
+.up {
+  position: fixed;
+  bottom: 100px;
+  right: calc(2vw + 2vw);
+  cursor: pointer;
+}
+.up i {
+  font-size: calc(3vw + 3vh);
+}
 .appear {
   -webkit-animation: appear 2s ease forwards; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: appear 2s ease forwards; /* Firefox < 16 */

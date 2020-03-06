@@ -131,16 +131,19 @@
 
 <div style="height:200px"></div>
 
-<div [class]="legal" #legalContent>
+<div [class]="classes.legal" #legalContent>
   <a class="closeLegal" (click)="closeLegal()">
     <i class="material-icons">close</i>
   </a>
   <app-legal></app-legal>
 </div>
 
-<div class="empty"></div>
-<div class="empty"></div>
-<div class="empty"></div>
-<div class="empty"></div>
+<div class="empty" *ngFor="let repeat of [1, 2, 3, 4]"></div>
+
+<div>
+  <a [class]="classes.up" (click)="scrollToTop()">
+    <i class="material-icons">arrow_upward</i>
+  </a>
+</div>
 
 <app-footer></app-footer>

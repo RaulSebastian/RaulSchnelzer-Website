@@ -23,7 +23,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   headerLogoSrc = 'assets/RS_logo_Solar400.png';
   creativityIntro = 'font-size: 30vw;padding:30vh 0 0 0;';
   creativityOutro = 'font-size: 5vw;padding:30vh 0 0 0;';
-  legal = 'legal collapsed';
+  classes = {
+    legal: 'legal collapsed',
+    up: 'up collapsed'
+  };
 
   navigationAlias = [
     { synonym: 'me', reroute: AppRoute.about },
@@ -279,11 +282,23 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.adjustHeaderOverlay();
     this.adjustCreativityIntro();
     this.adjustCreativityOutro();
-    // TODO: add darkening event here
+    this.checkSrollUpVisibility();
     this.observeSections();
+    // TODO: add darkening event here
   }
 
-  private observeSections() {
+  private checkSrollUpVisibility(): void {
+    const determinedClass =
+      this.offset > this.windowHeight * 2
+        ? 'up'
+        : 'up collapsed';
+
+    if (this.classes.up !== determinedClass) {
+      this.classes.up = determinedClass;
+    }
+  }
+
+  private observeSections(): void {
     for (const section in this.sectionsObserved) {
       if (this.sectionsObserved.hasOwnProperty(section)) {
         const element = this.sectionsObserved[section];
@@ -301,6 +316,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.hideLegal();
   }
 
+  public scrollToTop(): void {
+    this.smoothScrollTo(0);
+  }
+
   private smoothScrollTo(offsetPosition: number): void {
     window.scrollTo({
       top: offsetPosition,
@@ -309,7 +328,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private evalSectionAppear(section: ElementRef, offset: number, height: number): boolean {
-    const position = section.nativeElement.offsetTop * 1.1;
+    const position = section.nativeElement.offsetTop;
     const classes = section.nativeElement.classList;
     if (position > offset && position <= (offset + height)) {
       classes.remove('hidden');
@@ -391,20 +410,20 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private isImprintVisible(): boolean {
-    return !this.legal.includes('collapsed');
+    return !this.classes.legal.includes('collapsed');
   }
 
-  private showLegal() {
-    console.log('show:', { css: this.legal }, this.isImprintVisible());
+  private showLegal(): void {
+    console.log('show:', { css: this.classes.legal }, this.isImprintVisible());
     if (!this.isImprintVisible()) {
-      this.legal = this.legal.replace('collapsed', 'fadein');
+      this.classes.legal = this.classes.legal.replace('collapsed', 'fadein');
     }
   }
 
-  private hideLegal() {
-    console.log('hide:', { css: this.legal }, this.isImprintVisible());
+  private hideLegal(): void {
+    console.log('hide:', { css: this.classes.legal }, this.isImprintVisible());
     if (this.isImprintVisible()) {
-      this.legal = this.legal.replace('fadein', 'collapsed');
+      this.classes.legal = this.classes.legal.replace('fadein', 'collapsed');
     }
   }
 }
