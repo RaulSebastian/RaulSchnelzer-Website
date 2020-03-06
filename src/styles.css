@@ -2,7 +2,9 @@
   --theme-background: white;
   --theme-background-alpha: #ffffff00;
   --theme-accent: #8133e1;
-  --theme-font-color: #444444;
+  --theme-font-color: #454545;
+  --theme-text-backdrop: #ffffffef;
+  --theme-color-inversion: 0%;
 }
 
 html,
@@ -550,7 +552,7 @@ a:hover {
 .legal {
   height: calc(100vh - 142px);
   max-width: 1024px;
-  background: #ffffffef;
+  background: var(--theme-text-backdrop);
   z-index: 999999;
   position: fixed;
   top: 70px;
@@ -563,6 +565,7 @@ a:hover {
   margin-top: 32px;
   overflow: auto;
   background-color: transparent;
+  color: var(--theme-font-color);
 }
 .legal-title {
   position: absolute;
@@ -572,10 +575,10 @@ a:hover {
     linear,
     left top,
     left bottom,
-    from(#ffffff),
+    from(var(--theme-text-backdrop)),
     to(var(--theme-background-alpha))
   );
-  background-image: linear-gradient(#ffffffef, var(--theme-background-alpha));
+  background-image: linear-gradient(var(--theme-text-backdrop), var(--theme-background-alpha));
 }
 .legal-sub {
   padding-top: 20px;
@@ -655,6 +658,14 @@ a:hover {
 
 .empty {
   height: 8vh;
+}
+
+.inverted {
+  filter: invert(var(--theme-color-inversion));
+}
+
+.reinverted {
+  filter: invert(calc(100% - var(--theme-color-inversion)));
 }
 
 .up {

@@ -25,6 +25,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   creativityOutro = 'font-size: 5vw;padding:30vh 0 0 0;';
   classes = {
     legal: 'legal collapsed',
+    privacy: 'legal collapsed',
     up: 'up collapsed'
   };
 
@@ -214,38 +215,46 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     switch (route) {
       case AppRoute.home:
         this.hideLegal();
+        this.hidePrivacy();
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.about:
         this.hideLegal();
+        this.hidePrivacy();
         offsetPosition = this.aboutContent.nativeElement.offsetTop - 400;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.skills:
         this.hideLegal();
+        this.hidePrivacy();
         offsetPosition = this.skillsContent.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.certifications:
         this.hideLegal();
+        this.hidePrivacy();
         offsetPosition = this.certsContent.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.services:
         this.hideLegal();
+        this.hidePrivacy();
         offsetPosition = this.servicesContent.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.contact:
         this.hideLegal();
+        this.hidePrivacy();
         offsetPosition = this.contactContent.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.legal:
+        this.hidePrivacy();
         this.showLegal();
         break;
       case AppRoute.privacy:
         this.hideLegal();
+        this.showPrivacy();
         break;
       default:
         this.hideLegal();
@@ -292,36 +301,62 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     let foreground: string;
     let background: string;
     let backgroundAlpha: string;
+    let backdrop: string;
+    let accent: string;
+    let inversion: string;
+
+    const darkBackdrop = '#202020f0';
+    const lighBackdrop = '#ffffffef';
 
     const transitionStart = this.servicesContent.nativeElement.offsetTop - 50;
-    const transitionEnd = this.contactContent.nativeElement.offsetTop - 300;
+    const transitionEnd = this.contactContent.nativeElement.offsetTop - 160;
     if (this.offset < transitionStart) {
       background = 'white';
       backgroundAlpha = '#ffffff00';
+      backdrop = lighBackdrop;
       foreground = '#454545';
+      accent = '#8133e1';
+      inversion = '0%';
     } else if (this.offset > transitionEnd) {
       background = 'black';
       backgroundAlpha = '#00000000';
+      backdrop = darkBackdrop;
       foreground = 'white';
+      accent = '#00ffbf';
+      inversion = '100%';
     } else {
-      let quota = (this.offset - transitionStart) / (transitionEnd - transitionStart);
-      if (quota < 0 || quota > 1) {
+      let degree = (this.offset - transitionStart) / (transitionEnd - transitionStart);
+      if (degree < 0 || degree > 1) {
         return;
       }
-      foreground = `rgb(${Math.round(quota * 186) + 69}, ${Math.round(quota * 186) + 69}, ${Math.round(quota * 186) + 69})`;
-      quota = 1 - quota;
-      background = `rgb(${Math.round(quota * 255)}, ${Math.round(quota * 255)}, ${Math.round(quota * 255)})`;
-      backgroundAlpha = `argb(${Math.round(quota * 255)}, ${Math.round(quota * 255)}, ${Math.round(quota * 255)}, 0)`;
+      foreground = degree >= 0.31 && degree < 0.33
+        ? 'rgb(107,107,107)'
+        : degree >= 0.33 && degree < 0.34
+          ? 'rgb(117,117,117)'
+          : degree >= 0.34 && degree < 0.36
+            ? 'rgb(177,177,177)'
+            : `rgb(${Math.round(degree * 255) + 69}, ${Math.round(degree * 255) + 69}, ${Math.round(degree * 255) + 69})`;
+      accent = `hsl(267 - ${Math.round(degree * 102)}, ${74 + Math.round(degree * 26)}), 54%)`;
+      inversion = `${Math.round(degree * 100)}%`;
+      degree = 1 - degree;
+      background = `rgb(${Math.round(degree * 255)}, ${Math.round(degree * 255)}, ${Math.round(degree * 255)})`;
+      backgroundAlpha = `argb(${Math.round(degree * 255)}, ${Math.round(degree * 255)}, ${Math.round(degree * 255)}, 0)`;
+      backdrop = degree < 0.5 ? darkBackdrop : lighBackdrop;
     }
 
     const theme = document.getElementsByTagName('html')[0].style;
     const themeBackground = theme.getPropertyValue('--theme-background');
-    if (themeBackground === background) {
-      return;
+    const themeForeground = theme.getPropertyValue('--theme-font-color');
+    if (themeBackground !== background) {
+      theme.setProperty('--theme-background', background);
+      theme.setProperty('--theme-background-alpha', backgroundAlpha);
+      theme.setProperty('--theme-text-backdrop', backdrop);
     }
-    theme.setProperty('--theme-background', background);
-    theme.setProperty('--theme-background-alpha', backgroundAlpha);
-    theme.setProperty('--theme-font-color', foreground);
+    if (themeForeground !== foreground) {
+      theme.setProperty('--theme-font-color', foreground);
+      theme.setProperty('--theme-accent', accent);
+    }
+    theme.setProperty('--theme-color-inversion', inversion);
   }
 
   private observeSections(): void {
@@ -340,6 +375,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public closeLegal(): void {
     this.hideLegal();
+  }
+
+  public closePrivacy(): void {
+    this.hidePrivacy();
   }
 
   public scrollToTop(): void {
@@ -435,21 +474,35 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     return;
   }
 
-  private isImprintVisible(): boolean {
+  private isLegalVisible(): boolean {
     return !this.classes.legal.includes('collapsed');
   }
 
+  private isPrivacyVisible(): boolean {
+    return !this.classes.privacy.includes('collapsed');
+  }
+
   private showLegal(): void {
-    console.log('show:', { css: this.classes.legal }, this.isImprintVisible());
-    if (!this.isImprintVisible()) {
+    if (!this.isLegalVisible()) {
       this.classes.legal = this.classes.legal.replace('collapsed', 'fadein');
     }
   }
 
+  private showPrivacy(): void {
+    if (!this.isPrivacyVisible()) {
+      this.classes.privacy = this.classes.privacy.replace('collapsed', 'fadein');
+    }
+  }
+
   private hideLegal(): void {
-    console.log('hide:', { css: this.classes.legal }, this.isImprintVisible());
-    if (this.isImprintVisible()) {
+    if (this.isLegalVisible()) {
       this.classes.legal = this.classes.legal.replace('fadein', 'collapsed');
+    }
+  }
+
+  private hidePrivacy(): void {
+    if (this.isPrivacyVisible()) {
+      this.classes.privacy = this.classes.privacy.replace('fadein', 'collapsed');
     }
   }
 }

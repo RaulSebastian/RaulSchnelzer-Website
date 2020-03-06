@@ -138,6 +138,13 @@
   <app-legal></app-legal>
 </div>
 
+<div [class]="classes.privacy" #legalContent>
+  <a class="closeLegal" (click)="closePrivacy()">
+    <i class="material-icons">close</i>
+  </a>
+  <app-privacy></app-privacy>
+</div>
+
 <div class="empty" *ngFor="let repeat of [1, 2, 3, 4]"></div>
 
 <div>
