@@ -153,13 +153,17 @@ a:hover {
   }
   .footer-left-text {
     padding-left: 2vw;
-    font-size: 2vw;
+    font-size: 3vw;
     line-height: 4vw;
   }
   .legal {
     width: calc(98vw - 16px);
     left: 1vw;
     padding: 32px 8px 0 8px;
+  }
+  .legal-title {
+    width: calc(100% - 32px);
+    right: 16px;
   }
   .legal-text {
     margin: 0 3vw;
@@ -201,6 +205,10 @@ a:hover {
     width: calc(85vw - 32px);
     left: 5vw;
     padding: 32px 16px 0 16px;
+  }
+  .legal-title {
+    width: calc(100% - 32px);
+    right: 16px;
   }
   .imprint-text {
     margin: 0 5vw;
@@ -259,12 +267,15 @@ a:hover {
     padding: 32px;
     padding: 32px 32px 0 32px;
   }
+  .legal-title {
+    width: calc(100% - 48px);
+    right: 48px;
+  }
   .imprint-text {
     margin: 0 10vw;
   }
 }
 .nav-flyout {
-
 }
 .nav-button-wrapper {
   position: absolute;
@@ -380,6 +391,7 @@ a:hover {
   position: absolute;
   top: 50px;
   display: flex;
+  flex-wrap: wrap;
   justify-content: center;
 }
 .footer-middle {
@@ -535,7 +547,7 @@ a:hover {
   margin: 0 !important;
 }
 .legal {
-  height: calc(100vh - 70px);
+  height: calc(100vh - 142px);
   max-width: 1024px;
   background: #ffffffef;
   z-index: 999999;
@@ -546,28 +558,23 @@ a:hover {
 }
 .legal-wrapper {
   text-align: center;
-  height: 100%;
+  height: calc(100vh - 176px);
   margin-top: 32px;
   overflow: auto;
   background-color: transparent;
 }
 .legal-title {
   position: absolute;
-  right: 48px;
   font-size: 32px;
   height: 42px;
-  width: calc(100% - 48px);
   background-image: -webkit-gradient(
     linear,
     left top,
     left bottom,
-    from(var(--theme-background)),
+    from(#ffffff),
     to(var(--theme-background-alpha))
   );
-  background-image: linear-gradient(
-    var(--theme-background),
-    var(--theme-background-alpha)
-  );
+  background-image: linear-gradient(#ffffffef, var(--theme-background-alpha));
 }
 .legal-sub {
   padding-top: 20px;

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ContactOptions } from '../contact/contact.component';
 
 @Component({
-  selector: 'app-imprint',
-  templateUrl: './imprint.component.html',
-  styleUrls: ['./imprint.component.css']
+  selector: 'app-legal',
+  templateUrl: './legal.component.html',
+  styleUrls: ['./legal.component.css']
 })
-export class ImprintComponent implements OnInit {
+export class LegalComponent implements OnInit {
 
   nameAdressOptions = new Set([ContactOptions.name, ContactOptions.address]);
   contactOptions = new Set([ContactOptions.directContact]);

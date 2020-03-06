@@ -12,7 +12,7 @@ import { WordCloudComponent } from './word-cloud/word-cloud.component';
 import { FooterComponent } from './footer/footer.component';
 import { ContactComponent } from './contact/contact.component';
 import { MatIconModule } from '@angular/material/icon';
-import { ImprintComponent } from './imprint/imprint.component';
+import { LegalComponent } from './legal/legal.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import { ImprintComponent } from './imprint/imprint.component';
     WordCloudComponent,
     FooterComponent,
     ContactComponent,
-    ImprintComponent
+    LegalComponent
   ],
   imports: [
     BrowserModule,
