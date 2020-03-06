@@ -183,16 +183,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       this.servicesContent,
       this.contactContent
     ];
-
-    // TODO: css provider / access service
-    for (const cssid in document.styleSheets) {
-      if (this.document.styleSheets[cssid] != null
-        && this.document.styleSheets[cssid].type === 'text/css') {
-        const element = document.styleSheets[cssid];
-        // console.log(element);
-      }
-    }
-    // this.headerFontColor = document.documentElement.style.getPropertyValue('--theme-accent');
   }
 
   ngOnDestroy(): void {
@@ -284,7 +274,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.adjustCreativityOutro();
     this.checkSrollUpVisibility();
     this.observeSections();
-    // TODO: add darkening event here
+    this.themeTransition();
   }
 
   private checkSrollUpVisibility(): void {
@@ -296,6 +286,42 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.classes.up !== determinedClass) {
       this.classes.up = determinedClass;
     }
+  }
+
+  private themeTransition(): void {
+    let foreground: string;
+    let background: string;
+    let backgroundAlpha: string;
+
+    const transitionStart = this.servicesContent.nativeElement.offsetTop - 50;
+    const transitionEnd = this.contactContent.nativeElement.offsetTop - 300;
+    if (this.offset < transitionStart) {
+      background = 'white';
+      backgroundAlpha = '#ffffff00';
+      foreground = '#454545';
+    } else if (this.offset > transitionEnd) {
+      background = 'black';
+      backgroundAlpha = '#00000000';
+      foreground = 'white';
+    } else {
+      let quota = (this.offset - transitionStart) / (transitionEnd - transitionStart);
+      if (quota < 0 || quota > 1) {
+        return;
+      }
+      foreground = `rgb(${Math.round(quota * 186) + 69}, ${Math.round(quota * 186) + 69}, ${Math.round(quota * 186) + 69})`;
+      quota = 1 - quota;
+      background = `rgb(${Math.round(quota * 255)}, ${Math.round(quota * 255)}, ${Math.round(quota * 255)})`;
+      backgroundAlpha = `argb(${Math.round(quota * 255)}, ${Math.round(quota * 255)}, ${Math.round(quota * 255)}, 0)`;
+    }
+
+    const theme = document.getElementsByTagName('html')[0].style;
+    const themeBackground = theme.getPropertyValue('--theme-background');
+    if (themeBackground === background) {
+      return;
+    }
+    theme.setProperty('--theme-background', background);
+    theme.setProperty('--theme-background-alpha', backgroundAlpha);
+    theme.setProperty('--theme-font-color', foreground);
   }
 
   private observeSections(): void {
