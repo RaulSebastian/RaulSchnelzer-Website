@@ -5,6 +5,8 @@
   --theme-font-color: #454545;
   --theme-text-backdrop: #ffffffef;
   --theme-color-inversion: 0%;
+  --theme-menu-background-from: #00ffbf;
+  --theme-menu-background-to: blueviolet;
 }
 
 html,
@@ -22,6 +24,8 @@ a {
   font-style: normal;
   text-decoration: solid;
   -webkit-transition: color 1s; /* For Safari 3.0 to 6.0 */
+  -moz-transition: color 1s; /* Firefox < 16 */
+  -o-transition: color 1s; /* Opera < 12.1 */
   transition: color 1s; /* For modern browsers */
 }
 
@@ -38,6 +42,9 @@ a:hover {
   top: 0;
   z-index: 4;
   width: 100%;
+  background-image: -webkit-linear-gradient(left, #a4ffea, #03accf, blueviolet);
+  background-image: -moz-linear-gradient(to left, #a4ffea, #03accf, blueviolet);
+  background-image: -o-linear-gradient(to left, #a4ffea, #03accf, blueviolet);
   background-image: linear-gradient(to left, #a4ffea, #03accf, blueviolet);
   overflow: hidden;
 }
@@ -47,6 +54,28 @@ a:hover {
   top: 0;
   z-index: 3;
   width: 100%;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(var(--theme-background)),
+    to(var(--theme-background-alpha))
+  );
+  background-image: -webkit-linear-gradient(
+    bottom,
+    var(--theme-background),
+    var(--theme-background-alpha)
+  );
+  background-image: -moz-linear-gradient(
+    to bottom,
+    var(--theme-background),
+    var(--theme-background-alpha)
+  );
+  background-image: -o-linear-gradient(
+    to bottom,
+    var(--theme-background),
+    var(--theme-background-alpha)
+  );
   background-image: linear-gradient(
     var(--theme-background),
     var(--theme-background-alpha)
@@ -113,7 +142,7 @@ a:hover {
     height: calc(32px + 18 * ((100vw - 320px) / 680));
     width: calc(32px + 18 * ((100vw - 320px) / 680));
   }
-  #homeicon:active ,
+  #homeicon:active,
   #homeicon:hover {
     -webkit-animation: spin 4s linear infinite; /* Safari, Chrome and Opera > 12.1 */
     -moz-animation: spin 4s linear infinite; /* Firefox < 16 */
@@ -137,7 +166,7 @@ a:hover {
       var(--theme-background),
       var(--theme-background-alpha) 50%
     );
-    background-position: calc(-20vw - 40px) -10px;
+    background-position: -50px -10px;
     background-repeat: no-repeat;
   }
   .parallax-creativityIntro {
@@ -324,6 +353,11 @@ a:hover {
   animation: nav-slide-in 1s ease forwards;
 }
 .nav-out {
+  -webkit-animation-delay: 1s;
+  -moz-animation-delay: 1s;
+  -ms-animation-delay: 1s;
+  -o-animation-delay: 1s;
+  animation-delay: 1s;
   -webkit-animation: nav-slide-out 1s ease forwards; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: nav-slide-out 1s ease forwards; /* Firefox < 16 */
   -ms-animation: nav-slide-out 1s ease forwards; /* Internet Explorer */
@@ -334,14 +368,36 @@ a:hover {
   position: fixed;
   z-index: 2;
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
   height: 200%;
-  background: var(--theme-background);
-  opacity: 0.9;
+  background: -webkit-linear-gradient(
+    bottom,
+    var(--theme-background),
+    var(--theme-menu-background-from),
+    var(--theme-menu-background-to)
+  );
+  background: -moz-linear-gradient(
+    to bottom,
+    var(--theme-background),
+    var(--theme-menu-background-from),
+    var(--theme-menu-background-to)
+  );
+  background: -o-linear-gradient(
+    to bottom,
+    var(--theme-background),
+    var(--theme-menu-background-from),
+    var(--theme-menu-background-to)
+  );
+  background: linear-gradient(
+    to bottom,
+    var(--theme-background),
+    var(--theme-menu-background-from),
+    var(--theme-menu-background-to)
+  );
+  opacity: 0.95;
   overflow: hidden;
 }
 .nav-menu-header {
-  background: #45454533;
   width: 100%;
   height: 80px;
 }
@@ -404,8 +460,17 @@ a:hover {
   white-space: normal;
   height: 40px;
   vertical-align: top;
+  -webkit-transition: color 1s; /* For Safari 3.0 to 6.0 */
+  -moz-transition: color 1s; /* Firefox < 16 */
+  -o-transition: color 1s; /* Opera < 12.1 */
+  transition: color 1s; /* For modern browsers */
+  -webkit-transition: background-color 1s; /* For Safari 3.0 to 6.0 */
+  -moz-transition: background-color 1s; /* Firefox < 16 */
+  -o-transition: background-color 1s; /* Opera < 12.1 */
+  transition: background-color 1s; /* For modern browsers */
 }
-.skill:hover {
+.skill:hover,
+.skill:active {
   background-color: var(--theme-accent);
   color: var(--theme-background);
 }
@@ -506,6 +571,9 @@ a:hover {
   white-space: nowrap;
 }
 .footer-right-copyright-brand {
+  background: -webkit-linear-gradient(right, #ffa600, #00ffbf 54px, blueviolet);
+  background: -moz-linear-gradient(to right, #ffa600, #00ffbf 54px, blueviolet);
+  background: -o-linear-gradient(to right, #ffa600, #00ffbf 54px, blueviolet);
   background: linear-gradient(to right, #ffa600, #00ffbf 54px, blueviolet);
   -webkit-background-clip: text;
   background-clip: text;
@@ -513,6 +581,9 @@ a:hover {
 }
 .footer-right-copyright-brand:hover,
 .footer-right-copyright-brand:active {
+  background: -webkit-linear-gradient(right, #ffa600, #ff0062 48px, #af0bd8);
+  background: -moz-linear-gradient(to right, #ffa600, #ff0062 48px, #af0bd8);
+  background: -o-linear-gradient(to right, #ffa600, #ff0062 48px, #af0bd8);
   background: linear-gradient(to right, #ffa600, #ff0062 48px, #af0bd8);
   -webkit-background-clip: text;
   background-clip: text;
@@ -649,6 +720,21 @@ a:hover {
     from(var(--theme-text-backdrop)),
     to(var(--theme-background-alpha))
   );
+  background-image: -webkit-linear-gradient(
+    bottom,
+    var(--theme-text-backdrop),
+    var(--theme-background-alpha)
+  );
+  background-image: -moz-linear-gradient(
+    to bottom,
+    var(--theme-text-backdrop),
+    var(--theme-background-alpha)
+  );
+  background-image: -o-linear-gradient(
+    to bottom,
+    var(--theme-text-backdrop),
+    var(--theme-background-alpha)
+  );
   background-image: linear-gradient(
     var(--theme-text-backdrop),
     var(--theme-background-alpha)
@@ -664,6 +750,21 @@ a:hover {
   margin: 3px 0;
 }
 .legal-mandatory {
+  background: -webkit-linear-gradient(
+    bottom,
+    var(--theme-background-alpha) 70%,
+    #8400ff33
+  );
+  background: -moz-linear-gradient(
+    to bottom,
+    var(--theme-background-alpha) 70%,
+    #8400ff33
+  );
+  background: -o-linear-gradient(
+    to bottom,
+    var(--theme-background-alpha) 70%,
+    #8400ff33
+  );
   background: linear-gradient(var(--theme-background-alpha) 70%, #8400ff33);
   border-radius: 24px;
 }

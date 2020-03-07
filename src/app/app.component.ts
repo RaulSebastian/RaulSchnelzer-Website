@@ -312,23 +312,30 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     let backdrop: string;
     let accent: string;
     let inversion: string;
+    let menuBackground: string;
 
+    const darkAlpha = '#00000000';
+    const lightAlpha = '#ffffff00';
     const darkBackdrop = '#202020f0';
     const lighBackdrop = '#ffffffef';
+    const darkMenuBackground = '#571e9b';
+    const lightMenuBackground = '#00ffbf';
 
     const transitionStart = this.servicesContent.nativeElement.offsetTop - 50;
     const transitionEnd = this.contactContent.nativeElement.offsetTop - 160;
     if (this.offset < transitionStart) {
       background = 'white';
-      backgroundAlpha = '#ffffff00';
+      backgroundAlpha = lightAlpha;
       backdrop = lighBackdrop;
+      menuBackground = lightMenuBackground;
       foreground = '#454545';
       accent = '#8133e1';
       inversion = '0%';
     } else if (this.offset > transitionEnd) {
       background = 'black';
-      backgroundAlpha = '#00000000';
+      backgroundAlpha = darkAlpha;
       backdrop = darkBackdrop;
+      menuBackground = darkMenuBackground;
       foreground = 'white';
       accent = '#00ffbf';
       inversion = '100%';
@@ -348,24 +355,31 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       inversion = `${Math.round(degree * 100)}%`;
       degree = 1 - degree;
       background = `rgb(${Math.round(degree * 255)}, ${Math.round(degree * 255)}, ${Math.round(degree * 255)})`;
-      backgroundAlpha = `argb(${Math.round(degree * 255)}, ${Math.round(degree * 255)}, ${Math.round(degree * 255)}, 0)`;
-      backdrop = degree < 0.5 ? darkBackdrop : lighBackdrop;
+      if (degree < 0.5) {
+        backdrop = darkBackdrop;
+        menuBackground = darkMenuBackground;
+        backgroundAlpha = darkAlpha;
+      } else {
+        backdrop = lighBackdrop;
+        menuBackground = lightMenuBackground;
+        backgroundAlpha = lightAlpha;
+      }
     }
 
     const theme = document.getElementsByTagName('html')[0].style;
     const themeBackground = theme.getPropertyValue('--theme-background');
     const themeForeground = theme.getPropertyValue('--theme-font-color');
-    console.log('repainting');
     if (themeBackground !== background) {
       theme.setProperty('--theme-background', background);
       theme.setProperty('--theme-background-alpha', backgroundAlpha);
-      console.log('bd',backdrop);
       theme.setProperty('--theme-text-backdrop', backdrop);
     }
     if (themeForeground !== foreground) {
       theme.setProperty('--theme-font-color', foreground);
       theme.setProperty('--theme-accent', accent);
     }
+    theme.setProperty('--theme-menu-background-from', menuBackground);
+    theme.setProperty('--theme-menu-background-to', accent);
     theme.setProperty('--theme-color-inversion', inversion);
   }
 
