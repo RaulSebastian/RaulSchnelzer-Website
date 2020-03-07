@@ -69,13 +69,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       icon: 'https://images.youracclaim.com/size/340x340/images/6a254dad-77e5-4e71-8049-94e5c7a15981/azure-fundamentals-600x600.png',
       issuer: 'Microsoft',
       validFrom: 'Jan 2020',
-      validUntil: 'No Expiration Date',
+      validUntil: 'No Expiration',
       link: 'https://www.youracclaim.com/badges/1d7f7742-a5d5-468c-b6b8-4eecdb2726a2/linked_in_profile'
     },
     {
       name: 'Professional Scrum Developer',
       icon: 'https://static.scrum.org/web/badges/badge-psdi.svg',
-      issuer: 'Scrum.org', validFrom: 'Jul 2019', validUntil: 'No Expiration Date',
+      issuer: 'Scrum.org', validFrom: 'Jul 2019', validUntil: 'No Expiration',
       link: 'https://www.scrum.org/certificates/428766'
     },
     {
@@ -91,7 +91,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       icon: 'https://particular.net/images/blog/logo-og-img.png',
       issuer: 'Particular Software',
       validFrom: 'Dec 2018',
-      validUntil: 'No Expiration Date',
+      validUntil: 'No Expiration',
       link: 'https://www.credential.net/p33cqkid'
     },
   ];
