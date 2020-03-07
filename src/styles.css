@@ -227,6 +227,7 @@ a:hover {
   .menu-panel {
     visibility: collapse;
   }
+  .nav-menu,
   .nav-button-wrapper {
     visibility: collapse;
   }
