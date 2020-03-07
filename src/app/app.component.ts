@@ -5,6 +5,7 @@ import { WINDOW } from './services/window.service';
 import { interval } from 'rxjs';
 import { AppRoute } from './app.routes';
 import { ContactOptions } from './contact/contact.component';
+import { concurrentLock } from './services/concurrentLock';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,20 @@ import { ContactOptions } from './contact/contact.component';
 })
 
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
+
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(WINDOW) private window: Window,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
+    this.windowHeight = this.window.outerHeight;
+    this.windowWidth = this.window.outerWidth;
+
+    if (this.window.location.hostname.includes('raulschnelzer.de')) {
+      this.isProduction = true;
+    }
+  }
   title = 'Raul Schnelzer';
   titlePrefix = 'Raul';
   titleSufix = 'Schnelzer';
@@ -144,6 +159,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
 
   @ViewChild('aboutContent', { static: false }) aboutContent: ElementRef;
+  @ViewChild('aboutHeader', { static: false }) aboutHeader: ElementRef;
   @ViewChild('servicesContent', { static: false }) servicesContent: ElementRef;
   @ViewChild('certsContent', { static: false }) certsContent: ElementRef;
   @ViewChild('skillsContent', { static: false }) skillsContent: ElementRef;
@@ -157,39 +173,28 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private creativityIntroFontSize = 0;
   private creativityOutroFontSize = 0;
   private routeSubscription;
-
-  constructor(
-    @Inject(DOCUMENT) private document: Document,
-    @Inject(WINDOW) private window: Window,
-    private router: Router,
-    private route: ActivatedRoute
-  ) {
-    this.windowHeight = this.window.outerHeight;
-    this.windowWidth = this.window.outerWidth;
-
-    if (this.window.location.hostname.includes('raulschnelzer.de')) {
-      this.isProduction = true;
-    }
-  }
+  private navigating = false;
 
   ngOnInit(): void {
     interval(30000).subscribe(this.switchTitle());
 
     this.routeSubscription =
-      this.router.events.subscribe(() => {
-        let route = this.route;
-        while (route.firstChild) {
-          route = route.firstChild;
+    this.router.events.subscribe(() => {
+      let route = this.route;
+      while (route.firstChild) {
+        route = route.firstChild;
+      }
+      route.params.subscribe(param => {
+        if (param.route !== undefined) {
+          this.mapRouteToNavigation(param.route);
         }
-        route.params.subscribe(param => {
-          if (param.route !== undefined) {
-            this.mapRouteToNavigation(param.route);
-          }
-        });
       });
+    });
   }
 
   ngAfterViewInit(): void {
+    console.log('init');
+
     this.sectionsObserved = [
       this.aboutContent,
       this.skillsContent,
@@ -204,20 +209,26 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private mapRouteToNavigation(route: string): void {
+    let directive = AppRoute[route];
     for (const alias of this.navigationAlias) {
       if (route === alias.synonym) {
-        this.navigate(alias.reroute);
-        return;
+        directive = alias.reroute;
+        break;
       }
     }
-    const directive = AppRoute[route];
     if (directive !== undefined) {
       this.navigate(directive);
+      // setTimeout(() => {
+      //   this.navigate(directive);
+      // }, 333);
     }
-    return;
   }
 
   private navigate(route: AppRoute) {
+    if (this.navigating) {
+      return;
+    }
+    this.navigating = true;
     console.log('navigation requested to', AppRoute[route]);
     this.hideNavMenu();
     if (route == null) {
@@ -235,7 +246,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       case AppRoute.about:
         this.hideLegal();
         this.hidePrivacy();
-        offsetPosition = this.aboutContent.nativeElement.offsetTop - 400;
+        offsetPosition = this.aboutHeader.nativeElement.offsetTop;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.skills:
@@ -274,6 +285,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         this.hideLegal();
         break;
     }
+    this.navigating = false;
   }
 
   private switchTitle(): (value: number) => void {
@@ -312,6 +324,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private themeTransition(): void {
+
     let foreground: string;
     let background: string;
     let backgroundAlpha: string;

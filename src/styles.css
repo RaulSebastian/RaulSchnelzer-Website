@@ -197,6 +197,10 @@ a:hover {
     font-size: 3vw;
     line-height: 4vw;
   }
+  .about-me-image {
+    height: 200px;
+    width: auto;
+  }
   .cert-icon {
     height: 8vh;
   }
@@ -246,6 +250,10 @@ a:hover {
   }
   .footer-right {
     font-size: 2vw;
+  }
+  .about-me-image {
+    height: 300px;
+    width: auto;
   }
   .cert-icon {
     height: 80px;
@@ -341,7 +349,7 @@ a:hover {
   margin: 0;
   background: var(--theme-text-backdrop);
   border-radius: 50%;
-  box-shadow: 2px -2px 4px #88888866;
+  box-shadow: -2px 2px 4px #88888866;
   overflow: hidden;
   opacity: 0.66;
 }
@@ -364,6 +372,7 @@ a:hover {
   color: var(--theme-font-color);
   font-size: 24px;
   font-style: normal;
+  margin-top: 2px;
 }
 .nav-in {
   -webkit-animation: nav-slide-in 1s ease forwards; /* Safari, Chrome and Opera > 12.1 */
@@ -670,17 +679,9 @@ a:hover {
   padding: 0 20px;
   width: 80%;
   max-width: 1024px;
-  margin: 0 calc(10% - 20px);
+  margin: -20px calc(10% - 20px);
   text-align: center;
   display: block;
-}
-
-.about-me-image {
-  width: 20%;
-  min-width: 200px;
-  min-height: 200px;
-  max-width: 400px;
-  max-height: 400px;
 }
 
 .cert-wrapper {
