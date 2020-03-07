@@ -9,6 +9,7 @@ import { ContactOptions } from '../contact/contact.component';
 export class PrivacyComponent implements OnInit {
 
   nameAdressOptions = new Set([ContactOptions.name, ContactOptions.address]);
+  resposibilityMail = 'privacy@raulschnelzer.de';
 
   constructor() { }
 

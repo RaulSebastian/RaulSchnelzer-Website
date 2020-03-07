@@ -3,24 +3,28 @@ import Typewriter from 't-writer.js';
 
 @Component({
   selector: 'app-header',
-  template: `<div class="header-wrapper">
+  template:
+`<div class="header-wrapper">
   <div [class]="headerClass">
   <div>
-    <span class="header-title" [style.color]="fontColor">{{
-      titlePrefix
-    }}</span>
+    <span class="header-title" [style.color]="fontColor">
+      {{ titlePrefix }}
+    </span>
     <img [src]="logoSource" id="homeicon" />
-    <span class="header-title" [style.color]="fontColor">{{titleSufix}}</span>
+    <span class="header-title" [style.color]="fontColor">
+      {{titleSufix}}
+    </span>
   </div>
 
   <div>
-  <span
-    class="header-subtitle"
-    [style.color]="fontColor"
-    #subtitleSpan
-  ></span>
+    <span
+      class="header-subtitle"
+      [style.color]="fontColor"
+      #subtitleSpan>
+    </span>
   </div>
 </div>
+
 <div class="header-menu-border">
   <div class="header-menu-separator"></div>
   <div class="header-menu-links">
@@ -31,22 +35,6 @@ import Typewriter from 't-writer.js';
       routerLinkActive="active"
     >{{nav.display}}</a>
   </div>
-</div>
-
-<div class="nav-button-wrapper">
-  <button class="nav-button"
-    [style.color]="fontColor"
-    [style.border-color]="fontColor">
-    <i class="material-icons middle">{{menuIcon}}</i>
-  </button>
-</div>
-<div class="collapsed">
-  <a
-    *ngFor="let nav of navigationItems"
-    routerLink="{{ nav.href }}"
-    routerLinkActive="active"
-    >{{ nav.display }}</a
-  >
 </div>
 
 </div>`,
@@ -69,7 +57,6 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() navigationItems: [];
 
   headerClass = 'header-title-border';
-  menuIcon = 'menu';
 
   constructor() {
   }

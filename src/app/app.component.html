@@ -7,7 +7,7 @@
     [logoSource]="overlayLogoSrc"
     #headerOverlay
   >
-</app-header>
+  </app-header>
 </div>
 
 <div class="header">
@@ -22,7 +22,36 @@
   ></app-header>
 </div>
 
-<div style="height:80%;overflow:hidden">
+<div class="nav-button-wrapper">
+  <button class="nav-button" (click)="navButtonPressed()">
+    <i class="material-icons middle">{{ menuState }}</i>
+  </button>
+</div>
+<div [class]="classes.nav">
+  <div class="nav-menu-header"></div>
+  <div class="nav-menu-items">
+    <div *ngFor="let nav of navigationItems">
+      <a
+        class="nav-menu-item"
+        routerLink="{{ nav.href }}"
+        routerLinkActive="active"
+      >
+        {{ nav.display }}
+      </a>
+    </div>
+  </div>
+  <div *ngFor="let nav of navigationSubItems">
+    <a
+      class="nav-menu-subitem"
+      routerLink="{{ nav.href }}"
+      routerLinkActive="active"
+    >
+      {{ nav.display }}
+    </a>
+  </div>
+</div>
+
+<div class="landingpage">
   <p class="landingpage-title fadein">
     Welcome
   </p>

@@ -23,9 +23,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   headerLogoSrc = 'assets/RS_logo_Solar400.png';
   creativityIntro = 'font-size: 30vw;padding:30vh 0 0 0;';
   creativityOutro = 'font-size: 5vw;padding:30vh 0 0 0;';
+  menuState = 'menu';
   classes = {
     legal: 'legal collapsed',
     privacy: 'legal collapsed',
+    nav: 'nav-menu nav-out',
     up: 'up collapsed'
   };
 
@@ -38,7 +40,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   navigationItems = [
     { display: 'about', href: '/about' },
     { display: 'services', href: '/services' },
-    { display: 'contact', href: '/contact' },
+    { display: 'contact', href: '/contact' }
+  ];
+
+  navigationSubItems = [
+    { display: 'privacy policy', href: '/privacy' },
+    { display: 'legal notice', href: '/legal' },
   ];
 
   contactOptions = new Set([
@@ -206,6 +213,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private navigate(route: AppRoute) {
     console.log('navigation requested to', AppRoute[route]);
+    this.hideNavMenu();
     if (route == null) {
       this.hideLegal();
       this.router.navigateByUrl('');
@@ -347,9 +355,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     const theme = document.getElementsByTagName('html')[0].style;
     const themeBackground = theme.getPropertyValue('--theme-background');
     const themeForeground = theme.getPropertyValue('--theme-font-color');
+    console.log('repainting');
     if (themeBackground !== background) {
       theme.setProperty('--theme-background', background);
       theme.setProperty('--theme-background-alpha', backgroundAlpha);
+      console.log('bd',backdrop);
       theme.setProperty('--theme-text-backdrop', backdrop);
     }
     if (themeForeground !== foreground) {
@@ -370,6 +380,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
           }
         }
       }
+    }
+  }
+
+  public navButtonPressed(): void {
+    if (this.isNavOpen()) {
+      this.hideNavMenu();
+    } else {
+      this.showNavMenu();
     }
   }
 
@@ -474,12 +492,23 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     return;
   }
 
+  private isNavOpen(): boolean {
+    return this.classes.nav.includes('nav-in');
+  }
+
   private isLegalVisible(): boolean {
     return !this.classes.legal.includes('collapsed');
   }
 
   private isPrivacyVisible(): boolean {
     return !this.classes.privacy.includes('collapsed');
+  }
+
+  private showNavMenu(): void {
+    if (!this.isNavOpen()) {
+      this.classes.nav = this.classes.nav.replace('nav-out', 'nav-in');
+      this.menuState = 'menu_open';
+    }
   }
 
   private showLegal(): void {
@@ -491,6 +520,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private showPrivacy(): void {
     if (!this.isPrivacyVisible()) {
       this.classes.privacy = this.classes.privacy.replace('collapsed', 'fadein');
+    }
+  }
+
+  private hideNavMenu(): void {
+    if (this.isNavOpen()) {
+      this.classes.nav = this.classes.nav.replace('nav-in', 'nav-out');
+      this.menuState = 'menu';
     }
   }
 
