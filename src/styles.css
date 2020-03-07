@@ -774,6 +774,7 @@ a:hover {
 }
 .disclaimer {
   font-size: 22px;
+  line-height: 25px;
   text-align: justify;
 }
 .copyright {

@@ -1,6 +1,15 @@
 <div class="legal-wrapper">
-  <div class="legal-title">Privacy Policy</div>
+  <div class="legal-title">
+    Privacy Policy
+  </div>
   <div class="empty"></div>
+
+  <div *ngIf="!isProduction">
+    <p class="disclaimer legal-text" style="color:red;text-align:center;padding-top:10px">
+      This website has not been published yet and is for private audience
+      only!
+    </p>
+  </div>
 
   <div class="disclaimer legal-text">
     <p>
@@ -15,7 +24,6 @@
 
   <div class="legal-sub">
     <p>Responsible for the content</p>
-    <p>according to § 55 RStV</p>
   </div>
   <app-contact [contactOptions]="nameAdressOptions"></app-contact>
   <div class="privacy-contact-mail">
@@ -26,6 +34,61 @@
   </div>
 
   <div class="legal-sub">
+    <p>Using this website</p>
+  </div>
+  <div class="disclaimer legal-text">
+    <p>This website can be used without providing personal data.</p>
+    <p>
+      However, I must point out that data transmission over the Internet (e.g.
+      contacting us by email) can have security gaps. It is not possible to
+      completely protect data from third-party access.
+    </p>
+  </div>
+
+  <div class="legal-sub">
+    <p>Privacy policies of other websites</p>
+  </div>
+  <div class="disclaimer legal-text">
+    <p>
+      This website contains links to other websites. Our privacy policy applies
+      only to our website, so if you click on a link to another website, you
+      should read their privacy policy.
+    </p>
+  </div>
+
+  <div class="legal-sub">
+    <p>Server-LogFiles</p>
+  </div>
+  <div class="disclaimer legal-text">
+    <p>
+      This website is hosted on servers within the EU. The hosting provider
+      automatically collects and stores information in so-called server log
+      files, on which I have no influence nor access.
+    </p>
+    <p>
+      These information, which your browser automatically transmits are:
+    </p>
+    <ul>
+      <li>Browser type and version</li>
+      <li>Operating system used</li>
+      <li>Referrer URL</li>
+      <li>Hostname of the accessing device</li>
+      <li>Time of the server request</li>
+    </ul>
+  </div>
+
+  <div *ngIf="!isProduction" class="legal-sub">
+    <p>SSL encryption</p>
+  </div>
+  <div *ngIf="!isProduction" class="disclaimer legal-text">
+    <p>
+      This website uses SSL encryption for security reasons and to protect the
+      transmission of confidential content. If SSL encryption is activated, the
+      data that you transmit to us cannot be read by third parties.
+    </p>
+  </div>
+
+  <div class="legal-sub">
     <p>Your data protection rights</p>
   </div>
   <div class="disclaimer legal-text">
@@ -33,36 +96,50 @@
       Every user is entitled regarding his/hers/its data protection rights to
       the following:
     </p>
-    <p>
-      <b> The right to access </b>- You have the right to request Our Company
-      for copies of your personal data. We may charge you a small fee for this
-      service.
-    </p>
     <ul>
       <li>
-        <b>The right to rectification</b> - You have the right to request that
-        Our Company correct any information you believe is inaccurate. You also
-        have the right to request Our Company to complete information you
-        believe is incomplete.
+        <b> The right to access </b>
+        <p>
+          You have the right to request Our Company for copies of your personal
+          data. We may charge you a small fee for this service.
+        </p>
       </li>
       <li>
-        <b> The right to erasure</b> — You have the right to request that Our
-        Company erase your personal data, under certain conditions.
+        <b>The right to rectification</b>
+        <p>
+          You have the right to request that Our Company correct any information
+          you believe is inaccurate. You also have the right to request Our
+          Company to complete information you believe is incomplete.
+        </p>
       </li>
       <li>
-        <b>The right to restrict processing</b> - You have the right to request
-        that Our Company restrict the processing of your personal data, under
-        certain conditions.
+        <b> The right to erasure</b>
+        <p>
+          You have the right to request that Our Company erase your personal
+          data, under certain conditions.
+        </p>
       </li>
       <li>
-        <b>The right to object to processing</b> - You have the right to Object
-        to Our Company's processing of your personal data, under certain
-        conditions.
+        <b>The right to restrict processing</b>
+        <p>
+          You have the right to request that Our Company restrict the processing
+          of your personal data, under certain conditions.
+        </p>
       </li>
       <li>
-        <b>The right to data portability</b> - You have the right to request
-        that Our Company transfer the data that we have collected to another
-        organization, or directly to you, under certain conditions.
+        <b>The right to object to processing</b>
+        <p>
+          You have the right to Object to Our Company's processing of your
+          personal data, under certain conditions.
+        </p>
+      </li>
+      <li>
+        <b>The right to data portability</b>
+        <p>
+          You have the right to request that Our Company transfer the data that
+          we have collected to another organization, or directly to you, under
+          certain conditions.
+        </p>
       </li>
     </ul>
     <p>
@@ -71,6 +148,30 @@
     <p>
       Should you wish to report a complaint, you have the right to contact the
       Information Commissioner's Office.
+    </p>
+  </div>
+
+  <div class="legal-sub">
+    <p>Objection to advertising</p>
+  </div>
+  <div class="disclaimer legal-text">
+    <p>
+      I hereby expressly object to the sending of unsolicited advertising and
+      information material to the contact details published here as part of the
+      legal notice. I reserve the right to take legal action in the event that
+      unsolicited advertising information is sent, such as spam emails.
+    </p>
+  </div>
+
+  <div class="legal-sub">
+    <p>Changes to our privacy policy</p>
+  </div>
+  <div class="disclaimer legal-text">
+    <p>
+      I keep this privacy policy under regular reviews and place any updates on
+      this web page. This privacy policy was last updated on
+      <b>{{ modifiedDate }}</b
+      >.
     </p>
   </div>
 

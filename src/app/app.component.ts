@@ -31,6 +31,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     up: 'up collapsed'
   };
 
+  isProduction = false;
+
   navigationAlias = [
     { synonym: 'me', reroute: AppRoute.about },
     { synonym: 'impressum', reroute: AppRoute.legal },
@@ -164,6 +166,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ) {
     this.windowHeight = this.window.outerHeight;
     this.windowWidth = this.window.outerWidth;
+
+    if (this.window.location.hostname.includes('raulschnelzer.de')) {
+      this.isProduction = true;
+    }
   }
 
   ngOnInit(): void {
