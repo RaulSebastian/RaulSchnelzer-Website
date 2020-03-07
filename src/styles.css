@@ -197,6 +197,16 @@ a:hover {
     font-size: 3vw;
     line-height: 4vw;
   }
+  .cert-icon {
+    height: 8vh;
+  }
+  .cert-name {
+    font-size: 2.2vh;
+  }
+  .cert-info {
+    font-size: 2vh;
+    line-height: 3vh;
+  }
   .legal {
     width: calc(98vw - 16px);
     left: 1vw;
@@ -236,6 +246,15 @@ a:hover {
   }
   .footer-right {
     font-size: 2vw;
+  }
+  .cert-icon {
+    height: 80px;
+  }
+  .cert-name {
+    font-size: 20px;
+  }
+  .cert-info {
+    font-size: 16px;
   }
   .legal {
     width: calc(85vw - 32px);
@@ -669,28 +688,21 @@ a:hover {
   border-radius: 10px;
   margin-bottom: 20px;
   width: max-content;
-  height: 100px;
+  height: auto;
 }
-
 .cert-icon {
-  height: 80px;
   margin: 10px;
   width: auto;
 }
-
 .cert-details {
   float: right;
 }
-
 .cert-name {
-  font-size: 20px;
   font-weight: 600;
   padding-right: 20px;
 }
-
 .cert-info {
-  font-size: 16px;
-  margin: 0 !important;
+  margin: 0 10px 0 0 !important;
 }
 .legal {
   height: calc(100vh - 142px);
@@ -718,26 +730,26 @@ a:hover {
     linear,
     left top,
     left bottom,
-    from(var(--theme-text-backdrop)),
+    from(var(--theme-text-backdrop) 25px),
     to(var(--theme-background-alpha))
   );
   background-image: -webkit-linear-gradient(
     bottom,
-    var(--theme-text-backdrop),
+    var(--theme-text-backdrop) 25px,
     var(--theme-background-alpha)
   );
   background-image: -moz-linear-gradient(
     to bottom,
-    var(--theme-text-backdrop),
+    var(--theme-text-backdrop) 25px,
     var(--theme-background-alpha)
   );
   background-image: -o-linear-gradient(
     to bottom,
-    var(--theme-text-backdrop),
+    var(--theme-text-backdrop) 25px,
     var(--theme-background-alpha)
   );
   background-image: linear-gradient(
-    var(--theme-text-backdrop),
+    var(--theme-text-backdrop) 25px,
     var(--theme-background-alpha)
   );
 }
@@ -830,6 +842,16 @@ a:hover {
 }
 .tooltip:hover .tooltip-text {
   visibility: visible;
+}
+.list-title {
+  font-weight: bold;
+  text-align: left;
+}
+
+.critical {
+  color: red;
+  text-align: center;
+  padding-top: 10px;
 }
 
 .hidden {

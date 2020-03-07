@@ -65,7 +65,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ];
   certificates = [
     {
-      name: 'Microsoft Certified: Azure Fundamentals',
+      name: 'Azure Fundamentals',
       icon: 'https://images.youracclaim.com/size/340x340/images/6a254dad-77e5-4e71-8049-94e5c7a15981/azure-fundamentals-600x600.png',
       issuer: 'Microsoft',
       validFrom: 'Jan 2020',
@@ -79,7 +79,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       link: 'https://www.scrum.org/certificates/428766'
     },
     {
-      name: 'Google Analytics Individual Qualification',
+      name: 'Google Analytics Individual',
       icon: 'https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg',
       issuer: 'Google',
       validFrom: 'Jun 2019',
