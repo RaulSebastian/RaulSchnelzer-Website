@@ -695,7 +695,7 @@ a:hover {
 .legal-wrapper {
   text-align: center;
   height: calc(100vh - 176px);
-  margin-top: 32px;
+  margin: 64px 32px 0 32px;
   overflow: auto;
   background-color: transparent;
   color: var(--theme-font-color);
