@@ -24,7 +24,11 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     this.windowHeight = this.window.outerHeight;
     this.windowWidth = this.window.outerWidth;
 
-    if (this.window.location.hostname.includes('raulschnelzer.de')) {
+    const adress = this.window.location.href;
+    const host = this.window.location.hostname;
+    console.log('running ', adress, ' hosted on ', host);
+
+    if (adress.includes('raulschnelzer.de')) {
       this.isProduction = true;
     }
   }
