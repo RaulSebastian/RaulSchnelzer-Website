@@ -158,7 +158,7 @@ a:hover {
     background-attachment: scroll;
   }
   .footer-right {
-    font-size: 12px;
+    font-size: 11px;
   }
   .footer-left-indent {
     padding-left: 2vw;
@@ -184,6 +184,9 @@ a:hover {
   .legal {
     width: 90%;
     left: 5vw;
+  }
+  .legal-wrapper {
+    margin: 64px 16px 0 16px;
   }
   .legal-title {
     width: calc(100% - 32px);
@@ -305,6 +308,9 @@ a:hover {
   .legal {
     width: 80%;
     left: 10vw;
+  }
+  .legal-wrapper {
+    margin: 64px 32px 0 32px;
   }
   .legal-title {
     width: calc(100% - 48px);
@@ -695,7 +701,6 @@ a:hover {
 .legal-wrapper {
   text-align: center;
   height: calc(100vh - 176px);
-  margin: 64px 32px 0 32px;
   overflow: auto;
   background-color: transparent;
   color: var(--theme-font-color);
@@ -766,7 +771,8 @@ a:hover {
 .disclaimer {
   font-size: 22px;
   line-height: 25px;
-  text-align: justify;
+  text-align: left;
+  word-wrap: break-word;
 }
 .copyright {
   font-size: 22px;
