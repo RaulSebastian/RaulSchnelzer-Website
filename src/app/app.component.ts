@@ -5,7 +5,6 @@ import { WINDOW } from './services/window.service';
 import { interval } from 'rxjs';
 import { AppRoute } from './app.routes';
 import { ContactOptions } from './contact/contact.component';
-import { concurrentLock } from './services/concurrentLock';
 
 @Component({
   selector: 'app-root',
@@ -35,6 +34,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   title = 'Raul Schnelzer';
   titlePrefix = 'Raul';
   titleSufix = 'Schnelzer';
+  titleicon = 'normal';
   overlayHeight = 80;
   overlayFontColor = 'white';
   headerFontColor = 'var(--theme-font-color)';
@@ -45,6 +45,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   menuState = 'menu';
   classes = {
     legal: 'legal collapsed',
+    logo: '',
     privacy: 'legal collapsed',
     nav: 'nav-menu nav-out',
     up: 'up collapsed'
@@ -106,7 +107,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       link: 'https://skillshop.exceedlms.com/student/award/34095694'
     },
     {
-      name: 'SOA Done Right 2018 - DACH',
+      name: 'SOA Done Right 2018',
       icon: 'https://particular.net/images/blog/logo-og-img.png',
       issuer: 'Particular Software',
       validFrom: 'Dec 2018',
@@ -180,20 +181,20 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private navigating = false;
 
   ngOnInit(): void {
-    interval(30000).subscribe(this.switchTitle());
+    interval(20000).subscribe(this.switchTitle());
 
     this.routeSubscription =
-    this.router.events.subscribe(() => {
-      let route = this.route;
-      while (route.firstChild) {
-        route = route.firstChild;
-      }
-      route.params.subscribe(param => {
-        if (param.route !== undefined) {
-          this.mapRouteToNavigation(param.route);
+      this.router.events.subscribe(() => {
+        let route = this.route;
+        while (route.firstChild) {
+          route = route.firstChild;
         }
+        route.params.subscribe(param => {
+          if (param.route !== undefined) {
+            this.mapRouteToNavigation(param.route);
+          }
+        });
       });
-    });
   }
 
   ngAfterViewInit(): void {
@@ -292,9 +293,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       if (this.titlePrefix === 'Raul') {
         this.titlePrefix = 'Software';
         this.titleSufix = 'Solutions';
+        this.classes.logo = 'flipped';
       } else {
         this.titlePrefix = 'Raul';
         this.titleSufix = 'Schnelzer';
+        if (this.classes.logo === 'flipped') {
+          this.classes.logo = 'normal';
+        }
       }
     };
   }

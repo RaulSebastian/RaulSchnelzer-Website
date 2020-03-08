@@ -6,14 +6,20 @@ import Typewriter from 't-writer.js';
   template:
 `<div class="header-wrapper">
   <div [class]="headerClass">
-  <div>
+  <div style="display:flex">
+  <div class="header-title-wrapper right">
     <span class="header-title" [style.color]="fontColor">
       {{ titlePrefix }}
     </span>
-    <img [src]="logoSource" id="homeicon" />
+  </div>
+  <div>
+    <img [src]="logoSource" id="homeicon" [class]="logoClass" />
+  </div>
+  <div class="header-title-wrapper">
     <span class="header-title" [style.color]="fontColor">
       {{titleSufix}}
     </span>
+  </div>
   </div>
 
   <div>
@@ -51,6 +57,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @ViewChild('subtitleSpan', { static: false }) subtitleHolder: ElementRef;
   @Input() fontColor: string;
   @Input() logoSource: string;
+  @Input() logoClass = '';
   @Input() titlePrefix: string;
   @Input() titleSufix: string;
   @Input() backlight = false;

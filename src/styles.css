@@ -49,6 +49,8 @@ a:hover {
   overflow: hidden;
 }
 
+/** Header **/
+
 .header {
   position: fixed;
   top: 0;
@@ -80,38 +82,6 @@ a:hover {
     var(--theme-background),
     var(--theme-background-alpha)
   );
-}
-
-.header-wrapper {
-  width: 100%;
-  overflow: hidden;
-}
-
-.header-title-border {
-  margin: auto;
-  overflow: hidden;
-  height: inherit;
-  width: 55vw;
-  min-width: 380px;
-  max-width: 450px;
-  float: left;
-  padding-left: 10vw;
-}
-
-.header-menu-border {
-  overflow: hidden;
-  height: 74px;
-}
-
-.header-menu-separator {
-  height: 24px;
-}
-
-.header-menu-links {
-  vertical-align: super;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  padding-left: 10%;
 }
 
 .header-menu-links a {
@@ -212,9 +182,8 @@ a:hover {
     line-height: 3vh;
   }
   .legal {
-    width: calc(98vw - 16px);
-    left: 1vw;
-    padding: 32px 8px 0 8px;
+    width: 90%;
+    left: 5vw;
   }
   .legal-title {
     width: calc(100% - 32px);
@@ -265,9 +234,8 @@ a:hover {
     font-size: 16px;
   }
   .legal {
-    width: calc(85vw - 32px);
-    left: 5vw;
-    padding: 32px 16px 0 16px;
+    width: 80%;
+    left: 10vw;
   }
   .legal-title {
     width: calc(100% - 32px);
@@ -335,10 +303,8 @@ a:hover {
     line-height: 48px;
   }
   .legal {
-    width: calc(80vw - 64px);
+    width: 80%;
     left: 10vw;
-    padding: 32px;
-    padding: 32px 32px 0 32px;
   }
   .legal-title {
     width: calc(100% - 48px);
@@ -348,6 +314,15 @@ a:hover {
     margin: 0 10vw;
   }
 }
+
+@media screen and (min-width: 1248px) {
+  .legal {
+    left: calc((100vw - 1024px) / 2);
+  }
+}
+
+/** end of media screens **/
+
 .nav-button-wrapper {
   position: fixed;
   z-index: 5;
@@ -462,20 +437,6 @@ a:hover {
   line-height: 32px;
 }
 
-.justify {
-  text-align: justify;
-}
-
-.middle {
-  vertical-align: middle;
-}
-
-.scrollable {
-  overflow: scroll;
-  overflow-y: auto;
-  overflow-x: auto;
-}
-
 .contactlink {
   color: var(--theme-accent);
   margin-left: 10px;
@@ -512,17 +473,19 @@ a:hover {
   color: var(--theme-background);
 }
 
-.header-title {
-  vertical-align: super;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-  font-weight: lighter;
+.flipped {
+  -webkit-animation: flip 1s forwards; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: flip 1s forwards; /* Firefox < 16 */
+  -ms-animation: flip 1s forwards; /* Internet Explorer */
+  -o-animation: flip 1s forwards; /* Opera < 12.1 */
+  animation: flip 1s forwards;
 }
-
-.header-subtitle {
-  vertical-align: super;
-  font-weight: lighter;
-  opacity: 0.75;
+.normal {
+  -webkit-animation: rotateBack 1s forwards; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: rotateBack 1s forwards; /* Firefox < 16 */
+  -ms-animation: rotateBack 1s forwards; /* Internet Explorer */
+  -o-animation: rotateBack 1s forwards; /* Opera < 12.1 */
+  animation: rotateBack 1s forwards;
 }
 
 .footer {
@@ -658,8 +621,16 @@ a:hover {
   padding: 40vh 0 0 40vw;
 }
 
+/** sections **/
+
+.section-title,
+.section-content {
+  width: 80%;
+  max-width: 1024px;
+}
+
 .section-title {
-  margin: 0 0 20px 10%;
+  margin: 0 auto 20px auto;
   font-size: 44px;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 400;
@@ -667,27 +638,22 @@ a:hover {
   padding-bottom: 22px;
 }
 
-.section-title a {
-}
-
 .section-content {
+  margin: 40px auto;
   background-color: #66666633;
   border-radius: 10px;
   padding: 20px;
-  width: 80%;
-  max-width: 1024px;
   text-align: left;
   font-size: 22px;
   color: var(--theme-font-color);
   line-height: 1.4em;
-  margin: 40px calc(10% - 20px);
 }
 
 .about-me-container {
   padding: 0 20px;
   width: 80%;
   max-width: 1024px;
-  margin: -20px calc(10% - 20px);
+  margin: 0 auto;
   text-align: center;
   display: block;
 }
@@ -713,8 +679,9 @@ a:hover {
 .cert-info {
   margin: 0 10px 0 0 !important;
 }
+
 .legal {
-  height: calc(100vh - 142px);
+  height: calc(100vh - 70px);
   max-width: 1024px;
   background: var(--theme-text-backdrop);
   z-index: 1;
@@ -722,6 +689,8 @@ a:hover {
   top: 70px;
   overflow: hidden;
   border-radius: 32px 32px 0 0;
+  margin: 0 auto;
+  padding: 0;
 }
 .legal-wrapper {
   text-align: center;
@@ -833,6 +802,8 @@ a:hover {
   max-width: 40px;
 }
 
+/** Tooltip **/
+
 .tooltip {
   display: inline-block;
 }
@@ -852,6 +823,27 @@ a:hover {
 .tooltip:hover .tooltip-text {
   visibility: visible;
 }
+
+/** generics **/
+
+.justify {
+  text-align: justify;
+}
+
+.right {
+  text-align: right;
+}
+
+.middle {
+  vertical-align: middle;
+}
+
+.scrollable {
+  overflow: scroll;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
 .list-title {
   font-weight: bold;
   text-align: left;
@@ -899,6 +891,8 @@ a:hover {
   -o-animation: appear 2s ease forwards; /* Opera < 12.1 */
   animation: appear 2s ease forwards;
 }
+
+/** keyframes **/
 
 @keyframes nav-slide-out {
   from {
@@ -1007,6 +1001,26 @@ a:hover {
   to {
     top: 0;
     right: 0;
+  }
+}
+
+@keyframes flip {
+  to {
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    -ms-transform: rotate(180deg);
+    -o-transform: rotate(180deg);
+    transform: rotate(180deg);
+  }
+}
+
+@keyframes rotateBack {
+  to {
+    -webkit-transform: rotate(360deg);
+    -moz-transform: rotate(360deg);
+    -ms-transform: rotate(360deg);
+    -o-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
 }
 
