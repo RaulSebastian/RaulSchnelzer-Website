@@ -172,7 +172,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private sectionsObserved: Array<ElementRef>;
   private creativityIntroFontSize = 0;
   private creativityOutroFontSize = 0;
-  private routeSubscription;
+  private routeSubscription: any;
   private navigating = false;
 
   ngOnInit(): void {
@@ -193,8 +193,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    console.log('init');
-
     this.sectionsObserved = [
       this.aboutContent,
       this.skillsContent,
@@ -218,9 +216,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     if (directive !== undefined) {
       this.navigate(directive);
-      // setTimeout(() => {
-      //   this.navigate(directive);
-      // }, 333);
     }
   }
 
