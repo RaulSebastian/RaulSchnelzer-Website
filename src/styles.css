@@ -577,10 +577,10 @@ a:hover {
   white-space: nowrap;
 }
 .footer-right-copyright-brand {
-  background: -webkit-linear-gradient(right, #ffa600, #00ffbf 54px, blueviolet);
-  background: -moz-linear-gradient(to right, #ffa600, #00ffbf 54px, blueviolet);
-  background: -o-linear-gradient(to right, #ffa600, #00ffbf 54px, blueviolet);
-  background: linear-gradient(to right, #ffa600, #00ffbf 54px, blueviolet);
+  background: -webkit-linear-gradient(right, silver, white 54px, silver);
+  background: -moz-linear-gradient(to right, silver, white 54px, gray);
+  background: -o-linear-gradient(to right, silver, white 54px, gray);
+  background: linear-gradient(to right, silver, white 54px, gray);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -632,7 +632,7 @@ a:hover {
 .section-title,
 .section-content {
   width: 80%;
-  max-width: 1024px;
+  max-width: 600px;
 }
 
 .section-title {
@@ -658,7 +658,6 @@ a:hover {
 .about-me-container {
   padding: 0 20px;
   width: 80%;
-  max-width: 1024px;
   margin: 0 auto;
   text-align: center;
   display: block;

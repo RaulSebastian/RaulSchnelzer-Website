@@ -13,7 +13,7 @@ import Typewriter from 't-writer.js';
     </span>
   </div>
   <div>
-    <img [src]="logoSource" id="homeicon" [class]="logoClass" />
+    <img [src]="logoSource" alt="logo" id="homeicon" [class]="logoClass" />
   </div>
   <div class="header-title-wrapper">
     <span class="header-title" [style.color]="fontColor">
