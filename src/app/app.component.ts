@@ -27,10 +27,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     const host = this.window.location.hostname;
     console.log('running ', adress, ' hosted on ', host);
 
-    if (adress.includes('raulschnelzer.de')) {
-      this.isProduction = true;
-    }
+    this.isProduction = adress.includes('raulschnelzer.de') && !adress.includes('preview');
   }
+
   title = 'Raul Schnelzer';
   titlePrefix = 'Raul';
   titleSufix = 'Schnelzer';
@@ -78,15 +77,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   ]);
 
   servicesOffered = [
-    { description: 'Tailor-made Software Development' },
+    { description: 'Custom Software Development' },
     { description: 'Solutions Architecture' },
     { description: 'Enterprise Integration' },
+    { description: 'Platform Consulting' },
+    { description: 'Full Stack Development' },
+    { description: 'Mobile App Development' },
     { description: 'Coding Reviews' }
   ];
   certificates = [
     {
       name: 'Azure Fundamentals',
-      icon: 'https://images.youracclaim.com/size/340x340/images/6a254dad-77e5-4e71-8049-94e5c7a15981/azure-fundamentals-600x600.png',
+      icon: '../assets/azureFundamentals.png',
       issuer: 'Microsoft',
       validFrom: 'Jan 2020',
       validUntil: 'No Expiration',
@@ -94,13 +96,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       name: 'Professional Scrum Developer',
-      icon: 'https://static.scrum.org/web/badges/badge-psdi.svg',
+      icon: '../assets/ScrumBadgePSD1.svg',
       issuer: 'Scrum.org', validFrom: 'Jul 2019', validUntil: 'No Expiration',
       link: 'https://www.scrum.org/certificates/428766'
     },
     {
       name: 'Google Analytics Individual',
-      icon: 'https://www.gstatic.com/analytics-suite/header/suite/v2/ic_analytics.svg',
+      icon: '../assets/googleAnalyticsLogo.svg',
       issuer: 'Google',
       validFrom: 'Jun 2019',
       validUntil: 'Jun 2020',
@@ -108,7 +110,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     },
     {
       name: 'SOA Done Right 2018',
-      icon: 'https://particular.net/images/blog/logo-og-img.png',
+      icon: '../assets/particularLogo.png',
       issuer: 'Particular Software',
       validFrom: 'Dec 2018',
       validUntil: 'No Expiration',
@@ -142,23 +144,23 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       category: 'Frameworks', skills: [
         '.Net Core', 'Angular', 'Blazor', 'Aurelia', 'ASP.Net Core', 'NServiceBus', 'Node.js',
-        'GraphQL', 'UWP', 'WPF', 'Akka.Net', 'Flutter'
+        'GraphQL', 'UWP', 'C4', 'Flutter', 'WPF', 'Akka.Net'
       ]
     },
     {
       category: 'Tools', skills: [
         'Visual Studio', 'VS Code', 'Jetbrains Toolbox', 'Git', 'TFS VC', 'MS BI Data Tools',
-        'Adobe Photoshop', 'Affinity Designer', 'Affinity Photo'
+        'Powershell', 'Adobe Photoshop', 'Affinity Designer', 'Affinity Photo'
       ]
     },
     {
       category: 'DBMS', skills: [
-        'SQL Server 2008R2 - 2019', 'RavenDB', 'MongoDB', 'CosmosDB', 'MySql', 'Oracle', 'EventStore'
+        'SQL Server', 'RavenDB', 'MongoDB', 'CosmosDB', 'MySql', 'Oracle', 'EventStore'
       ]
     },
     {
       category: 'Platforms', skills: [
-        'Azure', 'K8s', 'Docker', 'Azure DevOps (Server)', 'SharePoint'
+        'Azure', 'Kubernetes', 'Docker', 'Azure DevOps (Server)', 'SharePoint'
       ]
     }
   ];
