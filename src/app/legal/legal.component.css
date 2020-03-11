@@ -1,0 +1,73 @@
+.legal-wrapper {
+  margin: 0;
+  position: fixed;
+  height: 80%;
+  width: 100%;
+  top: 10%;
+  background-color: var(--theme-text-backdrop);
+}
+
+.legal-title {
+  position: absolute;
+  font-size: 32px;
+  height: 64px;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(var(--theme-text-backdrop) 25px),
+    to(var(--theme-background-alpha))
+  );
+  background-image: -webkit-linear-gradient(
+    bottom,
+    var(--theme-text-backdrop) 25px,
+    var(--theme-background-alpha)
+  );
+  background-image: -moz-linear-gradient(
+    to bottom,
+    var(--theme-text-backdrop) 25px,
+    var(--theme-background-alpha)
+  );
+  background-image: -o-linear-gradient(
+    to bottom,
+    var(--theme-text-backdrop) 25px,
+    var(--theme-background-alpha)
+  );
+  background-image: linear-gradient(
+    var(--theme-text-backdrop) 25px,
+    var(--theme-background-alpha)
+  );
+}
+
+.legal-sub {
+  padding-top: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #598b9e;
+}
+.legal-sub p {
+  margin: 3px 0;
+}
+.legal-mandatory {
+  background: -webkit-linear-gradient(
+    bottom,
+    var(--theme-background-alpha) 70%,
+    #8400ff33
+  );
+  background: -moz-linear-gradient(
+    to bottom,
+    var(--theme-background-alpha) 70%,
+    #8400ff33
+  );
+  background: -o-linear-gradient(
+    to bottom,
+    var(--theme-background-alpha) 70%,
+    #8400ff33
+  );
+  background: linear-gradient(var(--theme-background-alpha) 70%, #8400ff33);
+  border-radius: 24px;
+}
+.legal-text {
+  width: auto;
+  margin: 0 4vw;
+}

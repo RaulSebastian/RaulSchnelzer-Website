@@ -1,10 +1,13 @@
-import { Component, HostListener, Inject, NgModule, OnInit, ViewChild, AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap, RouteReuseStrategy } from '@angular/router';
-import { DOCUMENT } from '@angular/common';
+import { Component, Inject, OnInit, ViewChild, AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Title } from '@angular/platform-browser';
 import { WINDOW } from './services/window.service';
 import { interval } from 'rxjs';
 import { AppRoute } from './app.routes';
 import { ContactOptions } from './contact/contact.component';
+import { SkillSets } from './services/skillsets';
+import { Certificates } from './services/certificates';
+import { OfferedServices } from './services/offeredServices';
 
 @Component({
   selector: 'app-root',
@@ -15,19 +18,18 @@ import { ContactOptions } from './contact/contact.component';
 export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
-    @Inject(DOCUMENT) private document: Document,
-    @Inject(WINDOW) private window: Window,
+    private titleService: Title,
+    @Inject(WINDOW) public window: Window,
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.windowHeight = this.window.outerHeight;
-    this.windowWidth = this.window.outerWidth;
 
     const adress = this.window.location.href;
     const host = this.window.location.hostname;
     console.log('running ', adress, ' hosted on ', host);
 
     this.isProduction = adress.includes('raulschnelzer.de') && !adress.includes('preview');
+
   }
 
   title = 'Raul Schnelzer';
@@ -76,94 +78,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     ContactOptions.socialMedia
   ]);
 
-  servicesOffered = [
-    { description: 'Custom Software Development' },
-    { description: 'Solutions Architecture' },
-    { description: 'Enterprise Integration' },
-    { description: 'Platform Consulting' },
-    { description: 'Full Stack Development' },
-    { description: 'Mobile App Development' },
-    { description: 'Coding Reviews' }
-  ];
-  certificates = [
-    {
-      name: 'Azure Fundamentals',
-      icon: '../assets/azureFundamentals.png',
-      issuer: 'Microsoft',
-      validFrom: 'Jan 2020',
-      validUntil: 'No Expiration',
-      link: 'https://www.youracclaim.com/badges/1d7f7742-a5d5-468c-b6b8-4eecdb2726a2/linked_in_profile'
-    },
-    {
-      name: 'Professional Scrum Developer',
-      icon: '../assets/ScrumBadgePSD1.svg',
-      issuer: 'Scrum.org', validFrom: 'Jul 2019', validUntil: 'No Expiration',
-      link: 'https://www.scrum.org/certificates/428766'
-    },
-    {
-      name: 'Google Analytics Individual',
-      icon: '../assets/googleAnalyticsLogo.svg',
-      issuer: 'Google',
-      validFrom: 'Jun 2019',
-      validUntil: 'Jun 2020',
-      link: 'https://skillshop.exceedlms.com/student/award/34095694'
-    },
-    {
-      name: 'SOA Done Right 2018',
-      icon: '../assets/particularLogo.png',
-      issuer: 'Particular Software',
-      validFrom: 'Dec 2018',
-      validUntil: 'No Expiration',
-      link: 'https://www.credential.net/p33cqkid'
-    },
-  ];
-
-  skillsets = [
-    {
-      category: 'Methodologies', skills: [
-        'Agile', 'Scrum', 'Kanban', 'Extreme Programming', 'DevOps',
-        'Pair Programming', 'RAD', 'TDD', 'BDD', 'Iterative Development',
-        'Requirements Engeneering']
-    },
-    {
-      category: 'Architecture', skills: [
-        'Microservices', 'N-Tier', 'MV*', 'Onion', 'Cloud first', 'RESTful',
-        'Distributed Systems'
-      ]
-    },
-    {
-      category: 'Paradigms', skills: [
-        'OOP', 'Functional', 'Event-Driven'
-      ]
-    },
-    {
-      category: 'Programming Languages', skills: [
-        'C#', 'T-SQL', 'TypeScript', 'Python', 'Dart'
-      ]
-    },
-    {
-      category: 'Frameworks', skills: [
-        '.Net Core', 'Angular', 'Blazor', 'Aurelia', 'ASP.Net Core', 'NServiceBus', 'Node.js',
-        'GraphQL', 'UWP', 'C4', 'Flutter', 'WPF', 'Akka.Net'
-      ]
-    },
-    {
-      category: 'Tools', skills: [
-        'Visual Studio', 'VS Code', 'Jetbrains Toolbox', 'Git', 'TFS VC', 'MS BI Data Tools',
-        'Powershell', 'Adobe Photoshop', 'Affinity Designer', 'Affinity Photo'
-      ]
-    },
-    {
-      category: 'DBMS', skills: [
-        'SQL Server', 'RavenDB', 'MongoDB', 'CosmosDB', 'MySql', 'Oracle', 'EventStore'
-      ]
-    },
-    {
-      category: 'Platforms', skills: [
-        'Azure', 'Kubernetes', 'Docker', 'Azure DevOps (Server)', 'SharePoint'
-      ]
-    }
-  ];
+  servicesOffered = OfferedServices.offered;
+  certificates = Certificates.Acquired;
+  skillsets = SkillSets.Categories;
 
   @ViewChild('aboutContent', { static: false }) aboutContent: ElementRef;
   @ViewChild('aboutHeader', { static: false }) aboutHeader: ElementRef;
@@ -173,12 +90,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('contactContent', { static: false }) contactContent: ElementRef;
   @ViewChild('legalContent', { static: false }) legalContent: ElementRef;
 
-  private offset = 0;
-  private windowHeight: number;
-  private windowWidth: number;
   private sectionsObserved: Array<ElementRef>;
-  private creativityIntroFontSize = 0;
-  private creativityOutroFontSize = 0;
   private routeSubscription: any;
   private navigating = false;
 
@@ -200,13 +112,25 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit(): void {
-    this.sectionsObserved = [
-      this.aboutContent,
-      this.skillsContent,
-      this.certsContent,
-      this.servicesContent,
-      this.contactContent
-    ];
+
+    if (
+      'IntersectionObserver' in this.window &&
+      'IntersectionObserverEntry' in this.window
+    ) {
+      const sectionObserver = new IntersectionObserver(entries => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove('hidden');
+            entry.target.classList.add('appear');
+            sectionObserver.unobserve(entry.target);
+          }
+        }
+      });
+
+      for (const section of this.sectionsObserved) {
+        sectionObserver.observe(section.nativeElement);
+      }
+    }
   }
 
   ngOnDestroy(): void {
@@ -231,6 +155,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
     this.navigating = true;
+    this.titleService.setTitle(AppRoute[route]);
     console.log('navigation requested to', AppRoute[route]);
     this.hideNavMenu();
     if (route == null) {
@@ -306,121 +231,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     };
   }
 
-  @HostListener('window:scroll', [])
-  onWindowScroll() {
-    this.offset = this.window.pageYOffset || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
-    this.windowHeight = this.window.outerHeight;
-    this.adjustHeaderOverlay();
-    this.adjustCreativityIntro();
-    this.adjustCreativityOutro();
-    this.checkSrollUpVisibility();
-    this.observeSections();
-    this.themeTransition();
-  }
 
-  private checkSrollUpVisibility(): void {
-    const determinedClass =
-      this.offset > this.windowHeight * 2
-        ? 'up'
-        : 'up collapsed';
 
-    if (this.classes.up !== determinedClass) {
-      this.classes.up = determinedClass;
-    }
-  }
-
-  private themeTransition(): void {
-
-    let foreground: string;
-    let background: string;
-    let backgroundAlpha: string;
-    let backdrop: string;
-    let accent: string;
-    let inversion: string;
-    let menuBackground: string;
-
-    const darkAlpha = '#00000000';
-    const lightAlpha = '#ffffff00';
-    const darkBackdrop = '#202020f0';
-    const lighBackdrop = '#ffffffef';
-    const darkMenuBackground = '#571e9b';
-    const lightMenuBackground = '#00ffbf';
-
-    const transitionStart = this.servicesContent.nativeElement.offsetTop - 50;
-    const transitionEnd = this.contactContent.nativeElement.offsetTop - 160;
-    if (this.offset < transitionStart) {
-      background = 'white';
-      backgroundAlpha = lightAlpha;
-      backdrop = lighBackdrop;
-      menuBackground = lightMenuBackground;
-      foreground = '#454545';
-      accent = '#8133e1';
-      inversion = '0%';
-    } else if (this.offset > transitionEnd) {
-      background = 'black';
-      backgroundAlpha = darkAlpha;
-      backdrop = darkBackdrop;
-      menuBackground = darkMenuBackground;
-      foreground = 'white';
-      accent = '#00ffbf';
-      inversion = '100%';
-    } else {
-      let degree = (this.offset - transitionStart) / (transitionEnd - transitionStart);
-      if (degree < 0 || degree > 1) {
-        return;
-      }
-      foreground = degree >= 0.31 && degree < 0.33
-        ? 'rgb(107,107,107)'
-        : degree >= 0.33 && degree < 0.34
-          ? 'rgb(117,117,117)'
-          : degree >= 0.34 && degree < 0.36
-            ? 'rgb(177,177,177)'
-            : `rgb(${Math.round(degree * 255) + 69}, ${Math.round(degree * 255) + 69}, ${Math.round(degree * 255) + 69})`;
-      accent = `hsl(267 - ${Math.round(degree * 102)}, ${74 + Math.round(degree * 26)}), 54%)`;
-      inversion = `${Math.round(degree * 100)}%`;
-      degree = 1 - degree;
-      background = `rgb(${Math.round(degree * 255)}, ${Math.round(degree * 255)}, ${Math.round(degree * 255)})`;
-      if (degree < 0.5) {
-        backdrop = darkBackdrop;
-        menuBackground = darkMenuBackground;
-        backgroundAlpha = darkAlpha;
-      } else {
-        backdrop = lighBackdrop;
-        menuBackground = lightMenuBackground;
-        backgroundAlpha = lightAlpha;
-      }
-    }
-
-    const theme = document.getElementsByTagName('html')[0].style;
-    const themeBackground = theme.getPropertyValue('--theme-background');
-    const themeForeground = theme.getPropertyValue('--theme-font-color');
-    if (themeBackground !== background) {
-      theme.setProperty('--theme-background', background);
-      theme.setProperty('--theme-background-alpha', backgroundAlpha);
-      theme.setProperty('--theme-text-backdrop', backdrop);
-    }
-    if (themeForeground !== foreground) {
-      theme.setProperty('--theme-font-color', foreground);
-      theme.setProperty('--theme-accent', accent);
-    }
-    theme.setProperty('--theme-menu-background-from', menuBackground);
-    theme.setProperty('--theme-menu-background-to', accent);
-    theme.setProperty('--theme-color-inversion', inversion);
-  }
-
-  private observeSections(): void {
-    for (const section in this.sectionsObserved) {
-      if (this.sectionsObserved.hasOwnProperty(section)) {
-        const element = this.sectionsObserved[section];
-        if (this.evalSectionAppear(element, this.offset, this.windowHeight)) {
-          const index = this.sectionsObserved.indexOf(element, 0);
-          if (index > -1) {
-            this.sectionsObserved.splice(index, 1);
-          }
-        }
-      }
-    }
-  }
 
   public navButtonPressed(): void {
     if (this.isNavOpen()) {
@@ -439,7 +251,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public scrollToTop(): void {
-    this.smoothScrollTo(0);
+    this.router.navigateByUrl('');
+    setTimeout(() => {
+      this.smoothScrollTo(0);
+    }, 333);
   }
 
   private smoothScrollTo(offsetPosition: number): void {
@@ -449,87 +264,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     });
   }
 
-  private evalSectionAppear(section: ElementRef, offset: number, height: number): boolean {
-    const position = section.nativeElement.offsetTop;
-    const classes = section.nativeElement.classList;
-    if (position > offset && position <= (offset + height)) {
-      classes.remove('hidden');
-      classes.add('appear');
-      return true;
-    }
-    return false;
-  }
 
-  private adjustCreativityIntro(): void {
-    let fontsize = 28 * (1 - this.offset / this.windowHeight);
-    if (fontsize < 2) {
-      fontsize = 2;
-    }
-    let paddingPercantage = fontsize + 5;
-    if (paddingPercantage > 30) {
-      paddingPercantage = 30;
-    }
-    if (Math.abs(this.creativityIntroFontSize - fontsize) < 0.05) {
-      return;
-    }
-    this.creativityIntroFontSize = fontsize;
-    this.creativityIntro = `font-size: ${fontsize}vw;padding: ${paddingPercantage}vh 0 0 0;`;
-  }
 
-  private adjustCreativityOutro(): void {
-    const scale = this.windowHeight > this.windowWidth ? 10 : 4;
-    let fontsize = scale * (this.offset / this.windowHeight) - 2;
-    if (fontsize < 0) {
-      return;
-    }
-    if (fontsize > 9) {
-      fontsize = 9;
-    }
-    const paddingPercantage = (10 - fontsize) * 2 + 10;
-    if (Math.abs(this.creativityOutroFontSize - fontsize) < 0.05) {
-      return;
-    }
-    this.creativityOutroFontSize = fontsize;
-    this.creativityOutro = `font-size: ${fontsize}vw;padding: ${paddingPercantage}vh 0 0 0;`;
-  }
 
-  private adjustHeaderOverlay(): void {
-    const minHeaderOverlayHeight = 80;
-    const offsetCollapseBegin = 100.0;
-    const offsetCollapseLimit = 200.0;
-
-    if (this.offset > this.windowHeight) {
-      this.overlayHeight = 0;
-      return;
-    }
-
-    if (this.offset <= offsetCollapseBegin) {
-      this.overlayHeight = minHeaderOverlayHeight;
-      return;
-    }
-
-    let overlayPercentage = (offsetCollapseLimit - offsetCollapseBegin) / (this.offset - offsetCollapseBegin);
-
-    if (overlayPercentage < 0.5) {
-      overlayPercentage /= 1.1;
-    }
-    if (overlayPercentage < 0.3) {
-      overlayPercentage /= 1.3;
-    }
-
-    let computedHeight = overlayPercentage * minHeaderOverlayHeight;
-
-    if (computedHeight > minHeaderOverlayHeight) {
-      computedHeight = minHeaderOverlayHeight;
-    }
-
-    if (Math.abs(this.overlayHeight - computedHeight) < 0.05) {
-      return;
-    }
-
-    this.overlayHeight = computedHeight;
-    return;
-  }
 
   private isNavOpen(): boolean {
     return this.classes.nav.includes('nav-in');

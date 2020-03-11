@@ -181,17 +181,6 @@ a:hover {
     font-size: 2vh;
     line-height: 3vh;
   }
-  .legal {
-    width: 90%;
-    left: 5vw;
-  }
-  .legal-wrapper {
-    margin: 64px 16px 0 16px;
-  }
-  .legal-title {
-    width: calc(100% - 32px);
-    right: 16px;
-  }
 }
 
 @media screen and (min-width: 770px) {
@@ -235,14 +224,6 @@ a:hover {
   }
   .cert-info {
     font-size: 16px;
-  }
-  .legal {
-    width: 80%;
-    left: 10vw;
-  }
-  .legal-title {
-    width: calc(100% - 32px);
-    right: 16px;
   }
   .imprint-text {
     margin: 0 5vw;
@@ -305,25 +286,8 @@ a:hover {
     font-size: 24px;
     line-height: 48px;
   }
-  .legal {
-    width: 80%;
-    left: 10vw;
-  }
-  .legal-wrapper {
-    margin: 64px 32px 0 32px;
-  }
-  .legal-title {
-    width: calc(100% - 48px);
-    right: 48px;
-  }
   .imprint-text {
     margin: 0 10vw;
-  }
-}
-
-@media screen and (min-width: 1248px) {
-  .legal {
-    left: calc((100vw - 1024px) / 2);
   }
 }
 
@@ -453,6 +417,22 @@ a:hover {
   line-height: 46px;
   text-align: center;
   font-size: 20px;
+}
+
+.skills-category-bar {
+  margin: 0 auto 22px auto;
+  height: 10px;
+  width: 20%;
+  opacity: 0.5;
+  -webkit-transition: width 2s ease-in-out; /* For Safari 3.0 to 6.0 */
+  -moz-transition: width 2s ease-in-out; /* Firefox < 16 */
+  -o-transition: width 2s ease-in-out; /* Opera < 12.1 */
+  transition: width 2s ease-in-out; /* For modern browsers */
+}
+
+.skills-category-bar:hover {
+  width: 80%;
+  opacity: 1;
 }
 
 .skill {
@@ -629,29 +609,21 @@ a:hover {
 
 /** sections **/
 
-.section-title,
-.section-content {
-  width: 80%;
-  max-width: 600px;
-}
-
 .section-title {
   margin: 0 auto 20px auto;
+  padding-left: 22px;
   font-size: 44px;
+  line-height: 44px;
+  vertical-align: middle;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 400;
   color: var(--theme-font-color);
-  padding-bottom: 22px;
 }
 
-.section-content {
-  margin: 40px auto;
-  background-color: #66666633;
-  border-radius: 10px;
+.default-section-content {
   padding: 20px;
   text-align: left;
   font-size: 22px;
-  color: var(--theme-font-color);
   line-height: 1.4em;
 }
 
@@ -683,89 +655,6 @@ a:hover {
 }
 .cert-info {
   margin: 0 10px 0 0 !important;
-}
-
-.legal {
-  height: calc(100vh - 70px);
-  max-width: 1024px;
-  background: var(--theme-text-backdrop);
-  z-index: 1;
-  position: fixed;
-  top: 70px;
-  overflow: hidden;
-  border-radius: 32px 32px 0 0;
-  margin: 0 auto;
-  padding: 0;
-}
-.legal-wrapper {
-  text-align: center;
-  height: calc(100vh - 176px);
-  overflow: auto;
-  background-color: transparent;
-  color: var(--theme-font-color);
-}
-.legal-title {
-  position: absolute;
-  font-size: 32px;
-  height: 64px;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(var(--theme-text-backdrop) 25px),
-    to(var(--theme-background-alpha))
-  );
-  background-image: -webkit-linear-gradient(
-    bottom,
-    var(--theme-text-backdrop) 25px,
-    var(--theme-background-alpha)
-  );
-  background-image: -moz-linear-gradient(
-    to bottom,
-    var(--theme-text-backdrop) 25px,
-    var(--theme-background-alpha)
-  );
-  background-image: -o-linear-gradient(
-    to bottom,
-    var(--theme-text-backdrop) 25px,
-    var(--theme-background-alpha)
-  );
-  background-image: linear-gradient(
-    var(--theme-text-backdrop) 25px,
-    var(--theme-background-alpha)
-  );
-}
-.legal-sub {
-  padding-top: 20px;
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: #598b9e;
-}
-.legal-sub p {
-  margin: 3px 0;
-}
-.legal-mandatory {
-  background: -webkit-linear-gradient(
-    bottom,
-    var(--theme-background-alpha) 70%,
-    #8400ff33
-  );
-  background: -moz-linear-gradient(
-    to bottom,
-    var(--theme-background-alpha) 70%,
-    #8400ff33
-  );
-  background: -o-linear-gradient(
-    to bottom,
-    var(--theme-background-alpha) 70%,
-    #8400ff33
-  );
-  background: linear-gradient(var(--theme-background-alpha) 70%, #8400ff33);
-  border-radius: 24px;
-}
-.legal-text {
-  width: auto;
-  margin: 0 4vw;
 }
 .disclaimer {
   font-size: 22px;
