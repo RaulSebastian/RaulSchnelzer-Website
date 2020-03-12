@@ -8,9 +8,9 @@ on:
     branches:
       - master
       - 'releases/**'
-    paths-ignore:
-      - 'docs/**'
-
+    paths:
+      - "src/**"
+  
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
