@@ -36,6 +36,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   titlePrefix = 'Raul';
   titleSufix = 'Schnelzer';
   titleicon = 'normal';
+  privacyLastModified = new Date('2020-03-07');
+
   overlayHeight = 80;
   overlayFontColor = 'white';
   headerFontColor = 'var(--theme-font-color)';
@@ -45,7 +47,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   creativityOutro = 'font-size: 5vw;padding:30vh 0 0 0;';
   menuState = 'menu';
   classes = {
-    legal: 'legal collapsed',
+    legal: 'legal fade',
     logo: '',
     privacy: 'legal collapsed',
     nav: 'nav-menu nav-out',
@@ -83,6 +85,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   skillsets = SkillSets.Categories;
 
   @ViewChild('aboutAnchor', { static: false }) aboutAnchor: ElementRef;
+
+  isLegalOpen = false;
+  isPrivacyOpen = false;
 
   private routeSubscription: any;
   private navigating = false;
@@ -263,10 +268,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     return this.classes.nav.includes('nav-in');
   }
 
-  private isLegalVisible(): boolean {
-    return !this.classes.legal.includes('collapsed');
-  }
-
   private isPrivacyVisible(): boolean {
     return !this.classes.privacy.includes('collapsed');
   }
@@ -279,9 +280,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private showLegal(): void {
-    if (!this.isLegalVisible()) {
-      this.classes.legal = this.classes.legal.replace('collapsed', 'fadein');
-    }
+    this.isLegalOpen = true;
+    this.classes.legal = 'legal fadein';
   }
 
   private showPrivacy(): void {
@@ -298,9 +298,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private hideLegal(): void {
-    if (this.isLegalVisible()) {
-      this.classes.legal = this.classes.legal.replace('fadein', 'collapsed');
-    }
+    this.classes.legal = 'legal collapsed';
+    this.isLegalOpen = false;
   }
 
   private hidePrivacy(): void {

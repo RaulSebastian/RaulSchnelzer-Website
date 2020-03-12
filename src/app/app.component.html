@@ -84,28 +84,28 @@
   sectionTitle="Who I am"
   link="/about"
   [window]="window"
-  >
-<div class="about-me-container" subtitle>
-  <img
-    class="about-me-image"
-    alt="raul schnelzer"
-    src="../assets/images/me.png"
-  />
-</div>
-<div class="default-section-content justify" content>
-  <p>Hi, I'm Raul!</p>
-  <p>
-    I am a creativity-driven and passionate developer who aspires towards better
-    software solutions. I thrive on challenge and constantly set goals for
-    myself to improve my knowledge, soft-skills, learning new methodologies and
-    technologies.
-  </p>
-  <p>
-    As such I read books (yes, the physical ones), use on-demand technology
-    courses, read blogs and am active on networks like StackOverflow.
-  </p>
-  <br>
-</div>
+>
+  <div class="about-me-container" subtitle>
+    <img
+      class="about-me-image"
+      alt="raul schnelzer"
+      src="../assets/images/me.png"
+    />
+  </div>
+  <div class="default-section-content justify" content>
+    <p>Hi, I'm Raul!</p>
+    <p>
+      I am a creativity-driven and passionate developer who aspires towards
+      better software solutions. I thrive on challenge and constantly set goals
+      for myself to improve my knowledge, soft-skills, learning new
+      methodologies and technologies.
+    </p>
+    <p>
+      As such I read books (yes, the physical ones), use on-demand technology
+      courses, read blogs and am active on networks like StackOverflow.
+    </p>
+    <br />
+  </div>
 </app-section>
 
 <!-- skills -->
@@ -114,15 +114,21 @@
   sectionTitle="Skills"
   link="/skills"
   [window]="window"
-  #skillsAnchor>
-<div class="default-section-content justify" content>
-  <div *ngFor="let category of skillsets" class="skill-section">
-    <p style="margin: 0;">{{ category.name }}</p>
-    <div class="skills-category-bar" [style.background]="category.color"></div>
-    <span *ngFor="let skill of category.skills" class="skill">{{ skill }}</span>
+  #skillsAnchor
+>
+  <div class="default-section-content justify" content>
+    <div *ngFor="let category of skillsets" class="skill-section">
+      <p style="margin: 0;">{{ category.name }}</p>
+      <div
+        class="skills-category-bar"
+        [style.background]="category.color"
+      ></div>
+      <span *ngFor="let skill of category.skills" class="skill">{{
+        skill
+      }}</span>
+    </div>
+    <br />
   </div>
-  <br>
-</div>
 </app-section>
 
 <!-- certifications -->
@@ -131,30 +137,31 @@
   sectionTitle="Certifications"
   link="/certifications"
   [window]="window"
-  #certsAnchor>
-<div class="default-section-content scrollable justify" content>
-  <div class="cert-wrapper" *ngFor="let certificate of certificates">
-    <img
-      src="{{ certificate.icon }}"
-      alt="certificate icon"
-      class="cert-icon"
-    />
-    <div class="cert-details">
-      <a
-        class="cert-name"
-        href="{{ certificate.link }}"
-        rel="noreferrer noopener"
-        target="_blank"
-        >{{ certificate.name }}</a
-      >
-      <p class="cert-info">Issuer: {{ certificate.issuer }}</p>
-      <p class="cert-info">
-        Issued: {{ certificate.validFrom }} - {{ certificate.validUntil }}
-      </p>
+  #certsAnchor
+>
+  <div class="default-section-content scrollable justify" content>
+    <div class="cert-wrapper" *ngFor="let certificate of certificates">
+      <img
+        src="{{ certificate.icon }}"
+        alt="certificate icon"
+        class="cert-icon"
+      />
+      <div class="cert-details">
+        <a
+          class="cert-name"
+          href="{{ certificate.link }}"
+          rel="noreferrer noopener"
+          target="_blank"
+          >{{ certificate.name }}</a
+        >
+        <p class="cert-info">Issuer: {{ certificate.issuer }}</p>
+        <p class="cert-info">
+          Issued: {{ certificate.validFrom }} - {{ certificate.validUntil }}
+        </p>
+      </div>
     </div>
+    <p>Ask me for further certifications.</p>
   </div>
-  <p>Ask me for further certifications.</p>
-</div>
 </app-section>
 
 <!-- services -->
@@ -163,14 +170,15 @@
   sectionTitle="Services"
   link="/services"
   [window]="window"
-  #servicesAnchor>
-<div class="default-section-content" content>
-  <ul>
-    <li *ngFor="let service of servicesOffered">
-      <p>{{ service.description }}</p>
-    </li>
-  </ul>
-</div>
+  #servicesAnchor
+>
+  <div class="default-section-content" content>
+    <ul>
+      <li *ngFor="let service of servicesOffered">
+        <p>{{ service.description }}</p>
+      </li>
+    </ul>
+  </div>
 </app-section>
 
 <!-- contact -->
@@ -179,26 +187,25 @@
   sectionTitle="Contact"
   link="/contact"
   [window]="window"
-  #contactAnchor>
-<div class="default-section-content" content>
-  <app-contact [contactOptions]="contactOptions"></app-contact>
-</div>
+  #contactAnchor
+>
+  <div class="default-section-content" content>
+    <app-contact [contactOptions]="contactOptions"></app-contact>
+  </div>
 </app-section>
 
 <div style="height:200px"></div>
 
-<div id="legal" [class]="classes.legal">
-  <a class="closeLegal" (click)="closeLegal()">
-    <em class="material-icons">close</em>
-  </a>
-  <app-legal></app-legal>
+<div *ngIf="isLegalOpen" id="legal" [class]="classes.legal">
+  <app-legal (closed)="closeLegal()"></app-legal>
 </div>
 
 <div id="privacy" [class]="classes.privacy">
-  <a class="closeLegal" (click)="closePrivacy()">
-    <em class="material-icons">close</em>
-  </a>
-  <app-privacy [isProduction]="isProduction"></app-privacy>
+  <app-privacy
+    [isProduction]="isProduction"
+    [modifiedDate]="privacyLastModified"
+    (closed)="closePrivacy()"
+  ></app-privacy>
 </div>
 
 <div class="empty" *ngFor="let repeat of [1, 2, 3, 4]"></div>

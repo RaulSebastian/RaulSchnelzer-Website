@@ -3,7 +3,7 @@
   --theme-background-alpha: #ffffff00;
   --theme-accent: #8133e1;
   --theme-font-color: #454545;
-  --theme-text-backdrop: #ffffffef;
+  --theme-text-backdrop: #fffffff5;
   --theme-color-inversion: 0%;
   --theme-menu-background-from: #00ffbf;
   --theme-menu-background-to: blueviolet;
@@ -537,13 +537,6 @@ a:hover {
 }
 .copyright {
   font-size: 22px;
-}
-.closeLegal {
-  position: absolute;
-  margin: 32px;
-  top: 0;
-  right: 0;
-  cursor: pointer;
 }
 .privacy-contact-mail {
   margin-top: -26px;
