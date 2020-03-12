@@ -3,7 +3,7 @@
   position: fixed;
   height: 80%;
   width: 100%;
-  top: 10%;
+  top: 100px;
   background-color: var(--theme-text-backdrop);
 }
 

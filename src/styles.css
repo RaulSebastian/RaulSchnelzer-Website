@@ -157,7 +157,7 @@ a:hover {
     background-repeat: repeat-x;
     background-attachment: scroll;
   }
-  
+
   .about-me-image {
     height: 200px;
     width: auto;
@@ -644,12 +644,25 @@ a:hover {
 
 .up {
   position: fixed;
-  bottom: 100px;
   right: calc(2vw + 2vw);
   cursor: pointer;
 }
-.up i {
+.up em {
   font-size: calc(3vw + 3vh);
+}
+.flyup {
+  -webkit-animation: flyup 1s ease forwards; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: flyup 1s ease forwards; /* Firefox < 16 */
+  -ms-animation: flyup 1s ease forwards; /* Internet Explorer */
+  -o-animation: flyup 1s ease forwards; /* Opera < 12.1 */
+  animation: flyup 1s ease forwards;
+}
+.flydown {
+  -webkit-animation: flydown 1s ease forwards; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: flydown 1s ease forwards; /* Firefox < 16 */
+  -ms-animation: flydown 1s ease forwards; /* Internet Explorer */
+  -o-animation: flydown 1s ease forwards; /* Opera < 12.1 */
+  animation: flydown 1s ease forwards;
 }
 .appear {
   -webkit-animation: appear 2s ease forwards; /* Safari, Chrome and Opera > 12.1 */
@@ -660,6 +673,96 @@ a:hover {
 }
 
 /** keyframes **/
+
+@keyframes flyup {
+  from {
+    bottom: -100px;
+  }
+  to {
+    bottom: 100px;
+  }
+}
+/* Firefox < 16 */
+@-moz-keyframes flyup {
+  from {
+    bottom: -100px;
+  }
+  to {
+    bottom: 100px;
+  }
+}
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes flyup {
+  from {
+    bottom: -100px;
+  }
+  to {
+    bottom: 100px;
+  }
+}
+/* Internet Explorer */
+@-ms-keyframes flyup {
+  from {
+    bottom: -100px;
+  }
+  to {
+    bottom: 100px;
+  }
+}
+/* Opera < 12.1 */
+@-o-keyframes flyup {
+  from {
+    bottom: -100px;
+  }
+  to {
+    bottom: 100px;
+  }
+}
+
+@keyframes flydown {
+  from {
+    bottom: 100px;
+  }
+  to {
+    bottom: -100px;
+  }
+}
+/* Firefox < 16 */
+@-moz-keyframes flydown {
+  from {
+    bottom: 100px;
+  }
+  to {
+    bottom: -100px;
+  }
+}
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes flydown {
+  from {
+    bottom: 100px;
+  }
+  to {
+    bottom: -100px;
+  }
+}
+/* Internet Explorer */
+@-ms-keyframes flydown {
+  from {
+    bottom: 100px;
+  }
+  to {
+    bottom: -100px;
+  }
+}
+/* Opera < 12.1 */
+@-o-keyframes flydown {
+  from {
+    bottom: 100px;
+  }
+  to {
+    bottom: -100px;
+  }
+}
 
 @keyframes nav-slide-out {
   from {

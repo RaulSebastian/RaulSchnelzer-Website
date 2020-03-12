@@ -82,15 +82,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   certificates = Certificates.Acquired;
   skillsets = SkillSets.Categories;
 
-  @ViewChild('aboutContent', { static: false }) aboutContent: ElementRef;
-  @ViewChild('aboutHeader', { static: false }) aboutHeader: ElementRef;
-  @ViewChild('servicesContent', { static: false }) servicesContent: ElementRef;
-  @ViewChild('certsContent', { static: false }) certsContent: ElementRef;
-  @ViewChild('skillsContent', { static: false }) skillsContent: ElementRef;
-  @ViewChild('contactContent', { static: false }) contactContent: ElementRef;
-  @ViewChild('legalContent', { static: false }) legalContent: ElementRef;
+  @ViewChild('aboutAnchor', { static: false }) aboutAnchor: ElementRef;
 
-  private sectionsObserved: Array<ElementRef>;
   private routeSubscription: any;
   private navigating = false;
 
@@ -105,6 +98,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         }
         route.params.subscribe(param => {
           if (param.route !== undefined) {
+            // TODO
             this.mapRouteToNavigation(param.route);
           }
         });
@@ -117,20 +111,24 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       'IntersectionObserver' in this.window &&
       'IntersectionObserverEntry' in this.window
     ) {
-      const sectionObserver = new IntersectionObserver(entries => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove('hidden');
-            entry.target.classList.add('appear');
-            sectionObserver.unobserve(entry.target);
-          }
-        }
-      });
-
-      for (const section of this.sectionsObserved) {
-        sectionObserver.observe(section.nativeElement);
-      }
+      this.observeUpArrowVisibility();
+    } else {
+      // TODO: fallback
     }
+  }
+
+  private observeUpArrowVisibility() {
+    const observerOptions = { threshold: [1] };
+    const sectionObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.boundingClientRect.y < 1) {
+          this.classes.up = 'up flyup';
+        } else {
+          this.classes.up = 'up flydown';
+        }
+      }
+    }, observerOptions);
+    sectionObserver.observe(this.aboutAnchor.nativeElement);
   }
 
   ngOnDestroy(): void {
@@ -173,31 +171,31 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       case AppRoute.about:
         this.hideLegal();
         this.hidePrivacy();
-        offsetPosition = this.aboutHeader.nativeElement.offsetTop;
+        // offsetPosition = this.aboutHeader.nativeElement.offsetTop;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.skills:
         this.hideLegal();
         this.hidePrivacy();
-        offsetPosition = this.skillsContent.nativeElement.offsetTop - 200;
+        // offsetPosition = this.skillsContent.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.certifications:
         this.hideLegal();
         this.hidePrivacy();
-        offsetPosition = this.certsContent.nativeElement.offsetTop - 200;
+        // offsetPosition = this.certsContent.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.services:
         this.hideLegal();
         this.hidePrivacy();
-        offsetPosition = this.servicesContent.nativeElement.offsetTop - 200;
+        // offsetPosition = this.servicesContent.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.contact:
         this.hideLegal();
         this.hidePrivacy();
-        offsetPosition = this.contactContent.nativeElement.offsetTop - 200;
+        // offsetPosition = this.contactContent.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.legal:
@@ -231,9 +229,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     };
   }
 
-
-
-
   public navButtonPressed(): void {
     if (this.isNavOpen()) {
       this.hideNavMenu();
@@ -263,10 +258,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       behavior: 'smooth'
     });
   }
-
-
-
-
 
   private isNavOpen(): boolean {
     return this.classes.nav.includes('nav-in');
