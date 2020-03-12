@@ -5,20 +5,20 @@
   </div>
 
   <div *ngIf="showAddress()">
-    <i class="material-icons middle">home</i>
+    <em class="material-icons middle">home</em>
     <span style="margin-left: 10px;">Ludwig-Ebner-Str. 1</span>
     <p style="margin-left: 32px;">94469 Deggendorf</p>
   </div>
 
   <div *ngIf="showDirectContact()">
   <div>
-    <i class="material-icons middle">mail_outline</i>
+    <em class="material-icons middle">mail_outline</em>
     <a class="contactlink" href="mailto:{{ contactDetails.mail }}">
       {{ contactDetails.mail }}</a
     >
   </div>
   <div>
-    <i class="material-icons middle">phone</i>
+    <em class="material-icons middle">phone</em>
     <a class="contactlink" href="tel:{{ contactDetails.phone }}">
       {{ contactDetails.phone }}</a
     >

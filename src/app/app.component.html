@@ -26,7 +26,7 @@
 
 <div class="nav-button-wrapper">
   <button class="nav-button" (click)="navButtonPressed()">
-    <i class="material-icons middle">{{ menuState }}</i>
+    <em class="material-icons middle">{{ menuState }}</em>
   </button>
 </div>
 <div [class]="classes.nav">
@@ -188,14 +188,14 @@
 
 <div id="legal" [class]="classes.legal">
   <a class="closeLegal" (click)="closeLegal()">
-    <i class="material-icons">close</i>
+    <em class="material-icons">close</em>
   </a>
   <app-legal></app-legal>
 </div>
 
 <div id="privacy" [class]="classes.privacy">
   <a class="closeLegal" (click)="closePrivacy()">
-    <i class="material-icons">close</i>
+    <em class="material-icons">close</em>
   </a>
   <app-privacy [isProduction]="isProduction"></app-privacy>
 </div>
@@ -204,7 +204,7 @@
 
 <div>
   <a [class]="classes.up" (click)="scrollToTop()">
-    <i class="material-icons">arrow_upward</i>
+    <em class="material-icons">arrow_upward</em>
   </a>
 </div>
 
