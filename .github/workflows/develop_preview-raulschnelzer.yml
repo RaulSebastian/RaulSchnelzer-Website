@@ -36,7 +36,7 @@ jobs:
         run: Rename-Item -Path ./dist/raulschnelzer/robots.prev.txt -NewName "robots.txt"
         shell: pwsh
 
-        - name: 'Deploy to Azure Web App'
+      - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v1
         with:
           app-name: 'raulschnelzer(preview)'
