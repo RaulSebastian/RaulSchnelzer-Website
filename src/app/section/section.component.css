@@ -10,8 +10,8 @@
   line-height: 44px;
   vertical-align: middle;
   background: -webkit-linear-gradient(right, #ffa600, #ff0062 48px, #af0bd8);
-  background: -moz-linear-gradient(to right, #ffa600, #ff0062 48px, #af0bd8);
-  background: -o-linear-gradient(to right, #ffa600, #ff0062 48px, #af0bd8);
+  background: -moz-linear-gradient(right, #ffa600, #ff0062 48px, #af0bd8);
+  background: -o-linear-gradient(right, #ffa600, #ff0062 48px, #af0bd8);
   background: linear-gradient(to right, #ffa600, #ff0062 48px, #af0bd8);
   -webkit-background-clip: text;
   background-clip: text;

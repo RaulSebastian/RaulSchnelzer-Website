@@ -85,7 +85,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   skillsets = SkillSets.Categories;
 
   @ViewChild('aboutAnchor', { static: false }) aboutAnchor: ElementRef;
+  @ViewChild('skillsAnchor', { static: false }) skillsAnchor: ElementRef;
+  @ViewChild('certsAnchor', { static: false }) certsAnchor: ElementRef;
+  @ViewChild('servicesAnchor', { static: false }) servicesAnchor: ElementRef;
+  @ViewChild('contactAnchor', { static: false }) contactAnchor: ElementRef;
   @ViewChild('intro', { static: false }) intro: ElementRef;
+  @ViewChild('outro', { static: false }) outro: ElementRef;
 
   isLegalOpen = false;
   isPrivacyOpen = false;
@@ -118,13 +123,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       'IntersectionObserverEntry' in this.window
     ) {
       this.observeUpArrowVisibility();
-      this.observeT();
+      this.observeCreativityIntro();
     } else {
       // TODO: fallback
     }
   }
 
-  private observeT() {
+  private observeCreativityIntro() {
     const observerOptions = {
       rootMargin: '-50px',
       threshold: [...Array(100).keys()].map(i => i / 100)
@@ -133,10 +138,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       for (const entry of entries) {
         if (entry.isIntersecting) {
 
-          if (entry.boundingClientRect.y > 0 && entry.intersectionRatio < 0.3) {
-            // show header
-          } else {
-            // hide header
+          // resize header
+          if (entry.boundingClientRect.y > 0) {
+            this.overlayHeight = Math.min(Math.max((0.8 - entry.intersectionRatio) * 115, 0), 80);
           }
 
           let size = entry.boundingClientRect.y < 0 ? 12
@@ -146,12 +150,28 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
           }
           const alpha = entry.boundingClientRect.y > 0 ? 1
             : Math.floor((entry.intersectionRatio - 0.68) * 330) / 100;
-          const blur = Math.floor((1 - alpha) * 50);
-          console.log(`font-size: ${size}vw;padding:${size}vh 0 0 0;opacity:${alpha};filter: blur(${blur}px);`);
-          this.creativityIntro = `font-size: ${size}vw;padding:${size}vh 0 0 0;opacity:${alpha};filter: blur(${blur}px);`;
+          // adjust intro style
+          this.creativityIntro = `font-size: ${size}vw;padding:${size}vh 0 0 0;opacity:${alpha};`;
+        } else {
+          if (entry.boundingClientRect.y < 0) {
+            // hide header overlay
+            this.overlayHeight = 0;
+          }
         }
       }
     }, observerOptions);
+    sectionObserver.observe(this.intro.nativeElement);
+  }
+
+  private observeCreativityOutro() {
+    const observerOptions = {
+      rootMargin: '-50px',
+      threshold: [...Array(100).keys()].map(i => i / 100)
+    };
+    const sectionObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+      }
+    });
     sectionObserver.observe(this.intro.nativeElement);
   }
 
@@ -209,13 +229,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       case AppRoute.about:
         this.hideLegal();
         this.hidePrivacy();
-        // offsetPosition = this.aboutHeader.nativeElement.offsetTop;
+        offsetPosition = this.aboutAnchor.nativeElement.offsetTop;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.skills:
         this.hideLegal();
         this.hidePrivacy();
-        // offsetPosition = this.skillsContent.nativeElement.offsetTop - 200;
+        offsetPosition = this.skillsAnchor.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.certifications:

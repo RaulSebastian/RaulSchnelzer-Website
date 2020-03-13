@@ -69,7 +69,7 @@
 <div style="height:10%"></div>
 
 <!-- outro -->
-<div class="parallax-creativityOutro">
+<div class="parallax-creativityOutro" #outro>
   <div class="inspirational-text" [style]="creativityOutro">
     But with some creativity
     <br />
@@ -77,8 +77,8 @@
   </div>
 </div>
 
-<div #aboutAnchor></div>
 <!-- about -->
+<div #aboutAnchor></div>
 <app-section
   sectionId="about"
   sectionTitle="Who I am"
@@ -109,12 +109,12 @@
 </app-section>
 
 <!-- skills -->
+<div #skillsAnchor></div>
 <app-section
   sectionId="skills"
   sectionTitle="Skills"
   link="/skills"
   [window]="window"
-  #skillsAnchor
 >
   <div class="default-section-content justify" content>
     <div *ngFor="let category of skillsets" class="skill-section">
@@ -132,12 +132,12 @@
 </app-section>
 
 <!-- certifications -->
+<div #certsAnchor></div>
 <app-section
   sectionId="certifications"
   sectionTitle="Certifications"
   link="/certifications"
   [window]="window"
-  #certsAnchor
 >
   <div class="default-section-content scrollable justify" content>
     <div class="cert-wrapper" *ngFor="let certificate of certificates">
@@ -165,12 +165,12 @@
 </app-section>
 
 <!-- services -->
+<div #servicesAnchor></div>
 <app-section
   sectionId="services"
   sectionTitle="Services"
   link="/services"
   [window]="window"
-  #servicesAnchor
 >
   <div class="default-section-content" content>
     <ul>
@@ -182,6 +182,7 @@
 </app-section>
 
 <!-- contact -->
+<div #contactAnchor></div>
 <app-section
   sectionId="contact"
   sectionTitle="Contact"
@@ -202,7 +203,7 @@
 </div>
 
 <!-- privacy -->
-<div id="privacy" [class]="classes.privacy">
+<div *ngIf="isPrivacyOpen" id="privacy" [class]="classes.privacy">
   <app-privacy
     [isProduction]="isProduction"
     [modifiedDate]="privacyLastModified"

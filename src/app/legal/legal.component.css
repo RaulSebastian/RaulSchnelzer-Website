@@ -121,12 +121,12 @@
     #8400ff33
   );
   background: -moz-linear-gradient(
-    to bottom,
+    bottom,
     var(--theme-background-alpha) 70%,
     #8400ff33
   );
   background: -o-linear-gradient(
-    to bottom,
+    bottom,
     var(--theme-background-alpha) 70%,
     #8400ff33
   );
