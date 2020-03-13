@@ -17,10 +17,7 @@ export class FooterComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    const v: string = version;
-    console.log(version);
-    const buildVersion = v.split('.');
-    console.log(buildVersion);
+    const buildVersion = version.split('.');
 
     this.version = {
       major: buildVersion[0],

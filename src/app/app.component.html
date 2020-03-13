@@ -60,7 +60,7 @@
 </div>
 
 <!-- intro -->
-<div class="parallax-creativityIntro">
+<div class="parallax-creativityIntro" #intro>
   <div class="inspirational-text" [style]="creativityIntro">
     Anything can be done without any creativity.
   </div>
@@ -196,10 +196,12 @@
 
 <div style="height:200px"></div>
 
+<!-- legal -->
 <div *ngIf="isLegalOpen" id="legal" [class]="classes.legal">
   <app-legal (closed)="closeLegal()"></app-legal>
 </div>
 
+<!-- privacy -->
 <div id="privacy" [class]="classes.privacy">
   <app-privacy
     [isProduction]="isProduction"
@@ -210,10 +212,12 @@
 
 <div class="empty" *ngFor="let repeat of [1, 2, 3, 4]"></div>
 
+<!-- up button -->
 <div>
   <a [class]="classes.up" (click)="scrollToTop()">
     <em class="material-icons">arrow_upward</em>
   </a>
 </div>
 
+<!-- footer -->
 <app-footer></app-footer>

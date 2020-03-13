@@ -85,6 +85,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   skillsets = SkillSets.Categories;
 
   @ViewChild('aboutAnchor', { static: false }) aboutAnchor: ElementRef;
+  @ViewChild('intro', { static: false }) intro: ElementRef;
 
   isLegalOpen = false;
   isPrivacyOpen = false;
@@ -117,9 +118,41 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       'IntersectionObserverEntry' in this.window
     ) {
       this.observeUpArrowVisibility();
+      this.observeT();
     } else {
       // TODO: fallback
     }
+  }
+
+  private observeT() {
+    const observerOptions = {
+      rootMargin: '-50px',
+      threshold: [...Array(100).keys()].map(i => i / 100)
+    };
+    const sectionObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+
+          if (entry.boundingClientRect.y > 0 && entry.intersectionRatio < 0.3) {
+            // show header
+          } else {
+            // hide header
+          }
+
+          let size = entry.boundingClientRect.y < 0 ? 12
+            : (1.2 - entry.intersectionRatio) * 30;
+          if (size < 12) {
+            size = 12;
+          }
+          const alpha = entry.boundingClientRect.y > 0 ? 1
+            : Math.floor((entry.intersectionRatio - 0.68) * 330) / 100;
+          const blur = Math.floor((1 - alpha) * 50);
+          console.log(`font-size: ${size}vw;padding:${size}vh 0 0 0;opacity:${alpha};filter: blur(${blur}px);`);
+          this.creativityIntro = `font-size: ${size}vw;padding:${size}vh 0 0 0;opacity:${alpha};filter: blur(${blur}px);`;
+        }
+      }
+    }, observerOptions);
+    sectionObserver.observe(this.intro.nativeElement);
   }
 
   private observeUpArrowVisibility() {
