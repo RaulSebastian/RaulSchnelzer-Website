@@ -3,7 +3,7 @@
   --theme-background-alpha: #ffffff00;
   --theme-accent: #8133e1;
   --theme-font-color: #454545;
-  --theme-text-backdrop: #ffffffef;
+  --theme-text-backdrop: #fffffff5;
   --theme-color-inversion: 0%;
   --theme-menu-background-from: #00ffbf;
   --theme-menu-background-to: blueviolet;
@@ -69,12 +69,12 @@ a:hover {
     var(--theme-background-alpha)
   );
   background-image: -moz-linear-gradient(
-    to bottom,
+    bottom,
     var(--theme-background),
     var(--theme-background-alpha)
   );
   background-image: -o-linear-gradient(
-    to bottom,
+    bottom,
     var(--theme-background),
     var(--theme-background-alpha)
   );
@@ -157,16 +157,7 @@ a:hover {
     background-repeat: repeat-x;
     background-attachment: scroll;
   }
-  .footer-right {
-    font-size: 11px;
-  }
-  .footer-left-indent {
-    padding-left: 2vw;
-  }
-  .footer-left-text {
-    font-size: 3vw;
-    line-height: 4vw;
-  }
+
   .about-me-image {
     height: 200px;
     width: auto;
@@ -180,17 +171,6 @@ a:hover {
   .cert-info {
     font-size: 2vh;
     line-height: 3vh;
-  }
-  .legal {
-    width: 90%;
-    left: 5vw;
-  }
-  .legal-wrapper {
-    margin: 64px 16px 0 16px;
-  }
-  .legal-title {
-    width: calc(100% - 32px);
-    right: 16px;
   }
 }
 
@@ -217,12 +197,6 @@ a:hover {
   .nav-button-wrapper {
     visibility: collapse;
   }
-  .footer-middle {
-    font-size: 22px;
-  }
-  .footer-right {
-    font-size: 2vw;
-  }
   .about-me-image {
     height: 300px;
     width: auto;
@@ -235,14 +209,6 @@ a:hover {
   }
   .cert-info {
     font-size: 16px;
-  }
-  .legal {
-    width: 80%;
-    left: 10vw;
-  }
-  .legal-title {
-    width: calc(100% - 32px);
-    right: 16px;
   }
   .imprint-text {
     margin: 0 5vw;
@@ -269,8 +235,8 @@ a:hover {
     max-height: 100vh;
     background-size: 1px 100vh;
     background: -webkit-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
-    background: -moz-linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
-    background: -o-linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
+    background: -moz-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
+    background: -o-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
     background: linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
     background-position: center;
     background-attachment: fixed;
@@ -281,21 +247,11 @@ a:hover {
     max-height: 100vh;
     background-size: 1px 100vh;
     background: -webkit-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
-    background: -moz-linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
-    background: -o-linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
+    background: -moz-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
+    background: -o-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
     background: linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
     background-position: center;
     background-attachment: fixed;
-  }
-  .footer-right {
-    font-size: 18px;
-  }
-  .footer-left-indent {
-    padding-left: 40px;
-  }
-  .footer-left-text {
-    font-size: 24px;
-    line-height: 40px;
   }
   .cert-info {
     font-size: 17px;
@@ -305,25 +261,8 @@ a:hover {
     font-size: 24px;
     line-height: 48px;
   }
-  .legal {
-    width: 80%;
-    left: 10vw;
-  }
-  .legal-wrapper {
-    margin: 64px 32px 0 32px;
-  }
-  .legal-title {
-    width: calc(100% - 48px);
-    right: 48px;
-  }
   .imprint-text {
     margin: 0 10vw;
-  }
-}
-
-@media screen and (min-width: 1248px) {
-  .legal {
-    left: calc((100vw - 1024px) / 2);
   }
 }
 
@@ -395,13 +334,13 @@ a:hover {
     var(--theme-menu-background-to)
   );
   background: -moz-linear-gradient(
-    to bottom,
+    bottom,
     var(--theme-background),
     var(--theme-menu-background-from),
     var(--theme-menu-background-to)
   );
   background: -o-linear-gradient(
-    to bottom,
+    bottom,
     var(--theme-background),
     var(--theme-menu-background-from),
     var(--theme-menu-background-to)
@@ -455,6 +394,22 @@ a:hover {
   font-size: 20px;
 }
 
+.skills-category-bar {
+  margin: 0 auto 22px auto;
+  height: 10px;
+  width: 20%;
+  opacity: 0.5;
+  -webkit-transition: width 2s ease-in-out; /* For Safari 3.0 to 6.0 */
+  -moz-transition: width 2s ease-in-out; /* Firefox < 16 */
+  -o-transition: width 2s ease-in-out; /* Opera < 12.1 */
+  transition: width 2s ease-in-out; /* For modern browsers */
+}
+
+.skills-category-bar:hover {
+  width: 80%;
+  opacity: 1;
+}
+
 .skill {
   background-color: white;
   border-radius: 8px;
@@ -494,108 +449,6 @@ a:hover {
   animation: rotateBack 1s forwards;
 }
 
-.footer {
-  width: 100%;
-  background-color: black;
-  position: fixed;
-  z-index: 3;
-  bottom: 0;
-  left: 0;
-  overflow: hidden;
-  color: #cccccc;
-
-  height: 100px;
-  transition: max-height 1s ease-out;
-  max-height: 40px;
-}
-
-.footer:hover,
-.footer:active {
-  -webkit-animation: max-height 1s ease-in; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: max-height 1s ease-in; /* Firefox < 16 */
-  -ms-animation: max-height 1s ease-in; /* Internet Explorer */
-  -o-animation: max-height 1s ease-in; /* Opera < 12.1 */
-  animation: max-height 1s ease-in;
-  max-height: 100px;
-  height: 100px;
-}
-
-.footer-left {
-  float: left;
-  width: 20vw;
-  height: 100%;
-  position: relative;
-}
-.footer-left-credits {
-  width: 100%;
-  position: absolute;
-  top: 50px;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
-.footer-middle {
-  float: left;
-  width: 50vw;
-  max-width: 600px;
-  height: 100%;
-  position: relative;
-}
-.footer-middle-content {
-  float: left;
-  width: 45vw;
-  max-width: 600px;
-  justify-content: center;
-  position: absolute;
-  bottom: 20%;
-  display: flex;
-}
-.footer-middle-content a {
-  color: #cccccc;
-  white-space: nowrap;
-  -webkit-animation: color 1s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: color 1s; /* Firefox < 16 */
-  -ms-animation: color 1s; /* Internet Explorer */
-  -o-animation: color 1s; /* Opera < 12.1 */
-  animation: color 1s;
-}
-.footer-middle-content a:hover,
-.footer-middle-content a:active {
-  color: var(--theme-accent) !important;
-  cursor: pointer;
-}
-.footer-right {
-  width: 30vw;
-  height: 100%;
-  position: relative;
-  display: inline-block;
-  vertical-align: bottom;
-}
-.footer-right-copyright {
-  position: absolute;
-  top: 30%;
-  white-space: nowrap;
-}
-.footer-right-copyright-brand {
-  background: -webkit-linear-gradient(right, silver, white 54px, silver);
-  background: -moz-linear-gradient(to right, silver, white 54px, gray);
-  background: -o-linear-gradient(to right, silver, white 54px, gray);
-  background: linear-gradient(to right, silver, white 54px, gray);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.footer-right-copyright-brand:hover,
-.footer-right-copyright-brand:active {
-  background: -webkit-linear-gradient(right, #ffa600, #ff0062 48px, #af0bd8);
-  background: -moz-linear-gradient(to right, #ffa600, #ff0062 48px, #af0bd8);
-  background: -o-linear-gradient(to right, #ffa600, #ff0062 48px, #af0bd8);
-  background: linear-gradient(to right, #ffa600, #ff0062 48px, #af0bd8);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  cursor: none;
-}
 .parallax-creativityIntro {
   overflow: hidden;
 }
@@ -610,7 +463,7 @@ a:hover {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: lighter;
   text-align: center;
-  line-height: 9vw;
+  line-height: 12vw;
   width: 100%;
 }
 
@@ -629,29 +482,21 @@ a:hover {
 
 /** sections **/
 
-.section-title,
-.section-content {
-  width: 80%;
-  max-width: 600px;
-}
-
 .section-title {
   margin: 0 auto 20px auto;
+  padding-left: 22px;
   font-size: 44px;
+  line-height: 44px;
+  vertical-align: middle;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-weight: 400;
   color: var(--theme-font-color);
-  padding-bottom: 22px;
 }
 
-.section-content {
-  margin: 40px auto;
-  background-color: #66666633;
-  border-radius: 10px;
+.default-section-content {
   padding: 20px;
-  text-align: left;
+  text-align: start;
   font-size: 22px;
-  color: var(--theme-font-color);
   line-height: 1.4em;
 }
 
@@ -684,89 +529,6 @@ a:hover {
 .cert-info {
   margin: 0 10px 0 0 !important;
 }
-
-.legal {
-  height: calc(100vh - 70px);
-  max-width: 1024px;
-  background: var(--theme-text-backdrop);
-  z-index: 1;
-  position: fixed;
-  top: 70px;
-  overflow: hidden;
-  border-radius: 32px 32px 0 0;
-  margin: 0 auto;
-  padding: 0;
-}
-.legal-wrapper {
-  text-align: center;
-  height: calc(100vh - 176px);
-  overflow: auto;
-  background-color: transparent;
-  color: var(--theme-font-color);
-}
-.legal-title {
-  position: absolute;
-  font-size: 32px;
-  height: 64px;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    left bottom,
-    from(var(--theme-text-backdrop) 25px),
-    to(var(--theme-background-alpha))
-  );
-  background-image: -webkit-linear-gradient(
-    bottom,
-    var(--theme-text-backdrop) 25px,
-    var(--theme-background-alpha)
-  );
-  background-image: -moz-linear-gradient(
-    to bottom,
-    var(--theme-text-backdrop) 25px,
-    var(--theme-background-alpha)
-  );
-  background-image: -o-linear-gradient(
-    to bottom,
-    var(--theme-text-backdrop) 25px,
-    var(--theme-background-alpha)
-  );
-  background-image: linear-gradient(
-    var(--theme-text-backdrop) 25px,
-    var(--theme-background-alpha)
-  );
-}
-.legal-sub {
-  padding-top: 20px;
-  margin-bottom: 20px;
-  font-size: 20px;
-  color: #598b9e;
-}
-.legal-sub p {
-  margin: 3px 0;
-}
-.legal-mandatory {
-  background: -webkit-linear-gradient(
-    bottom,
-    var(--theme-background-alpha) 70%,
-    #8400ff33
-  );
-  background: -moz-linear-gradient(
-    to bottom,
-    var(--theme-background-alpha) 70%,
-    #8400ff33
-  );
-  background: -o-linear-gradient(
-    to bottom,
-    var(--theme-background-alpha) 70%,
-    #8400ff33
-  );
-  background: linear-gradient(var(--theme-background-alpha) 70%, #8400ff33);
-  border-radius: 24px;
-}
-.legal-text {
-  width: auto;
-  margin: 0 4vw;
-}
 .disclaimer {
   font-size: 22px;
   line-height: 25px;
@@ -775,13 +537,6 @@ a:hover {
 }
 .copyright {
   font-size: 22px;
-}
-.closeLegal {
-  position: absolute;
-  margin: 32px;
-  top: 0;
-  right: 0;
-  cursor: pointer;
 }
 .privacy-contact-mail {
   margin-top: -26px;
@@ -882,12 +637,25 @@ a:hover {
 
 .up {
   position: fixed;
-  bottom: 100px;
   right: calc(2vw + 2vw);
   cursor: pointer;
 }
-.up i {
+.up em {
   font-size: calc(3vw + 3vh);
+}
+.flyup {
+  -webkit-animation: flyup 1s ease forwards; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: flyup 1s ease forwards; /* Firefox < 16 */
+  -ms-animation: flyup 1s ease forwards; /* Internet Explorer */
+  -o-animation: flyup 1s ease forwards; /* Opera < 12.1 */
+  animation: flyup 1s ease forwards;
+}
+.flydown {
+  -webkit-animation: flydown 1s ease forwards; /* Safari, Chrome and Opera > 12.1 */
+  -moz-animation: flydown 1s ease forwards; /* Firefox < 16 */
+  -ms-animation: flydown 1s ease forwards; /* Internet Explorer */
+  -o-animation: flydown 1s ease forwards; /* Opera < 12.1 */
+  animation: flydown 1s ease forwards;
 }
 .appear {
   -webkit-animation: appear 2s ease forwards; /* Safari, Chrome and Opera > 12.1 */
@@ -898,6 +666,96 @@ a:hover {
 }
 
 /** keyframes **/
+
+@keyframes flyup {
+  from {
+    bottom: -100px;
+  }
+  to {
+    bottom: 100px;
+  }
+}
+/* Firefox < 16 */
+@-moz-keyframes flyup {
+  from {
+    bottom: -100px;
+  }
+  to {
+    bottom: 100px;
+  }
+}
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes flyup {
+  from {
+    bottom: -100px;
+  }
+  to {
+    bottom: 100px;
+  }
+}
+/* Internet Explorer */
+@-ms-keyframes flyup {
+  from {
+    bottom: -100px;
+  }
+  to {
+    bottom: 100px;
+  }
+}
+/* Opera < 12.1 */
+@-o-keyframes flyup {
+  from {
+    bottom: -100px;
+  }
+  to {
+    bottom: 100px;
+  }
+}
+
+@keyframes flydown {
+  from {
+    bottom: 100px;
+  }
+  to {
+    bottom: -100px;
+  }
+}
+/* Firefox < 16 */
+@-moz-keyframes flydown {
+  from {
+    bottom: 100px;
+  }
+  to {
+    bottom: -100px;
+  }
+}
+/* Safari, Chrome and Opera > 12.1 */
+@-webkit-keyframes flydown {
+  from {
+    bottom: 100px;
+  }
+  to {
+    bottom: -100px;
+  }
+}
+/* Internet Explorer */
+@-ms-keyframes flydown {
+  from {
+    bottom: 100px;
+  }
+  to {
+    bottom: -100px;
+  }
+}
+/* Opera < 12.1 */
+@-o-keyframes flydown {
+  from {
+    bottom: 100px;
+  }
+  to {
+    bottom: -100px;
+  }
+}
 
 @keyframes nav-slide-out {
   from {

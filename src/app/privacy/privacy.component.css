@@ -1,0 +1,116 @@
+.privacy-wrapper {
+  margin: 0;
+  position: fixed;
+  height: auto;
+  width: 100%;
+  top: 84px;
+  bottom: 0;
+  background-color: var(--theme-text-backdrop);
+}
+@media screen {
+  .privacy-presenter {
+    width: 95%;
+    margin: auto auto auto 0;
+  }
+  .privacy-title {
+    width: calc(95% - 18px);
+  }
+  .privacy-mandatory {
+    padding: 0 12px;
+  }
+}
+@media screen and (min-width: 770px) {
+  .privacy-presenter {
+    width: 90%;
+    margin: auto auto;
+  }
+  .privacy-title {
+    width: calc(90% - 24px);
+  }
+  .privacy-mandatory {
+    padding: 0 24px;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .privacy-presenter {
+    width: 80%;
+    margin: auto auto;
+  }
+  .privacy-title {
+    width: calc(80% - 24px);
+  }
+  .privacy-mandatory {
+    padding: 0 48px;
+  }
+}
+.privacy-presenter {
+  height: 90%;
+  max-width: 1024px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background: transparent;
+  text-align: center;
+}
+
+.close-privacy {
+  position: absolute;
+  margin: 6px;
+  top: 0;
+  right: 0;
+  cursor: pointer;
+}
+.close-privacy em {
+  font-size: 32px;
+}
+
+.privacy-title {
+  position: fixed;
+  text-align: center;
+  height: 64px;
+  max-width: 1000px;
+  padding: 5px 0;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    left bottom,
+    from(var(--theme-text-backdrop) 25px),
+    to(var(--theme-background-alpha))
+  );
+  background-image: -webkit-linear-gradient(
+    bottom,
+    var(--theme-text-backdrop) 25px,
+    var(--theme-background-alpha)
+  );
+  background-image: -moz-linear-gradient(
+    to bottom,
+    var(--theme-text-backdrop) 25px,
+    var(--theme-background-alpha)
+  );
+  background-image: -o-linear-gradient(
+    to bottom,
+    var(--theme-text-backdrop) 25px,
+    var(--theme-background-alpha)
+  );
+  background-image: linear-gradient(
+    var(--theme-text-backdrop) 25px,
+    var(--theme-background-alpha)
+  );
+}
+.privacy-title h1 {
+  font-size: 42px;
+}
+
+.privacy-sub {
+  padding-top: 20px;
+  margin-bottom: 20px;
+  font-size: 20px;
+  color: #598b9e;
+  text-align: center;
+}
+.privacy-sub p {
+  margin: 3px 0;
+}
+.privacy-text {
+  width: auto;
+  margin: 0 4vw;
+}

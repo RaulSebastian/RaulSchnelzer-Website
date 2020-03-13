@@ -1,0 +1,60 @@
+<div class="anchor">
+</div>
+
+<div class="section-title">
+  <span class="section-title-tags"><</span>
+  <a [routerLink]="link" routerLinkActive="active">
+    {{ sectionTitle }}
+  </a>
+  <span class="section-title-tags">/></span>
+</div>
+
+<div>
+  <ng-content select="[subtitle]"></ng-content>
+</div>
+
+<div [id]="sectionId" class="section-wrapper hidden" #content>
+  <div *ngIf="loaded" class="section-content-wrapper fluent-gradient">
+    <div class="section-top-corner">
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 84 84"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xml:space="preserve"
+        xmlns:serif="http://www.serif.com/"
+        style="stroke-linejoin:round;stroke-miterlimit:2;"
+      >
+        <g id="Corner">
+          <path
+            d="M0,0c0,45.993 37.34,83.333 83.333,83.333l-83.333,0l0,-83.333Z"
+          />
+        </g>
+      </svg>
+    </div>
+    <div class="section-bottom-corner">
+      <svg
+        width="100%"
+        height="100%"
+        viewBox="0 0 84 84"
+        version="1.1"
+        xmlns="http://www.w3.org/2000/svg"
+        xmlns:xlink="http://www.w3.org/1999/xlink"
+        xml:space="preserve"
+        xmlns:serif="http://www.serif.com/"
+        style="stroke-linejoin:round;stroke-miterlimit:2;"
+      >
+        <g id="Corner">
+          <path
+            d="M0,0c0,45.993 37.34,83.333 83.333,83.333l-83.333,0l0,-83.333Z"
+          />
+        </g>
+      </svg>
+    </div>
+    <div class="section-content">
+      <ng-content select="[content]"></ng-content>
+    </div>
+  </div>
+</div>

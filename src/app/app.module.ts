@@ -14,6 +14,8 @@ import { ContactComponent } from './contact/contact.component';
 import { MatIconModule } from '@angular/material/icon';
 import { LegalComponent } from './legal/legal.component';
 import { PrivacyComponent } from './privacy/privacy.component';
+import { FluidGradientDivComponent } from './services/fluid-gradient-div/fluid-gradient-div.component';
+import { SectionComponent } from './section/section.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { PrivacyComponent } from './privacy/privacy.component';
     FooterComponent,
     ContactComponent,
     LegalComponent,
-    PrivacyComponent
+    PrivacyComponent,
+    FluidGradientDivComponent,
+    SectionComponent
   ],
   imports: [
     BrowserModule,

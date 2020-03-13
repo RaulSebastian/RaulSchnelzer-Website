@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ContactOptions } from '../contact/contact.component';
 
 @Component({
@@ -13,7 +13,12 @@ export class LegalComponent implements OnInit {
 
   constructor() { }
 
+  @Output() closed = new EventEmitter();
+
   ngOnInit(): void {
   }
 
+  public close(): void {
+    this.closed.emit();
+  }
 }

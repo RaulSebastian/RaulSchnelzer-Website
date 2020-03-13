@@ -1,0 +1,65 @@
+.fluent-gradient {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    #00ffbd,
+    #00d0ff,
+    #9800ff,
+    #00d0ff,
+    #00ffbd
+  );
+  background-size: 1000% 1000%;
+
+  -webkit-animation: fluent-transition 48s ease infinite;
+  -moz-animation: fluent-transition 48s ease infinite;
+  -o-animation: fluent-transition 48s ease infinite;
+  animation: fluent-transition 48s ease infinite;
+}
+
+@-webkit-keyframes fluent-transition {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-moz-keyframes fluent-transition {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@-o-keyframes fluent-transition {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+@keyframes fluent-transition {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}

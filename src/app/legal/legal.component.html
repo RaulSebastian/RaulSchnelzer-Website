@@ -1,65 +1,73 @@
 <div class="legal-wrapper">
-  <div class="legal-title">Legal Notice</div>
-  <div class="empty"></div>
-  <div class="legal-mandatory legal-text">
+  <div class="legal-presenter">
+    <div class="legal-title">
+      <a class="close-legal" (click)="close()">
+        <em class="material-icons">close</em>
+      </a>
+      <h1>Legal Notice</h1>
+    </div>
+
+    <div class="empty"></div>
+
+    <div class="legal-mandatory legal-text">
+      <div class="legal-sub">
+        <p>Mandatory details</p>
+        <p>pursuant § 5 TMG</p>
+      </div>
+      <app-contact [contactOptions]="nameAdressOptions"></app-contact>
+
+      <div class="legal-sub">
+        <p>Contact</p>
+      </div>
+      <app-contact [contactOptions]="contactOptions"></app-contact>
+    </div>
+
+    <br>
+
     <div class="legal-sub">
-      <p>Mandatory details</p>
-      <p>pursuant § 5 TMG</p>
+      <p>Responsible for the content</p>
+      <p>according to § 55 RStV</p>
     </div>
     <app-contact [contactOptions]="nameAdressOptions"></app-contact>
 
     <div class="legal-sub">
-      <p>Contact</p>
+      <p>Disclaimer</p>
     </div>
-    <app-contact [contactOptions]="contactOptions"></app-contact>
-    <br />
-  </div>
+    <div class="disclaimer legal-text">
+      <p>
+        I take no responsibility for the content of external Internet sites.
+        Other websites that I link to are owned and operated by third parties
+        and I has no control over them.
+      </p>
+      <p>
+        The fact that I include links to other websites does not mean that I
+        approve of, or endorse, any other third party website or the content of
+        that website.
+      </p>
+      <p>
+        I accept no liability for any statements, information, products or
+        services that are published on, or are accessible through, any websites
+        owned or operated by third parties.
+      </p>
+    </div>
 
-  <div class="legal-sub">
-    <p>Responsible for the content</p>
-    <p>according to § 55 RStV</p>
-  </div>
-  <app-contact [contactOptions]="nameAdressOptions"></app-contact>
+    <div class="legal-sub">
+      <p>Copyright</p>
+    </div>
+    <div class="copyright legal-text">
+      <p>
+        This website and its content is subject of copyright of
+        <strong>Raul Schnelzer</strong>- ©2019.
+      </p>
+      <p>All rights reserved.</p>
+      <p>
+        For permission requests, write me an e-mail to:
+        <a class="contactlink" href="mailto:legal@raulschnelzer.com">
+          legal@raulschnelzer.com
+        </a>
+      </p>
+    </div>
 
-  <div class="legal-sub">
-    <p>Disclaimer</p>
+    <br *ngFor="let repeat of [1, 2, 3, 4]" />
   </div>
-  <div class="disclaimer legal-text">
-    <p>
-      I take no responsibility for the content of external Internet sites. Other
-      websites that I link to are owned and operated by third parties and I has
-      no control over them.
-    </p>
-    <p>
-      The fact that I include links to other websites does not mean that I
-      approve of, or endorse, any other third party website or the content of
-      that website.
-    </p>
-    <p>
-      I accept no liability for any statements, information, products or
-      services that are published on, or are accessible through, any websites
-      owned or operated by third parties.
-    </p>
-  </div>
-
-  <div class="legal-sub">
-    <p>Copyright</p>
-  </div>
-  <div class="copyright legal-text">
-    <p>
-      This website and its content is subject of copyright of
-      <span style="font-weight:bold">
-        Raul Schnelzer
-      </span>
-      - ©2019. All rights reserved.
-    </p>
-    <p>
-      For permission requests, write me an e-mail to
-      <a class="contactlink" href="mailto:legal@raulschnelzer.com">
-        legal@raulschnelzer.com
-      </a>
-    </p>
-  </div>
-
-  <br *ngFor="let repeat of [1, 2, 3, 4]" />
 </div>

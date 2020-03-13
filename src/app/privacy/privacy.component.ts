@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ContactOptions } from '../contact/contact.component';
 
 @Component({
@@ -10,13 +10,22 @@ export class PrivacyComponent implements OnInit {
 
   nameAdressOptions = new Set([ContactOptions.name, ContactOptions.address]);
   resposibilityMail = 'privacy@raulschnelzer.de';
-  modifiedDate = '7. March 2020';
 
   @Input() isProduction = false;
+  @Input() modifiedDate = new Date();
+  @Output() closed = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  public getModifiedDate(): string {
+    return this.modifiedDate.toLocaleDateString('en-US',
+      { day: 'numeric', month: 'long', year: 'numeric' });
+  }
+
+  public close(): void {
+    this.closed.emit();
+  }
 }

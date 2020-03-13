@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { version } from '../../../package.json';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
@@ -11,13 +10,19 @@ export class FooterComponent implements OnInit {
 
   startYear = 2019;
   currentYear = new Date().getFullYear();
-  version: string = version;
+  version: { major: any; minor: any; patch: any; };
   copyrightPeriod = this.currentYear === this.startYear ? this.startYear : `${this.startYear} - ${this.currentYear}`;
 
-  constructor(
-    private router: Router
-  ) { }
+  constructor() {
+  }
 
   ngOnInit(): void {
+    const buildVersion = version.split('.');
+
+    this.version = {
+      major: buildVersion[0],
+      minor: buildVersion[1],
+      patch: buildVersion[2]
+    };
   }
 }

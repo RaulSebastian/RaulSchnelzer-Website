@@ -14,6 +14,9 @@ export enum ContactOptions {
 })
 export class ContactComponent implements OnInit {
 
+  constructor() {
+  }
+
   @Input() contactOptions: Set<ContactOptions> = new Set<ContactOptions>();
 
   contactDetails = {
@@ -60,15 +63,15 @@ export class ContactComponent implements OnInit {
     }
   ];
 
-  constructor() {
-  }
+  public showName = false;
+  public showAddress = false;
+  public showDirectContact = false;
+  public showSocialMedia = false;
 
   ngOnInit(): void {
+    this.showName = this.contactOptions.has(ContactOptions.name);
+    this.showAddress = this.contactOptions.has(ContactOptions.address);
+    this.showDirectContact = this.contactOptions.has(ContactOptions.directContact);
+    this.showSocialMedia = this.contactOptions.has(ContactOptions.socialMedia);
   }
-
-  public showName = (): boolean => this.contactOptions.has(ContactOptions.name);
-  public showAddress = (): boolean => this.contactOptions.has(ContactOptions.address);
-  public showDirectContact = (): boolean => this.contactOptions.has(ContactOptions.directContact);
-  public showSocialMedia = (): boolean => this.contactOptions.has(ContactOptions.socialMedia);
-
 }

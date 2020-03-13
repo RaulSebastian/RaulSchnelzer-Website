@@ -26,7 +26,7 @@
 
 <div class="nav-button-wrapper">
   <button class="nav-button" (click)="navButtonPressed()">
-    <i class="material-icons middle">{{ menuState }}</i>
+    <em class="material-icons middle">{{ menuState }}</em>
   </button>
 </div>
 <div [class]="classes.nav">
@@ -59,7 +59,8 @@
   </p>
 </div>
 
-<div class="parallax-creativityIntro">
+<!-- intro -->
+<div class="parallax-creativityIntro" #intro>
   <div class="inspirational-text" [style]="creativityIntro">
     Anything can be done without any creativity.
   </div>
@@ -67,6 +68,7 @@
 
 <div style="height:10%"></div>
 
+<!-- outro -->
 <div class="parallax-creativityOutro">
   <div class="inspirational-text" [style]="creativityOutro">
     But with some creativity
@@ -75,17 +77,22 @@
   </div>
 </div>
 
-<div class="anchor">
-  <a name="about" #aboutHeader></a>
-</div>
-<div class="section-title">
-  <span>_</span><a routerLink="/about" routerLinkActive="active">Who I am</a>
-</div>
-<div class="about-me-container">
-  <img class="about-me-image" alt="raul schnelzer" src="../assets/images/me.png" />
-</div>
-<div class="section-content hidden justify" #aboutContent>
-  <div>
+<div #aboutAnchor></div>
+<!-- about -->
+<app-section
+  sectionId="about"
+  sectionTitle="Who I am"
+  link="/about"
+  [window]="window"
+>
+  <div class="about-me-container" subtitle>
+    <img
+      class="about-me-image"
+      alt="raul schnelzer"
+      src="../assets/images/me.png"
+    />
+  </div>
+  <div class="default-section-content justify" content>
     <p>Hi, I'm Raul!</p>
     <p>
       I am a creativity-driven and passionate developer who aspires towards
@@ -97,91 +104,120 @@
       As such I read books (yes, the physical ones), use on-demand technology
       courses, read blogs and am active on networks like StackOverflow.
     </p>
+    <br />
   </div>
-</div>
+</app-section>
 
-<div class="anchor">
-  <a name="skills"></a>
-</div>
-<div class="section-title">
-  <span>_</span><a routerLink="/skills" routerLinkActive="active">Skills</a>
-</div>
-<div class="section-content hidden" #skillsContent>
-  <div *ngFor="let skillset of skillsets" class="skill-section">
-    <p>{{ skillset.category }}</p>
-    <span *ngFor="let skill of skillset.skills" class="skill">{{ skill }}</span>
-  </div>
-</div>
-
-<div class="anchor">
-  <a name="certifications"></a>
-</div>
-<div class="section-title">
-  <span>_</span
-  ><a routerLink="/certifications" routerLinkActive="active">Certifications</a>
-</div>
-<div class="section-content hidden scrollable" #certsContent>
-  <div class="cert-wrapper" *ngFor="let certificate of certificates">
-    <img src="{{ certificate.icon }}" alt="certificate icon" class="cert-icon" />
-    <div class="cert-details">
-      <a class="cert-name" href="{{ certificate.link }}" rel="noreferrer noopener" target="_blank">{{
-        certificate.name
-      }}</a>
-      <p class="cert-info">Issuer: {{ certificate.issuer }}</p>
-      <p class="cert-info">
-        Issued: {{ certificate.validFrom }} - {{ certificate.validUntil }}
-      </p>
+<!-- skills -->
+<app-section
+  sectionId="skills"
+  sectionTitle="Skills"
+  link="/skills"
+  [window]="window"
+  #skillsAnchor
+>
+  <div class="default-section-content justify" content>
+    <div *ngFor="let category of skillsets" class="skill-section">
+      <p style="margin: 0;">{{ category.name }}</p>
+      <div
+        class="skills-category-bar"
+        [style.background]="category.color"
+      ></div>
+      <span *ngFor="let skill of category.skills" class="skill">{{
+        skill
+      }}</span>
     </div>
+    <br />
   </div>
-  <p>Ask me for further certifications.</p>
-</div>
+</app-section>
 
-<div class="anchor">
-  <a name="services"></a>
-</div>
-<div class="section-title">
-  <span>_</span><a routerLink="/services" routerLinkActive="active">Services</a>
-</div>
-<div class="section-content hidden" #servicesContent>
-  <ul>
-    <li *ngFor="let service of servicesOffered">
-      <p>{{ service.description }}</p>
-    </li>
-  </ul>
-</div>
+<!-- certifications -->
+<app-section
+  sectionId="certifications"
+  sectionTitle="Certifications"
+  link="/certifications"
+  [window]="window"
+  #certsAnchor
+>
+  <div class="default-section-content scrollable justify" content>
+    <div class="cert-wrapper" *ngFor="let certificate of certificates">
+      <img
+        src="{{ certificate.icon }}"
+        alt="certificate icon"
+        class="cert-icon"
+      />
+      <div class="cert-details">
+        <a
+          class="cert-name"
+          href="{{ certificate.link }}"
+          rel="noreferrer noopener"
+          target="_blank"
+          >{{ certificate.name }}</a
+        >
+        <p class="cert-info">Issuer: {{ certificate.issuer }}</p>
+        <p class="cert-info">
+          Issued: {{ certificate.validFrom }} - {{ certificate.validUntil }}
+        </p>
+      </div>
+    </div>
+    <p>Ask me for further certifications.</p>
+  </div>
+</app-section>
 
-<div class="anchor">
-  <a name="contact"></a>
-</div>
-<div class="section-title">
-  <span>_</span><a routerLink="/contact" routerLinkActive="active">Contact</a>
-</div>
-<div class="section-content hidden" #contactContent>
-  <app-contact [contactOptions]="contactOptions"></app-contact>
-</div>
+<!-- services -->
+<app-section
+  sectionId="services"
+  sectionTitle="Services"
+  link="/services"
+  [window]="window"
+  #servicesAnchor
+>
+  <div class="default-section-content" content>
+    <ul>
+      <li *ngFor="let service of servicesOffered">
+        <p>{{ service.description }}</p>
+      </li>
+    </ul>
+  </div>
+</app-section>
+
+<!-- contact -->
+<app-section
+  sectionId="contact"
+  sectionTitle="Contact"
+  link="/contact"
+  [window]="window"
+  #contactAnchor
+>
+  <div class="default-section-content" content>
+    <app-contact [contactOptions]="contactOptions"></app-contact>
+  </div>
+</app-section>
 
 <div style="height:200px"></div>
 
-<div [class]="classes.legal" #legalContent>
-  <a class="closeLegal" (click)="closeLegal()">
-    <i class="material-icons">close</i>
-  </a>
-  <app-legal></app-legal>
+<!-- legal -->
+<div *ngIf="isLegalOpen" id="legal" [class]="classes.legal">
+  <app-legal (closed)="closeLegal()"></app-legal>
 </div>
 
-<div [class]="classes.privacy" #legalContent>
-  <a class="closeLegal" (click)="closePrivacy()">
-    <i class="material-icons">close</i>
-  </a>
-  <app-privacy [isProduction]="isProduction"></app-privacy>
+<!-- privacy -->
+<div id="privacy" [class]="classes.privacy">
+  <app-privacy
+    [isProduction]="isProduction"
+    [modifiedDate]="privacyLastModified"
+    (closed)="closePrivacy()"
+  ></app-privacy>
 </div>
 
 <div class="empty" *ngFor="let repeat of [1, 2, 3, 4]"></div>
 
+<!-- up button -->
 <div>
   <a [class]="classes.up" (click)="scrollToTop()">
-    <i class="material-icons">arrow_upward</i>
+    <em class="material-icons">arrow_upward</em>
   </a>
 </div>
 
+<!-- footer -->
 <app-footer></app-footer>
