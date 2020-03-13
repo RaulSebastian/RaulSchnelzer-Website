@@ -43,8 +43,8 @@ a:hover {
   z-index: 4;
   width: 100%;
   background-image: -webkit-linear-gradient(left, #a4ffea, #03accf, blueviolet);
-  background-image: -moz-linear-gradient(to left, #a4ffea, #03accf, blueviolet);
-  background-image: -o-linear-gradient(to left, #a4ffea, #03accf, blueviolet);
+  background-image: -moz-linear-gradient(left, #a4ffea, #03accf, blueviolet);
+  background-image: -o-linear-gradient(left, #a4ffea, #03accf, blueviolet);
   background-image: linear-gradient(to left, #a4ffea, #03accf, blueviolet);
   overflow: hidden;
 }

@@ -85,7 +85,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   skillsets = SkillSets.Categories;
 
   @ViewChild('aboutAnchor', { static: false }) aboutAnchor: ElementRef;
+  @ViewChild('skillsAnchor', { static: false }) skillsAnchor: ElementRef;
+  @ViewChild('certsAnchor', { static: false }) certsAnchor: ElementRef;
+  @ViewChild('servicesAnchor', { static: false }) servicesAnchor: ElementRef;
+  @ViewChild('contactAnchor', { static: false }) contactAnchor: ElementRef;
   @ViewChild('intro', { static: false }) intro: ElementRef;
+  @ViewChild('outro', { static: false }) outro: ElementRef;
 
   isLegalOpen = false;
   isPrivacyOpen = false;
@@ -158,6 +163,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     sectionObserver.observe(this.intro.nativeElement);
   }
 
+  private observeCreativityOutro() {
+    const observerOptions = {
+      rootMargin: '-50px',
+      threshold: [...Array(100).keys()].map(i => i / 100)
+    };
+    const sectionObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+      }
+    });
+    sectionObserver.observe(this.intro.nativeElement);
+  }
+
   private observeUpArrowVisibility() {
     const observerOptions = { threshold: [1] };
     const sectionObserver = new IntersectionObserver(entries => {
@@ -218,7 +235,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       case AppRoute.skills:
         this.hideLegal();
         this.hidePrivacy();
-        // offsetPosition = this.skillsContent.nativeElement.offsetTop - 200;
+        offsetPosition = this.skillsAnchor.nativeElement.offsetTop - 200;
         this.smoothScrollTo(offsetPosition);
         break;
       case AppRoute.certifications:
