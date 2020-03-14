@@ -131,7 +131,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private observeCreativityIntro() {
     const observerOptions = {
-      rootMargin: '-50px',
       threshold: [...Array(100).keys()].map(i => i / 100)
     };
     const sectionObserver = new IntersectionObserver(entries => {
@@ -140,7 +139,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
           // resize header
           if (entry.boundingClientRect.y > 0) {
-            this.overlayHeight = Math.min(Math.max((0.8 - entry.intersectionRatio) * 115, 0), 80);
+            this.overlayHeight = Math.min(Math.max((1 - entry.intersectionRatio) * 133, 0), 80);
           }
 
           let size = entry.boundingClientRect.y < 0 ? 12
@@ -338,9 +337,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private showPrivacy(): void {
-    if (!this.isPrivacyVisible()) {
-      this.classes.privacy = this.classes.privacy.replace('collapsed', 'fadein');
-    }
+    this.isPrivacyOpen = true;
+    this.classes.privacy = 'privacy fadein';
   }
 
   private hideNavMenu(): void {
@@ -356,8 +354,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private hidePrivacy(): void {
-    if (this.isPrivacyVisible()) {
-      this.classes.privacy = this.classes.privacy.replace('fadein', 'collapsed');
-    }
+    this.classes.legal = 'privacy collapsed';
+    this.isPrivacyOpen = false;
   }
 }

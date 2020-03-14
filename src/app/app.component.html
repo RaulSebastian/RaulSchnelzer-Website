@@ -117,15 +117,17 @@
   [window]="window"
 >
   <div class="default-section-content justify" content>
-    <div *ngFor="let category of skillsets" class="skill-section">
-      <p style="margin: 0;">{{ category.name }}</p>
+    <div *ngFor="let category of skillsets" class="skill-category">
+      <p class="nomargin">{{ category.name }}</p>
       <div
         class="skills-category-bar"
-        [style.background]="category.color"
-      ></div>
-      <span *ngFor="let skill of category.skills" class="skill">{{
-        skill
-      }}</span>
+        [style.background]="category.color">
+      </div>
+      <div class="skill-section">
+        <span *ngFor="let skill of category.skills" class="skill">
+          {{ skill }}
+        </span>
+      </div>
     </div>
     <br />
   </div>

@@ -126,7 +126,6 @@ a:hover {
   .header-menu-links {
     font-size: 3vw;
   }
-
   .header-title-backlight {
     background-image: -webkit-radial-gradient(
       var(--theme-background),
@@ -157,10 +156,15 @@ a:hover {
     background-repeat: repeat-x;
     background-attachment: scroll;
   }
-
   .about-me-image {
     height: 200px;
     width: auto;
+  }
+  .skill-section {
+    font-size: 17px;
+  }
+  .skill-category p {
+    font-size: 20px;
   }
   .cert-icon {
     height: 8vh;
@@ -200,6 +204,12 @@ a:hover {
   .about-me-image {
     height: 300px;
     width: auto;
+  }
+  .skill-section {
+    font-size: 19px;
+  }
+  .skill-category p {
+    font-size: 22px;
   }
   .cert-icon {
     height: 80px;
@@ -252,6 +262,12 @@ a:hover {
     background: linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
     background-position: center;
     background-attachment: fixed;
+  }
+  .skill-section {
+    font-size: 20px;
+  }
+  .skill-category p {
+    font-size: 24px;
   }
   .cert-info {
     font-size: 17px;
@@ -387,11 +403,14 @@ a:hover {
   margin-left: 10px;
 }
 
-.skill-section {
-  margin-bottom: 10px;
-  line-height: 46px;
+.skill-category {
   text-align: center;
-  font-size: 20px;
+}
+
+.skill-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .skills-category-bar {
@@ -414,10 +433,9 @@ a:hover {
   background-color: white;
   border-radius: 8px;
   margin-right: 12px;
+  margin-bottom: 6px;
   padding: 0px 6px;
-  display: inline-block;
   white-space: normal;
-  height: 40px;
   vertical-align: top;
   -webkit-transition: color 1s; /* For Safari 3.0 to 6.0 */
   -moz-transition: color 1s; /* Firefox < 16 */
@@ -585,6 +603,10 @@ a:hover {
 }
 
 /** generics **/
+
+.nomargin {
+  margin: 0;
+}
 
 .justify {
   text-align: justify;
