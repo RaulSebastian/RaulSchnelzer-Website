@@ -105,7 +105,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   isLegalOpen = false;
   isPrivacyOpen = false;
 
-  private routeMappginInitialized = false;
+  private routeMappgingInitialized = false;
   private routeSubscription: any;
   private navigating = false;
 
@@ -120,14 +120,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         while (route.firstChild) {
           route = route.firstChild;
         }
-        if (!this.routeMappginInitialized) {
-          route.params.subscribe(param => {
-            if (param.route !== undefined) {
-              this.mapRouteToNavigation(param.route);
-            }
-            this.routeMappginInitialized = true;
-          });
+        if (this.routeMappgingInitialized) {
+          return;
         }
+        route.params.subscribe(param => {
+          if (param.route === undefined) {
+            return;
+          }
+          this.mapRouteToNavigation(param.route);
+          this.routeMappgingInitialized = true;
+        });
       }
     });
   }
@@ -347,19 +349,25 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     const offsetPosition = target.offsetTop + offset;
     this.smoothScrollTo(offsetPosition);
-    const verify = (callback) => {
+    setTimeout(() => {
       if (Math.abs(this.window.pageYOffset - offsetPosition) > 50) {
         this.smoothScrollTo(target.offsetTop + offset);
       } else {
         return;
       }
-      if (callback) {
-        setTimeout(() => callback(), 133);
-      } else {
-        return;
-      }
-    };
-    setTimeout(() => verify(verify(null)), 133);
+      setTimeout(() => {
+        if (Math.abs(this.window.pageYOffset - offsetPosition) > 50) {
+          this.smoothScrollTo(target.offsetTop + offset);
+        } else {
+          return;
+        }
+        setTimeout(() => {
+          if (Math.abs(this.window.pageYOffset - offsetPosition) > 50) {
+            this.smoothScrollTo(target.offsetTop + offset);
+          }
+        }, 333);
+      }, 333);
+    }, 333);
   }
 
   private smoothScrollTo(offsetPosition: number): void {

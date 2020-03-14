@@ -439,11 +439,11 @@ a:hover {
   min-height: 100vh;
   height: 100vh;
   max-height: 100vh;
-  background-size: 1px 100vh;
   background: -webkit-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
   background: -moz-linear-gradient(bottom, #303030, #1798d2, blueviolet);
   background: -o-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
   background: linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
+  background-size: 1px 100vh;
   background-position: center;
   background-attachment: fixed;
   overflow: hidden;
