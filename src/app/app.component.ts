@@ -107,6 +107,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private routeMappgingInitialized = false;
   private routeSubscription: any;
+  private currentRoute = '';
   private navigating = false;
 
   private percentualTthreshold = [...Array(100).keys()].map(i => i / 100);
@@ -116,12 +117,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     interval(20000).subscribe(this.switchTitle());
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
+
+        if (this.routeMappgingInitialized
+          && !event.url.includes(this.currentRoute)) {
+          return;
+        }
+
         let route = this.route;
         while (route.firstChild) {
           route = route.firstChild;
-        }
-        if (this.routeMappgingInitialized) {
-          return;
         }
         route.params.subscribe(param => {
           if (param.route === undefined) {
@@ -251,7 +255,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private navigate(route: AppRoute) {
-    this.titleService.setTitle(AppRoute[route]);
+    const readableRoute = AppRoute[route];
+    this.titleService.setTitle(readableRoute);
+    this.currentRoute = readableRoute;
+
     console.log('navigation requested to', AppRoute[route]);
     this.hideNavMenu();
     if (route == null) {
@@ -337,37 +344,25 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   public scrollToTop(): void {
-    this.router.navigateByUrl('');
-    setTimeout(() => {
-      this.smoothScrollTo(0);
-    }, 333);
+    this.smoothScrollTo(0);
   }
 
   private checkedScroll(target: any, offset: number = 0) {
     if (this.navigating) {
       return;
     }
-    const offsetPosition = target.offsetTop + offset;
-    this.smoothScrollTo(offsetPosition);
-    setTimeout(() => {
+    const recurvise = (retriesLeft: number) => {
+      const offsetPosition = target.offsetTop + offset;
       if (Math.abs(this.window.pageYOffset - offsetPosition) > 50) {
-        this.smoothScrollTo(target.offsetTop + offset);
+        this.smoothScrollTo(offsetPosition);
       } else {
         return;
       }
-      setTimeout(() => {
-        if (Math.abs(this.window.pageYOffset - offsetPosition) > 50) {
-          this.smoothScrollTo(target.offsetTop + offset);
-        } else {
-          return;
-        }
-        setTimeout(() => {
-          if (Math.abs(this.window.pageYOffset - offsetPosition) > 50) {
-            this.smoothScrollTo(target.offsetTop + offset);
-          }
-        }, 333);
-      }, 333);
-    }, 333);
+      if (retriesLeft > 0) {
+        setTimeout(() => { recurvise(retriesLeft--); }, 333);
+      }
+    };
+    recurvise(3);
   }
 
   private smoothScrollTo(offsetPosition: number): void {
