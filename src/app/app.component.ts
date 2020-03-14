@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, ViewChild, AfterViewInit, ElementRef, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, Event } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { WINDOW } from './services/window.service';
 import { interval } from 'rxjs';
@@ -8,6 +8,7 @@ import { ContactOptions } from './contact/contact.component';
 import { SkillSets } from './services/skillsets';
 import { Certificates } from './services/certificates';
 import { OfferedServices } from './services/offeredServices';
+import { NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -104,6 +105,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   isLegalOpen = false;
   isPrivacyOpen = false;
 
+  private routeMappginInitialized = false;
   private routeSubscription: any;
   private navigating = false;
 
@@ -112,20 +114,22 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   ngOnInit(): void {
     interval(20000).subscribe(this.switchTitle());
-
-    this.routeSubscription =
-      this.router.events.subscribe(() => {
+    this.router.events.subscribe((event: Event) => {
+      if (event instanceof NavigationEnd) {
         let route = this.route;
         while (route.firstChild) {
           route = route.firstChild;
         }
-        route.params.subscribe(param => {
-          if (param.route !== undefined) {
-            // TODO
-            this.mapRouteToNavigation(param.route);
-          }
-        });
-      });
+        if (!this.routeMappginInitialized) {
+          route.params.subscribe(param => {
+            if (param.route !== undefined) {
+              this.mapRouteToNavigation(param.route);
+            }
+            this.routeMappginInitialized = true;
+          });
+        }
+      }
+    });
   }
 
   ngAfterViewInit(): void {
@@ -201,7 +205,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
           const padding = (1 - entry.intersectionRatio)
             * (entry.boundingClientRect.y > 0 ? 80 : 250) + 20;
           const alpha = entry.boundingClientRect.y > 0 ? 1
-            : entry.intersectionRatio - 0.33;
+            : entry.intersectionRatio;
 
           // adjust intro style
           this.creativityOutro.fontSize = size;
@@ -245,10 +249,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   private navigate(route: AppRoute) {
-    if (this.navigating) {
-      return;
-    }
-    this.navigating = true;
     this.titleService.setTitle(AppRoute[route]);
     console.log('navigation requested to', AppRoute[route]);
     this.hideNavMenu();
@@ -257,42 +257,36 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       this.router.navigateByUrl('');
       return;
     }
-    let offsetPosition = 0;
     switch (route) {
       case AppRoute.home:
         this.hideLegal();
         this.hidePrivacy();
-        this.smoothScrollTo(offsetPosition);
+        this.scrollToTop();
         break;
       case AppRoute.about:
         this.hideLegal();
         this.hidePrivacy();
-        offsetPosition = this.aboutAnchor.nativeElement.offsetTop;
-        this.smoothScrollTo(offsetPosition);
+        this.checkedScroll(this.aboutAnchor.nativeElement);
         break;
       case AppRoute.skills:
         this.hideLegal();
         this.hidePrivacy();
-        offsetPosition = this.skillsAnchor.nativeElement.offsetTop - 200;
-        this.smoothScrollTo(offsetPosition);
+        this.checkedScroll(this.skillsAnchor.nativeElement);
         break;
       case AppRoute.certifications:
         this.hideLegal();
         this.hidePrivacy();
-        // offsetPosition = this.certsContent.nativeElement.offsetTop - 200;
-        this.smoothScrollTo(offsetPosition);
+        this.checkedScroll(this.certsAnchor.nativeElement);
         break;
       case AppRoute.services:
         this.hideLegal();
         this.hidePrivacy();
-        // offsetPosition = this.servicesContent.nativeElement.offsetTop - 200;
-        this.smoothScrollTo(offsetPosition);
+        this.checkedScroll(this.servicesAnchor.nativeElement);
         break;
       case AppRoute.contact:
         this.hideLegal();
         this.hidePrivacy();
-        // offsetPosition = this.contactContent.nativeElement.offsetTop - 200;
-        this.smoothScrollTo(offsetPosition);
+        this.checkedScroll(this.contactAnchor.nativeElement);
         break;
       case AppRoute.legal:
         this.hidePrivacy();
@@ -306,7 +300,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         this.hideLegal();
         break;
     }
-    this.navigating = false;
   }
 
   private switchTitle(): (value: number) => void {
@@ -348,6 +341,27 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     }, 333);
   }
 
+  private checkedScroll(target: any, offset: number = 0) {
+    if (this.navigating) {
+      return;
+    }
+    const offsetPosition = target.offsetTop + offset;
+    this.smoothScrollTo(offsetPosition);
+    const verify = (callback) => {
+      if (Math.abs(this.window.pageYOffset - offsetPosition) > 50) {
+        this.smoothScrollTo(target.offsetTop + offset);
+      } else {
+        return;
+      }
+      if (callback) {
+        setTimeout(() => callback(), 133);
+      } else {
+        return;
+      }
+    };
+    setTimeout(() => verify(verify(null)), 133);
+  }
+
   private smoothScrollTo(offsetPosition: number): void {
     window.scrollTo({
       top: offsetPosition,
@@ -357,10 +371,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private isNavOpen(): boolean {
     return this.classes.nav.includes('nav-in');
-  }
-
-  private isPrivacyVisible(): boolean {
-    return !this.classes.privacy.includes('collapsed');
   }
 
   private showNavMenu(): void {
