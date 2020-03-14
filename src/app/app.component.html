@@ -24,6 +24,7 @@
   ></app-header>
 </div>
 
+<!-- navigation menu -->
 <div class="nav-button-wrapper">
   <button class="nav-button" (click)="navButtonPressed()">
     <em class="material-icons middle">{{ menuState }}</em>
@@ -53,7 +54,8 @@
   </div>
 </div>
 
-<div class="landingpage">
+<!-- landing page -->
+<div class="landingpage" #landingPage>
   <p class="landingpage-title fadein">
     Welcome
   </p>
@@ -61,16 +63,19 @@
 
 <!-- intro -->
 <div class="parallax-creativityIntro" #intro>
-  <div class="inspirational-text" [style]="creativityIntro">
+  <div class="inspirational-text" 
+  [style.font-size.vw]="creativityIntro.fontSize"
+  [style.padding]="creativityIntro.padding"
+  [style.opacity]="creativityIntro.opacity">
     Anything can be done without any creativity.
   </div>
 </div>
-
-<div style="height:10%"></div>
-
 <!-- outro -->
 <div class="parallax-creativityOutro" #outro>
-  <div class="inspirational-text" [style]="creativityOutro">
+  <div class="inspirational-text" 
+  [style.font-size.vw]="creativityOutro.fontSize"
+  [style.padding]="creativityOutro.padding"
+  [style.opacity]="creativityOutro.opacity">
     But with some creativity
     <br />
     everything can be done.
@@ -116,13 +121,13 @@
   link="/skills"
   [window]="window"
 >
-  <div class="default-section-content justify" content>
+  <div class="default-section-content" content>
     <div *ngFor="let category of skillsets" class="skill-category">
       <p class="nomargin">{{ category.name }}</p>
       <div
         class="skills-category-bar"
-        [style.background]="category.color">
-      </div>
+        [style.background]="category.color"
+      ></div>
       <div class="skill-section">
         <span *ngFor="let skill of category.skills" class="skill">
           {{ skill }}
@@ -180,6 +185,7 @@
         <p>{{ service.description }}</p>
       </li>
     </ul>
+    <br />
   </div>
 </app-section>
 

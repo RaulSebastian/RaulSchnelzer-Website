@@ -138,33 +138,19 @@ a:hover {
     background-position: -50px -10px;
     background-repeat: no-repeat;
   }
-  .parallax-creativityIntro {
-    min-height: 90vw;
-    height: 90vw;
-    max-height: 90vw;
-    background-size: 1px 90vw;
-    background-image: url("./assets/images/violetGradient.png");
-    background-repeat: repeat-x;
-    background-attachment: scroll;
-  }
-  .parallax-creativityOutro {
-    min-height: 90vw;
-    height: 90vw;
-    max-height: 90vw;
-    background-size: 1px 90vw;
-    background-image: url("./assets/images/orangeGradient.png");
-    background-repeat: repeat-x;
-    background-attachment: scroll;
-  }
   .about-me-image {
     height: 200px;
     width: auto;
+  }
+  .default-section-content {
+    font-size: 18px;
   }
   .skill-section {
     font-size: 17px;
   }
   .skill-category p {
     font-size: 20px;
+    margin: 12px 0;
   }
   .cert-icon {
     height: 8vh;
@@ -205,6 +191,9 @@ a:hover {
     height: 300px;
     width: auto;
   }
+  .default-section-content {
+    font-size: 20px;
+  }
   .skill-section {
     font-size: 19px;
   }
@@ -239,32 +228,11 @@ a:hover {
   .header-menu-links {
     font-size: 32px;
   }
-  .parallax-creativityIntro {
-    min-height: 100vh;
-    height: 100vh;
-    max-height: 100vh;
-    background-size: 1px 100vh;
-    background: -webkit-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
-    background: -moz-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
-    background: -o-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
-    background: linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
-    background-position: center;
-    background-attachment: fixed;
-  }
-  .parallax-creativityOutro {
-    min-height: 100vh;
-    height: 100vh;
-    max-height: 100vh;
-    background-size: 1px 100vh;
-    background: -webkit-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
-    background: -moz-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
-    background: -o-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
-    background: linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
-    background-position: center;
-    background-attachment: fixed;
-  }
   .skill-section {
     font-size: 20px;
+  }
+  .default-section-content {
+    font-size: 22px;
   }
   .skill-category p {
     font-size: 24px;
@@ -468,10 +436,29 @@ a:hover {
 }
 
 .parallax-creativityIntro {
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  background-size: 1px 100vh;
+  background: -webkit-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
+  background: -moz-linear-gradient(bottom, #303030, #1798d2, blueviolet);
+  background: -o-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
+  background: linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
+  background-position: center;
+  background-attachment: fixed;
   overflow: hidden;
 }
-
 .parallax-creativityOutro {
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  background-size: 1px 100vh;
+  background: -webkit-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
+  background: -moz-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
+  background: -o-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
+  background: linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
+  background-position: center;
+  background-attachment: fixed;
   overflow: hidden;
 }
 
@@ -500,21 +487,9 @@ a:hover {
 
 /** sections **/
 
-.section-title {
-  margin: 0 auto 20px auto;
-  padding-left: 22px;
-  font-size: 44px;
-  line-height: 44px;
-  vertical-align: middle;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-weight: 400;
-  color: var(--theme-font-color);
-}
-
 .default-section-content {
   padding: 20px;
   text-align: start;
-  font-size: 22px;
   line-height: 1.4em;
 }
 

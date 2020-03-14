@@ -43,8 +43,16 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   headerFontColor = 'var(--theme-font-color)';
   overlayLogoSrc = 'assets/RS_logo_White400.png';
   headerLogoSrc = 'assets/RS_logo_Solar400.png';
-  creativityIntro = 'font-size: 30vw;padding:30vh 0 0 0;';
-  creativityOutro = 'font-size: 5vw;padding:30vh 0 0 0;';
+  creativityIntro = {
+    fontSize: 30,
+    padding: 'padding:50vh 0 0 0',
+    opacity: 1
+  };
+  creativityOutro = {
+    fontSize: 20,
+    padding: 'padding:30vh 0 0 0',
+    opacity: 1
+  };
   menuState = 'menu';
   classes = {
     legal: 'legal fade',
@@ -84,6 +92,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   certificates = Certificates.Acquired;
   skillsets = SkillSets.Categories;
 
+  @ViewChild('landingPage', { static: false }) landingPage: ElementRef;
   @ViewChild('aboutAnchor', { static: false }) aboutAnchor: ElementRef;
   @ViewChild('skillsAnchor', { static: false }) skillsAnchor: ElementRef;
   @ViewChild('certsAnchor', { static: false }) certsAnchor: ElementRef;
@@ -97,6 +106,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private routeSubscription: any;
   private navigating = false;
+
+  private percentualTthreshold = [...Array(100).keys()].map(i => i / 100);
+  private promileTthreshold = [...Array(1000).keys()].map(i => i / 1000);
 
   ngOnInit(): void {
     interval(20000).subscribe(this.switchTitle());
@@ -123,39 +135,52 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       'IntersectionObserverEntry' in this.window
     ) {
       this.observeUpArrowVisibility();
+      this.observerHeaderOverlay();
       this.observeCreativityIntro();
+      this.observeCreativityOutro();
     } else {
       // TODO: fallback
     }
   }
 
-  private observeCreativityIntro() {
+  private observerHeaderOverlay() {
     const observerOptions = {
-      threshold: [...Array(100).keys()].map(i => i / 100)
+      threshold: this.percentualTthreshold
     };
     const sectionObserver = new IntersectionObserver(entries => {
       for (const entry of entries) {
-        if (entry.isIntersecting) {
-
+        if (entry.intersectionRatio > 0) {
           // resize header
-          if (entry.boundingClientRect.y > 0) {
-            this.overlayHeight = Math.min(Math.max((1 - entry.intersectionRatio) * 133, 0), 80);
-          }
-
-          let size = entry.boundingClientRect.y < 0 ? 12
-            : (1.2 - entry.intersectionRatio) * 30;
-          if (size < 12) {
-            size = 12;
-          }
-          const alpha = entry.boundingClientRect.y > 0 ? 1
-            : Math.floor((entry.intersectionRatio - 0.68) * 330) / 100;
-          // adjust intro style
-          this.creativityIntro = `font-size: ${size}vw;padding:${size}vh 0 0 0;opacity:${alpha};`;
+          this.overlayHeight = Math.min((entry.intersectionRatio) * 80, 80);
         } else {
-          if (entry.boundingClientRect.y < 0) {
-            // hide header overlay
-            this.overlayHeight = 0;
-          }
+          // hide header
+          this.overlayHeight = 0;
+        }
+      }
+    }, observerOptions);
+    sectionObserver.observe(this.landingPage.nativeElement);
+  }
+
+  private observeCreativityIntro() {
+    const observerOptions = {
+      rootMargin: '0px 0px 0px 0px',
+      threshold: this.promileTthreshold
+    };
+    const sectionObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.intersectionRatio > 0) {
+
+          const size = entry.boundingClientRect.y < 0 ? 12
+            : entry.intersectionRatio * 12;
+          const padding = (1 - entry.intersectionRatio)
+            * (entry.boundingClientRect.y > 0 ? 80 : 150) + 20;
+          const alpha = entry.boundingClientRect.y > 0 ? 1
+            : entry.intersectionRatio - 0.2;
+
+          // adjust intro style
+          this.creativityIntro.fontSize = size;
+          this.creativityIntro.padding = `${padding}vh 0 0 0`;
+          this.creativityIntro.opacity = alpha;
         }
       }
     }, observerOptions);
@@ -164,18 +189,32 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private observeCreativityOutro() {
     const observerOptions = {
-      rootMargin: '-50px',
-      threshold: [...Array(100).keys()].map(i => i / 100)
+      rootMargin: '0px 0px 0px 0px',
+      threshold: this.promileTthreshold
     };
     const sectionObserver = new IntersectionObserver(entries => {
       for (const entry of entries) {
+        if (entry.intersectionRatio > 0) {
+
+          const size = entry.boundingClientRect.y < 0 ? 9
+            : entry.intersectionRatio * 9;
+          const padding = (1 - entry.intersectionRatio)
+            * (entry.boundingClientRect.y > 0 ? 80 : 250) + 20;
+          const alpha = entry.boundingClientRect.y > 0 ? 1
+            : entry.intersectionRatio - 0.33;
+
+          // adjust intro style
+          this.creativityOutro.fontSize = size;
+          this.creativityOutro.padding = `${padding}vh 0 0 0`;
+          this.creativityOutro.opacity = alpha;
+        }
       }
-    });
-    sectionObserver.observe(this.intro.nativeElement);
+    }, observerOptions);
+    sectionObserver.observe(this.outro.nativeElement);
   }
 
   private observeUpArrowVisibility() {
-    const observerOptions = { threshold: [1] };
+    const observerOptions = { threshold: [0.8, 0.9, 1] };
     const sectionObserver = new IntersectionObserver(entries => {
       for (const entry of entries) {
         if (entry.boundingClientRect.y < 1) {
