@@ -443,11 +443,18 @@ a:hover {
   background: -moz-linear-gradient(bottom, #303030, #1798d2, blueviolet);
   background: -o-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
   background: linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
-  background-size: 1px 100vh;
   background-position: center;
   background-attachment: fixed;
   overflow: hidden;
 }
+_::-webkit-full-page-media, _:future,
+:root .safari_only .parallax-creativityIntro {
+  background-size: 1px 100vh;
+  background-image: url("./assets/images/violetGradient.png");
+  background-repeat: repeat-x;
+  background-attachment: scroll;
+}
+
 .parallax-creativityOutro {
   min-height: 100vh;
   height: 100vh;
@@ -460,6 +467,13 @@ a:hover {
   background-position: center;
   background-attachment: fixed;
   overflow: hidden;
+}
+_::-webkit-full-page-media, _:future,
+:root .safari_only .parallax-creativityOutro {
+  background-size: 1px 100vh;
+  background-image: url("./assets/images/orangeGradient.png");
+  background-repeat: repeat-x;
+  background-attachment: scroll;
 }
 
 .inspirational-text {
