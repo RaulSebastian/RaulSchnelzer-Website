@@ -45,7 +45,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   overlayLogoSrc = 'assets/RS_logo_White400.png';
   headerLogoSrc = 'assets/RS_logo_Solar400.png';
   creativityIntro = {
-    fontSize: 30,
+    fontSize: 12,
     padding: 'padding:50vh 0 0 0',
     opacity: 1
   };
