@@ -359,7 +359,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         return;
       }
       if (retriesLeft > 0) {
-        setTimeout(() => { recurvise(retriesLeft--); }, 333);
+        setTimeout(() => { recurvise(--retriesLeft); }, 250);
       }
     };
     recurvise(3);

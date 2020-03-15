@@ -1,6 +1,5 @@
 .section-title,
 .section-wrapper {
-  width: 80%;
   max-width: 600px;
 }
 
@@ -20,10 +19,16 @@
   .section-title {
     font-size: 36px;
   }
+  .section-wrapper {
+    width: 90%;
+  }
 }
 @media screen and (min-width: 770px) {
   .section-title {
     font-size: 40px;
+  }
+  .section-wrapper {
+    width: 80%;
   }
 }
 @media screen and (min-width: 1024px) {

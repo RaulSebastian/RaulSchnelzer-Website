@@ -138,29 +138,53 @@ a:hover {
     background-position: -50px -10px;
     background-repeat: no-repeat;
   }
+  .parallax-creativityIntro {
+    background-size: 1px 100vh;
+    background-image: url("./assets/images/violetGradient.png");
+    background-repeat: repeat-x;
+    background-attachment: scroll;
+  }
+  .parallax-creativityOutro {
+    background-size: 1px 100vh;
+    background-image: url("./assets/images/orangeGradient.png");
+    background-repeat: repeat-x;
+    background-attachment: scroll;
+  }
   .about-me-image {
     height: 200px;
     width: auto;
   }
   .default-section-content {
-    font-size: 18px;
+    font-size: 19px;
   }
   .skill-section {
-    font-size: 17px;
+    font-size: 19px;
   }
   .skill-category p {
     font-size: 20px;
     margin: 12px 0;
   }
+  .disclaimer {
+    font-size: 20px;
+  }
+  .copyright {
+    font-size: 19px;
+  }
   .cert-icon {
     height: 8vh;
   }
   .cert-name {
-    font-size: 2.5vh;
+    font-size: 15px;
+    line-height: 32px;
+    font-weight: 600;
+    padding-right: 10px;
   }
   .cert-info {
-    font-size: 2vh;
+    font-size: 14px;
     line-height: 3vh;
+  }
+  .cert-hint {
+    font-size: 16px;
   }
 }
 
@@ -180,6 +204,22 @@ a:hover {
     background-position: 0px -10px;
     background-repeat: no-repeat;
   }
+  .parallax-creativityIntro {
+    background: -webkit-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
+    background: -moz-linear-gradient(bottom, #303030, #1798d2, blueviolet);
+    background: -o-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
+    background: linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .parallax-creativityOutro {
+    background: -webkit-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
+    background: -moz-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
+    background: -o-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
+    background: linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
+    background-position: center;
+    background-attachment: fixed;
+  }
   .menu-panel {
     visibility: collapse;
   }
@@ -195,19 +235,30 @@ a:hover {
     font-size: 20px;
   }
   .skill-section {
-    font-size: 19px;
+    font-size: 20px;
   }
   .skill-category p {
     font-size: 22px;
+  }
+  .disclaimer {
+    font-size: 22px;
+  }
+  .copyright {
+    font-size: 21px;
   }
   .cert-icon {
     height: 80px;
   }
   .cert-name {
     font-size: 20px;
+    font-weight: 600;
+    padding-right: 20px;
   }
   .cert-info {
     font-size: 16px;
+  }
+  .cert-hint {
+    font-size: 18px;
   }
   .imprint-text {
     margin: 0 5vw;
@@ -229,7 +280,7 @@ a:hover {
     font-size: 32px;
   }
   .skill-section {
-    font-size: 20px;
+    font-size: 21px;
   }
   .default-section-content {
     font-size: 22px;
@@ -244,6 +295,11 @@ a:hover {
   .cert-name {
     font-size: 24px;
     line-height: 48px;
+    font-weight: 600;
+    padding-right: 20px;
+  }
+  .cert-hint {
+    font-size: 20px;
   }
   .imprint-text {
     margin: 0 10vw;
@@ -361,15 +417,6 @@ a:hover {
   line-height: 11vh;
   padding-left: 5vw;
 }
-.contact {
-  font-size: 24px;
-  line-height: 32px;
-}
-
-.contactlink {
-  color: var(--theme-accent);
-  margin-left: 10px;
-}
 
 .skill-category {
   text-align: center;
@@ -402,7 +449,7 @@ a:hover {
   border-radius: 8px;
   margin-right: 12px;
   margin-bottom: 6px;
-  padding: 0px 6px;
+  padding: 1px 6px;
   white-space: normal;
   vertical-align: top;
   -webkit-transition: color 1s; /* For Safari 3.0 to 6.0 */
@@ -439,41 +486,14 @@ a:hover {
   min-height: 100vh;
   height: 100vh;
   max-height: 100vh;
-  background: -webkit-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
-  background: -moz-linear-gradient(bottom, #303030, #1798d2, blueviolet);
-  background: -o-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
-  background: linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
-  background-position: center;
-  background-attachment: fixed;
-  overflow: hidden;
-}
-_::-webkit-full-page-media, _:future,
-:root .safari_only .parallax-creativityIntro {
-  background-size: 1px 100vh;
-  background-image: url("./assets/images/violetGradient.png");
-  background-repeat: repeat-x;
-  background-attachment: scroll;
+  overflow-x: hidden;
 }
 
 .parallax-creativityOutro {
   min-height: 100vh;
   height: 100vh;
   max-height: 100vh;
-  background-size: 1px 100vh;
-  background: -webkit-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
-  background: -moz-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
-  background: -o-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
-  background: linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
-  background-position: center;
-  background-attachment: fixed;
   overflow: hidden;
-}
-_::-webkit-full-page-media, _:future,
-:root .safari_only .parallax-creativityOutro {
-  background-size: 1px 100vh;
-  background-image: url("./assets/images/orangeGradient.png");
-  background-repeat: repeat-x;
-  background-attachment: scroll;
 }
 
 .inspirational-text {
@@ -529,21 +549,13 @@ _::-webkit-full-page-media, _:future,
 .cert-details {
   float: right;
 }
-.cert-name {
-  font-weight: 600;
-  padding-right: 20px;
-}
 .cert-info {
   margin: 0 10px 0 0 !important;
 }
 .disclaimer {
-  font-size: 22px;
   line-height: 25px;
-  text-align: left;
+  text-align: start;
   word-wrap: break-word;
-}
-.copyright {
-  font-size: 22px;
 }
 .privacy-contact-mail {
   margin-top: -26px;
@@ -557,10 +569,6 @@ _::-webkit-full-page-media, _:future,
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-}
-.contact-icon {
-  margin-left: 5px;
-  padding: 2px;
 }
 
 .angular-log {
