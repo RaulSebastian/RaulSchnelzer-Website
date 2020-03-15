@@ -350,11 +350,6 @@ a:hover {
   animation: nav-slide-in 1s ease forwards;
 }
 .nav-out {
-  -webkit-animation-delay: 1s;
-  -moz-animation-delay: 1s;
-  -ms-animation-delay: 1s;
-  -o-animation-delay: 1s;
-  animation-delay: 1s;
   -webkit-animation: nav-slide-out 1s ease forwards; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: nav-slide-out 1s ease forwards; /* Firefox < 16 */
   -ms-animation: nav-slide-out 1s ease forwards; /* Internet Explorer */
@@ -452,14 +447,10 @@ a:hover {
   padding: 1px 6px;
   white-space: normal;
   vertical-align: top;
-  -webkit-transition: color 1s; /* For Safari 3.0 to 6.0 */
-  -moz-transition: color 1s; /* Firefox < 16 */
-  -o-transition: color 1s; /* Opera < 12.1 */
-  transition: color 1s; /* For modern browsers */
-  -webkit-transition: background-color 1s; /* For Safari 3.0 to 6.0 */
-  -moz-transition: background-color 1s; /* Firefox < 16 */
-  -o-transition: background-color 1s; /* Opera < 12.1 */
-  transition: background-color 1s; /* For modern browsers */
+  -webkit-transition: color 1s, background-color 1s; /* For Safari 3.0 to 6.0 */
+  -moz-transition: color 1s, background-color 1s; /* Firefox < 16 */
+  -o-transition: color 1s, background-color 1s; /* Opera < 12.1 */
+  transition: color 1s, background-color 1s; /* For modern browsers */
 }
 .skill:hover,
 .skill:active {

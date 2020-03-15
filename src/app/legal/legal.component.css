@@ -84,16 +84,17 @@
     var(--theme-background-alpha)
   );
   background-image: -moz-linear-gradient(
-    to bottom,
+    bottom,
     var(--theme-text-backdrop) 25px,
     var(--theme-background-alpha)
   );
   background-image: -o-linear-gradient(
-    to bottom,
+    bottom,
     var(--theme-text-backdrop) 25px,
     var(--theme-background-alpha)
   );
   background-image: linear-gradient(
+    to bottom,
     var(--theme-text-backdrop) 25px,
     var(--theme-background-alpha)
   );

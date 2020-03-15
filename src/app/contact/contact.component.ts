@@ -30,35 +30,35 @@ export class ContactComponent implements OnInit {
       source: 'LinkedIn',
       image: '../../assets/LinkedInIcon.png',
       class: 'contact-icon reinverted',
-      size: '6vh',
+      size: '10vmin',
       link: 'https://linkedin.com/in/raul-schnelzer'
     },
     {
       source: 'Xing',
       image: '../../assets/XingIcon.png',
       class: 'contact-icon',
-      size: '5.5vh',
+      size: '9vmin',
       link: 'https://www.xing.com/profile/Raul_Schnelzer/portfolio'
     },
     {
       source: 'Stack Overflow',
       image: '../../assets/StackOverflowIcon.png',
       class: 'contact-icon reinverted',
-      size: '9vh',
+      size: '10vmin',
       link: 'https://stackoverflow.com/users/story/3205951/'
     },
     {
       source: 'Github',
       image: '../../assets/GitHubIcon.png',
       class: 'contact-icon inverted',
-      size: '6vh',
+      size: '7vmin',
       link: 'https://github.com/RaulSebastian'
     },
     {
       source: 'Whatsapp',
       image: '../../assets/WhatsAppIcon.png',
       class: 'contact-icon',
-      size: '7vh',
+      size: '10vmin',
       link: 'https://api.whatsapp.com/send?phone=+491735227934'
     }
   ];

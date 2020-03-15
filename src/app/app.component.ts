@@ -30,7 +30,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('running ', adress, ' hosted on ', host);
 
     this.isProduction = adress.includes('raulschnelzer.de') && !adress.includes('preview');
-
+    this.contentLazyLoading = 'IntersectionObserver' in this.window &&
+      'IntersectionObserverEntry' in this.window;
   }
 
   title = 'Raul Schnelzer';
@@ -40,17 +41,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   privacyLastModified = new Date('2020-03-07');
 
   overlayHeight = 80;
-  overlayFontColor = 'white';
-  headerFontColor = 'var(--theme-font-color)';
-  overlayLogoSrc = 'assets/RS_logo_White400.png';
-  headerLogoSrc = 'assets/RS_logo_Solar400.png';
+  headerSeparatorHeight = 24;
   creativityIntro = {
     fontSize: 12,
     padding: 'padding:50vh 0 0 0',
     opacity: 1
   };
   creativityOutro = {
-    fontSize: 20,
+    fontSize: 10,
     padding: 'padding:30vh 0 0 0',
     opacity: 1
   };
@@ -102,6 +100,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('intro', { static: false }) intro: ElementRef;
   @ViewChild('outro', { static: false }) outro: ElementRef;
 
+  contentLazyLoading: boolean;
   isLegalOpen = false;
   isPrivacyOpen = false;
 
@@ -162,9 +161,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         if (entry.intersectionRatio > 0) {
           // resize header
           this.overlayHeight = Math.min((entry.intersectionRatio) * 80, 80);
+          // adjust menu items separator height
+          this.headerSeparatorHeight = Math.max(Math.min((entry.intersectionRatio) * 24, 24), 6);
         } else {
           // hide header
           this.overlayHeight = 0;
+          // min menu items separator height
+          this.headerSeparatorHeight = 6;
         }
       }
     }, observerOptions);

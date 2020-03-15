@@ -3,8 +3,9 @@
     [titlePrefix]="titlePrefix"
     [titleSufix]="titleSufix"
     [navigationItems]="navigationItems"
-    [fontColor]="overlayFontColor"
-    [logoSource]="overlayLogoSrc"
+    [separatorHeight]="headerSeparatorHeight"
+    [fontColor]="'white'"
+    [logoSource]="'assets/RS_logo_White400.png'"
     [logoClass]="classes.logo"
     #headerOverlay
   >
@@ -16,8 +17,9 @@
     [titlePrefix]="titlePrefix"
     [titleSufix]="titleSufix"
     [navigationItems]="navigationItems"
-    [fontColor]="headerFontColor"
-    [logoSource]="headerLogoSrc"
+    [separatorHeight]="headerSeparatorHeight"
+    [fontColor]="'var(--theme-font-color)'"
+    [logoSource]="'assets/RS_logo_Solar400.png'"
     [logoClass]="classes.logo"
     [backlight]="true"
     #header
@@ -63,19 +65,23 @@
 
 <!-- intro -->
 <div class="parallax-creativityIntro" #intro>
-  <div class="inspirational-text" 
-  [style.font-size.vw]="creativityIntro.fontSize"
-  [style.padding]="creativityIntro.padding"
-  [style.opacity]="creativityIntro.opacity">
+  <div
+    class="inspirational-text"
+    [style.font-size.vw]="creativityIntro.fontSize"
+    [style.padding]="creativityIntro.padding"
+    [style.opacity]="creativityIntro.opacity"
+  >
     Anything can be done without any creativity.
   </div>
 </div>
 <!-- outro -->
 <div class="parallax-creativityOutro" #outro>
-  <div class="inspirational-text" 
-  [style.font-size.vw]="creativityOutro.fontSize"
-  [style.padding]="creativityOutro.padding"
-  [style.opacity]="creativityOutro.opacity">
+  <div
+    class="inspirational-text"
+    [style.font-size.vw]="creativityOutro.fontSize"
+    [style.padding]="creativityOutro.padding"
+    [style.opacity]="creativityOutro.opacity"
+  >
     But with some creativity
     <br />
     everything can be done.
@@ -88,7 +94,8 @@
   sectionId="about"
   sectionTitle="Who I am"
   link="/about"
-  [window]="window"
+  contentOverflow="hidden"
+  [lazyLoading]="contentLazyLoading"
 >
   <div class="about-me-container" subtitle>
     <img
@@ -119,7 +126,8 @@
   sectionId="skills"
   sectionTitle="Skills"
   link="/skills"
-  [window]="window"
+  contentOverflow="hidden"
+  [lazyLoading]="contentLazyLoading"
 >
   <div class="default-section-content" content>
     <div *ngFor="let category of skillsets" class="skill-category">
@@ -144,9 +152,10 @@
   sectionId="certifications"
   sectionTitle="Certifications"
   link="/certifications"
-  [window]="window"
+  contentOverflow="hidden"
+  [lazyLoading]="contentLazyLoading"
 >
-  <div class="default-section-content scrollable justify" content>
+  <div class="default-section-content justify" content>
     <div class="cert-wrapper" *ngFor="let certificate of certificates">
       <img
         src="{{ certificate.icon }}"
@@ -177,7 +186,8 @@
   sectionId="services"
   sectionTitle="Services"
   link="/services"
-  [window]="window"
+  contentOverflow="hidden"
+  [lazyLoading]="contentLazyLoading"
 >
   <div class="default-section-content" content>
     <ul>
@@ -195,7 +205,8 @@
   sectionId="contact"
   sectionTitle="Contact"
   link="/contact"
-  [window]="window"
+  contentOverflow="visible"
+  [lazyLoading]="contentLazyLoading"
   #contactAnchor
 >
   <div class="default-section-content" content>

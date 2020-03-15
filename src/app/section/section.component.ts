@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
-import { Content } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-section',
@@ -11,7 +10,8 @@ export class SectionComponent implements OnInit, AfterViewInit {
   @Input() sectionId: string;
   @Input() sectionTitle: string;
   @Input() link: string;
-  @Input() window: Window;
+  @Input() lazyLoading: boolean;
+  @Input() contentOverflow = 'hidden';
 
   @ViewChild('content', { static: false }) content: ElementRef;
 
@@ -23,10 +23,7 @@ export class SectionComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit(): void {
-    if (
-      'IntersectionObserver' in this.window &&
-      'IntersectionObserverEntry' in this.window
-    ) {
+    if (this.lazyLoading) {
       const sectionObserver = new IntersectionObserver(entries => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
