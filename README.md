@@ -9,7 +9,7 @@
 
 **Hosted on**
 
-[![Azure](/docs/assets/azure_logo.png)](azure.microsoft.com/)
+[![Azure](/docs/assets/azure_logo.png)](https://azure.microsoft.com/)
 
 **Made with**
 
