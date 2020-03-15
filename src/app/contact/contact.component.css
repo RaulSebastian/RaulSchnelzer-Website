@@ -1,0 +1,23 @@
+.contact {
+  line-height: 32px;
+}
+@media screen {
+  .contact {
+    font-size: 20px;
+  }
+}
+@media screen and (min-width: 770px) {
+  .contact {
+    font-size: 24px;
+  }
+}
+
+.contact-icon {
+  margin-left: 5px;
+  padding: 2px;
+}
+
+.contactlink {
+  color: var(--theme-accent);
+  margin-left: 10px;
+}

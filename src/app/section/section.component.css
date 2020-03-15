@@ -1,7 +1,40 @@
 .section-title,
 .section-wrapper {
-  width: 80%;
   max-width: 600px;
+}
+
+.section-title {
+  margin: 0 auto 20px auto;
+  padding-left: 22px;
+  line-height: 44px;
+  vertical-align: middle;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-weight: 400;
+  color: var(--theme-font-color);
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+@media screen {
+  .section-title {
+    font-size: 36px;
+  }
+  .section-wrapper {
+    width: 90%;
+  }
+}
+@media screen and (min-width: 770px) {
+  .section-title {
+    font-size: 40px;
+  }
+  .section-wrapper {
+    width: 80%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .section-title {
+    font-size: 44px;
+  }
 }
 
 .section-title-tags {
@@ -36,6 +69,7 @@
   width: 20px;
   height: 20px;
   fill: #dedede;
+  overflow: hidden;
 }
 
 .section-bottom-corner {
@@ -48,6 +82,7 @@
 }
 
 .section-content {
+  background: -webkit-radial-gradient(top right, white 5%, #cccccc);
   background: radial-gradient(at top right, white 5%, #cccccc);
   height: max-content;
   position: relative;

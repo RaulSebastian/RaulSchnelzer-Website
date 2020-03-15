@@ -126,7 +126,6 @@ a:hover {
   .header-menu-links {
     font-size: 3vw;
   }
-
   .header-title-backlight {
     background-image: -webkit-radial-gradient(
       var(--theme-background),
@@ -140,37 +139,52 @@ a:hover {
     background-repeat: no-repeat;
   }
   .parallax-creativityIntro {
-    min-height: 90vw;
-    height: 90vw;
-    max-height: 90vw;
-    background-size: 1px 90vw;
+    background-size: 1px 100vh;
     background-image: url("./assets/images/violetGradient.png");
     background-repeat: repeat-x;
     background-attachment: scroll;
   }
   .parallax-creativityOutro {
-    min-height: 90vw;
-    height: 90vw;
-    max-height: 90vw;
-    background-size: 1px 90vw;
+    background-size: 1px 100vh;
     background-image: url("./assets/images/orangeGradient.png");
     background-repeat: repeat-x;
     background-attachment: scroll;
   }
-
   .about-me-image {
     height: 200px;
     width: auto;
+  }
+  .default-section-content {
+    font-size: 19px;
+  }
+  .skill-section {
+    font-size: 19px;
+  }
+  .skill-category p {
+    font-size: 20px;
+    margin: 12px 0;
+  }
+  .disclaimer {
+    font-size: 20px;
+  }
+  .copyright {
+    font-size: 19px;
   }
   .cert-icon {
     height: 8vh;
   }
   .cert-name {
-    font-size: 2.5vh;
+    font-size: 15px;
+    line-height: 32px;
+    font-weight: 600;
+    padding-right: 10px;
   }
   .cert-info {
-    font-size: 2vh;
+    font-size: 14px;
     line-height: 3vh;
+  }
+  .cert-hint {
+    font-size: 16px;
   }
 }
 
@@ -190,6 +204,22 @@ a:hover {
     background-position: 0px -10px;
     background-repeat: no-repeat;
   }
+  .parallax-creativityIntro {
+    background: -webkit-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
+    background: -moz-linear-gradient(bottom, #303030, #1798d2, blueviolet);
+    background: -o-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
+    background: linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
+    background-position: center;
+    background-attachment: fixed;
+  }
+  .parallax-creativityOutro {
+    background: -webkit-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
+    background: -moz-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
+    background: -o-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
+    background: linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
+    background-position: center;
+    background-attachment: fixed;
+  }
   .menu-panel {
     visibility: collapse;
   }
@@ -201,14 +231,34 @@ a:hover {
     height: 300px;
     width: auto;
   }
+  .default-section-content {
+    font-size: 20px;
+  }
+  .skill-section {
+    font-size: 20px;
+  }
+  .skill-category p {
+    font-size: 22px;
+  }
+  .disclaimer {
+    font-size: 22px;
+  }
+  .copyright {
+    font-size: 21px;
+  }
   .cert-icon {
     height: 80px;
   }
   .cert-name {
     font-size: 20px;
+    font-weight: 600;
+    padding-right: 20px;
   }
   .cert-info {
     font-size: 16px;
+  }
+  .cert-hint {
+    font-size: 18px;
   }
   .imprint-text {
     margin: 0 5vw;
@@ -229,29 +279,14 @@ a:hover {
   .header-menu-links {
     font-size: 32px;
   }
-  .parallax-creativityIntro {
-    min-height: 100vh;
-    height: 100vh;
-    max-height: 100vh;
-    background-size: 1px 100vh;
-    background: -webkit-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
-    background: -moz-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
-    background: -o-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
-    background: linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
-    background-position: center;
-    background-attachment: fixed;
+  .skill-section {
+    font-size: 21px;
   }
-  .parallax-creativityOutro {
-    min-height: 100vh;
-    height: 100vh;
-    max-height: 100vh;
-    background-size: 1px 100vh;
-    background: -webkit-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
-    background: -moz-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
-    background: -o-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8);
-    background: linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
-    background-position: center;
-    background-attachment: fixed;
+  .default-section-content {
+    font-size: 22px;
+  }
+  .skill-category p {
+    font-size: 24px;
   }
   .cert-info {
     font-size: 17px;
@@ -260,6 +295,11 @@ a:hover {
   .cert-name {
     font-size: 24px;
     line-height: 48px;
+    font-weight: 600;
+    padding-right: 20px;
+  }
+  .cert-hint {
+    font-size: 20px;
   }
   .imprint-text {
     margin: 0 10vw;
@@ -377,21 +417,15 @@ a:hover {
   line-height: 11vh;
   padding-left: 5vw;
 }
-.contact {
-  font-size: 24px;
-  line-height: 32px;
-}
 
-.contactlink {
-  color: var(--theme-accent);
-  margin-left: 10px;
+.skill-category {
+  text-align: center;
 }
 
 .skill-section {
-  margin-bottom: 10px;
-  line-height: 46px;
-  text-align: center;
-  font-size: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 .skills-category-bar {
@@ -414,10 +448,9 @@ a:hover {
   background-color: white;
   border-radius: 8px;
   margin-right: 12px;
-  padding: 0px 6px;
-  display: inline-block;
+  margin-bottom: 6px;
+  padding: 1px 6px;
   white-space: normal;
-  height: 40px;
   vertical-align: top;
   -webkit-transition: color 1s; /* For Safari 3.0 to 6.0 */
   -moz-transition: color 1s; /* Firefox < 16 */
@@ -450,10 +483,16 @@ a:hover {
 }
 
 .parallax-creativityIntro {
-  overflow: hidden;
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
+  overflow-y: visible;
 }
 
 .parallax-creativityOutro {
+  min-height: 100vh;
+  height: 100vh;
+  max-height: 100vh;
   overflow: hidden;
 }
 
@@ -482,21 +521,9 @@ a:hover {
 
 /** sections **/
 
-.section-title {
-  margin: 0 auto 20px auto;
-  padding-left: 22px;
-  font-size: 44px;
-  line-height: 44px;
-  vertical-align: middle;
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-weight: 400;
-  color: var(--theme-font-color);
-}
-
 .default-section-content {
   padding: 20px;
   text-align: start;
-  font-size: 22px;
   line-height: 1.4em;
 }
 
@@ -522,21 +549,13 @@ a:hover {
 .cert-details {
   float: right;
 }
-.cert-name {
-  font-weight: 600;
-  padding-right: 20px;
-}
 .cert-info {
   margin: 0 10px 0 0 !important;
 }
 .disclaimer {
-  font-size: 22px;
   line-height: 25px;
-  text-align: left;
+  text-align: start;
   word-wrap: break-word;
-}
-.copyright {
-  font-size: 22px;
 }
 .privacy-contact-mail {
   margin-top: -26px;
@@ -550,10 +569,6 @@ a:hover {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-}
-.contact-icon {
-  margin-left: 5px;
-  padding: 2px;
 }
 
 .angular-log {
@@ -585,6 +600,10 @@ a:hover {
 }
 
 /** generics **/
+
+.nomargin {
+  margin: 0;
+}
 
 .justify {
   text-align: justify;
