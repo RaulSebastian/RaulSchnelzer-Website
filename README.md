@@ -5,11 +5,11 @@
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RaulSebastian_PersonalHomepage&metric=alert_status)](https://sonarcloud.io/dashboard?id=RaulSebastian_PersonalHomepage)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ceb34606a75c480db7cffb83868d57fc)](https://www.codacy.com/manual/RaulSebastian/PersonalHomepage?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RaulSebastian/PersonalHomepage&amp;utm_campaign=Badge_Grade)
 
----
-
 > production slot: [raulschnelzer.de](https://raulschnelzer.de)
 >
 > preview slot: [preview.raulschnelzer.de](https://preview.raulschnelzer.de)
+
+---
 
 **Hosted on**
 
