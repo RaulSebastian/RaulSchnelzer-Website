@@ -370,26 +370,42 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     let sectionCorner: string;
 
     const darkBackdrop = '#202020f0';
-    const lighBackdrop = '#ffffffef';
+    const lightBackdrop = '#ffffffef';
 
     function transition() {
       const degree = themeState.Degree;
-      foreground = degree >= 0.31 && degree < 0.33
-        ? 'rgb(107,107,107)'
-        : degree >= 0.33 && degree < 0.34
-          ? 'rgb(117,117,117)'
-          : degree >= 0.34 && degree < 0.36
-            ? 'rgb(177,177,177)'
-            : `rgb(${Math.round(degree * 255) + 69}, ${Math.round(degree * 255) + 69}, ${Math.round(degree * 255) + 69})`;
-      accent = `hsl(267 - ${Math.round(degree * 102)}, ${74 + Math.round(degree * 26)}), 54%)`;
-      inversion = `${Math.round(degree * 100)}%`;
-      const inverse = 1 - degree;
-      background = `rgb(${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, ${Math.round(inverse * 255)})`;
-      backgroundAlpha = `argb(${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, 0)`;
-      sectionBackgroud = `rgb(${Math.round(inverse * 170) + 34}, ${Math.round(inverse * 170) + 34}, ${Math.round(inverse * 170) + 34})`;
-      sectionHighlight = `rgb(${Math.round(inverse * 172) + 83}, ${Math.round(inverse * 172) + 83}, ${Math.round(inverse * 172) + 83})`;
-      sectionCorner = `rgb(${Math.round(inverse * 167) + 55}, ${Math.round(inverse * 167) + 55}, ${Math.round(inverse * 167) + 55})`;
-      backdrop = inverse < 0.5 ? darkBackdrop : lighBackdrop;
+      if (degree <= 0) {
+        background = 'white';
+        backgroundAlpha = '#ffffff00';
+        backdrop = lightBackdrop;
+        foreground = '#454545';
+        accent = '#8133e1';
+        inversion = '0%';
+      } else if (degree >= 1) {
+        background = 'black';
+        backgroundAlpha = '#00000000';
+        backdrop = darkBackdrop;
+        foreground = 'white';
+        accent = '#00ffbf';
+        inversion = '100%';
+      } else {
+        foreground = degree >= 0.31 && degree < 0.33
+          ? 'rgb(107,107,107)'
+          : degree >= 0.33 && degree < 0.34
+            ? 'rgb(117,117,117)'
+            : degree >= 0.34 && degree < 0.36
+              ? 'rgb(177,177,177)'
+              : `rgb(${Math.round(degree * 255) + 69}, ${Math.round(degree * 255) + 69}, ${Math.round(degree * 255) + 69})`;
+        accent = `hsl(267 - ${Math.round(degree * 102)}, ${74 + Math.round(degree * 26)}), 54%)`;
+        inversion = `${Math.round(degree * 100)}%`;
+        const inverse = 1 - degree;
+        background = `rgb(${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, ${Math.round(inverse * 255)})`;
+        backgroundAlpha = `argb(${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, 0)`;
+        sectionBackgroud = `rgb(${Math.round(inverse * 170) + 34}, ${Math.round(inverse * 170) + 34}, ${Math.round(inverse * 170) + 34})`;
+        sectionHighlight = `rgb(${Math.round(inverse * 172) + 83}, ${Math.round(inverse * 172) + 83}, ${Math.round(inverse * 172) + 83})`;
+        sectionCorner = `rgb(${Math.round(inverse * 167) + 55}, ${Math.round(inverse * 167) + 55}, ${Math.round(inverse * 167) + 55})`;
+        backdrop = inverse < 0.5 ? darkBackdrop : lightBackdrop;
+      }
 
       const documentStyle = document.getElementsByTagName('html')[0].style;
       const themeBackground = documentStyle.getPropertyValue('--theme-background');

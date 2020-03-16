@@ -52,8 +52,6 @@ a:hover {
   overflow: hidden;
 }
 
-/** Header **/
-
 .header {
   position: fixed;
   top: 0;
@@ -87,60 +85,7 @@ a:hover {
   );
 }
 
-.header-menu-links a {
-  border-radius: 10px;
-  padding: 0 5px;
-  border-width: 1px;
-  border-bottom-style: solid;
-  margin: 0 5% 0 0;
-  -webkit-animation: color 1s; /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: color 1s; /* Firefox < 16 */
-  -ms-animation: color 1s; /* Internet Explorer */
-  -o-animation: color 1s; /* Opera < 12.1 */
-  animation: color 1s;
-}
-
-.header-menu-links a:hover {
-  color: var(--theme-accent) !important;
-}
-
 @media screen {
-  .header-title {
-    font-size: calc(24px + 24 * ((100vw - 320px) / 680));
-  }
-  .header-subtitle {
-    font-size: calc(16px + 4 * ((100vw - 320px) / 680));
-  }
-  #homeicon {
-    height: calc(32px + 18 * ((100vw - 320px) / 680));
-    width: calc(32px + 18 * ((100vw - 320px) / 680));
-  }
-  #homeicon:active,
-  #homeicon:hover {
-    -webkit-animation: spin 4s linear infinite; /* Safari, Chrome and Opera > 12.1 */
-    -moz-animation: spin 4s linear infinite; /* Firefox < 16 */
-    -ms-animation: spin 4s linear infinite; /* Internet Explorer */
-    -o-animation: spin 4s linear infinite; /* Opera < 12.1 */
-    animation: spin 4s linear infinite;
-  }
-  .header-menu-border {
-    visibility: collapse;
-  }
-  .header-menu-links {
-    font-size: 3vw;
-  }
-  .header-title-backlight {
-    background-image: -webkit-radial-gradient(
-      var(--theme-background),
-      var(--theme-background-alpha) 50%
-    );
-    background-image: radial-gradient(
-      var(--theme-background),
-      var(--theme-background-alpha) 50%
-    );
-    background-position: -50px -10px;
-    background-repeat: no-repeat;
-  }
   .parallax-creativityIntro {
     background-size: 1px 100vh;
     background-image: url("./assets/images/violetGradient.png");
@@ -193,21 +138,6 @@ a:hover {
 }
 
 @media screen and (min-width: 770px) {
-  .header-menu-border {
-    visibility: visible;
-  }
-  .header-title-backlight {
-    background-image: -webkit-radial-gradient(
-      var(--theme-background),
-      var(--theme-background-alpha) 70%
-    );
-    background-image: radial-gradient(
-      var(--theme-background),
-      var(--theme-background-alpha) 70%
-    );
-    background-position: 0px -10px;
-    background-repeat: no-repeat;
-  }
   .parallax-creativityIntro {
     background: -webkit-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet);
     background: -moz-linear-gradient(bottom, #303030, #1798d2, blueviolet);
@@ -270,19 +200,6 @@ a:hover {
 }
 
 @media screen and (min-width: 1024px) {
-  .header-title {
-    font-size: 48px;
-  }
-  .header-subtitle {
-    font-size: 20px;
-  }
-  #homeicon {
-    height: 50px;
-    width: 50px;
-  }
-  .header-menu-links {
-    font-size: 32px;
-  }
   .skill-section {
     font-size: 21px;
   }
@@ -433,7 +350,7 @@ a:hover {
   margin: 0 auto 22px auto;
   height: 10px;
   width: 20%;
-  opacity: 0.5;
+  opacity: 0.7;
   -webkit-transition: width 2s ease-in-out; /* For Safari 3.0 to 6.0 */
   -moz-transition: width 2s ease-in-out; /* Firefox < 16 */
   -o-transition: width 2s ease-in-out; /* Opera < 12.1 */
