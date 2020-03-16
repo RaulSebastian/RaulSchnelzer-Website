@@ -1,5 +1,6 @@
 .contact {
   line-height: 32px;
+  color: var(--theme-font-color);
 }
 @media screen {
   .contact {

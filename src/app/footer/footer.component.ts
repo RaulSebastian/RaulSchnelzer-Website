@@ -9,9 +9,8 @@ import { version } from '../../../package.json';
 export class FooterComponent implements OnInit {
 
   startYear = 2019;
-  currentYear = new Date().getFullYear();
+  currentYear = new Date().getFullYear().toString();
   version: { major: any; minor: any; patch: any; };
-  copyrightPeriod = this.currentYear === this.startYear ? this.startYear : `${this.startYear} - ${this.currentYear}`;
 
   constructor() {
   }

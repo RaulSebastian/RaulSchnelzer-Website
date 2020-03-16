@@ -51,15 +51,21 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   creativityOutro = {
     fontSize: 10,
     padding: 'padding:30vh 0 0 0',
-    opacity: 1
+    opacity: 1,
+    backgroundAlpha: 1
   };
   menuIcon = 'menu';
-  themeIcon = 'wb_sunny';
-  themeIconTopMargin = 10;
+  themeIcon = {
+    icon: 'wb_sunny',
+    topMargin: 10,
+    display: 'visible'
+  };
   themeState = new ThemeState(Themes.Light);
   themeTransitionTimer: any;
 
   classes = {
+    header: 'header',
+    headerBacklight: false,
     legal: 'legal fade',
     logo: '',
     privacy: 'legal collapsed',
@@ -97,6 +103,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   certificates = Certificates.Acquired;
   skillsets = SkillSets.Categories;
 
+  @ViewChild('contentArea', { static: false }) contentArea: ElementRef;
   @ViewChild('landingPage', { static: false }) landingPage: ElementRef;
   @ViewChild('aboutAnchor', { static: false }) aboutAnchor: ElementRef;
   @ViewChild('skillsAnchor', { static: false }) skillsAnchor: ElementRef;
@@ -149,6 +156,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       'IntersectionObserver' in this.window &&
       'IntersectionObserverEntry' in this.window
     ) {
+      this.observeContentArea();
       this.observeUpArrowVisibility();
       this.observerHeaderOverlay();
       this.observeCreativityIntro();
@@ -156,6 +164,26 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       // TODO: fallback
     }
+  }
+
+  private observeContentArea() {
+    const observerOptions = {
+      threshold: this.percentualTthreshold
+    };
+    const sectionObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.intersectionRatio > 0.1) {
+          this.classes.header = 'header header-gradient';
+          this.classes.headerBacklight = true;
+          this.creativityOutro.backgroundAlpha = Math.min((0.2 - entry.intersectionRatio) * 5, 1);
+        } else {
+          this.classes.header = 'header';
+          this.classes.headerBacklight = false;
+          this.creativityOutro.backgroundAlpha = 1;
+        }
+      }
+    }, observerOptions);
+    sectionObserver.observe(this.contentArea.nativeElement);
   }
 
   private observerHeaderOverlay() {
@@ -169,13 +197,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
           this.overlayHeight = Math.min((entry.intersectionRatio) * 80, 80);
           // adjust menu items separator height
           this.headerSeparatorHeight = Math.max(Math.min((entry.intersectionRatio) * 24, 24), 6);
-          this.themeIconTopMargin = 10 + (25 * entry.intersectionRatio);
+          this.themeIcon.topMargin = 10 + (25 * entry.intersectionRatio);
         } else {
           // hide header
           this.overlayHeight = 0;
           // min menu items separator height
           this.headerSeparatorHeight = 6;
-          this.themeIconTopMargin = 10;
+          this.themeIcon.topMargin = 10;
         }
       }
     }, observerOptions);
@@ -351,7 +379,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       return;
     }
     this.themeState.IsInTransition = true;
-    this.themeIcon = this.themeState.Theme === Themes.Light ? 'nights_stay' : 'wb_sunny';
+    this.themeIcon.icon = this.themeState.Theme === Themes.Light ? 'nights_stay' : 'wb_sunny';
     this.themeTransition();
   }
 
@@ -369,8 +397,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     let sectionHighlight: string;
     let sectionCorner: string;
 
-    const darkBackdrop = '#202020f0';
+    const darkBackdrop = '#202020f9';
     const lightBackdrop = '#ffffffef';
+
+    function hex(decimal: number): string {
+      let num = Math.round(decimal);
+      num = num < 0 ? 0 : num > 255 ? 255 : num;
+      return num.toString(16);
+    }
 
     function transition() {
       const degree = themeState.Degree;
@@ -381,6 +415,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         foreground = '#454545';
         accent = '#8133e1';
         inversion = '0%';
+        sectionBackgroud = '#cccccc';
+        sectionHighlight = '#ffffff';
+        sectionCorner = '#dedede';
       } else if (degree >= 1) {
         background = 'black';
         backgroundAlpha = '#00000000';
@@ -388,6 +425,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         foreground = 'white';
         accent = '#00ffbf';
         inversion = '100%';
+        sectionBackgroud = '#222222';
+        sectionHighlight = '#535353';
+        sectionCorner = '#373737';
       } else {
         foreground = degree >= 0.31 && degree < 0.33
           ? 'rgb(107,107,107)'
@@ -400,9 +440,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         inversion = `${Math.round(degree * 100)}%`;
         const inverse = 1 - degree;
         background = `rgb(${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, ${Math.round(inverse * 255)})`;
-        backgroundAlpha = `argb(${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, 0)`;
-        sectionBackgroud = `rgb(${Math.round(inverse * 170) + 34}, ${Math.round(inverse * 170) + 34}, ${Math.round(inverse * 170) + 34})`;
-        sectionHighlight = `rgb(${Math.round(inverse * 172) + 83}, ${Math.round(inverse * 172) + 83}, ${Math.round(inverse * 172) + 83})`;
+        backgroundAlpha = `#${hex(inverse * 255)}${hex(inverse * 255)}${hex(inverse * 255)}00`;
+        sectionBackgroud = `#${hex(inverse * 170 + 34)}${hex(inverse * 170 + 34)}${hex(inverse * 170 + 34)}`;
+        sectionHighlight = `#${hex(inverse * 172 + 83)}${hex(inverse * 172 + 83)}${hex(inverse * 172 + 83)}`;
         sectionCorner = `rgb(${Math.round(inverse * 167) + 55}, ${Math.round(inverse * 167) + 55}, ${Math.round(inverse * 167) + 55})`;
         backdrop = inverse < 0.5 ? darkBackdrop : lightBackdrop;
       }
@@ -464,7 +504,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         setTimeout(() => { recurvise(--retriesLeft); }, 250);
       }
     };
-    recurvise(3);
+    recurvise(4);
   }
 
   private smoothScrollTo(offsetPosition: number): void {
@@ -488,11 +528,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private showLegal(): void {
     this.isLegalOpen = true;
     this.classes.legal = 'legal fadein';
+    this.themeIcon.display = 'none';
   }
 
   private showPrivacy(): void {
     this.isPrivacyOpen = true;
     this.classes.privacy = 'privacy fadein';
+    this.themeIcon.display = 'none';
   }
 
   private hideNavMenu(): void {
@@ -505,10 +547,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private hideLegal(): void {
     this.classes.legal = 'legal collapsed';
     this.isLegalOpen = false;
+    this.themeIcon.display = 'inherit';
   }
 
   private hidePrivacy(): void {
     this.classes.legal = 'privacy collapsed';
     this.isPrivacyOpen = false;
+    this.themeIcon.display = 'inherit';
   }
 }
