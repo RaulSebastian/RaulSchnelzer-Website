@@ -7,6 +7,10 @@
 
 ---
 
+> production slot: [raulschnelzer.de](https://raulschnelzer.de)
+>
+> preview slot: [preview.raulschnelzer.de](https://preview.raulschnelzer.de)
+
 **Hosted on**
 
 [![Azure](/docs/assets/azure_logo.png)](https://azure.microsoft.com/)
