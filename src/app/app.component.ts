@@ -9,6 +9,7 @@ import { SkillSets } from './services/skillsets';
 import { Certificates } from './services/certificates';
 import { OfferedServices } from './services/offeredServices';
 import { NavigationEnd } from '@angular/router';
+import { ThemeState, Themes } from './services/ThemeState';
 
 @Component({
   selector: 'app-root',
@@ -52,7 +53,12 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     padding: 'padding:30vh 0 0 0',
     opacity: 1
   };
-  menuState = 'menu';
+  menuIcon = 'menu';
+  themeIcon = 'wb_sunny';
+  themeIconTopMargin = 10;
+  themeState = new ThemeState(Themes.Light);
+  themeTransitionTimer: any;
+
   classes = {
     legal: 'legal fade',
     logo: '',
@@ -163,11 +169,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
           this.overlayHeight = Math.min((entry.intersectionRatio) * 80, 80);
           // adjust menu items separator height
           this.headerSeparatorHeight = Math.max(Math.min((entry.intersectionRatio) * 24, 24), 6);
+          this.themeIconTopMargin = 10 + (25 * entry.intersectionRatio);
         } else {
           // hide header
           this.overlayHeight = 0;
           // min menu items separator height
           this.headerSeparatorHeight = 6;
+          this.themeIconTopMargin = 10;
         }
       }
     }, observerOptions);
@@ -338,6 +346,81 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  public switchTheme(): void {
+    if (this.themeState.IsInTransition) {
+      return;
+    }
+    this.themeState.IsInTransition = true;
+    this.themeIcon = this.themeState.Theme === Themes.Light ? 'nights_stay' : 'wb_sunny';
+    this.themeTransition();
+  }
+
+  private themeTransition(): void {
+
+    const themeState = this.themeState;
+
+    let foreground: string;
+    let background: string;
+    let backgroundAlpha: string;
+    let backdrop: string;
+    let accent: string;
+    let inversion: string;
+    let sectionBackgroud: string;
+    let sectionHighlight: string;
+    let sectionCorner: string;
+
+    const darkBackdrop = '#202020f0';
+    const lighBackdrop = '#ffffffef';
+
+    function transition() {
+      const degree = themeState.Degree;
+      foreground = degree >= 0.31 && degree < 0.33
+        ? 'rgb(107,107,107)'
+        : degree >= 0.33 && degree < 0.34
+          ? 'rgb(117,117,117)'
+          : degree >= 0.34 && degree < 0.36
+            ? 'rgb(177,177,177)'
+            : `rgb(${Math.round(degree * 255) + 69}, ${Math.round(degree * 255) + 69}, ${Math.round(degree * 255) + 69})`;
+      accent = `hsl(267 - ${Math.round(degree * 102)}, ${74 + Math.round(degree * 26)}), 54%)`;
+      inversion = `${Math.round(degree * 100)}%`;
+      const inverse = 1 - degree;
+      background = `rgb(${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, ${Math.round(inverse * 255)})`;
+      backgroundAlpha = `argb(${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, 0)`;
+      sectionBackgroud = `rgb(${Math.round(inverse * 170) + 34}, ${Math.round(inverse * 170) + 34}, ${Math.round(inverse * 170) + 34})`;
+      sectionHighlight = `rgb(${Math.round(inverse * 172) + 83}, ${Math.round(inverse * 172) + 83}, ${Math.round(inverse * 172) + 83})`;
+      sectionCorner = `rgb(${Math.round(inverse * 167) + 55}, ${Math.round(inverse * 167) + 55}, ${Math.round(inverse * 167) + 55})`;
+      backdrop = inverse < 0.5 ? darkBackdrop : lighBackdrop;
+
+      const documentStyle = document.getElementsByTagName('html')[0].style;
+      const themeBackground = documentStyle.getPropertyValue('--theme-background');
+      const themeForeground = documentStyle.getPropertyValue('--theme-font-color');
+      if (themeBackground !== background) {
+        documentStyle.setProperty('--theme-background', background);
+        documentStyle.setProperty('--theme-background-alpha', backgroundAlpha);
+        documentStyle.setProperty('--theme-text-backdrop', backdrop);
+      }
+      if (themeForeground !== foreground) {
+        documentStyle.setProperty('--theme-font-color', foreground);
+        documentStyle.setProperty('--theme-accent', accent);
+      }
+      documentStyle.setProperty('--theme-color-inversion', inversion);
+      documentStyle.setProperty('--theme-section-background', sectionBackgroud);
+      documentStyle.setProperty('--theme-section-highlight', sectionHighlight);
+      documentStyle.setProperty('--theme-section-corner', sectionCorner);
+
+      if (!themeState.IsInTransition) {
+        clearInterval(themeTransitionTimer);
+        return;
+      }
+      themeState.Degree = themeState.Theme === Themes.Light ? degree + 0.02 : degree - 0.02;
+    }
+
+    const themeTransitionTimer = setInterval(transition, 50);
+    setTimeout(() => {
+      this.themeState = themeState;
+    }, 52 * 50);
+  }
+
   public closeLegal(): void {
     this.hideLegal();
   }
@@ -382,7 +465,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private showNavMenu(): void {
     if (!this.isNavOpen()) {
       this.classes.nav = this.classes.nav.replace('nav-out', 'nav-in');
-      this.menuState = 'menu_open';
+      this.menuIcon = 'menu_open';
     }
   }
 
@@ -399,7 +482,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private hideNavMenu(): void {
     if (this.isNavOpen()) {
       this.classes.nav = this.classes.nav.replace('nav-in', 'nav-out');
-      this.menuState = 'menu';
+      this.menuIcon = 'menu';
     }
   }
 

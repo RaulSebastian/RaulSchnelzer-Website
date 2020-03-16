@@ -62,29 +62,38 @@
   padding-bottom: 20px;
 }
 
-.section-top-corner {
+.section-top-corner,
+.section-bottom-corner {
   position: absolute;
+  fill: var(--theme-section-corner);
+  overflow: hidden;
+}
+
+.section-top-corner {
   top: 0px;
   left: 0px;
   width: 20px;
   height: 20px;
-  fill: #dedede;
-  overflow: hidden;
 }
 
 .section-bottom-corner {
-  position: absolute;
-  bottom: 0px;
-  right: 0px;
+  bottom: 0;
+  right: 0;
   width: 15px;
   height: 15px;
-  fill: #dedede;
-  overflow: hidden;
 }
 
 .section-content {
-  background: -webkit-radial-gradient(top right, white 5%, #cccccc);
-  background: radial-gradient(at top right, white 5%, #cccccc);
+  background: -webkit-radial-gradient(
+    top right,
+    var(--theme-section-highlight) 5%,
+    var(--theme-section-background)
+  );
+  background: radial-gradient(
+    at top right,
+    var(--theme-section-highlight) 5%,
+    var(--theme-section-background)
+  );
   height: max-content;
   position: relative;
   top: 20px;

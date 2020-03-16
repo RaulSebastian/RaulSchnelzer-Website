@@ -7,6 +7,9 @@
   --theme-color-inversion: 0%;
   --theme-menu-background-from: #00ffbf;
   --theme-menu-background-to: blueviolet;
+  --theme-section-background: rgb(204, 204, 204);
+  --theme-section-highlight: rgb(255, 255, 255);
+  --theme-section-corner: rgb(222, 222, 222);
 }
 
 html,
@@ -156,6 +159,7 @@ a:hover {
   }
   .default-section-content {
     font-size: 19px;
+    color: var(--theme-font-color);
   }
   .skill-section {
     font-size: 19px;
@@ -311,32 +315,34 @@ a:hover {
 .nav-button-wrapper {
   position: fixed;
   z-index: 5;
-  top: 20px;
+  top: 10px;
   right: 5vw;
   padding: 0;
   margin: 0;
+  width: 45px;
+}
+.nav-button {
+  border-style: none;
+  border-width: 0px;
   background: var(--theme-text-backdrop);
   border-radius: 50%;
   box-shadow: -2px 2px 4px #88888866;
   overflow: hidden;
-  opacity: 0.66;
-}
-.nav-button-wrapper:hover {
-  box-shadow: -2px 2px 4px #88888866;
-  opacity: 0.75;
-}
-.nav-button-wrapper:active {
-  box-shadow: none;
-}
-.nav-button {
-  width: 40px;
-  height: 40px;
-  background: transparent;
-  border-style: none;
-  border-width: 0px;
   cursor: pointer;
 }
-.nav-button i {
+.nav-button-menu {
+  width: 45px;
+  height: 45px;
+}
+.nav-button-theme {
+  margin: 30px 0 0 2.5px;
+  width: 40px;
+  height: 40px;
+}
+.nav-button:hover {
+  box-shadow: -2px 2px 4px #88888866;
+}
+.nav-button em {
   color: var(--theme-font-color);
   font-size: 24px;
   font-style: normal;
@@ -440,6 +446,7 @@ a:hover {
 }
 
 .skill {
+  color: black;
   background-color: white;
   border-radius: 8px;
   margin-right: 12px;
@@ -537,8 +544,12 @@ a:hover {
   margin: 10px;
   width: auto;
 }
+.cert-name {
+  color: black;
+}
 .cert-details {
   float: right;
+  color: black;
 }
 .cert-info {
   margin: 0 10px 0 0 !important;

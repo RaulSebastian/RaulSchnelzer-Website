@@ -28,8 +28,13 @@
 
 <!-- navigation menu -->
 <div class="nav-button-wrapper">
-  <button class="nav-button" (click)="navButtonPressed()">
-    <em class="material-icons middle">{{ menuState }}</em>
+  <button class="nav-button nav-button-menu" (click)="navButtonPressed()">
+    <em class="material-icons middle">{{ menuIcon }}</em>
+  </button>
+  <button class="nav-button nav-button-theme"
+  [style.margin-top.px]="themeIconTopMargin"
+  (click)="switchTheme()">
+    <em class="material-icons middle">{{ themeIcon }}</em>
   </button>
 </div>
 <div [class]="classes.nav">
