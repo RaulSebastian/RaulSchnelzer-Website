@@ -492,7 +492,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.navigating) {
       return;
     }
-    const recurvise = (retriesLeft: number) => {
+    const recurviseScroll = (retriesLeft: number) => {
       const offsetPosition = target.offsetTop + offset;
       if (Math.abs(this.window.pageYOffset - offsetPosition) > 100) {
         this.smoothScrollTo(offsetPosition);
@@ -500,10 +500,10 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         return;
       }
       if (retriesLeft > 0) {
-        setTimeout(() => { recurvise(--retriesLeft); }, 250);
+        setTimeout(() => { recurviseScroll(--retriesLeft); }, 250);
       }
     };
-    recurvise(4);
+    recurviseScroll(3);
   }
 
   private smoothScrollTo(offsetPosition: number): void {
