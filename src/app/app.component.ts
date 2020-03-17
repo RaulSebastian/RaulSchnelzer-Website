@@ -238,7 +238,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private observeCreativityOutro() {
     const observerOptions = {
-      rootMargin: '0px 0px 0px 0px',
       threshold: this.promileTthreshold
     };
     const sectionObserver = new IntersectionObserver(entries => {
@@ -495,7 +494,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     }
     const recurvise = (retriesLeft: number) => {
       const offsetPosition = target.offsetTop + offset;
-      if (Math.abs(this.window.pageYOffset - offsetPosition) > 50) {
+      if (Math.abs(this.window.pageYOffset - offsetPosition) > 100) {
         this.smoothScrollTo(offsetPosition);
       } else {
         return;

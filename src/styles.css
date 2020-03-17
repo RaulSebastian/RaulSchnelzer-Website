@@ -251,6 +251,11 @@ a:hover {
   overflow: hidden;
   cursor: pointer;
 }
+.nav-button:focus {
+  /** remove active button border **/
+  outline: none !important;
+  box-shadow: none !important;
+}
 .nav-button-menu {
   width: 45px;
   height: 45px;
