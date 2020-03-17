@@ -24,3 +24,7 @@
   color: var(--theme-accent);
   margin-left: 10px;
 }
+
+.contactlink:hover {
+  filter: drop-shadow(10px 10px 3px var(--theme-accent-shadow));
+}

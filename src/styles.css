@@ -2,9 +2,12 @@
   --theme-background: white;
   --theme-background-alpha: #ffffff00;
   --theme-accent: #8133e1;
+  --theme-accent-glow: #b761ff;
+  --theme-accent-shadow: #4444dd;
   --theme-font-color: #454545;
   --theme-text-backdrop: #fffffff5;
   --theme-color-inversion: 0%;
+  --theme-color-rotate: 45deg;
   --theme-menu-background-from: #00ffbf;
   --theme-menu-background-to: blueviolet;
   --theme-section-background: #cccccc;
@@ -24,16 +27,18 @@ body {
 
 a {
   color: var(--theme-font-color);
+  filter: none;
   font-style: normal;
   text-decoration: solid;
-  -webkit-transition: color 1s; /* For Safari 3.0 to 6.0 */
-  -moz-transition: color 1s; /* Firefox < 16 */
-  -o-transition: color 1s; /* Opera < 12.1 */
-  transition: color 1s; /* For modern browsers */
+  -webkit-transition: color 1s, filter 1s; /* For Safari 3.0 to 6.0 */
+  -moz-transition: color 1s, filter 1s; /* Firefox < 16 */
+  -o-transition: color 1s, filter 1s; /* Opera < 12.1 */
+  transition: color 1s, filter 1s; /* For modern browsers */
 }
 
 a:hover {
   color: var(--theme-accent);
+  filter: drop-shadow(0px 0px 0.5rem var(--theme-accent-glow));
 }
 
 .anchor {
@@ -477,6 +482,10 @@ a:hover {
   float: right;
   color: black;
 }
+.cert-details a:hover {
+  color: blueviolet;
+  filter: drop-shadow(10px 10px 4px #4444dd);
+}
 .cert-info {
   margin: 0 10px 0 0 !important;
 }
@@ -589,6 +598,10 @@ a:hover {
 
 .reinverted {
   filter: invert(calc(100% - var(--theme-color-inversion)));
+}
+
+.hue-rotate {
+  filter: hue-rotate(var(--theme-color-rotate));
 }
 
 .up {

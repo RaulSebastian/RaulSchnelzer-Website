@@ -46,13 +46,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   creativityIntro = {
     fontSize: 12,
     padding: 'padding:50vh 0 0 0',
-    opacity: 1
+    opacity: 1,
+    display: 'inherit'
   };
   creativityOutro = {
     fontSize: 10,
     padding: 'padding:30vh 0 0 0',
     opacity: 1,
-    backgroundAlpha: 1
+    backgroundAlpha: 1,
+    display: 'inherit'
   };
   menuIcon = 'menu';
   themeIcon = {
@@ -212,7 +214,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private observeCreativityIntro() {
     const observerOptions = {
-      rootMargin: '0px 0px 0px 0px',
       threshold: this.promileTthreshold
     };
     const sectionObserver = new IntersectionObserver(entries => {
@@ -223,13 +224,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
             : entry.intersectionRatio * 12;
           const padding = (1 - entry.intersectionRatio)
             * (entry.boundingClientRect.y > 0 ? 80 : 150) + 20;
-          const alpha = entry.boundingClientRect.y > 0 ? 1
-            : entry.intersectionRatio - 0.2;
+          const alpha = Math.max(entry.boundingClientRect.y > 0 ? 1
+            : entry.intersectionRatio - 0.2, 0);
+          const display = entry.intersectionRatio <= 0.1 ? 'none' : 'inherit';
 
           // adjust intro style
           this.creativityIntro.fontSize = size;
           this.creativityIntro.padding = `${padding}vh 0 0 0`;
           this.creativityIntro.opacity = alpha;
+          this.creativityIntro.display = display;
         }
       }
     }, observerOptions);
@@ -250,11 +253,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
             * (entry.boundingClientRect.y > 0 ? 80 : 250) + 20;
           const alpha = entry.boundingClientRect.y > 0 ? 1
             : entry.intersectionRatio;
+          const display = entry.intersectionRatio <= 0.2 ? 'none' : 'inherit';
 
           // adjust intro style
           this.creativityOutro.fontSize = size;
           this.creativityOutro.padding = `${padding}vh 0 0 0`;
           this.creativityOutro.opacity = alpha;
+          this.creativityOutro.display = display;
         }
       }
     }, observerOptions);
@@ -395,6 +400,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     let sectionBackgroud: string;
     let sectionHighlight: string;
     let sectionCorner: string;
+    let glow: string;
+    let shadow: string;
+    let rotate: string;
 
     const darkBackdrop = '#202020f9';
     const lightBackdrop = '#ffffffef';
@@ -417,6 +425,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         sectionBackgroud = '#cccccc';
         sectionHighlight = '#ffffff';
         sectionCorner = '#dedede';
+        glow = '#b761ff';
+        shadow = '#4444dd';
+        rotate = '45deg';
       } else if (degree >= 1) {
         background = 'black';
         backgroundAlpha = '#00000000';
@@ -427,6 +438,9 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         sectionBackgroud = '#222222';
         sectionHighlight = '#535353';
         sectionCorner = '#373737';
+        glow = '#76cce2';
+        shadow = '#169295';
+        rotate = '0deg';
       } else {
         foreground = degree >= 0.31 && degree < 0.33
           ? 'rgb(107,107,107)'
@@ -443,6 +457,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         sectionBackgroud = `#${hex(inverse * 170 + 34)}${hex(inverse * 170 + 34)}${hex(inverse * 170 + 34)}`;
         sectionHighlight = `#${hex(inverse * 172 + 83)}${hex(inverse * 172 + 83)}${hex(inverse * 172 + 83)}`;
         sectionCorner = `rgb(${Math.round(inverse * 167) + 55}, ${Math.round(inverse * 167) + 55}, ${Math.round(inverse * 167) + 55})`;
+        rotate = `${Math.round(inverse * 45)}deg`;
         backdrop = inverse < 0.5 ? darkBackdrop : lightBackdrop;
       }
 
@@ -462,6 +477,14 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       documentStyle.setProperty('--theme-section-background', sectionBackgroud);
       documentStyle.setProperty('--theme-section-highlight', sectionHighlight);
       documentStyle.setProperty('--theme-section-corner', sectionCorner);
+
+      if (glow) {
+        documentStyle.setProperty('--theme-accent-glow', glow);
+      }
+      if (shadow) {
+        documentStyle.setProperty('--theme-accent-shadow', shadow);
+      }
+      documentStyle.setProperty('--theme-color-rotate', rotate);
 
       if (!themeState.IsInTransition) {
         clearInterval(themeTransitionTimer);

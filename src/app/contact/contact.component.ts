@@ -29,7 +29,7 @@ export class ContactComponent implements OnInit {
     {
       source: 'LinkedIn',
       image: '../../assets/LinkedInIcon.png',
-      class: 'contact-icon reinverted',
+      class: 'contact-icon hue-rotate',
       size: '10vmin',
       link: 'https://linkedin.com/in/raul-schnelzer'
     },
