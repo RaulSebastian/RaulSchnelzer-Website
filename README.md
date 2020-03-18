@@ -28,11 +28,11 @@
 
 ## Additional Info
 
-**Hosted on**
+### Hosted on
 
 [![Azure](/docs/assets/azure_logo.png)](https://azure.microsoft.com/)
 
-**Made with**
+### Made with
 
 [![angular logo](https://angular.io/assets/images/logos/angular/logo-nav@2x.png)](https://angular.io/)
 
