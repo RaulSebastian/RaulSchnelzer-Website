@@ -14,8 +14,6 @@
 >
 > preview slot: [preview.raulschnelzer.de](https://preview.raulschnelzer.de)
 
----
-
 **Backlog**
 
 [![Glo Board](/docs/assets/GitkrakenGloBoards.png)](https://app.gitkraken.com/glo/board/XmQ8LJf66wARrMgz)
@@ -27,5 +25,7 @@
 **Made with**
 
 [![angular logo](https://angular.io/assets/images/logos/angular/logo-nav@2x.png)](https://angular.io/)
+
+---
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=RaulSebastian_PersonalHomepage)
