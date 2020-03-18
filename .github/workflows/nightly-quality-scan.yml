@@ -1,0 +1,19 @@
+name: Nightly Quality Scan
+
+on:
+  schedule:
+  - cron: "0 0 * * *"
+    
+jobs:
+  sonarCloudTrigger:
+  
+    name: SonarCloud Trigger
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@develop
+    - name: SonarCloud Scan
+      uses: sonarsource/sonarcloud-github-action@develop
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

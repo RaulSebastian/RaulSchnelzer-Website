@@ -117,21 +117,11 @@
 .legal-mandatory {
   width: max-content !important;
   margin: 0 auto !important;
-  background: -webkit-linear-gradient(
-    bottom,
-    var(--theme-background-alpha) 70%,
-    #8400ff33
-  );
-  background: -moz-linear-gradient(
-    bottom,
-    var(--theme-background-alpha) 70%,
-    #8400ff33
-  );
-  background: -o-linear-gradient(
-    bottom,
-    var(--theme-background-alpha) 70%,
-    #8400ff33
-  );
+  background: -moz-linear-gradient(bottom, var(--theme-background-alpha) 70%, #8400ff33); /* FF3.6+ */
+  background: -webkit-gradient(bottom, var(--theme-background-alpha) 70%, #8400ff33); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(bottom, var(--theme-background-alpha) 70%, #8400ff33); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(bottom, var(--theme-background-alpha) 70%, #8400ff33); /* Opera 11.10+ */
+  background: -ms-linear-gradient(bottom, var(--theme-background-alpha) 70%, #8400ff33); /* IE10+ */
   background: linear-gradient(var(--theme-background-alpha) 70%, #8400ff33);
   border-radius: 24px;
 }

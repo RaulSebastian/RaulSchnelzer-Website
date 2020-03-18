@@ -60,18 +60,6 @@
   .header-menu-links {
     font-size: 3vw;
   }
-  .header-title-backlight {
-    background-image: -webkit-radial-gradient(
-      var(--theme-background),
-      var(--theme-background-alpha) 70%
-    );
-    background-image: radial-gradient(
-      var(--theme-background),
-      var(--theme-background-alpha) 70%
-    );
-    background-position: 0px -10px;
-    background-repeat: no-repeat;
-  }
 }
 @media screen and (min-width: 770px) {
   .header-title-border {
@@ -79,18 +67,6 @@
   }
   .header-menu-border {
     visibility: visible;
-  }
-  .header-title-backlight {
-    background-image: -webkit-radial-gradient(
-      var(--theme-background),
-      var(--theme-background-alpha) 70%
-    );
-    background-image: radial-gradient(
-      var(--theme-background),
-      var(--theme-background-alpha) 70%
-    );
-    background-position: 0px -10px;
-    background-repeat: no-repeat;
   }
 }
 @media screen and (min-width: 1024px) {
@@ -122,6 +98,17 @@
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-weight: lighter;
+}
+
+.header-title-backlight {
+  background-image: -moz-radial-gradient(var(--theme-background), var(--theme-background-alpha) 70%); /* FF3.6+ */
+  background-image: -webkit-radial-gradient(var(--theme-background), var(--theme-background-alpha) 70%); /* Chrome,Safari4+ */
+  background-image: -webkit-radial-gradient(var(--theme-background), var(--theme-background-alpha) 70%); /* Chrome10+,Safari5.1+ */
+  background-image: -o-radial-gradient(var(--theme-background), var(--theme-background-alpha) 70%); /* Opera 11.10+ */
+  background-image: -ms-radial-gradient(var(--theme-background), var(--theme-background-alpha) 70%); /* IE10+ */
+  background-image: radial-gradient(var(--theme-background), var(--theme-background-alpha) 70%);
+  background-position: 0px -10px;
+  background-repeat: no-repeat;
 }
 
 .header-subtitle {
