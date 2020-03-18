@@ -1,5 +1,4 @@
-<div class="anchor">
-</div>
+<div class="anchor"></div>
 
 <div class="section-title">
   <span class="section-title-tags"><</span>
@@ -17,9 +16,9 @@
   <div *ngIf="loaded" class="section-content-wrapper fluent-gradient">
     <div class="section-top-corner">
       <svg
-        width="20.5px"
-        height="20.5px"
-        viewBox="0 0 84 84"
+        width="100%"
+        height="100%"
+        viewBox="0 0 20 20"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -27,9 +26,9 @@
         xmlns:serif="http://www.serif.com/"
         style="stroke-linejoin:round;stroke-miterlimit:2;"
       >
-        <g id="Corner">
+        <g id="TopCorner">
           <path
-            d="M0,0c0,45.993 37.34,83.333 83.333,83.333l-83.333,0l0,-83.333Z"
+            d="M0,0.316c0,10.864 8.82,20.0 20.0,20.0l-20.0,0l0,-20.0Z"
           />
         </g>
       </svg>
@@ -38,7 +37,7 @@
       <svg
         width="100%"
         height="100%"
-        viewBox="0 0 84 84"
+        viewBox="0 0 15 15"
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         xmlns:xlink="http://www.w3.org/1999/xlink"
@@ -46,14 +45,14 @@
         xmlns:serif="http://www.serif.com/"
         style="stroke-linejoin:round;stroke-miterlimit:2;"
       >
-        <g id="Corner">
+        <g id="BottomCorner">
           <path
-            d="M0,0c0,45.993 37.34,83.333 83.333,83.333l-83.333,0l0,-83.333Z"
+            d="M0,0.237c0,8.148 6.615,15.0 15.0,15.0l-15.0,0l0,-15.0Z"
           />
         </g>
       </svg>
     </div>
-    <div class="section-content">
+    <div class="section-content" [style.overflow]="contentOverflow">
       <ng-content select="[content]"></ng-content>
     </div>
   </div>

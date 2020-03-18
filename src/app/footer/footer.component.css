@@ -9,6 +9,21 @@
     font-size: 3vw;
     line-height: 4vw;
   }
+  .startyear {
+    visibility: collapse;
+    display: none;
+  }
+}
+
+@media screen and (min-width: 500px) {
+  .startyear {
+    visibility: visible;
+    display: inherit;
+  }
+  .footer-left-text {
+    font-size: 20px;
+    line-height: 3vw;
+  }
 }
 
 @media screen and (min-width: 770px) {
@@ -68,7 +83,7 @@
 .footer-left-credits {
   width: 100%;
   position: absolute;
-  top: 50px;
+  top: 39px;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

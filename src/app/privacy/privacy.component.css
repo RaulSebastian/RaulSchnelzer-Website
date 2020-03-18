@@ -69,6 +69,7 @@
   height: 64px;
   max-width: 1000px;
   padding: 5px 0;
+  color: var(--theme-font-color);
   background-image: -webkit-gradient(
     linear,
     left top,

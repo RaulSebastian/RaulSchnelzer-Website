@@ -9,6 +9,7 @@ import { SkillSets } from './services/skillsets';
 import { Certificates } from './services/certificates';
 import { OfferedServices } from './services/offeredServices';
 import { NavigationEnd } from '@angular/router';
+import { ThemeState, Themes } from './services/ThemeState';
 
 @Component({
   selector: 'app-root',
@@ -30,7 +31,8 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('running ', adress, ' hosted on ', host);
 
     this.isProduction = adress.includes('raulschnelzer.de') && !adress.includes('preview');
-
+    this.contentLazyLoading = 'IntersectionObserver' in this.window &&
+      'IntersectionObserverEntry' in this.window;
   }
 
   title = 'Raul Schnelzer';
@@ -40,22 +42,32 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   privacyLastModified = new Date('2020-03-07');
 
   overlayHeight = 80;
-  overlayFontColor = 'white';
-  headerFontColor = 'var(--theme-font-color)';
-  overlayLogoSrc = 'assets/RS_logo_White400.png';
-  headerLogoSrc = 'assets/RS_logo_Solar400.png';
+  headerSeparatorHeight = 24;
   creativityIntro = {
     fontSize: 12,
     padding: 'padding:50vh 0 0 0',
-    opacity: 1
+    opacity: 1,
+    display: 'inherit'
   };
   creativityOutro = {
-    fontSize: 20,
+    fontSize: 10,
     padding: 'padding:30vh 0 0 0',
-    opacity: 1
+    opacity: 1,
+    backgroundAlpha: 1,
+    display: 'inherit'
   };
-  menuState = 'menu';
+  menuIcon = 'menu';
+  themeIcon = {
+    icon: 'wb_sunny',
+    topMargin: 10,
+    display: 'visible'
+  };
+  themeState = new ThemeState(Themes.Light);
+  themeTransitionTimer: any;
+
   classes = {
+    header: 'header',
+    headerBacklight: false,
     legal: 'legal fade',
     logo: '',
     privacy: 'legal collapsed',
@@ -93,6 +105,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   certificates = Certificates.Acquired;
   skillsets = SkillSets.Categories;
 
+  @ViewChild('contentArea', { static: false }) contentArea: ElementRef;
   @ViewChild('landingPage', { static: false }) landingPage: ElementRef;
   @ViewChild('aboutAnchor', { static: false }) aboutAnchor: ElementRef;
   @ViewChild('skillsAnchor', { static: false }) skillsAnchor: ElementRef;
@@ -102,6 +115,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild('intro', { static: false }) intro: ElementRef;
   @ViewChild('outro', { static: false }) outro: ElementRef;
 
+  contentLazyLoading: boolean;
   isLegalOpen = false;
   isPrivacyOpen = false;
 
@@ -144,6 +158,7 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
       'IntersectionObserver' in this.window &&
       'IntersectionObserverEntry' in this.window
     ) {
+      this.observeContentArea();
       this.observeUpArrowVisibility();
       this.observerHeaderOverlay();
       this.observeCreativityIntro();
@@ -151,6 +166,26 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     } else {
       // TODO: fallback
     }
+  }
+
+  private observeContentArea() {
+    const observerOptions = {
+      threshold: this.percentualTthreshold
+    };
+    const sectionObserver = new IntersectionObserver(entries => {
+      for (const entry of entries) {
+        if (entry.intersectionRatio > 0.1) {
+          this.classes.header = 'header header-gradient';
+          this.classes.headerBacklight = true;
+          this.creativityOutro.backgroundAlpha = Math.min((0.2 - entry.intersectionRatio) * 5, 1);
+        } else {
+          this.classes.header = 'header';
+          this.classes.headerBacklight = false;
+          this.creativityOutro.backgroundAlpha = 1;
+        }
+      }
+    }, observerOptions);
+    sectionObserver.observe(this.contentArea.nativeElement);
   }
 
   private observerHeaderOverlay() {
@@ -162,9 +197,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
         if (entry.intersectionRatio > 0) {
           // resize header
           this.overlayHeight = Math.min((entry.intersectionRatio) * 80, 80);
+          // adjust menu items separator height
+          this.headerSeparatorHeight = Math.max(Math.min((entry.intersectionRatio) * 24, 24), 6);
+          this.themeIcon.topMargin = 10 + (25 * entry.intersectionRatio);
         } else {
           // hide header
           this.overlayHeight = 0;
+          // min menu items separator height
+          this.headerSeparatorHeight = 6;
+          this.themeIcon.topMargin = 10;
         }
       }
     }, observerOptions);
@@ -173,7 +214,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private observeCreativityIntro() {
     const observerOptions = {
-      rootMargin: '0px 0px 0px 0px',
       threshold: this.promileTthreshold
     };
     const sectionObserver = new IntersectionObserver(entries => {
@@ -184,13 +224,15 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
             : entry.intersectionRatio * 12;
           const padding = (1 - entry.intersectionRatio)
             * (entry.boundingClientRect.y > 0 ? 80 : 150) + 20;
-          const alpha = entry.boundingClientRect.y > 0 ? 1
-            : entry.intersectionRatio - 0.2;
+          const alpha = Math.max(entry.boundingClientRect.y > 0 ? 1
+            : entry.intersectionRatio - 0.2, 0);
+          const display = entry.intersectionRatio <= 0.1 ? 'none' : 'inherit';
 
           // adjust intro style
           this.creativityIntro.fontSize = size;
           this.creativityIntro.padding = `${padding}vh 0 0 0`;
           this.creativityIntro.opacity = alpha;
+          this.creativityIntro.display = display;
         }
       }
     }, observerOptions);
@@ -199,7 +241,6 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private observeCreativityOutro() {
     const observerOptions = {
-      rootMargin: '0px 0px 0px 0px',
       threshold: this.promileTthreshold
     };
     const sectionObserver = new IntersectionObserver(entries => {
@@ -212,11 +253,13 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
             * (entry.boundingClientRect.y > 0 ? 80 : 250) + 20;
           const alpha = entry.boundingClientRect.y > 0 ? 1
             : entry.intersectionRatio;
+          const display = entry.intersectionRatio <= 0.2 ? 'none' : 'inherit';
 
           // adjust intro style
           this.creativityOutro.fontSize = size;
           this.creativityOutro.padding = `${padding}vh 0 0 0`;
           this.creativityOutro.opacity = alpha;
+          this.creativityOutro.display = display;
         }
       }
     }, observerOptions);
@@ -335,6 +378,127 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  public switchTheme(): void {
+    if (this.themeState.IsInTransition) {
+      return;
+    }
+    this.themeState.IsInTransition = true;
+    this.themeIcon.icon = this.themeState.Theme === Themes.Light ? 'nights_stay' : 'wb_sunny';
+    this.themeTransition();
+  }
+
+  private themeTransition(): void {
+
+    const themeState = this.themeState;
+
+    let foreground: string;
+    let background: string;
+    let backgroundAlpha: string;
+    let backdrop: string;
+    let accent: string;
+    let inversion: string;
+    let sectionBackgroud: string;
+    let sectionHighlight: string;
+    let sectionCorner: string;
+    let glow: string;
+    let shadow: string;
+    let rotate: string;
+
+    const darkBackdrop = '#202020f9';
+    const lightBackdrop = '#ffffffef';
+
+    function hex(decimal: number): string {
+      let num = Math.round(decimal);
+      num = num < 0 ? 0 : num > 255 ? 255 : num;
+      return num.toString(16);
+    }
+
+    function transition() {
+      const degree = themeState.Degree;
+      if (degree <= 0) {
+        background = 'white';
+        backgroundAlpha = '#ffffff00';
+        backdrop = lightBackdrop;
+        foreground = '#454545';
+        accent = '#8133e1';
+        inversion = '0%';
+        sectionBackgroud = '#cccccc';
+        sectionHighlight = '#ffffff';
+        sectionCorner = '#dedede';
+        glow = '#b761ff';
+        shadow = '#4444dd';
+        rotate = '45deg';
+      } else if (degree >= 1) {
+        background = 'black';
+        backgroundAlpha = '#00000000';
+        backdrop = darkBackdrop;
+        foreground = 'white';
+        accent = '#00ffbf';
+        inversion = '100%';
+        sectionBackgroud = '#222222';
+        sectionHighlight = '#535353';
+        sectionCorner = '#373737';
+        glow = '#76cce2';
+        shadow = '#169295';
+        rotate = '0deg';
+      } else {
+        foreground = degree >= 0.31 && degree < 0.33
+          ? 'rgb(107,107,107)'
+          : degree >= 0.33 && degree < 0.34
+            ? 'rgb(117,117,117)'
+            : degree >= 0.34 && degree < 0.36
+              ? 'rgb(177,177,177)'
+              : `rgb(${Math.round(degree * 255) + 69}, ${Math.round(degree * 255) + 69}, ${Math.round(degree * 255) + 69})`;
+        accent = `hsl(267 - ${Math.round(degree * 102)}, ${74 + Math.round(degree * 26)}), 54%)`;
+        inversion = `${Math.round(degree * 100)}%`;
+        const inverse = 1 - degree;
+        background = `rgb(${Math.round(inverse * 255)}, ${Math.round(inverse * 255)}, ${Math.round(inverse * 255)})`;
+        backgroundAlpha = `#${hex(inverse * 255)}${hex(inverse * 255)}${hex(inverse * 255)}00`;
+        sectionBackgroud = `#${hex(inverse * 170 + 34)}${hex(inverse * 170 + 34)}${hex(inverse * 170 + 34)}`;
+        sectionHighlight = `#${hex(inverse * 172 + 83)}${hex(inverse * 172 + 83)}${hex(inverse * 172 + 83)}`;
+        sectionCorner = `rgb(${Math.round(inverse * 167) + 55}, ${Math.round(inverse * 167) + 55}, ${Math.round(inverse * 167) + 55})`;
+        rotate = `${Math.round(inverse * 45)}deg`;
+        backdrop = inverse < 0.5 ? darkBackdrop : lightBackdrop;
+      }
+
+      const documentStyle = document.getElementsByTagName('html')[0].style;
+      const themeBackground = documentStyle.getPropertyValue('--theme-background');
+      const themeForeground = documentStyle.getPropertyValue('--theme-font-color');
+      if (themeBackground !== background) {
+        documentStyle.setProperty('--theme-background', background);
+        documentStyle.setProperty('--theme-background-alpha', backgroundAlpha);
+        documentStyle.setProperty('--theme-text-backdrop', backdrop);
+      }
+      if (themeForeground !== foreground) {
+        documentStyle.setProperty('--theme-font-color', foreground);
+        documentStyle.setProperty('--theme-accent', accent);
+      }
+      documentStyle.setProperty('--theme-color-inversion', inversion);
+      documentStyle.setProperty('--theme-section-background', sectionBackgroud);
+      documentStyle.setProperty('--theme-section-highlight', sectionHighlight);
+      documentStyle.setProperty('--theme-section-corner', sectionCorner);
+
+      if (glow) {
+        documentStyle.setProperty('--theme-accent-glow', glow);
+      }
+      if (shadow) {
+        documentStyle.setProperty('--theme-accent-shadow', shadow);
+      }
+      documentStyle.setProperty('--theme-color-rotate', rotate);
+
+      if (!themeState.IsInTransition) {
+        clearInterval(themeTransitionTimer);
+        return;
+      }
+      themeState.Degree = themeState.Theme === Themes.Light ? degree + 0.02 : degree - 0.02;
+    }
+
+    const themeTransitionTimer = setInterval(transition, 50);
+    setTimeout(() => {
+      this.themeState = themeState;
+    }, 52 * 50);
+  }
+
   public closeLegal(): void {
     this.hideLegal();
   }
@@ -351,18 +515,18 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
     if (this.navigating) {
       return;
     }
-    const recurvise = (retriesLeft: number) => {
+    const recurviseScroll = (retriesLeft: number) => {
       const offsetPosition = target.offsetTop + offset;
-      if (Math.abs(this.window.pageYOffset - offsetPosition) > 50) {
+      if (Math.abs(this.window.pageYOffset - offsetPosition) > 100) {
         this.smoothScrollTo(offsetPosition);
       } else {
         return;
       }
       if (retriesLeft > 0) {
-        setTimeout(() => { recurvise(--retriesLeft); }, 250);
+        setTimeout(() => { recurviseScroll(--retriesLeft); }, 250);
       }
     };
-    recurvise(3);
+    recurviseScroll(3);
   }
 
   private smoothScrollTo(offsetPosition: number): void {
@@ -379,34 +543,38 @@ export class AppComponent implements OnInit, AfterViewInit, OnDestroy {
   private showNavMenu(): void {
     if (!this.isNavOpen()) {
       this.classes.nav = this.classes.nav.replace('nav-out', 'nav-in');
-      this.menuState = 'menu_open';
+      this.menuIcon = 'menu_open';
     }
   }
 
   private showLegal(): void {
     this.isLegalOpen = true;
     this.classes.legal = 'legal fadein';
+    this.themeIcon.display = 'none';
   }
 
   private showPrivacy(): void {
     this.isPrivacyOpen = true;
     this.classes.privacy = 'privacy fadein';
+    this.themeIcon.display = 'none';
   }
 
   private hideNavMenu(): void {
     if (this.isNavOpen()) {
       this.classes.nav = this.classes.nav.replace('nav-in', 'nav-out');
-      this.menuState = 'menu';
+      this.menuIcon = 'menu';
     }
   }
 
   private hideLegal(): void {
     this.classes.legal = 'legal collapsed';
     this.isLegalOpen = false;
+    this.themeIcon.display = 'inherit';
   }
 
   private hidePrivacy(): void {
     this.classes.legal = 'privacy collapsed';
     this.isPrivacyOpen = false;
+    this.themeIcon.display = 'inherit';
   }
 }

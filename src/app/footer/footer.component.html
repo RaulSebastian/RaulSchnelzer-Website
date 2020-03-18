@@ -1,14 +1,14 @@
 <div class="footer">
   <div class="footer-left">
     <div class="footer-left-credits">
-      <span class="footer-left-text footer-left-indent">Created&nbsp;</span>
+      <span class="footer-left-text footer-left-indent">Made&nbsp;</span>
       <span class="footer-left-text">with</span>
       <a
         class="middle"
         href="https://github.com/angular/angular"
         target="_blank"
         rel="noreferrer noopener"
-        >
+      >
         <img
           class="angular-log"
           alt="Angular Logo"
@@ -19,16 +19,17 @@
   </div>
   <div class="footer-middle">
     <div class="footer-middle-content">
-      <a routerLink="/legal" routerLinkActive="active">Legal Notice</a>
-      <em class="material-icons" style="font-size:22px">more_vert</em>
       <a routerLink="/privacy" routerLinkActive="active">Privacy Policy</a>
+      <em class="material-icons" style="font-size:22px">more_vert</em>
+      <a routerLink="/legal" routerLinkActive="active">Legal Notice</a>
     </div>
   </div>
   <div class="footer-right">
     <div class="footer-right-copyright">
       <a>
         <span class="footer-right-copyright-brand">
-          © Raul Schnelzer {{ copyrightPeriod }}
+          © Raul Schnelzer <span class="startyear">{{ startYear }} -</span>
+          {{ currentYear }}
         </span>
       </a>
       <span style="background:none;"> All Rights Reserved</span>

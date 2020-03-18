@@ -71,6 +71,7 @@
   height: 64px;
   max-width: 1000px;
   padding: 5px 0;
+  color: var(--theme-font-color);
   background-image: -webkit-gradient(
     linear,
     left top,
@@ -84,16 +85,17 @@
     var(--theme-background-alpha)
   );
   background-image: -moz-linear-gradient(
-    to bottom,
+    bottom,
     var(--theme-text-backdrop) 25px,
     var(--theme-background-alpha)
   );
   background-image: -o-linear-gradient(
-    to bottom,
+    bottom,
     var(--theme-text-backdrop) 25px,
     var(--theme-background-alpha)
   );
   background-image: linear-gradient(
+    to bottom,
     var(--theme-text-backdrop) 25px,
     var(--theme-background-alpha)
   );

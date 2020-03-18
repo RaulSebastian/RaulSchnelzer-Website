@@ -32,7 +32,8 @@ import Typewriter from 't-writer.js';
 </div>
 
 <div class="header-menu-border">
-  <div class="header-menu-separator"></div>
+  <div class="header-menu-separator"
+    [style.height.px]="separatorHeight"></div>
   <div class="header-menu-links">
     <a *ngFor="let nav of navigationItems"
       [style.color]="fontColor"
@@ -60,6 +61,7 @@ export class HeaderComponent implements OnInit, AfterViewInit {
   @Input() logoClass = '';
   @Input() titlePrefix: string;
   @Input() titleSufix: string;
+  @Input() separatorHeight: 24;
   @Input() backlight = false;
   @Input() navigationItems: [];
 

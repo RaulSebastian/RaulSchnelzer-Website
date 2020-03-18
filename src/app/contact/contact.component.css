@@ -1,5 +1,6 @@
 .contact {
   line-height: 32px;
+  color: var(--theme-font-color);
 }
 @media screen {
   .contact {
@@ -15,9 +16,15 @@
 .contact-icon {
   margin-left: 5px;
   padding: 2px;
+  min-height: 32px;
+  max-height: 50px;
 }
 
 .contactlink {
   color: var(--theme-accent);
   margin-left: 10px;
+}
+
+.contactlink:hover {
+  filter: drop-shadow(10px 10px 3px var(--theme-accent-shadow));
 }

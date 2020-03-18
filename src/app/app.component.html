@@ -3,33 +3,72 @@
     [titlePrefix]="titlePrefix"
     [titleSufix]="titleSufix"
     [navigationItems]="navigationItems"
-    [fontColor]="overlayFontColor"
-    [logoSource]="overlayLogoSrc"
+    [separatorHeight]="headerSeparatorHeight"
+    [fontColor]="'white'"
+    [logoSource]="'assets/RS_logo_White400.png'"
     [logoClass]="classes.logo"
     #headerOverlay
   >
   </app-header>
 </div>
 
-<div class="header">
+<div [class]="classes.header">
   <app-header
     [titlePrefix]="titlePrefix"
     [titleSufix]="titleSufix"
     [navigationItems]="navigationItems"
-    [fontColor]="headerFontColor"
-    [logoSource]="headerLogoSrc"
+    [separatorHeight]="headerSeparatorHeight"
+    [fontColor]="'var(--theme-font-color)'"
+    [logoSource]="'assets/RS_logo_Solar400.png'"
     [logoClass]="classes.logo"
-    [backlight]="true"
+    [backlight]="classes.headerBacklight"
     #header
   ></app-header>
 </div>
 
+<!-- navigation slide toggle -->
+<div class="theme-switch-wrapper">
+  <em
+    class="material-icons theme-switch-icon moon-shadow middle"
+    [style.color]="
+      themeState.Theme === 1 ? 'var(--theme-accent)' : 'var(--theme-font-color)'
+    "
+    >nights_stay</em
+  >
+  <mat-slide-toggle
+    class="theme-switch middle"
+    color="Warm"
+    [checked]="themeState.Theme === 0"
+    [disabled]="themeState.IsInTransition"
+    (change)="switchTheme()"
+  >
+  </mat-slide-toggle>
+  <em
+    class="material-icons theme-switch-icon sun-shadow middle"
+    [style.color]="
+      themeState.Theme === 0 ? '#ffa700' : 'var(--theme-font-color)'
+    "
+    >wb_sunny</em
+  >
+</div>
+
 <!-- navigation menu -->
 <div class="nav-button-wrapper">
-  <button class="nav-button" (click)="navButtonPressed()">
-    <em class="material-icons middle">{{ menuState }}</em>
+  <!-- menu button -->
+  <button class="nav-button nav-button-menu" (click)="navButtonPressed()">
+    <em class="material-icons middle">{{ menuIcon }}</em>
+  </button>
+  <!-- theme button -->
+  <button
+    class="nav-button nav-button-theme"
+    [style.margin-top.px]="themeIcon.topMargin"
+    [style.display]="themeIcon.display"
+    (click)="switchTheme()"
+  >
+    <em class="material-icons middle">{{ themeIcon.icon }}</em>
   </button>
 </div>
+<!-- nav menu flyout -->
 <div [class]="classes.nav">
   <div class="nav-menu-header"></div>
   <div class="nav-menu-items">
@@ -63,147 +102,164 @@
 
 <!-- intro -->
 <div class="parallax-creativityIntro" #intro>
-  <div class="inspirational-text" 
-  [style.font-size.vw]="creativityIntro.fontSize"
-  [style.padding]="creativityIntro.padding"
-  [style.opacity]="creativityIntro.opacity">
+  <div
+    class="inspirational-text"
+    [style.font-size.vw]="creativityIntro.fontSize"
+    [style.padding]="creativityIntro.padding"
+    [style.opacity]="creativityIntro.opacity"
+    [style.display]="creativityIntro.display"
+  >
     Anything can be done without any creativity.
   </div>
 </div>
 <!-- outro -->
-<div class="parallax-creativityOutro" #outro>
-  <div class="inspirational-text" 
-  [style.font-size.vw]="creativityOutro.fontSize"
-  [style.padding]="creativityOutro.padding"
-  [style.opacity]="creativityOutro.opacity">
+<div
+  class="parallax-creativityOutro"
+  [style.opacity]="creativityOutro.backgroundAlpha"
+  #outro
+>
+  <div
+    class="inspirational-text"
+    [style.font-size.vw]="creativityOutro.fontSize"
+    [style.padding]="creativityOutro.padding"
+    [style.opacity]="creativityOutro.opacity"
+    [style.display]="creativityOutro.display"
+  >
     But with some creativity
     <br />
     everything can be done.
   </div>
 </div>
 
-<!-- about -->
-<div #aboutAnchor></div>
-<app-section
-  sectionId="about"
-  sectionTitle="Who I am"
-  link="/about"
-  [window]="window"
->
-  <div class="about-me-container" subtitle>
-    <img
-      class="about-me-image"
-      alt="raul schnelzer"
-      src="../assets/images/me.png"
-    />
-  </div>
-  <div class="default-section-content justify" content>
-    <p>Hi, I'm Raul!</p>
-    <p>
-      I am a creativity-driven and passionate developer who aspires towards
-      better software solutions. I thrive on challenge and constantly set goals
-      for myself to improve my knowledge, soft-skills, learning new
-      methodologies and technologies.
-    </p>
-    <p>
-      As such I read books (yes, the physical ones), use on-demand technology
-      courses, read blogs and am active on networks like StackOverflow.
-    </p>
-    <br />
-  </div>
-</app-section>
-
-<!-- skills -->
-<div #skillsAnchor></div>
-<app-section
-  sectionId="skills"
-  sectionTitle="Skills"
-  link="/skills"
-  [window]="window"
->
-  <div class="default-section-content" content>
-    <div *ngFor="let category of skillsets" class="skill-category">
-      <p class="nomargin">{{ category.name }}</p>
-      <div
-        class="skills-category-bar"
-        [style.background]="category.color"
-      ></div>
-      <div class="skill-section">
-        <span *ngFor="let skill of category.skills" class="skill">
-          {{ skill }}
-        </span>
-      </div>
-    </div>
-    <br />
-  </div>
-</app-section>
-
-<!-- certifications -->
-<div #certsAnchor></div>
-<app-section
-  sectionId="certifications"
-  sectionTitle="Certifications"
-  link="/certifications"
-  [window]="window"
->
-  <div class="default-section-content scrollable justify" content>
-    <div class="cert-wrapper" *ngFor="let certificate of certificates">
+<div #contentArea>
+  <!-- about -->
+  <div #aboutAnchor></div>
+  <app-section
+    sectionId="about"
+    sectionTitle="Who I am"
+    link="/about"
+    contentOverflow="hidden"
+    [lazyLoading]="contentLazyLoading"
+  >
+    <div class="about-me-container" subtitle>
       <img
-        src="{{ certificate.icon }}"
-        alt="certificate icon"
-        class="cert-icon"
+        class="about-me-image"
+        alt="raul schnelzer"
+        src="../assets/images/me.png"
       />
-      <div class="cert-details">
-        <a
-          class="cert-name"
-          href="{{ certificate.link }}"
-          rel="noreferrer noopener"
-          target="_blank"
-          >{{ certificate.name }}</a
-        >
-        <p class="cert-info">Issuer: {{ certificate.issuer }}</p>
-        <p class="cert-info">
-          Issued: {{ certificate.validFrom }} - {{ certificate.validUntil }}
-        </p>
-      </div>
     </div>
-    <p class="cert-hint">Ask me for further certifications.</p>
-  </div>
-</app-section>
+    <div class="default-section-content justify" content>
+      <p>Hi, I'm Raul!</p>
+      <p>
+        I am a creativity-driven and passionate developer who aspires towards
+        better software solutions. I thrive on challenge and constantly set
+        goals for myself to improve my knowledge, soft-skills, learning new
+        methodologies and technologies.
+      </p>
+      <p>
+        As such I read books (yes, the physical ones), use on-demand technology
+        courses, read blogs and am active on networks like StackOverflow.
+      </p>
+      <br />
+    </div>
+  </app-section>
 
-<!-- services -->
-<div #servicesAnchor></div>
-<app-section
-  sectionId="services"
-  sectionTitle="Services"
-  link="/services"
-  [window]="window"
->
-  <div class="default-section-content" content>
-    <ul>
-      <li *ngFor="let service of servicesOffered">
-        <p>{{ service.description }}</p>
-      </li>
-    </ul>
-    <br />
-  </div>
-</app-section>
+  <!-- skills -->
+  <div #skillsAnchor></div>
+  <app-section
+    sectionId="skills"
+    sectionTitle="Skills"
+    link="/skills"
+    contentOverflow="hidden"
+    [lazyLoading]="contentLazyLoading"
+  >
+    <div class="default-section-content" content>
+      <div *ngFor="let category of skillsets" class="skill-category">
+        <p class="nomargin">{{ category.name }}</p>
+        <div
+          class="skills-category-bar"
+          [style.background]="category.color"
+        ></div>
+        <div class="skill-section">
+          <span *ngFor="let skill of category.skills" class="skill">
+            {{ skill }}
+          </span>
+        </div>
+      </div>
+      <br />
+    </div>
+  </app-section>
 
-<!-- contact -->
-<div #contactAnchor></div>
-<app-section
-  sectionId="contact"
-  sectionTitle="Contact"
-  link="/contact"
-  [window]="window"
-  #contactAnchor
->
-  <div class="default-section-content" content>
-    <app-contact [contactOptions]="contactOptions"></app-contact>
-  </div>
-</app-section>
+  <!-- certifications -->
+  <div #certsAnchor></div>
+  <app-section
+    sectionId="certifications"
+    sectionTitle="Certifications"
+    link="/certifications"
+    contentOverflow="hidden"
+    [lazyLoading]="contentLazyLoading"
+  >
+    <div class="default-section-content justify" content>
+      <div class="cert-wrapper" *ngFor="let certificate of certificates">
+        <img
+          src="{{ certificate.icon }}"
+          alt="certificate icon"
+          class="cert-icon"
+        />
+        <div class="cert-details">
+          <a
+            class="cert-name"
+            href="{{ certificate.link }}"
+            rel="noreferrer noopener"
+            target="_blank"
+            >{{ certificate.name }}</a
+          >
+          <p class="cert-info">Issuer: {{ certificate.issuer }}</p>
+          <p class="cert-info">
+            Issued: {{ certificate.validFrom }} - {{ certificate.validUntil }}
+          </p>
+        </div>
+      </div>
+      <p class="cert-hint">Ask me for further certifications.</p>
+    </div>
+  </app-section>
 
-<div style="height:200px"></div>
+  <!-- services -->
+  <div #servicesAnchor></div>
+  <app-section
+    sectionId="services"
+    sectionTitle="Services"
+    link="/services"
+    contentOverflow="hidden"
+    [lazyLoading]="contentLazyLoading"
+  >
+    <div class="default-section-content" content>
+      <ul>
+        <li *ngFor="let service of servicesOffered">
+          <p>{{ service.description }}</p>
+        </li>
+      </ul>
+      <br />
+    </div>
+  </app-section>
+
+  <!-- contact -->
+  <div #contactAnchor></div>
+  <app-section
+    sectionId="contact"
+    sectionTitle="Contact"
+    link="/contact"
+    contentOverflow="visible"
+    [lazyLoading]="contentLazyLoading"
+    #contactAnchor
+  >
+    <div class="default-section-content" content>
+      <app-contact [contactOptions]="contactOptions"></app-contact>
+    </div>
+  </app-section>
+
+  <div style="height:200px"></div>
+</div>
 
 <!-- legal -->
 <div *ngIf="isLegalOpen" id="legal" [class]="classes.legal">
@@ -219,7 +275,7 @@
   ></app-privacy>
 </div>
 
-<div class="empty" *ngFor="let repeat of [1, 2, 3, 4]"></div>
+<div class="empty" *ngFor="let repeat of [1, 2, 3]"></div>
 
 <!-- up button -->
 <div>

@@ -121,8 +121,6 @@ export class Typewriter {
         this.cursor = document.createElement('span');
         this.cursor.className = 'typed-cursor';
         this.cursor.innerHTML = this.cursorCharacter;
-
-        const retVal = this.element.parentNode.insertBefore(this.cursor, this.element.nextSibling) && this.element.parentNode;
     }
 
     private removeCursor() {
