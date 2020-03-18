@@ -4,7 +4,7 @@
 [![production Azure Web App](https://github.com/RaulSebastian/RaulSchnelzer-Website/workflows/production%20Azure%20Web%20App/badge.svg?branch=master)](https://github.com/RaulSebastian/RaulSchnelzer-Website/actions?query=workflow%3A%22production+Azure+Web+App%22)
 [![preview Azure Web App](https://github.com/RaulSebastian/RaulSchnelzer-Website/workflows/preview%20Azure%20Web%20App/badge.svg)](https://github.com/RaulSebastian/RaulSchnelzer-Website/actions?query=workflow%3A%22preview+Azure+Web+App%22)
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RaulSebastian_PersonalHomepage&metric=alert_status)](https://sonarcloud.io/dashboard?id=RaulSebastian_PersonalHomepage)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RaulSchnelzerWebsite&metric=alert_status)](https://sonarcloud.io/dashboard?id=RaulSchnelzerWebsite)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ceb34606a75c480db7cffb83868d57fc)](https://www.codacy.com/manual/RaulSebastian/RaulSchnelzer-Website?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RaulSebastian/RaulSchnelzer-Website&amp;utm_campaign=Badge_Grade)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3785/badge)](https://bestpractices.coreinfrastructure.org/projects/3785)
 ![code size](https://img.shields.io/github/languages/code-size/RaulSebastian/RaulSchnelzer-Website)
