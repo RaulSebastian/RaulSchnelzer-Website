@@ -14,13 +14,19 @@
 ![open issues](https://img.shields.io/github/issues-raw/RaulSebastian/PersonalHomepage)
 ![bugs](https://img.shields.io/github/issues/Raulsebastian/personalhomepage/bug?color=critical&label=bugs)
 
-> production slot: [raulschnelzer.de](https://raulschnelzer.de)
->
-> preview slot: [preview.raulschnelzer.de](https://preview.raulschnelzer.de)
+## Slots
 
-**Backlog**
+### production slot: [raulschnelzer.de](https://raulschnelzer.de)
+
+### preview slot: [preview.raulschnelzer.de](https://preview.raulschnelzer.de)
+
+## Backlog
+
+**Glo Boards**
 
 [![Glo Board](/docs/assets/GitkrakenGloBoards.png)](https://app.gitkraken.com/glo/board/XmQ8LJf66wARrMgz)
+
+## Additional Info
 
 **Hosted on**
 
