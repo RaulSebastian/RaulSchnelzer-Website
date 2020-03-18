@@ -42,11 +42,15 @@
   font-size: 34px;
   line-height: 44px;
   vertical-align: middle;
-  background: -webkit-linear-gradient(right, #ffa600, #ff0062 48px, #af0bd8);
-  background: -moz-linear-gradient(right, #ffa600, #ff0062 48px, #af0bd8);
-  background: -o-linear-gradient(right, #ffa600, #ff0062 48px, #af0bd8);
+  background: -moz-linear-gradient(right, #ffa600, #ff0062 48px, #af0bd8); /* FF3.6+ */
+  background: -webkit-gradient(right, #ffa600, #ff0062 48px, #af0bd8); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(right, #ffa600, #ff0062 48px, #af0bd8); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(right, #ffa600, #ff0062 48px, #af0bd8); /* Opera 11.10+ */
+  background: -ms-linear-gradient(right, #ffa600, #ff0062 48px, #af0bd8); /* IE10+ */
   background: linear-gradient(to right, #ffa600, #ff0062 48px, #af0bd8);
+  -moz-background-clip: text;
   -webkit-background-clip: text;
+  -moz-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -87,11 +91,11 @@
 }
 
 .section-content {
-  background: -webkit-radial-gradient(
-    top right,
-    var(--theme-section-highlight) 5%,
-    var(--theme-section-background)
-  );
+  background-image: -moz-radial-gradient(top right, var(--theme-section-highlight) 5%, var(--theme-section-background)); /* FF3.6+ */
+  background-image: -webkit-gradient(radial, top right, var(--theme-section-highlight) 5%, var(--theme-section-background)); /* Chrome,Safari4+ */
+  background-image: -webkit-radial-gradient(top right, var(--theme-section-highlight) 5%, var(--theme-section-background)); /* Chrome10+,Safari5.1+ */
+  background-image: -o-radial-gradient(top right, var(--theme-section-highlight) 5%, var(--theme-section-background)); /* Opera 11.10+ */
+  background-image: -ms-radial-gradient(top right, var(--theme-section-highlight) 5%, var(--theme-section-background)); /* IE10+ */
   background: radial-gradient(
     at top right,
     var(--theme-section-highlight) 5%,

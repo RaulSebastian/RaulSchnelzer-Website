@@ -102,7 +102,7 @@
 
 .header-title-backlight {
   background-image: -moz-radial-gradient(var(--theme-background), var(--theme-background-alpha) 70%); /* FF3.6+ */
-  background-image: -webkit-radial-gradient(var(--theme-background), var(--theme-background-alpha) 70%); /* Chrome,Safari4+ */
+  background-image: -webkit-gradient(radial, var(--theme-background), var(--theme-background-alpha) 70%); /* Chrome,Safari4+ */
   background-image: -webkit-radial-gradient(var(--theme-background), var(--theme-background-alpha) 70%); /* Chrome10+,Safari5.1+ */
   background-image: -o-radial-gradient(var(--theme-background), var(--theme-background-alpha) 70%); /* Opera 11.10+ */
   background-image: -ms-radial-gradient(var(--theme-background), var(--theme-background-alpha) 70%); /* IE10+ */
