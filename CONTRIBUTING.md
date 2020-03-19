@@ -42,13 +42,13 @@ Explain the problem and include additional details to help reproduce the problem
 * Explain which behavior you observed and which you expected to see instead.
 * Include screenshots and animated GIFs which show you following the described steps and clearly demonstrate the problem. 
 
-### Suggesting Enhancements
+### Suggesting Feature Requests
 
-Before creating enhancement suggestions, please check if a similar **Issue** already exists.
+Before creating a feature request, please check if a similar **Issue** already exists.
 
-#### How Do I Submit A (Good) Enhancement Suggestion?
+#### How Do I Submit A (Good) Feature Request?
 
-Enhancement suggestions are tracked as [GitHub issues](https://guides.github.com/features/issues/). After you've determined [which repository](#atom-and-packages) your enhancement suggestion is related to, create an issue on that repository and provide the following information:
+Feature Requests suggestions are tracked as [GitHub issues](https://guides.github.com/features/issues/) and labeled `Enhancement`. If you have a feature request, provide the following information:
 
 * Use a clear and descriptive title for the issue to identify the suggestion.
 * Provide a step-by-step description of the suggested enhancement.
@@ -64,7 +64,7 @@ Unsure where to begin contributing to Atom? You can start by looking through the
 
 #### Local development
 
-The project can be developed locally.
+The project supports fully local development and debugging/testing.
 
 ### Pull Requests
 
@@ -81,6 +81,10 @@ Please follow these steps to have your contribution considered by the maintainer
 3. After you submit your pull request, verify that all [status checks](https://help.github.com/articles/about-status-checks/) are passing <details><summary>What if the status checks are failing?</summary>If a status check is failing, and you believe that the failure is unrelated to your change, please leave a comment on the pull request explaining why you believe the failure is unrelated.</details>
 
 ## Styleguides
+
+### Quality checks
+
+The code should follow default [SonarQube](https://sonarcloud.io/dashboard?id=RaulSchnelzerWebsite) and [Codacy](https://app.codacy.com/manual/RaulSebastian/RaulSchnelzer-Website/dashboard) recommendations.
 
 ### Git Commit Messages
 
@@ -108,7 +112,7 @@ Please follow these steps to have your contribution considered by the maintainer
 
 ### JavaScript Styleguide
 
-All JavaScript must adhere to [JavaScript Standard Style](https://standardjs.com/).
+All JavaScript should adhere to [JavaScript Standard Style](https://standardjs.com/).
 
 * Prefer the object spread operator (`{...anotherObj}`) to `Object.assign()`
 * Inline `export`s with expressions whenever possible
