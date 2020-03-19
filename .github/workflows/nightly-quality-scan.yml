@@ -2,7 +2,7 @@ name: Nightly Quality Scan
 
 on:
   schedule:
-  - cron: "35 0 * * *"
+  - cron: "0 0 * * *"
     
 jobs:
   sonarCloudTrigger:
@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-    - uses: workflows/checkout
+    - uses: actions/checkout@v2
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@develop
       env:
