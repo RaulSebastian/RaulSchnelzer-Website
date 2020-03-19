@@ -26,6 +26,10 @@
 
 [![Glo Board](/docs/assets/GitkrakenGloBoards.png)](https://app.gitkraken.com/glo/board/XmQ8LJf66wARrMgz)
 
+## Contributing
+
+[This is where it's described how to contribute](CONTRIBUTING.md).
+
 ## Additional Info
 
 ### Hosted on
