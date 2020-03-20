@@ -247,13 +247,15 @@
   <div #contactAnchor></div>
   <app-section
     sectionId="contact"
-    sectionTitle="Contact"
+    sectionTitle="Get in touch*"
     link="/contact"
     contentOverflow="visible"
     [lazyLoading]="contentLazyLoading"
     #contactAnchor
   >
     <div class="default-section-content" content>
+      <div class="hint">* Not really 'in touch' in these difficult times.</div>
+      <br>
       <app-contact [contactOptions]="contactOptions"></app-contact>
     </div>
   </app-section>
