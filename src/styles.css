@@ -157,7 +157,7 @@ a:hover {
     background: -ms-linear-gradient(bottom, #00ffbf, #1798d2, blueviolet); /* IE10+ */
     background: linear-gradient(to bottom, #00ffbf, #1798d2, blueviolet);
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
   }
   .parallax-creativityOutro {
     background: -moz-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8); /* FF3.6+ */
@@ -167,7 +167,7 @@ a:hover {
     background: -ms-linear-gradient(bottom, #ffa600, #ff0062, #af0bd8); /* IE10+ */
     background: linear-gradient(to bottom, #ffa600, #ff0062, #af0bd8);
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
   }
   .menu-panel {
     visibility: collapse;
@@ -565,6 +565,11 @@ a:hover {
 .list-title {
   font-weight: bold;
   text-align: left;
+}
+
+.hint {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  opacity: 0.5;
 }
 
 .critical {
