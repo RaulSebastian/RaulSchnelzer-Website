@@ -20,6 +20,10 @@
 
 ### preview slot: [preview.raulschnelzer.de](https://preview.raulschnelzer.de)
 
+## Contributing
+
+Read [how to contribute](CONTRIBUTING.md).
+
 ## Backlog
 
 **Glo Boards**
