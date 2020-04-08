@@ -15,7 +15,7 @@ export class SkillSets {
         },
         {
             name: 'Architecture', color: 'aquamarine', skills: [
-                'Microservices', 'N-Tier', 'MV*', 'Onion', 'Cloud first', 'RESTful',
+                'DDD', 'Enterprise Integration', 'Microservices', 'Messaging', 'N-Tier', 'MV*', 'Onion', 'Cloud first', 'RESTful',
                 'Distributed Systems'
             ]
         },
@@ -43,7 +43,7 @@ export class SkillSets {
         },
         {
             name: 'DBMS', color: '#ff0062', skills: [
-                'SQL Server', 'RavenDB', 'MongoDB', 'CosmosDB', 'MySql', 'Oracle', 'EventStore'
+                'SQL Server', 'SQL Parallel DW', 'RavenDB', 'MongoDB', 'CosmosDB', 'MySql', 'Oracle', 'EventStore'
             ]
         },
         {
