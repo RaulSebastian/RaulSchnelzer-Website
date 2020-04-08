@@ -1,0 +1,46 @@
+[
+    {
+        "name": "Methodologies", "color": "#54f985", "skills": [
+            "Agile", "Scrum", "Kanban", "Extreme Programming", "DevOps",
+            "Pair Programming", "RAD", "TDD", "BDD", "Iterative Development",
+            "Requirements Engeneering"]
+    },
+    {
+        "name": "Architecture", "color": "aquamarine", "skills": [
+            "Microservices", "N-Tier", "MV*", "Onion", "Cloud first", "RESTful",
+            "Distributed Systems"
+        ]
+    },
+    {
+        "name": "Paradigms", "color": "#00d0ff", "skills": [
+            "OOP", "Functional", "Event-Driven"
+        ]
+    },
+    {
+        "name": "Programming Languages", "color": "#1465ff", "skills": [
+            "C#", "T-SQL", "TypeScript", "Python", "Dart"
+        ]
+    },
+    {
+        "name": "Frameworks", "color": "#9800ff", "skills": [
+            ".Net Core", "Angular", "Blazor", "Aurelia", "ASP.Net Core", "NServiceBus", "Node.js",
+            "GraphQL", "UWP", "C4", "Flutter", "WPF", "Akka.Net"
+        ]
+    },
+    {
+        "name": "Tools", "color": "orange", "skills": [
+            "Visual Studio", "VS Code", "Jetbrains Toolbox", "Git", "TFS VC", "MS BI Data Tools",
+            "Powershell", "Adobe Photoshop", "Affinity Designer", "Affinity Photo"
+        ]
+    },
+    {
+        "name": "DBMS", "color": "#ff0062", "skills": [
+            "SQL Server", "RavenDB", "MongoDB", "CosmosDB", "MySql", "Oracle", "EventStore"
+        ]
+    },
+    {
+        "name": "Platforms", "color": "rgb(207, 16, 255)", "skills": [
+            "Azure", "Kubernetes", "Docker", "Azure DevOps (Server)", "SharePoint"
+        ]
+    }
+]
