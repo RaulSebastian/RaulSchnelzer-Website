@@ -23,7 +23,17 @@
               "src/assets",
               "src/sitemap.xml",
               "src/robots.prev.txt",
-              "src/robots.txt"
+              "src/robots.txt",
+              {
+                "glob": "index.js",
+                "input": "./server/",
+                "output": "./"
+              },
+              {
+                "glob": "package.json",
+                "input": "./server/",
+                "output": "./"
+              }
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
