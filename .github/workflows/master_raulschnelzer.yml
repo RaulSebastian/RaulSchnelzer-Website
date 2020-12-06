@@ -39,4 +39,3 @@ jobs:
         app-name: 'raulschnelzer'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_61fd62c796f74d809704df7a53f5f5de }}
         package: ./dist/raulschnelzer
-        
