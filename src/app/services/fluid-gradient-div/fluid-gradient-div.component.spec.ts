@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FluidGradientDivComponent } from './fluid-gradient-div.component';
 
@@ -6,7 +6,7 @@ describe('FluidGradientDivComponent', () => {
   let component: FluidGradientDivComponent;
   let fixture: ComponentFixture<FluidGradientDivComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ FluidGradientDivComponent ]
     })
