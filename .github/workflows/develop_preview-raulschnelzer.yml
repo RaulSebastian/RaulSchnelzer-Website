@@ -24,19 +24,12 @@ jobs:
       run: |
         npm install
         npm run build --if-present
-
-    - name: Remove robots.txt
-      run: Remove-Item -Path ./dist/raulschnelzer/robots.txt
-      shell: pwsh
-
-    - name: Rename robots.prev.txt to robots.txt
-      run: Rename-Item -Path ./dist/raulschnelzer/robots.prev.txt -NewName "robots.txt"
-      shell: pwsh
+        npm run test --if-present
 
     - name: 'Deploy to Azure Web App'
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'preview-raulschnelzer'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_b152a0d197174cc5bf44f2ae32a37bb2 }}
-        package: ./dist/raulschnelzer
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_5eaac028e9f64c2a99e557a15b5794b5 }}
+        package: .
