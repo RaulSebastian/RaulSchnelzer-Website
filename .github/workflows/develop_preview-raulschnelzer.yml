@@ -39,4 +39,4 @@ jobs:
         app-name: 'preview-raulschnelzer'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_5c32435b911945acb8cb87f92f9705a4 }}
-        package: ./dist/raulschnelzer
+        package: .
