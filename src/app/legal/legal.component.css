@@ -55,6 +55,12 @@
   text-align: center;
 }
 
+.vat-number {
+  font-size: 24px;
+  padding: 5px 0;
+  color: var(--theme-font-color);
+}
+
 .close-legal {
   position: absolute;
   top: 0;
