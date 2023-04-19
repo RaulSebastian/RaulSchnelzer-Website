@@ -1,8 +1,7 @@
 # RaulSchnelzer.de
 
 ![release](https://img.shields.io/github/v/tag/raulsebastian/RaulSchnelzer-Website?label=release&sort=semver&color=blueviolet)
-[![production Azure Web App](https://github.com/RaulSebastian/RaulSchnelzer-Website/workflows/production%20Azure%20Web%20App/badge.svg?branch=master)](https://github.com/RaulSebastian/RaulSchnelzer-Website/actions?query=workflow%3A%22production+Azure+Web+App%22)
-[![preview Azure Web App](https://github.com/RaulSebastian/RaulSchnelzer-Website/workflows/preview%20Azure%20Web%20App/badge.svg)](https://github.com/RaulSebastian/RaulSchnelzer-Website/actions?query=workflow%3A%22preview+Azure+Web+App%22)
+[![Azure Static Web Apps CI/CD](https://github.com/RaulSebastian/RaulSchnelzer-Website/actions/workflows/azure-static-web-apps-blue-tree-0fb5a0703.yml/badge.svg)](https://github.com/RaulSebastian/RaulSchnelzer-Website/actions/workflows/azure-static-web-apps-blue-tree-0fb5a0703.yml)
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RaulSchnelzerWebsite&metric=alert_status)](https://sonarcloud.io/dashboard?id=RaulSchnelzerWebsite)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ceb34606a75c480db7cffb83868d57fc)](https://www.codacy.com/manual/RaulSebastian/RaulSchnelzer-Website?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RaulSebastian/RaulSchnelzer-Website&amp;utm_campaign=Badge_Grade)
@@ -18,7 +17,7 @@
 
 ### production slot: [raulschnelzer.de](https://raulschnelzer.de)
 
-### preview slot: [preview.raulschnelzer.de](https://preview.raulschnelzer.de)
+### ~~preview slot: [preview.raulschnelzer.de](https://preview.raulschnelzer.de)~~
 
 ## Contributing
 
