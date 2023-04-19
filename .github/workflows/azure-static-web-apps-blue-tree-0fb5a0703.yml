@@ -15,10 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     name: Build and Deploy Job
     steps:
-      - name: Remove robots.prev.txt
-        run: Remove-Item -Path ./dist/raulschnelzer/robots.prev.txt
-        shell: pwsh
-
       - uses: actions/checkout@v2
         with:
           submodules: true
