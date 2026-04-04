@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raul Schnelzer</title>
+  <meta name="description" content="Raul Schnelzer — Creativity-driven Software Developer & Solutions Architect based in Deggendorf, Germany.">
+  <meta name="robots" content="index, follow">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- ============================================================ -->
+  <!-- NAVIGATION                                                   -->
+  <!-- ============================================================ -->
+  <nav id="nav" role="navigation" aria-label="Main navigation">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" id="nav-logo" aria-label="Raul Schnelzer — Home">
+        <img src="src/assets/new-logo3.png" alt="RS Logo" class="nav-logo-img">
+      </a>
+      <div class="nav-name">
+        <span class="nav-name-first">Raul Schnelzer</span>
+        <span class="nav-name-sep" aria-hidden="true">&middot;</span>
+        <span class="nav-name-sub">Software Solutions</span>
+      </div>
+      <div class="nav-links" role="menubar">
+        <a href="#about"      class="nav-link" role="menuitem">About</a>
+        <a href="#skills"     class="nav-link" role="menuitem">Skills</a>
+        <a href="#experience" class="nav-link" role="menuitem">Experience</a>
+        <a href="#services"   class="nav-link" role="menuitem">Services</a>
+        <a href="#contact"    class="nav-link" role="menuitem">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle light/dark mode">
+          <!-- Sun: shown in dark mode -->
+          <svg class="icon-sun" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="4.5"/>
+            <line x1="12" y1="2"  x2="12" y2="5"/>
+            <line x1="12" y1="19" x2="12" y2="22"/>
+            <line x1="4.22" y1="4.22" x2="6.34" y2="6.34"/>
+            <line x1="17.66" y1="17.66" x2="19.78" y2="19.78"/>
+            <line x1="2"  y1="12" x2="5"  y2="12"/>
+            <line x1="19" y1="12" x2="22" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="6.34" y2="17.66"/>
+            <line x1="17.66" y1="6.34" x2="19.78" y2="4.22"/>
+          </svg>
+          <!-- Moon: shown in light mode -->
+          <svg class="icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="currentColor" stroke="none" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </button>
+        <button id="hamburger" class="icon-btn hamburger-btn" aria-label="Open menu" aria-expanded="false">
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+          <span class="ham-line"></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Navigation menu">
+    <div class="mobile-menu-inner">
+      <a href="#about"      class="mobile-link" tabindex="-1">About</a>
+      <a href="#skills"     class="mobile-link" tabindex="-1">Skills</a>
+      <a href="#experience" class="mobile-link" tabindex="-1">Experience</a>
+      <a href="#services"   class="mobile-link" tabindex="-1">Services</a>
+      <a href="#contact"    class="mobile-link" tabindex="-1">Contact</a>
+      <div class="mobile-sub-links">
+        <a href="#" class="mobile-sub-link" id="open-privacy-mob" tabindex="-1">Privacy Policy</a>
+        <a href="#" class="mobile-sub-link" id="open-legal-mob"   tabindex="-1">Legal Notice</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- HERO                                                         -->
+  <!-- ============================================================ -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-bg-gradient" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow">Welcome</div>
+      <h1 class="hero-name">
+        <span class="hero-name-word">Raul</span>
+        <span class="hero-name-word">Schnelzer</span>
+      </h1>
+      <p class="hero-tagline">Creativity-driven Software Developer &amp; Solutions Architect</p>
+      <a href="#about" class="hero-cta" aria-label="Discover more about Raul">
+        <span>Discover more</span>
+        <span class="cta-arrow" aria-hidden="true">&#8595;</span>
+      </a>
+    </div>
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <div class="scroll-dot"></div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CREATIVITY INTRO QUOTE                                       -->
+  <!-- ============================================================ -->
+  <section class="quote-section quote-intro" aria-label="Quote">
+    <div class="quote-bg" aria-hidden="true"></div>
+    <blockquote class="quote-text quote-fly">
+      Anything can be done<br>without any creativity.
+    </blockquote>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CREATIVITY OUTRO QUOTE                                       -->
+  <!-- ============================================================ -->
+  <section class="quote-section quote-outro" aria-label="Quote">
+    <div class="quote-bg" aria-hidden="true"></div>
+    <blockquote class="quote-text quote-fly">
+      But with some creativity<br>everything can be done.
+    </blockquote>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- ABOUT                                                        -->
+  <!-- ============================================================ -->
+  <section id="about" class="content-section" aria-labelledby="about-title">
+    <div class="section-inner">
+      <div class="section-label reveal">Who I am</div>
+      <h2 class="section-title reveal" id="about-title">About</h2>
+      <div class="about-grid">
+        <div class="about-photo-wrap reveal">
+          <img
+            class="about-photo"
+            src="src/assets/images/me.png"
+            alt="Raul Schnelzer"
+            loading="lazy"
+            width="300"
+            height="300"
+          />
+        </div>
+        <div class="about-text reveal">
+          <p class="about-greeting">Hi, I'm Raul!</p>
+          <p>
+            I am a creativity-driven and passionate developer who aspires towards
+            better software solutions. I thrive on challenge and constantly set
+            goals for myself to improve my knowledge, soft-skills, learning new
+            methodologies and technologies.
+          </p>
+          <p>
+            As such I read books (yes, the physical ones), use on-demand technology
+            courses, read blogs and am active on networks like StackOverflow.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SKILLS                                                       -->
+  <!-- ============================================================ -->
+  <section id="skills" class="content-section content-section--alt" aria-labelledby="skills-title">
+    <div class="section-inner">
+      <div class="section-label reveal">What I know</div>
+      <h2 class="section-title reveal" id="skills-title">Skills</h2>
+
+      <div class="skills-categories reveal" role="tablist" aria-label="Skill categories">
+
+        <div class="skill-category">
+          <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+            <span class="skill-cat-dot" style="background:#54f985"></span>
+            <span class="skill-cat-name">Methodologies</span>
+            <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
+          </div>
+          <div class="skill-pills" role="tabpanel">
+            <span class="skill-pill">Agile</span><span class="skill-pill">Scrum</span><span class="skill-pill">Kanban</span>
+            <span class="skill-pill">Extreme Programming</span><span class="skill-pill">DevOps</span>
+            <span class="skill-pill">Pair Programming</span><span class="skill-pill">RAD</span>
+            <span class="skill-pill">TDD</span><span class="skill-pill">BDD</span>
+            <span class="skill-pill">Iterative Development</span><span class="skill-pill">Requirements Engineering</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+            <span class="skill-cat-dot" style="background:aquamarine"></span>
+            <span class="skill-cat-name">Architecture</span>
+            <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
+          </div>
+          <div class="skill-pills" role="tabpanel">
+            <span class="skill-pill">DDD</span><span class="skill-pill">Enterprise Integration</span>
+            <span class="skill-pill">Microservices</span><span class="skill-pill">Messaging</span>
+            <span class="skill-pill">N-Tier</span><span class="skill-pill">MV*</span>
+            <span class="skill-pill">Onion</span><span class="skill-pill">Cloud first</span>
+            <span class="skill-pill">RESTful</span><span class="skill-pill">Distributed Systems</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+            <span class="skill-cat-dot" style="background:#00d0ff"></span>
+            <span class="skill-cat-name">Paradigms</span>
+            <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
+          </div>
+          <div class="skill-pills" role="tabpanel">
+            <span class="skill-pill">OOP</span><span class="skill-pill">Functional</span><span class="skill-pill">Event-Driven</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+            <span class="skill-cat-dot" style="background:#1465ff"></span>
+            <span class="skill-cat-name">Programming Languages</span>
+            <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
+          </div>
+          <div class="skill-pills" role="tabpanel">
+            <span class="skill-pill">C#</span><span class="skill-pill">T-SQL</span>
+            <span class="skill-pill">TypeScript</span><span class="skill-pill">Python</span>
+            <span class="skill-pill">Dart</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+            <span class="skill-cat-dot" style="background:#9800ff"></span>
+            <span class="skill-cat-name">Frameworks</span>
+            <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
+          </div>
+          <div class="skill-pills" role="tabpanel">
+            <span class="skill-pill">.Net Core</span><span class="skill-pill">Angular</span>
+            <span class="skill-pill">Blazor</span><span class="skill-pill">Aurelia</span>
+            <span class="skill-pill">ASP.Net Core</span><span class="skill-pill">NServiceBus</span>
+            <span class="skill-pill">Node.js</span><span class="skill-pill">GraphQL</span>
+            <span class="skill-pill">UWP</span><span class="skill-pill">C4</span>
+            <span class="skill-pill">Flutter</span><span class="skill-pill">WPF</span>
+            <span class="skill-pill">Akka.Net</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+            <span class="skill-cat-dot" style="background:orange"></span>
+            <span class="skill-cat-name">Tools</span>
+            <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
+          </div>
+          <div class="skill-pills" role="tabpanel">
+            <span class="skill-pill">Visual Studio</span><span class="skill-pill">VS Code</span>
+            <span class="skill-pill">Jetbrains Toolbox</span><span class="skill-pill">Git</span>
+            <span class="skill-pill">TFS VC</span><span class="skill-pill">MS BI Data Tools</span>
+            <span class="skill-pill">Powershell</span><span class="skill-pill">Adobe Photoshop</span>
+            <span class="skill-pill">Affinity Designer</span><span class="skill-pill">Affinity Photo</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+            <span class="skill-cat-dot" style="background:#ff0062"></span>
+            <span class="skill-cat-name">DBMS</span>
+            <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
+          </div>
+          <div class="skill-pills" role="tabpanel">
+            <span class="skill-pill">SQL Server</span><span class="skill-pill">SQL Parallel DW</span>
+            <span class="skill-pill">RavenDB</span><span class="skill-pill">MongoDB</span>
+            <span class="skill-pill">CosmosDB</span><span class="skill-pill">MySql</span>
+            <span class="skill-pill">Oracle</span><span class="skill-pill">EventStore</span>
+          </div>
+        </div>
+
+        <div class="skill-category">
+          <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+            <span class="skill-cat-dot" style="background:rgb(207,16,255)"></span>
+            <span class="skill-cat-name">Platforms</span>
+            <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
+          </div>
+          <div class="skill-pills" role="tabpanel">
+            <span class="skill-pill">Azure</span><span class="skill-pill">Kubernetes</span>
+            <span class="skill-pill">Docker</span><span class="skill-pill">Azure DevOps (Server)</span>
+            <span class="skill-pill">SharePoint</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- EXPERIENCE                                                   -->
+  <!-- ============================================================ -->
+  <section id="experience" class="content-section" aria-labelledby="exp-title">
+    <div class="section-inner">
+      <div class="section-label reveal">My journey</div>
+      <h2 class="section-title reveal" id="exp-title">Experience</h2>
+
+      <div class="timeline" role="list">
+
+        <!-- Timeline track (decorative vertical line) -->
+        <div class="timeline-track" aria-hidden="true"></div>
+
+        <!-- ── Entry 1: Digital AI-Z ─────────────────────────── -->
+        <div class="timeline-entry reveal" role="listitem">
+          <div class="timeline-node" aria-hidden="true">
+            <div class="timeline-dot timeline-dot--active"><div class="timeline-dot-ring"></div></div>
+          </div>
+          <div class="timeline-card">
+            <div class="tc-header">
+              <span class="tc-date">2025 &ndash; Present</span>
+              <span class="tc-badge tc-badge--active">Current</span>
+            </div>
+            <div class="tc-title">Co-Founder &amp; Managing Director</div>
+            <div class="tc-company">Digital AI-Z GbR</div>
+            <div class="tc-meta">
+              <span class="tc-location">&#128205; Deggendorf, Germany</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Entry 2: Freelancer ────────────────────────────── -->
+        <div class="timeline-entry reveal" role="listitem">
+          <div class="timeline-node" aria-hidden="true">
+            <div class="timeline-dot timeline-dot--active"><div class="timeline-dot-ring"></div></div>
+          </div>
+          <div class="timeline-card">
+            <div class="tc-header">
+              <span class="tc-date">Apr 2019 &ndash; Present</span>
+              <span class="tc-badge tc-badge--active">7 yrs 1 mo</span>
+            </div>
+            <div class="tc-title">Freelancer</div>
+            <div class="tc-company">Raul Schnelzer Software Solutions</div>
+            <div class="tc-meta">
+              <span class="tc-location">&#128205; Germany</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Entries 3 + 4: Netto (grouped) ────────────────── -->
+        <div class="timeline-group">
+
+          <!-- Software Architect -->
+          <div class="timeline-entry timeline-entry--grouped reveal" role="listitem">
+            <div class="timeline-node" aria-hidden="true">
+              <div class="timeline-dot timeline-dot--sm"><div class="timeline-dot-ring"></div></div>
+            </div>
+            <div class="timeline-card timeline-card--grouped">
+              <div class="tc-header">
+                <span class="tc-date">Jan 2018 &ndash; Mar 2020</span>
+                <span class="tc-badge">2 yrs 3 mos</span>
+              </div>
+              <div class="tc-title">Software Architect</div>
+              <div class="tc-meta">
+                <span class="tc-location">&#128205; Regensburg Area, Germany</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Software Developer → Senior -->
+          <div class="timeline-entry timeline-entry--grouped reveal" role="listitem">
+            <div class="timeline-node" aria-hidden="true">
+              <div class="timeline-dot timeline-dot--sm"><div class="timeline-dot-ring"></div></div>
+            </div>
+            <div class="timeline-card timeline-card--grouped">
+              <div class="tc-header">
+                <span class="tc-date">Sep 2011 &ndash; Mar 2020</span>
+                <span class="tc-badge">8 yrs 7 mos</span>
+              </div>
+              <div class="tc-title">Senior Software Developer</div>
+              <div class="tc-meta">
+                <span class="tc-tag">Promoted from Software Developer</span>
+                <span class="tc-sep" aria-hidden="true">&middot;</span>
+                <span class="tc-location">&#128205; Regensburg, Germany</span>
+              </div>
+            </div>
+          </div>
+
+        </div><!-- /timeline-group -->
+
+        <!-- End cap -->
+        <div class="timeline-end reveal" aria-hidden="true">
+          <div class="timeline-end-dot"></div>
+          <p class="timeline-end-label">And so it began&hellip;</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SERVICES                                                     -->
+  <!-- ============================================================ -->
+  <section id="services" class="content-section content-section--alt" aria-labelledby="services-title">
+    <div class="section-inner">
+      <div class="section-label reveal">What I offer</div>
+      <h2 class="section-title reveal" id="services-title">Services</h2>
+      <div class="services-grid">
+
+        <div class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">&#9997;</div>
+          <div class="service-name">Custom Software Development</div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">&#128202;</div>
+          <div class="service-name">Solutions Architecture</div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">&#128279;</div>
+          <div class="service-name">Enterprise Integration</div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">&#9729;</div>
+          <div class="service-name">Platform Consulting</div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">&#128187;</div>
+          <div class="service-name">Full Stack Development</div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">&#128241;</div>
+          <div class="service-name">Mobile App Development</div>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon" aria-hidden="true">&#128269;</div>
+          <div class="service-name">Coding Reviews</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- CONTACT                                                      -->
+  <!-- ============================================================ -->
+  <section id="contact" class="content-section" aria-labelledby="contact-title">
+    <div class="section-inner">
+      <div class="section-label reveal">Get in touch</div>
+      <h2 class="section-title reveal" id="contact-title">Contact*</h2>
+      <p class="contact-disclaimer reveal">* Not really &lsquo;in touch&rsquo; in these difficult times.</p>
+
+      <div class="contact-body">
+
+        <div class="contact-details reveal">
+          <div class="contact-row">
+            <span class="contact-icon-sym" aria-hidden="true">&#8962;</span>
+            <span>Ludwig-Ebner-Str. 1<br>94469 Deggendorf</span>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon-sym" aria-hidden="true">&#9993;</span>
+            <a href="mailto:mail@raulschnelzer.de" class="contact-link">mail@raulschnelzer.de</a>
+          </div>
+          <div class="contact-row">
+            <span class="contact-icon-sym" aria-hidden="true">&#9990;</span>
+            <a href="tel:+491735227934" class="contact-link">+49 173 5227934</a>
+          </div>
+        </div>
+
+        <div class="social-row reveal">
+          <a href="https://linkedin.com/in/raul-schnelzer" class="social-link" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn">
+            <img src="src/assets/LinkedInIcon.png" alt="LinkedIn" class="social-icon">
+            <span>LinkedIn</span>
+          </a>
+          <a href="https://www.xing.com/profile/Raul_Schnelzer/portfolio" class="social-link" target="_blank" rel="noreferrer noopener" aria-label="Xing">
+            <img src="src/assets/XingIcon.png" alt="Xing" class="social-icon">
+            <span>Xing</span>
+          </a>
+          <a href="https://stackoverflow.com/users/story/3205951/" class="social-link" target="_blank" rel="noreferrer noopener" aria-label="Stack Overflow">
+            <img src="src/assets/StackOverflowIcon.png" alt="Stack Overflow" class="social-icon social-icon--invert">
+            <span>Stack Overflow</span>
+          </a>
+          <a href="https://github.com/RaulSebastian" class="social-link" target="_blank" rel="noreferrer noopener" aria-label="GitHub">
+            <img src="src/assets/GitHubIcon.png" alt="GitHub" class="social-icon social-icon--invert">
+            <span>GitHub</span>
+          </a>
+          <a href="https://api.whatsapp.com/send?phone=+491735227934" class="social-link" target="_blank" rel="noreferrer noopener" aria-label="WhatsApp">
+            <img src="src/assets/WhatsAppIcon.png" alt="WhatsApp" class="social-icon">
+            <span>WhatsApp</span>
+          </a>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER                                                       -->
+  <!-- ============================================================ -->
+  <footer id="footer" role="contentinfo">
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <span class="footer-logo">RS</span>
+        <span class="footer-copy">&copy; Raul Schnelzer 2019&ndash;<span id="footer-year"></span>. All rights reserved.</span>
+      </div>
+      <div class="footer-links">
+        <a href="#" id="open-privacy" class="footer-link">Privacy Policy</a>
+        <span class="footer-sep" aria-hidden="true">&middot;</span>
+        <a href="#" id="open-legal" class="footer-link">Legal Notice</a>
+      </div>
+      <div class="footer-version">v3.0.0</div>
+    </div>
+  </footer>
+
+  <!-- ============================================================ -->
+  <!-- LEGAL OVERLAY                                                -->
+  <!-- ============================================================ -->
+  <div id="legal-overlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="legal-overlay-title">
+    <div class="overlay-panel">
+      <button class="overlay-close" id="close-legal" aria-label="Close Legal Notice">&#10005;</button>
+      <h1 id="legal-overlay-title" class="overlay-title">Legal Notice</h1>
+
+      <div class="overlay-section">
+        <h3>Mandatory details pursuant &sect;&nbsp;5 TMG</h3>
+        <p>Raul Schnelzer<br>Ludwig-Ebner-Str. 1<br>94469 Deggendorf</p>
+      </div>
+
+      <div class="overlay-section">
+        <h3>Contact</h3>
+        <p>
+          <span class="contact-icon-sym" aria-hidden="true">&#9993;</span>
+          <a href="mailto:mail@raulschnelzer.de">mail@raulschnelzer.de</a><br>
+          <span class="contact-icon-sym" aria-hidden="true">&#9990;</span>
+          <a href="tel:+491735227934">+49 173 5227934</a>
+        </p>
+      </div>
+
+      <div class="overlay-section">
+        <h3>Responsible for content according to &sect;&nbsp;55 RStV</h3>
+        <p>Raul Schnelzer<br>Ludwig-Ebner-Str. 1<br>94469 Deggendorf</p>
+      </div>
+
+      <div class="overlay-section">
+        <h3>Disclaimer</h3>
+        <p>I take no responsibility for the content of external Internet sites. Other websites that I link to are owned and operated by third parties and I have no control over them.</p>
+        <p>The fact that I include links to other websites does not mean that I approve of, or endorse, any other third party website or the content of that website.</p>
+        <p>I accept no liability for any statements, information, products or services that are published on, or are accessible through, any websites owned or operated by third parties.</p>
+      </div>
+
+      <div class="overlay-section">
+        <h3>Copyright</h3>
+        <p>This website and its content is subject of copyright of <strong>Raul Schnelzer</strong> &mdash; &copy;&nbsp;2019. All rights reserved.</p>
+        <p>For permission requests, write to: <a href="mailto:legal@raulschnelzer.com">legal@raulschnelzer.com</a></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- PRIVACY OVERLAY                                              -->
+  <!-- ============================================================ -->
+  <div id="privacy-overlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="privacy-overlay-title">
+    <div class="overlay-panel">
+      <button class="overlay-close" id="close-privacy" aria-label="Close Privacy Policy">&#10005;</button>
+      <h1 id="privacy-overlay-title" class="overlay-title">Privacy Policy</h1>
+
+      <div class="overlay-section">
+        <p>I believe that privacy is a fundamental right. As such I do not set cookies or track your sessions while you are using this website. However, I use anonymised data for telemetry. In detail: counting page visits, server response time and failed requests are traced anonymously. I do not use Google Analytics or other tools to correlate visitors and their browsing behaviour.</p>
+      </div>
+
+      <div class="overlay-section">
+        <h3>Responsible for the content</h3>
+        <p>Raul Schnelzer<br>Ludwig-Ebner-Str. 1<br>94469 Deggendorf</p>
+        <p><a href="mailto:mail@raulschnelzer.de">mail@raulschnelzer.de</a></p>
+      </div>
+
+      <div class="overlay-section">
+        <h3>Using this website</h3>
+        <p>This website can be used without providing personal data.</p>
+        <p>However, I must point out that data transmission over the Internet (e.g. contacting us by email) can have security gaps. It is not possible to completely protect data from third-party access.</p>
+      </div>
+
+      <div class="overlay-section">
+        <h3>Privacy policies of other websites</h3>
+        <p>This website contains links to other websites. This privacy policy applies only to this website, so if you click on a link to another website, you should read their privacy policy.</p>
+      </div>
+
+      <div class="overlay-section">
+        <h3>Server Log Files</h3>
+        <p>This website is hosted on servers within the EU. The hosting provider automatically collects and stores information in so-called server log files, on which I have no influence nor access. These information, which your browser automatically transmits are:</p>
+        <ul>
+          <li>Browser type and version</li>
+          <li>Operating system used</li>
+          <li>Referrer URL</li>
+          <li>Hostname of the accessing device</li>
+          <li>Time of the server request</li>
+        </ul>
+      </div>
+
+      <div class="overlay-section">
+        <h3>Your data protection rights</h3>
+        <p>Every user is entitled regarding his/hers/its data protection rights to the following:</p>
+        <ul>
+          <li><strong>The right to access</strong> — You have the right to request copies of your personal data.</li>
+          <li><strong>The right to rectification</strong> — You have the right to request correction of inaccurate information.</li>
+          <li><strong>The right to erasure</strong> — You have the right to request that your personal data be erased, under certain conditions.</li>
+          <li><strong>The right to restrict processing</strong> — You have the right to request restriction of processing your personal data, under certain conditions.</li>
+          <li><strong>The right to object to processing</strong> — You have the right to object to the processing of your personal data, under certain conditions.</li>
+          <li><strong>The right to data portability</strong> — You have the right to request the transfer of your data to another organization or directly to you, under certain conditions.</li>
+        </ul>
+        <p>If you make a request, I will respond within a month. To report a complaint, you have the right to contact the Information Commissioner's Office.</p>
+      </div>
+
+      <div class="overlay-section">
+        <h3>Objection to advertising</h3>
+        <p>I hereby expressly object to the sending of unsolicited advertising and information material to the contact details published here as part of the legal notice.</p>
+      </div>
+
+      <div class="overlay-section">
+        <h3>Changes to the privacy policy</h3>
+        <p>I keep this privacy policy under regular reviews and place any updates on this web page. This privacy policy was last updated on <strong class="accent">March 7, 2020</strong>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================ -->
+  <!-- BACK TO TOP                                                  -->
+  <!-- ============================================================ -->
+  <button id="back-to-top" aria-label="Back to top" title="Back to top">&#8593;</button>
+
+  <script src="main.js"></script>
+</body>
+</html>
