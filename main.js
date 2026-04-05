@@ -1,24 +1,28 @@
 /**
  * Raul Schnelzer — main.js  v3.0.0
- * Apple-inspired portfolio — pure vanilla JS
  */
 
 (function () {
   'use strict';
 
-  // ─── UTILITIES ─────────────────────────────────────────────────
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
-  // ─── THEME ─────────────────────────────────────────────────────
   const THEME_KEY = 'rs-theme';
 
   function getStoredTheme() {
-    try { return localStorage.getItem(THEME_KEY); } catch { return null; }
+    try {
+      return localStorage.getItem(THEME_KEY);
+    } catch {
+      return null;
+    }
   }
 
   function storeTheme(theme) {
-    try { localStorage.setItem(THEME_KEY, theme); } catch { /* noop */ }
+    try {
+      localStorage.setItem(THEME_KEY, theme);
+    } catch { /* noop */
+    }
   }
 
   function applyTheme(theme) {
@@ -28,7 +32,10 @@
 
   function initTheme() {
     const stored = getStoredTheme();
-    if (stored) { applyTheme(stored); return; }
+    if (stored) {
+      applyTheme(stored);
+      return;
+    }
     const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
     applyTheme(prefersDark ? 'dark' : 'light');
   }
@@ -38,13 +45,11 @@
     applyTheme(current === 'dark' ? 'light' : 'dark');
   }
 
-  // ─── FOOTER YEAR ───────────────────────────────────────────────
   function setFooterYear() {
     const el = $('#footer-year');
     if (el) el.textContent = new Date().getFullYear();
   }
 
-  // ─── NAVIGATION SCROLL HIDE/SHOW ───────────────────────────────
   function initNavScroll() {
     const nav = $('#nav');
     if (!nav) return;
@@ -66,18 +71,22 @@
     }
 
     window.addEventListener('scroll', () => {
-      if (!ticking) { requestAnimationFrame(update); ticking = true; }
-    }, { passive: true });
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }, {passive: true});
   }
 
-  // ─── ACTIVE NAV LINK ───────────────────────────────────────────
   function initActiveNav() {
     const sections = $$('section[id], div[id]').filter(el => el.id);
     const links = $$('.nav-link');
     if (!sections.length || !links.length) return;
 
     const linkMap = {};
-    links.forEach(l => { linkMap[l.getAttribute('href').replace('#', '')] = l; });
+    links.forEach(l => {
+      linkMap[l.getAttribute('href').replace('#', '')] = l;
+    });
 
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
@@ -86,16 +95,15 @@
           linkMap[e.target.id].classList.add('active');
         }
       });
-    }, { rootMargin: '-40% 0px -55% 0px', threshold: 0 });
+    }, {rootMargin: '-40% 0px -55% 0px', threshold: 0});
 
     sections.forEach(s => obs.observe(s));
   }
 
-  // ─── MOBILE MENU ───────────────────────────────────────────────
   function initMobileMenu() {
-    const btn     = $('#hamburger');
-    const menu    = $('#mobile-menu');
-    const links   = $$('.mobile-link, .mobile-sub-link');
+    const btn = $('#hamburger');
+    const menu = $('#mobile-menu');
+    const links = $$('.mobile-link, .mobile-sub-link');
     if (!btn || !menu) return;
 
     function openMenu() {
@@ -127,7 +135,6 @@
     });
   }
 
-  // ─── SCROLL REVEAL ─────────────────────────────────────────────
   function initScrollReveal() {
     const items = $$('.reveal');
     if (!items.length) return;
@@ -135,7 +142,6 @@
     const obs = new IntersectionObserver(entries => {
       entries.forEach((e, i) => {
         if (e.isIntersecting) {
-          // Stagger siblings in the same parent
           const siblings = $$('.reveal', e.target.parentElement);
           const idx = siblings.indexOf(e.target);
           const delay = idx * 80;
@@ -145,12 +151,11 @@
           obs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    }, {threshold: 0.12, rootMargin: '0px 0px -40px 0px'});
 
     items.forEach(el => obs.observe(el));
   }
 
-  // ─── BACK TO TOP ───────────────────────────────────────────────
   function initBackToTop() {
     const btn = $('#back-to-top');
     if (!btn) return;
@@ -163,14 +168,13 @@
       }
     }
 
-    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('scroll', update, {passive: true});
     btn.addEventListener('click', () => {
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+      window.scrollTo({top: 0, behavior: 'smooth'});
     });
     update();
   }
 
-  // ─── SKILLS ACCORDION ──────────────────────────────────────────
   function initSkillsAccordion() {
     const headers = $$('.skill-category-header');
 
@@ -192,7 +196,6 @@
     });
   }
 
-  // ─── OVERLAY MANAGEMENT ────────────────────────────────────────
   function initOverlays() {
     function openOverlay(id) {
       const overlay = $('#' + id);
@@ -200,7 +203,6 @@
       overlay.classList.add('open');
       overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
-      // Focus first focusable element
       const first = overlay.querySelector('button, a, [tabindex="0"]');
       if (first) setTimeout(() => first.focus(), 50);
     }
@@ -213,26 +215,28 @@
       document.body.style.overflow = '';
     }
 
-    // Privacy
     $$('#open-privacy, #open-privacy-mob').forEach(el => {
-      el.addEventListener('click', e => { e.preventDefault(); openOverlay('privacy-overlay'); });
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        openOverlay('privacy-overlay');
+      });
     });
     $('#close-privacy') && $('#close-privacy').addEventListener('click', () => closeOverlay('privacy-overlay'));
 
-    // Legal
     $$('#open-legal, #open-legal-mob').forEach(el => {
-      el.addEventListener('click', e => { e.preventDefault(); openOverlay('legal-overlay'); });
+      el.addEventListener('click', e => {
+        e.preventDefault();
+        openOverlay('legal-overlay');
+      });
     });
     $('#close-legal') && $('#close-legal').addEventListener('click', () => closeOverlay('legal-overlay'));
 
-    // Close on backdrop click
     $$('.overlay').forEach(overlay => {
       overlay.addEventListener('click', e => {
         if (e.target === overlay) closeOverlay(overlay.id);
       });
     });
 
-    // Close on Escape
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
         $$('.overlay.open').forEach(o => closeOverlay(o.id));
@@ -240,13 +244,10 @@
     });
   }
 
-  // ─── QUOTE SECTIONS FLY-IN ─────────────────────────────────────
   function initQuoteFlyIn() {
     const quotes = $$('.quote-fly');
     if (!quotes.length) return;
 
-    // Use a generous rootMargin so the animation fires when the quote
-    // section is well within the viewport — gives the motion room to land.
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.isIntersecting) {
@@ -254,19 +255,18 @@
           obs.unobserve(e.target);
         }
       });
-    }, { threshold: 0.25 });
+    }, {threshold: 0.25});
 
     quotes.forEach(el => obs.observe(el));
   }
 
-  // ─── SMOOTH ANCHOR SCROLL ──────────────────────────────────────
   function initSmoothAnchors() {
     $$('a[href^="#"]').forEach(link => {
       link.addEventListener('click', e => {
         const href = link.getAttribute('href');
         if (href === '#') {
           e.preventDefault();
-          window.scrollTo({ top: 0, behavior: 'smooth' });
+          window.scrollTo({top: 0, behavior: 'smooth'});
           return;
         }
         const target = $(href);
@@ -275,13 +275,12 @@
           const navH = parseInt(getComputedStyle(document.documentElement)
             .getPropertyValue('--nav-h')) || 56;
           const top = target.getBoundingClientRect().top + window.scrollY - navH - 16;
-          window.scrollTo({ top, behavior: 'smooth' });
+          window.scrollTo({top, behavior: 'smooth'});
         }
       });
     });
   }
 
-  // ─── INIT ───────────────────────────────────────────────────────
   function init() {
     initTheme();
     setFooterYear();
@@ -295,7 +294,6 @@
     initQuoteFlyIn();
     initSmoothAnchors();
 
-    // Theme toggle button
     const themeBtn = $('#theme-toggle');
     if (themeBtn) themeBtn.addEventListener('click', toggleTheme);
   }
