@@ -5,7 +5,15 @@
 (function () {
   'use strict';
 
+  /**
+   * @param {string} sel
+   * @param {ParentNode} [ctx=document]
+   */
   const $ = (sel, ctx = document) => ctx.querySelector(sel);
+  /**
+   * @param {string} sel
+   * @param {ParentNode} [ctx=document]
+   */
   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
   const THEME_KEY = 'rs-theme';
@@ -47,7 +55,7 @@
 
   function setFooterYear() {
     const el = $('#footer-year');
-    if (el) el.textContent = new Date().getFullYear();
+    if (el) el.textContent = String(new Date().getFullYear());
   }
 
   function initNavScroll() {
@@ -140,9 +148,10 @@
     if (!items.length) return;
 
     const obs = new IntersectionObserver(entries => {
-      entries.forEach((e, i) => {
+      entries.forEach((e) => {
         if (e.isIntersecting) {
-          const siblings = $$('.reveal', e.target.parentElement);
+          const parent = e.target.parentElement;
+          const siblings = parent ? $$('.reveal', parent) : [e.target];
           const idx = siblings.indexOf(e.target);
           const delay = idx * 80;
           setTimeout(() => {
@@ -204,7 +213,9 @@
       overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
       const first = overlay.querySelector('button, a, [tabindex="0"]');
-      if (first) setTimeout(() => first.focus(), 50);
+      if (first instanceof HTMLElement) {
+        setTimeout(() => first.focus(), 50);
+      }
     }
 
     function closeOverlay(id) {
@@ -221,7 +232,10 @@
         openOverlay('privacy-overlay');
       });
     });
-    $('#close-privacy') && $('#close-privacy').addEventListener('click', () => closeOverlay('privacy-overlay'));
+    const closePrivacy = $('#close-privacy');
+    if (closePrivacy) {
+      closePrivacy.addEventListener('click', () => closeOverlay('privacy-overlay'));
+    }
 
     $$('#open-legal, #open-legal-mob').forEach(el => {
       el.addEventListener('click', e => {
@@ -229,7 +243,10 @@
         openOverlay('legal-overlay');
       });
     });
-    $('#close-legal') && $('#close-legal').addEventListener('click', () => closeOverlay('legal-overlay'));
+    const closeLegal = $('#close-legal');
+    if (closeLegal) {
+      closeLegal.addEventListener('click', () => closeOverlay('legal-overlay'));
+    }
 
     $$('.overlay').forEach(overlay => {
       overlay.addEventListener('click', e => {
