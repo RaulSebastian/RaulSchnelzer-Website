@@ -15,12 +15,14 @@
   --border:        rgba(0, 0, 0, 0.1);
   --border-hover:  rgba(0, 0, 0, 0.25);
   --nav-bg:        rgba(251, 251, 253, 0.8);
+  --accent:        #996fe3;
   --pill-bg:       rgba(0, 0, 0, 0.06);
-  --pill-hover:    rgba(129, 51, 225, 0.12);
+  --pill-hover:    rgba(153, 111, 227, 0.14);
   --shadow:        0 24px 64px rgba(0, 0, 0, 0.12);
   --shadow-sm:     0 8px 24px rgba(0, 0, 0, 0.08);
-  --glow:          0 0 32px rgba(129, 51, 225, 0.1);
+  --glow:          0 0 32px rgba(153, 111, 227, 0.28);
   --social-filter: none;
+  --social-filter-glow: drop-shadow(0 0 8px rgba(153, 111, 227, 0.75));
 }
 
 /* Light mode: black button + white moon */

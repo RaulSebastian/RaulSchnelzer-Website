@@ -88,47 +88,33 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .nav-logo-img {
-  height: 34px;
-  width: 34px;
+  height: 67px;
   object-fit: contain;
-  border-radius: 8px;
   display: block;
-  /* new-logo3 has a dark bg: wrap in a dark rounded container in both modes */
-  background: #1a1a2e;
-  padding: 2px;
 }
 
 /* ─── NAV NAME ───────────────────────────────────────────── */
 .nav-name {
-  display: flex;
-  align-items: baseline;
-  gap: 6px;
   margin-left: 10px;
-  white-space: nowrap;
-  overflow: hidden;
-}
-
-.nav-name-first {
-  font-size: 15px;
-  font-weight: 600;
-  letter-spacing: -0.2px;
+  font-size: 18px;
+  font-weight: 300;
+  letter-spacing: 0.3px;
   color: var(--text);
+  white-space: nowrap;
+  flex-shrink: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.2;
 }
 
-.nav-name-sep {
-  font-size: 13px;
-  color: var(--text-label);
-}
-
-.nav-name-sub {
-  font-size: 13px;
-  font-weight: 400;
+.nav-name-break {
+  display: inline;
+  font-size: 15px;
+  font-weight: 300;
+  letter-spacing: 1px;
+  text-transform: uppercase;
   color: var(--text-muted);
-}
-
-/* hide on very small screens to avoid crowding */
-@media (max-width: 400px) {
-  .nav-name { display: none; }
+  margin-left: 6px;
 }
 
 .nav-links {
@@ -252,7 +238,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .mobile-link {
   font-size: clamp(36px, 8vw, 56px);
-  font-weight: 700;
+  font-weight: 300;
   color: var(--text-muted);
   padding: 8px 24px;
   transition: color var(--t);
@@ -926,6 +912,21 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .tc-location {
   color: var(--text-label);
 }
+.tc-location-icon {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  background-color: currentColor;
+  -webkit-mask-image: url(../assets/icons/location.svg);
+  mask-image: url(../assets/icons/location.svg);
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  vertical-align: middle;
+  margin-right: 3px;
+  margin-bottom: 1px;
+}
 
 /* Hover effect for real cards */
 .timeline-card:not(.timeline-card--empty):not(.timeline-card--grouped):hover {
@@ -1147,12 +1148,13 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 /* ─── CONTACT ────────────────────────────────────────────────── */
-.contact-disclaimer {
-  font-size: 15px;
-  color: var(--text-label);
-  margin-top: -36px;
+.contact-tagline {
+  font-size: clamp(16px, 1.8vw, 18px);
+  color: var(--text-muted);
+  margin-top: -28px;
   margin-bottom: 56px;
-  font-style: italic;
+  max-width: 600px;
+  line-height: 1.7;
 }
 
 .contact-body {
@@ -1176,11 +1178,34 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   color: var(--text-muted);
 }
 
-.contact-icon-sym {
-  font-size: 20px;
+.contact-icon {
   flex-shrink: 0;
   margin-top: 2px;
-  color: var(--text-label);
+  display: block;
+  width: 20px;
+  height: 20px;
+  background-color: currentColor;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  mask-position: center;
+}
+
+.contact-icon--location {
+  -webkit-mask-image: url(../assets/icons/location.svg);
+  mask-image: url(../assets/icons/location.svg);
+}
+
+.contact-icon--email {
+  -webkit-mask-image: url(../assets/icons/email.svg);
+  mask-image: url(../assets/icons/email.svg);
+}
+
+.contact-icon--phone {
+  -webkit-mask-image: url(../assets/icons/phone.svg);
+  mask-image: url(../assets/icons/phone.svg);
 }
 
 .contact-link {
@@ -1194,7 +1219,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .social-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 8px;
 }
 
 .social-link {
@@ -1202,30 +1227,33 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   flex-direction: column;
   align-items: center;
   gap: 8px;
-  padding: 20px 24px;
+  padding: 16px 20px;
   border-radius: var(--radius-sm);
-  background: var(--bg-card);
-  border: 1px solid var(--border);
-  transition: background var(--t), border-color var(--t),
-              transform var(--t), box-shadow var(--t);
-  min-width: 100px;
+  transition: transform var(--t-quick);
+  min-width: 80px;
 }
 
 .social-link:hover {
-  background: var(--bg-card-hover);
-  border-color: var(--border-hover);
   transform: translateY(-4px);
-  box-shadow: var(--shadow-sm), var(--glow);
 }
 
 .social-icon {
   width: 40px;
   height: 40px;
   object-fit: contain;
+  transition: filter var(--t-quick);
 }
 
 .social-icon--invert {
   filter: var(--social-filter);
+}
+
+.social-link:hover .social-icon {
+  filter: drop-shadow(0 0 8px var(--accent));
+}
+
+.social-link:hover .social-icon--invert {
+  filter: var(--social-filter-glow);
 }
 
 .social-link span {
@@ -1233,12 +1261,17 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   font-weight: 600;
   color: var(--text-muted);
   white-space: nowrap;
+  transition: color var(--t-quick);
+}
+
+.social-link:hover span {
+  color: var(--accent);
 }
 
 /* ─── FOOTER ─────────────────────────────────────────────────── */
 #footer {
-  padding: 48px 24px;
-  background: var(--bg);
+  padding: 24px;
+  background: var(--bg-alt);
   border-top: 1px solid var(--border);
 }
 
@@ -1259,12 +1292,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .footer-logo {
-  font-size: 16px;
-  font-weight: 700;
-  background: var(--g-cool);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  height: 36px;
+  object-fit: contain;
+  display: block;
 }
 
 .footer-copy {
@@ -1410,7 +1440,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* ─── BACK TO TOP ────────────────────────────────────────────── */
 #back-to-top {
   position: fixed;
-  bottom: 32px;
+  bottom: 12px;
   right: 32px;
   z-index: 90;
   width: 44px;
@@ -1493,6 +1523,9 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
   .nav-links { display: none; }
   .hamburger-btn { display: flex; }
+  .nav-actions { margin-left: auto; }
+  .nav-name { font-size: 14px; white-space: normal; line-height: 1.3; }
+  .nav-name-break { display: block; margin-left: 0; }
 
   .about-grid {
     grid-template-columns: 1fr;
