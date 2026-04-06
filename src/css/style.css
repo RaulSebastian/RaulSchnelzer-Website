@@ -1440,7 +1440,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* ─── BACK TO TOP ────────────────────────────────────────────── */
 #back-to-top {
   position: fixed;
-  bottom: 12px;
+  bottom: 24px;
   right: 32px;
   z-index: 90;
   width: 44px;
