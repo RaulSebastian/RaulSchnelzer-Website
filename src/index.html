@@ -6,17 +6,16 @@
   <title>Raul Schnelzer</title>
   <meta name="description" content="Raul Schnelzer — Creativity-driven Software Developer & Solutions Architect based in Deggendorf, Germany.">
   <meta name="robots" content="index, follow">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/dark-theme.css">
+  <link rel="stylesheet" href="css/light-theme.css">
 </head>
 <body>
 
-  <!-- ============================================================ -->
-  <!-- NAVIGATION                                                   -->
-  <!-- ============================================================ -->
   <nav id="nav" role="navigation" aria-label="Main navigation">
     <div class="nav-inner">
       <a href="#" class="nav-logo" id="nav-logo" aria-label="Raul Schnelzer — Home">
-        <img src="src/assets/new-logo3.png" alt="RS Logo" class="nav-logo-img">
+        <img src="assets/new-logo3.png" alt="RS Logo" class="nav-logo-img">
       </a>
       <div class="nav-name">
         <span class="nav-name-first">Raul Schnelzer</span>
@@ -58,7 +57,6 @@
     </div>
   </nav>
 
-  <!-- Mobile Menu -->
   <div id="mobile-menu" aria-hidden="true" role="dialog" aria-label="Navigation menu">
     <div class="mobile-menu-inner">
       <a href="#about"      class="mobile-link" tabindex="-1">About</a>
@@ -73,9 +71,6 @@
     </div>
   </div>
 
-  <!-- ============================================================ -->
-  <!-- HERO                                                         -->
-  <!-- ============================================================ -->
   <section id="hero" aria-label="Hero">
     <div class="hero-bg-gradient" aria-hidden="true"></div>
     <div class="hero-content">
@@ -95,9 +90,6 @@
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- CREATIVITY INTRO QUOTE                                       -->
-  <!-- ============================================================ -->
   <section class="quote-section quote-intro" aria-label="Quote">
     <div class="quote-bg" aria-hidden="true"></div>
     <blockquote class="quote-text quote-fly">
@@ -105,9 +97,6 @@
     </blockquote>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- CREATIVITY OUTRO QUOTE                                       -->
-  <!-- ============================================================ -->
   <section class="quote-section quote-outro" aria-label="Quote">
     <div class="quote-bg" aria-hidden="true"></div>
     <blockquote class="quote-text quote-fly">
@@ -115,9 +104,6 @@
     </blockquote>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- ABOUT                                                        -->
-  <!-- ============================================================ -->
   <section id="about" class="content-section" aria-labelledby="about-title">
     <div class="section-inner">
       <div class="section-label reveal">Who I am</div>
@@ -126,7 +112,7 @@
         <div class="about-photo-wrap reveal">
           <img
             class="about-photo"
-            src="src/assets/images/me.png"
+            src="assets/images/me.png"
             alt="Raul Schnelzer"
             loading="lazy"
             width="300"
@@ -150,9 +136,6 @@
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- SKILLS                                                       -->
-  <!-- ============================================================ -->
   <section id="skills" class="content-section content-section--alt" aria-labelledby="skills-title">
     <div class="section-inner">
       <div class="section-label reveal">What I know</div>
@@ -277,20 +260,14 @@
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- EXPERIENCE                                                   -->
-  <!-- ============================================================ -->
   <section id="experience" class="content-section" aria-labelledby="exp-title">
     <div class="section-inner">
       <div class="section-label reveal">My journey</div>
       <h2 class="section-title reveal" id="exp-title">Experience</h2>
 
       <div class="timeline" role="list">
-
-        <!-- Timeline track (decorative vertical line) -->
         <div class="timeline-track" aria-hidden="true"></div>
 
-        <!-- ── Entry 1: Digital AI-Z ─────────────────────────── -->
         <div class="timeline-entry reveal" role="listitem">
           <div class="timeline-node" aria-hidden="true">
             <div class="timeline-dot timeline-dot--active"><div class="timeline-dot-ring"></div></div>
@@ -308,7 +285,6 @@
           </div>
         </div>
 
-        <!-- ── Entry 2: Freelancer ────────────────────────────── -->
         <div class="timeline-entry reveal" role="listitem">
           <div class="timeline-node" aria-hidden="true">
             <div class="timeline-dot timeline-dot--active"><div class="timeline-dot-ring"></div></div>
@@ -326,10 +302,8 @@
           </div>
         </div>
 
-        <!-- ── Entries 3 + 4: Netto (grouped) ────────────────── -->
         <div class="timeline-group">
 
-          <!-- Software Architect -->
           <div class="timeline-entry timeline-entry--grouped reveal" role="listitem">
             <div class="timeline-node" aria-hidden="true">
               <div class="timeline-dot timeline-dot--sm"><div class="timeline-dot-ring"></div></div>
@@ -346,7 +320,6 @@
             </div>
           </div>
 
-          <!-- Software Developer → Senior -->
           <div class="timeline-entry timeline-entry--grouped reveal" role="listitem">
             <div class="timeline-node" aria-hidden="true">
               <div class="timeline-dot timeline-dot--sm"><div class="timeline-dot-ring"></div></div>
@@ -365,9 +338,28 @@
             </div>
           </div>
 
-        </div><!-- /timeline-group -->
+        </div>
 
-        <!-- End cap -->
+        <div class="timeline-entry reveal" role="listitem">
+          <div class="timeline-node" aria-hidden="true">
+            <div class="timeline-dot timeline-dot--sm">
+              <div class="timeline-dot-ring"></div>
+            </div>
+          </div>
+          <div class="timeline-card timeline-card--grouped">
+            <div class="tc-header">
+              <span class="tc-date">2001</span>
+              <span class="tc-badge">First steps</span>
+            </div>
+            <div class="tc-title">First website</div>
+            <div class="tc-meta">
+              <span class="tc-tag">self-taught development</span>
+              <span class="tc-sep" aria-hidden="true">&middot;</span>
+              <span class="tc-location">&#128205; Stuttgart</span>
+            </div>
+          </div>
+        </div>
+
         <div class="timeline-end reveal" aria-hidden="true">
           <div class="timeline-end-dot"></div>
           <p class="timeline-end-label">And so it began&hellip;</p>
@@ -377,9 +369,6 @@
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- SERVICES                                                     -->
-  <!-- ============================================================ -->
   <section id="services" class="content-section content-section--alt" aria-labelledby="services-title">
     <div class="section-inner">
       <div class="section-label reveal">What I offer</div>
@@ -419,9 +408,6 @@
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- CONTACT                                                      -->
-  <!-- ============================================================ -->
   <section id="contact" class="content-section" aria-labelledby="contact-title">
     <div class="section-inner">
       <div class="section-label reveal">Get in touch</div>
@@ -447,23 +433,23 @@
 
         <div class="social-row reveal">
           <a href="https://linkedin.com/in/raul-schnelzer" class="social-link" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn">
-            <img src="src/assets/LinkedInIcon.png" alt="LinkedIn" class="social-icon">
+            <img src="assets/LinkedInIcon.png" alt="LinkedIn" class="social-icon">
             <span>LinkedIn</span>
           </a>
           <a href="https://www.xing.com/profile/Raul_Schnelzer/portfolio" class="social-link" target="_blank" rel="noreferrer noopener" aria-label="Xing">
-            <img src="src/assets/XingIcon.png" alt="Xing" class="social-icon">
+            <img src="assets/XingIcon.png" alt="Xing" class="social-icon">
             <span>Xing</span>
           </a>
           <a href="https://stackoverflow.com/users/story/3205951/" class="social-link" target="_blank" rel="noreferrer noopener" aria-label="Stack Overflow">
-            <img src="src/assets/StackOverflowIcon.png" alt="Stack Overflow" class="social-icon social-icon--invert">
+            <img src="assets/StackOverflowIcon.png" alt="Stack Overflow" class="social-icon social-icon--invert">
             <span>Stack Overflow</span>
           </a>
           <a href="https://github.com/RaulSebastian" class="social-link" target="_blank" rel="noreferrer noopener" aria-label="GitHub">
-            <img src="src/assets/GitHubIcon.png" alt="GitHub" class="social-icon social-icon--invert">
+            <img src="assets/GitHubIcon.png" alt="GitHub" class="social-icon social-icon--invert">
             <span>GitHub</span>
           </a>
           <a href="https://api.whatsapp.com/send?phone=+491735227934" class="social-link" target="_blank" rel="noreferrer noopener" aria-label="WhatsApp">
-            <img src="src/assets/WhatsAppIcon.png" alt="WhatsApp" class="social-icon">
+            <img src="assets/WhatsAppIcon.png" alt="WhatsApp" class="social-icon">
             <span>WhatsApp</span>
           </a>
         </div>
@@ -472,9 +458,6 @@
     </div>
   </section>
 
-  <!-- ============================================================ -->
-  <!-- FOOTER                                                       -->
-  <!-- ============================================================ -->
   <footer id="footer" role="contentinfo">
     <div class="footer-inner">
       <div class="footer-brand">
@@ -490,9 +473,6 @@
     </div>
   </footer>
 
-  <!-- ============================================================ -->
-  <!-- LEGAL OVERLAY                                                -->
-  <!-- ============================================================ -->
   <div id="legal-overlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="legal-overlay-title">
     <div class="overlay-panel">
       <button class="overlay-close" id="close-legal" aria-label="Close Legal Notice">&#10005;</button>
@@ -533,9 +513,6 @@
     </div>
   </div>
 
-  <!-- ============================================================ -->
-  <!-- PRIVACY OVERLAY                                              -->
-  <!-- ============================================================ -->
   <div id="privacy-overlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="privacy-overlay-title">
     <div class="overlay-panel">
       <button class="overlay-close" id="close-privacy" aria-label="Close Privacy Policy">&#10005;</button>
@@ -600,9 +577,6 @@
     </div>
   </div>
 
-  <!-- ============================================================ -->
-  <!-- BACK TO TOP                                                  -->
-  <!-- ============================================================ -->
   <button id="back-to-top" aria-label="Back to top" title="Back to top">&#8593;</button>
 
   <script src="main.js"></script>

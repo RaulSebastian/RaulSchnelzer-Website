@@ -1,0 +1,39 @@
+/* =============================================================
+   Raul Schnelzer — light-theme.css  v3.0.0
+   ============================================================= */
+
+/* ─── LIGHT THEME ────────────────────────────────────────────── */
+[data-theme="light"] {
+  --bg:            #fbfbfd;
+  --bg-alt:        #f2f2f7;
+  --bg-card:       rgba(0, 0, 0, 0.04);
+  --bg-card-hover: rgba(0, 0, 0, 0.07);
+  --bg-overlay:    rgba(255, 255, 255, 0.96);
+  --text:          #1d1d1f;
+  --text-muted:    rgba(29, 29, 31, 0.55);
+  --text-label:    rgba(29, 29, 31, 0.4);
+  --border:        rgba(0, 0, 0, 0.1);
+  --border-hover:  rgba(0, 0, 0, 0.25);
+  --nav-bg:        rgba(251, 251, 253, 0.8);
+  --pill-bg:       rgba(0, 0, 0, 0.06);
+  --pill-hover:    rgba(129, 51, 225, 0.12);
+  --shadow:        0 24px 64px rgba(0, 0, 0, 0.12);
+  --shadow-sm:     0 8px 24px rgba(0, 0, 0, 0.08);
+  --glow:          0 0 32px rgba(129, 51, 225, 0.1);
+  --social-filter: none;
+}
+
+/* Light mode: black button + white moon */
+[data-theme="light"] .theme-btn {
+  background: #000000;
+  color: #ffffff;
+  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+}
+
+[data-theme="light"] .theme-btn:hover {
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
+}
+
+/* Show/hide sun and moon */
+[data-theme="light"] .icon-sun { display: none; }
+[data-theme="light"] .icon-moon { display: block; }
