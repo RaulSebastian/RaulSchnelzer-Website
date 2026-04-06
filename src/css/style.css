@@ -622,7 +622,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .skill-category {
   border-bottom: 1px solid var(--border);
-  transition: background var(--t);
+  transition: background var(--t-quick);
 }
 
 .skill-category:last-child { border-bottom: none; }
@@ -634,7 +634,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   padding: 20px 28px;
   cursor: pointer;
   user-select: none;
-  transition: background var(--t);
+  transition: background var(--t-quick);
 }
 
 .skill-category-header:hover {
@@ -658,7 +658,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .skill-cat-toggle {
   font-size: 20px;
   color: var(--text-muted);
-  transition: transform var(--t);
+  transition: transform var(--t-quick);
   line-height: 1;
 }
 
@@ -677,7 +677,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   padding: 0 28px 24px;
   overflow: hidden;
   max-height: 1000px;
-  transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.4s ease;
+  transition: max-height 0.22s ease, padding 0.22s ease, opacity 0.18s ease;
   opacity: 1;
 }
 
