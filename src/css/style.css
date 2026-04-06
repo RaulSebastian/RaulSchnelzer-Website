@@ -1148,6 +1148,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 /* ─── CONTACT ────────────────────────────────────────────────── */
+#contact { min-height: 70vh; }
 .contact-tagline {
   font-size: clamp(16px, 1.8vw, 18px);
   color: var(--text-muted);
@@ -1219,7 +1220,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .social-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
 }
 
 .social-link {
@@ -1281,20 +1281,34 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  gap: 16px;
+  gap: 24px;
   justify-content: space-between;
 }
 
 .footer-brand {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   gap: 12px;
+}
+
+.footer-brand-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .footer-logo {
   height: 36px;
   object-fit: contain;
   display: block;
+  margin-top: 4px;
+}
+
+.footer-headline {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.2;
 }
 
 .footer-copy {
@@ -1308,11 +1322,34 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   gap: 12px;
 }
 
+.footer-links--nav {
+  flex: 1;
+  gap: 14px;
+  justify-content: center;
+  align-self: center;
+}
+
+.footer-links--nav .footer-link {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.footer-links--nav .footer-sep {
+  color: var(--text-label);
+}
+
 .footer-link {
-  font-size: 13px;
+  font-size: 15px;
   color: var(--text-muted);
   transition: color var(--t);
 }
+
+.footer-links--legal {
+  justify-content: flex-start;
+  align-self: flex-start;
+  gap: 10px;
+}
+
 .footer-link:hover { color: var(--text); }
 
 .footer-sep {
@@ -1323,6 +1360,35 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   font-size: 12px;
   color: var(--text-label);
   font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 768px) {
+  .footer-inner {
+    flex-direction: column;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .footer-brand {
+    flex-direction: column;
+  }
+
+  .footer-brand-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .footer-links,
+  .footer-links--nav {
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .footer-links--legal {
+    justify-content: center;
+    align-self: center;
+  }
 }
 
 /* ─── OVERLAYS ───────────────────────────────────────────────── */

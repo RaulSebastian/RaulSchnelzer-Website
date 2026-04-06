@@ -295,7 +295,9 @@
           const preferredTarget = target.matches('.content-section')
             ? $('.section-title, .section-label, .section-inner', target) || target
             : target;
-          const top = preferredTarget.getBoundingClientRect().top + window.scrollY - navH - 16;
+          const top = target.id === 'about'
+            ? target.getBoundingClientRect().top + window.scrollY
+            : preferredTarget.getBoundingClientRect().top + window.scrollY - navH - 16;
           window.scrollTo({top, behavior: 'smooth'});
         }
       });
