@@ -916,13 +916,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   display: inline-block;
   width: 13px;
   height: 13px;
-  background-color: currentColor;
-  -webkit-mask-image: url(../assets/icons/location.svg);
-  mask-image: url(../assets/icons/location.svg);
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
+  background-image: url(../assets/icons/location.svg);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: var(--social-filter);
+  opacity: 0.8;
   vertical-align: middle;
   margin-right: 3px;
   margin-bottom: 1px;
@@ -1181,32 +1180,27 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .contact-icon {
   flex-shrink: 0;
-  margin-top: 2px;
+  margin-top: 5px;
   display: block;
   width: 20px;
   height: 20px;
-  background-color: currentColor;
-  -webkit-mask-size: contain;
-  mask-size: contain;
-  -webkit-mask-repeat: no-repeat;
-  mask-repeat: no-repeat;
-  -webkit-mask-position: center;
-  mask-position: center;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  filter: var(--social-filter);
+  opacity: 0.8;
 }
 
 .contact-icon--location {
-  -webkit-mask-image: url(../assets/icons/location.svg);
-  mask-image: url(../assets/icons/location.svg);
+  background-image: url(../assets/icons/location.svg);
 }
 
 .contact-icon--email {
-  -webkit-mask-image: url(../assets/icons/email.svg);
-  mask-image: url(../assets/icons/email.svg);
+  background-image: url(../assets/icons/email.svg);
 }
 
 .contact-icon--phone {
-  -webkit-mask-image: url(../assets/icons/phone.svg);
-  mask-image: url(../assets/icons/phone.svg);
+  background-image: url(../assets/icons/phone.svg);
 }
 
 .contact-link {
