@@ -267,12 +267,13 @@
 
     const obs = new IntersectionObserver(entries => {
       entries.forEach(e => {
-        if (e.isIntersecting) {
+        if (e.intersectionRatio >= 0.55) {
           e.target.classList.add('in-view');
-          obs.unobserve(e.target);
+        } else if (e.intersectionRatio <= 0.08) {
+          e.target.classList.remove('in-view');
         }
       });
-    }, {threshold: 0.25});
+    }, {threshold: [0, 0.08, 0.3, 0.55, 1]});
 
     quotes.forEach(el => obs.observe(el));
   }

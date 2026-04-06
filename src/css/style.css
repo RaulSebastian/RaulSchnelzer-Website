@@ -397,13 +397,25 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   justify-content: center;
   overflow: hidden;
   padding: 60px 24px;
+  isolation: isolate;
+  clip-path: inset(0);
+}
+
+.quote-intro {
+  min-height: 100vh;
+  overflow: visible;
 }
 
 .quote-bg {
-  position: absolute;
-  inset: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   z-index: 0;
   overflow: hidden;
+  transform: scale(1.08);
+  pointer-events: none;
 }
 
 .quote-bg::before,
@@ -476,6 +488,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   text-shadow: 0 4px 32px rgba(0, 0, 0, 0.3);
   font-style: normal;
   padding: 0 24px;
+}
+
+.quote-intro .quote-text {
+  position: sticky;
+  top: calc(var(--nav-h) + 24px);
+  align-self: flex-start;
+  margin-top: 25vh;
+  padding-bottom: 32px;
 }
 
 /* ─── SECTION LAYOUT ─────────────────────────────────────────── */
@@ -1441,8 +1461,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   transform: translateY(80px) scale(0.4);
   transform-origin: center bottom;
   transition:
-    opacity  1.3s cubic-bezier(0.16, 1, 0.3, 1),
-    transform 1.3s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 1.9s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 1.9s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: transform, opacity;
 }
 
