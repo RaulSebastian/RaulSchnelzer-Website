@@ -1633,7 +1633,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .overlay-panel {
   position: relative;
-  max-width: 720px;
+  max-width: 1024px;
   width: 100%;
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -1685,7 +1685,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 .overlay-section h3 {
   font-size: 15px;
   font-weight: 700;
-  color: var(--accent);
+  color: var(--text);
   text-transform: uppercase;
   letter-spacing: 1px;
   margin-bottom: 12px;

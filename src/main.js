@@ -381,31 +381,62 @@
     updateQuoteFade();
   }
 
+  function scrollToAnchorTarget(href, behavior = 'smooth') {
+    if (href === '#') {
+      window.scrollTo({top: 0, behavior});
+      return true;
+    }
+
+    const target = $(href);
+    if (!target) return false;
+
+    const navH = parseInt(getComputedStyle(document.documentElement)
+      .getPropertyValue('--nav-h')) || 56;
+    const preferredTarget = target.matches('.content-section')
+      ? $('.section-title, .section-label, .section-inner', target) || target
+      : target;
+    const top = target.id === 'about'
+      ? target.getBoundingClientRect().top + window.scrollY
+      : preferredTarget.getBoundingClientRect().top + window.scrollY - navH - 16;
+
+    window.scrollTo({top, behavior});
+    return true;
+  }
+
+  function updateUrlHash(href) {
+    if (href === '#') {
+      window.history.pushState(null, '', window.location.pathname + window.location.search);
+      return;
+    }
+
+    window.history.pushState(null, '', href);
+  }
 
   function initSmoothAnchors() {
     $$('a[href^="#"]').forEach(link => {
       link.addEventListener('click', e => {
         const href = link.getAttribute('href');
-        if (href === '#') {
+        if (!href) return;
+
+        if (scrollToAnchorTarget(href)) {
           e.preventDefault();
-          window.scrollTo({top: 0, behavior: 'smooth'});
-          return;
-        }
-        const target = $(href);
-        if (target) {
-          e.preventDefault();
-          const navH = parseInt(getComputedStyle(document.documentElement)
-            .getPropertyValue('--nav-h')) || 56;
-          const preferredTarget = target.matches('.content-section')
-            ? $('.section-title, .section-label, .section-inner', target) || target
-            : target;
-          const top = target.id === 'about'
-            ? target.getBoundingClientRect().top + window.scrollY
-            : preferredTarget.getBoundingClientRect().top + window.scrollY - navH - 16;
-          window.scrollTo({top, behavior: 'smooth'});
+          updateUrlHash(href);
         }
       });
     });
+
+    function syncHashNavigation() {
+      const {hash} = window.location;
+      if (!hash || hash === '#') return;
+
+      window.scrollTo({top: 0, behavior: 'auto'});
+      requestAnimationFrame(() => {
+        scrollToAnchorTarget(hash);
+      });
+    }
+
+    window.addEventListener('hashchange', syncHashNavigation);
+    syncHashNavigation();
   }
 
   function init() {
