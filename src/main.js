@@ -65,18 +65,25 @@
     let lastY = window.scrollY;
     let ticking = false;
 
+    function syncNavState() {
+      document.body.classList.toggle('nav-is-hidden', nav.classList.contains('nav--hidden'));
+    }
+
     function update() {
       const y = window.scrollY;
       if (y < 80) {
         nav.classList.remove('nav--hidden');
       } else if (y > lastY + 4) {
-        nav.classList.add('nav--hidden');
-      } else if (y < lastY - 4) {
         nav.classList.remove('nav--hidden');
+      } else if (y < lastY - 4) {
+        nav.classList.add('nav--hidden');
       }
+      syncNavState();
       lastY = y;
       ticking = false;
     }
+
+    update();
 
     window.addEventListener('scroll', () => {
       if (!ticking) {
@@ -84,6 +91,47 @@
         ticking = true;
       }
     }, {passive: true});
+  }
+
+  function initFloatingFooter() {
+    const footer = $('#footer');
+    if (!footer) return;
+
+    const floatFooter = footer.cloneNode(true);
+    floatFooter.removeAttribute('id');
+    floatFooter.classList.add('footer-float');
+
+    const clonedYear = $('#footer-year', floatFooter);
+    if (clonedYear) clonedYear.removeAttribute('id');
+
+    document.body.appendChild(floatFooter);
+
+    let footerInView = false;
+    let ticking = false;
+
+    function updateVisibility() {
+      const shouldShow = document.body.classList.contains('nav-is-hidden') && !footerInView;
+      floatFooter.classList.toggle('footer-float--visible', shouldShow);
+      ticking = false;
+    }
+
+    const footerObserver = new IntersectionObserver(entries => {
+      footerInView = entries.some(entry => entry.isIntersecting);
+      updateVisibility();
+    }, {threshold: 0.01});
+
+    footerObserver.observe(footer);
+
+    function requestUpdate() {
+      if (!ticking) {
+        requestAnimationFrame(updateVisibility);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', requestUpdate, {passive: true});
+    window.addEventListener('resize', requestUpdate);
+    updateVisibility();
   }
 
   function initActiveNav() {
@@ -262,10 +310,13 @@
   }
 
   function initQuoteFlyIn() {
-    const quotes = $$('.quote-fly');
-    if (!quotes.length) return;
+    const introQuotes = $$('.quote-intro .quote-fly');
+    const outroQuotes = $$('.quote-outro .quote-fly');
+    const allQuotes = [...introQuotes, ...outroQuotes];
 
-    const obs = new IntersectionObserver(entries => {
+    if (!allQuotes.length) return;
+
+    const introObs = new IntersectionObserver(entries => {
       entries.forEach(e => {
         if (e.intersectionRatio >= 0.55) {
           e.target.classList.add('in-view');
@@ -275,8 +326,53 @@
       });
     }, {threshold: [0, 0.08, 0.3, 0.55, 1]});
 
-    quotes.forEach(el => obs.observe(el));
+    const outroObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.intersectionRatio >= 0.2) {
+          e.target.classList.add('in-view');
+        } else {
+          e.target.classList.remove('in-view');
+        }
+      });
+    }, {threshold: [0, 0.2, 1], rootMargin: '0px 0px -12% 0px'});
+
+    introQuotes.forEach(el => introObs.observe(el));
+    outroQuotes.forEach(el => outroObs.observe(el));
+
+    let ticking = false;
+
+    function updateQuoteFade() {
+      const navH = parseInt(getComputedStyle(document.documentElement)
+        .getPropertyValue('--nav-h')) || 56;
+      const stickyTop = navH + 24;
+      const fadeDistance = 180;
+
+      allQuotes.forEach(quote => {
+        const section = quote.closest('.quote-section');
+        if (!section) return;
+
+        const sectionRect = section.getBoundingClientRect();
+        const distanceToEnd = sectionRect.bottom - stickyTop;
+        const fadeDistance = section.classList.contains('quote-outro') ? 820 : 180;
+        const opacity = Math.max(0, Math.min(1, distanceToEnd / fadeDistance));
+        quote.style.setProperty('--quote-opacity', opacity.toFixed(3));
+      });
+
+      ticking = false;
+    }
+
+    function requestFadeUpdate() {
+      if (!ticking) {
+        requestAnimationFrame(updateQuoteFade);
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', requestFadeUpdate, {passive: true});
+    window.addEventListener('resize', requestFadeUpdate);
+    updateQuoteFade();
   }
+
 
   function initSmoothAnchors() {
     $$('a[href^="#"]').forEach(link => {
@@ -308,6 +404,7 @@
     initTheme();
     setFooterYear();
     initNavScroll();
+    initFloatingFooter();
     initActiveNav();
     initMobileMenu();
     initScrollReveal();

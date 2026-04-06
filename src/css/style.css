@@ -132,10 +132,14 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   transition: color var(--t), background var(--t);
 }
 
-.nav-link:hover,
-.nav-link.active {
+.nav-link:hover {
   color: var(--text);
   background: var(--bg-card);
+}
+
+.nav-link.active {
+  color: var(--accent);
+  background: transparent;
 }
 
 .nav-actions {
@@ -392,6 +396,11 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   overflow: visible;
 }
 
+.quote-outro {
+  align-items: flex-start;
+  overflow: visible;
+}
+
 .quote-bg {
   position: fixed;
   top: 0;
@@ -476,7 +485,8 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   padding: 0 24px;
 }
 
-.quote-intro .quote-text {
+.quote-intro .quote-text,
+.quote-outro .quote-text {
   position: sticky;
   top: calc(var(--nav-h) + 24px);
   align-self: flex-start;
@@ -1397,6 +1407,37 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   border-top: 1px solid var(--border);
 }
 
+.footer-float {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 95;
+  padding: 24px;
+  background: var(--bg-alt);
+  border-top: 1px solid var(--border);
+  opacity: 0;
+  transform: translateY(100%);
+  pointer-events: none;
+  transition: opacity var(--t-quick), transform var(--t-quick);
+}
+
+.footer-float.footer-float--visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: all;
+}
+
+.footer-float .footer-inner {
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  box-shadow: none;
+}
+
 .footer-inner {
   max-width: var(--max-w);
   margin: 0 auto;
@@ -1485,6 +1526,12 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 @media (max-width: 768px) {
+  .footer-float {
+    left: 0;
+    right: 0;
+    bottom: 0;
+  }
+
   .footer-inner {
     flex-direction: column;
     text-align: center;
@@ -1667,12 +1714,6 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 /* ─── ACCENT UTILITY ─────────────────────────────────────────── */
 .accent { color: var(--accent); }
 
-/* ─── QUOTE FLY-IN ───────────────────────────────────────────── */
-/*
-   The text starts from the bottom of the section and rises to center
-   while its size grows from ~40% to 100%.  Both movements share the
-   same easing so they feel locked together.
-*/
 .quote-fly {
   opacity: 0;
   /* start small + far below */
@@ -1685,7 +1726,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 }
 
 .quote-fly.in-view {
-  opacity: 1;
+  opacity: var(--quote-opacity, 1);
   transform: translateY(0) scale(1);
 }
 
