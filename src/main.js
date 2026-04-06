@@ -17,6 +17,7 @@
   const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
 
   const THEME_KEY = 'rs-theme';
+  let heroScrollFrame = 0;
 
   function getStoredTheme() {
     try {
@@ -448,6 +449,52 @@
     return true;
   }
 
+  function slowScrollToAnchorTarget(href) {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return scrollToAnchorTarget(href, 'auto');
+    }
+
+    const target = $(href);
+    if (!target) return false;
+
+    const navH = parseInt(getComputedStyle(document.documentElement)
+      .getPropertyValue('--nav-h')) || 56;
+    const preferredTarget = target.matches('.content-section')
+      ? $('.section-title, .section-label, .section-inner', target) || target
+      : target;
+    const destination = target.id === 'about'
+      ? target.getBoundingClientRect().top + window.scrollY
+      : preferredTarget.getBoundingClientRect().top + window.scrollY - navH - 16;
+
+    if (heroScrollFrame) {
+      cancelAnimationFrame(heroScrollFrame);
+    }
+
+    const startTop = window.scrollY;
+    const delta = destination - startTop;
+    const duration = 1150;
+    const startTime = performance.now();
+
+    function easeInOutCubic(t) {
+      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+    }
+
+    function step(now) {
+      const progress = Math.min((now - startTime) / duration, 1);
+      const eased = easeInOutCubic(progress);
+      window.scrollTo({top: startTop + (delta * eased), behavior: 'auto'});
+
+      if (progress < 1) {
+        heroScrollFrame = requestAnimationFrame(step);
+      } else {
+        heroScrollFrame = 0;
+      }
+    }
+
+    heroScrollFrame = requestAnimationFrame(step);
+    return true;
+  }
+
   function updateUrlHash(href) {
     if (href === '#') {
       window.history.pushState(null, '', window.location.pathname + window.location.search);
@@ -462,6 +509,14 @@
       link.addEventListener('click', e => {
         const href = link.getAttribute('href');
         if (!href) return;
+
+        if (link.matches('.hero-cta')) {
+          if (slowScrollToAnchorTarget(href)) {
+            e.preventDefault();
+            updateUrlHash(href);
+          }
+          return;
+        }
 
         if (scrollToAnchorTarget(href)) {
           e.preventDefault();
