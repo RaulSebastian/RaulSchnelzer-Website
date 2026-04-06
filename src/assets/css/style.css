@@ -12,6 +12,7 @@
   --nav-h: 56px;
   --radius: 20px;
   --radius-sm: 12px;
+  --footer-float-h: 132px;
 
   /* Transition */
   --t: 1s cubic-bezier(0.4, 0, 0.2, 1);
@@ -412,7 +413,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .hero-scroll-indicator {
   position: absolute;
-  bottom: 36px;
+  bottom: calc(var(--footer-float-h) + 24px);
   left: 50%;
   transform: translateX(-50%);
   z-index: 1;
@@ -776,8 +777,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 .skill-pill:hover {
   background:
-    linear-gradient(90deg, rgba(0, 255, 191, 0.11) 0%, rgba(255, 255, 255, 0.03) 45%, rgba(129, 51, 225, 0.06) 100%),
-    rgba(255, 255, 255, 0.04);
+    linear-gradient(180deg, var(--featured-sheen-top-hover), var(--featured-sheen-bottom-hover)),
+    radial-gradient(circle at 0% 0%, var(--featured-tint-start-hover), transparent 42%),
+    radial-gradient(circle at 100% 100%, var(--featured-tint-end-hover), transparent 46%),
+    var(--bg-card-hover);
   border-color: rgba(255, 255, 255, 0.1);
   border-top-color: rgba(0, 255, 191, 0.38);
   border-left-color: rgba(0, 255, 191, 0.28);
@@ -1461,6 +1464,7 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
   right: 0;
   bottom: 0;
   z-index: 95;
+  min-height: var(--footer-float-h);
   padding: 24px;
   background: var(--bg-alt);
   border-top: 1px solid var(--border);
@@ -1796,7 +1800,10 @@ button { cursor: pointer; border: none; background: none; font: inherit; }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────── */
 @media (max-width: 768px) {
-  :root { --nav-h: 52px; }
+  :root {
+    --nav-h: 52px;
+    --footer-float-h: 208px;
+  }
 
   .nav-links { display: none; }
   .hamburger-btn { display: flex; }

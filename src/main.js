@@ -118,7 +118,8 @@
     let ticking = false;
 
     function updateVisibility() {
-      const shouldShow = document.body.classList.contains('nav-is-hidden') && !footerInView;
+      const isAtTop = window.scrollY < 24;
+      const shouldShow = (isAtTop || document.body.classList.contains('nav-is-hidden')) && !footerInView;
       floatFooter.classList.toggle('footer-float--visible', shouldShow);
       ticking = false;
     }
@@ -262,6 +263,14 @@
   }
 
   function initOverlays() {
+    const overlayHashById = {
+      'privacy-overlay': '#privacy',
+      'legal-overlay': '#legal'
+    };
+    const overlayIdByHash = Object.fromEntries(
+      Object.entries(overlayHashById).map(([id, hash]) => [hash, id])
+    );
+
     function openOverlay(id) {
       const overlay = $('#' + id);
       if (!overlay) return;
@@ -270,7 +279,7 @@
       document.body.style.overflow = 'hidden';
       const first = overlay.querySelector('button, a, [tabindex="0"]');
       if (first instanceof HTMLElement) {
-        setTimeout(() => first.focus(), 50);
+        setTimeout(() => first.focus({preventScroll: true}), 50);
       }
     }
 
@@ -282,39 +291,75 @@
       document.body.style.overflow = '';
     }
 
+    function setOverlayHash(hash) {
+      window.history.pushState(null, '', hash);
+    }
+
+    function clearOverlayHash(id) {
+      if (overlayHashById[id] !== window.location.hash) return;
+      window.history.pushState(null, '', window.location.pathname + window.location.search);
+    }
+
+    function syncOverlayFromHash() {
+      const targetOverlayId = overlayIdByHash[window.location.hash];
+
+      $$('.overlay.open').forEach(overlay => {
+        if (overlay.id !== targetOverlayId) closeOverlay(overlay.id);
+      });
+
+      if (targetOverlayId) openOverlay(targetOverlayId);
+    }
+
     $$('#open-privacy, #open-privacy-mob').forEach(el => {
       el.addEventListener('click', e => {
         e.preventDefault();
-        openOverlay('privacy-overlay');
+        setOverlayHash('#privacy');
+        syncOverlayFromHash();
       });
     });
     const closePrivacy = $('#close-privacy');
     if (closePrivacy) {
-      closePrivacy.addEventListener('click', () => closeOverlay('privacy-overlay'));
+      closePrivacy.addEventListener('click', () => {
+        closeOverlay('privacy-overlay');
+        clearOverlayHash('privacy-overlay');
+      });
     }
 
     $$('#open-legal, #open-legal-mob').forEach(el => {
       el.addEventListener('click', e => {
         e.preventDefault();
-        openOverlay('legal-overlay');
+        setOverlayHash('#legal');
+        syncOverlayFromHash();
       });
     });
     const closeLegal = $('#close-legal');
     if (closeLegal) {
-      closeLegal.addEventListener('click', () => closeOverlay('legal-overlay'));
+      closeLegal.addEventListener('click', () => {
+        closeOverlay('legal-overlay');
+        clearOverlayHash('legal-overlay');
+      });
     }
 
     $$('.overlay').forEach(overlay => {
       overlay.addEventListener('click', e => {
-        if (e.target === overlay) closeOverlay(overlay.id);
+        if (e.target === overlay) {
+          closeOverlay(overlay.id);
+          clearOverlayHash(overlay.id);
+        }
       });
     });
 
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape') {
-        $$('.overlay.open').forEach(o => closeOverlay(o.id));
+        $$('.overlay.open').forEach(o => {
+          closeOverlay(o.id);
+          clearOverlayHash(o.id);
+        });
       }
     });
+
+    window.addEventListener('hashchange', syncOverlayFromHash);
+    syncOverlayFromHash();
   }
 
   function initQuoteFlyIn() {
@@ -428,6 +473,7 @@
     function syncHashNavigation() {
       const {hash} = window.location;
       if (!hash || hash === '#') return;
+      if (!$(hash)) return;
 
       window.scrollTo({top: 0, behavior: 'auto'});
       requestAnimationFrame(() => {
