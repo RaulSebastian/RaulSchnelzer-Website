@@ -33,8 +33,16 @@
     }
   }
 
+  function syncThemeLogos(theme) {
+    $$('[data-theme-logo]').forEach(img => {
+      const nextSrc = theme === 'light' ? img.dataset.logoLight : img.dataset.logoDark;
+      if (nextSrc) img.setAttribute('src', nextSrc);
+    });
+  }
+
   function applyTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
+    syncThemeLogos(theme);
     storeTheme(theme);
   }
 

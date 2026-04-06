@@ -18,24 +18,31 @@
   --accent:        #996fe3;
   --pill-bg:       rgba(0, 0, 0, 0.06);
   --pill-hover:    rgba(153, 111, 227, 0.14);
+  --badge-active-bg: rgba(153, 111, 227, 0.12);
+  --badge-active-border: rgba(153, 111, 227, 0.28);
+  --badge-active-text: #6f46c5;
   --shadow:        0 24px 64px rgba(0, 0, 0, 0.12);
   --shadow-sm:     0 8px 24px rgba(0, 0, 0, 0.08);
   --glow:          0 0 32px rgba(153, 111, 227, 0.28);
   --social-filter: none;
   --social-filter-glow: drop-shadow(0 0 8px rgba(153, 111, 227, 0.75));
+  --theme-toggle-shine: rgba(153, 111, 227, 0.28);
+  --theme-toggle-glow: rgba(153, 111, 227, 0.18);
 }
 
-/* Light mode: black button + white moon */
+/* Light mode: transparent button + tinted moon */
 [data-theme="light"] .theme-btn {
-  background: rgb(0,0,0,0.65);
-  color: var(--bg);
-  box-shadow: 0 0 0 0 rgba(0, 0, 0, 0);
+  background: transparent;
+  box-shadow: none;
 }
 
 [data-theme="light"] .theme-btn:hover {
-  box-shadow: 0 0 14px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 24px var(--theme-toggle-glow);
 }
 
 /* Show/hide sun and moon */
 [data-theme="light"] .icon-sun { display: none; }
-[data-theme="light"] .icon-moon { display: block; }
+[data-theme="light"] .icon-moon {
+  display: block;
+  filter: brightness(0) saturate(100%) invert(14%) sepia(7%) saturate(658%) hue-rotate(202deg) brightness(94%) contrast(92%);
+}
