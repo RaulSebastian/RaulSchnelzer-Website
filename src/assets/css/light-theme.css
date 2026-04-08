@@ -18,6 +18,12 @@
   --accent:        #996fe3;
   --pill-bg:       rgba(0, 0, 0, 0.06);
   --pill-hover:    rgba(153, 111, 227, 0.14);
+  --pill-surface:    rgba(23, 152, 210, 0.08);
+  --pill-surface-hover: rgba(23, 152, 210, 0.13);
+  --pill-border:     rgba(23, 152, 210, 0.16);
+  --pill-border-strong: rgba(129, 51, 225, 0.24);
+  --pill-highlight:  rgba(255, 255, 255, 0.72);
+  --pill-glow:       rgba(23, 152, 210, 0.1);
   --badge-active-bg: rgba(153, 111, 227, 0.12);
   --badge-active-border: rgba(153, 111, 227, 0.28);
   --badge-active-text: #6f46c5;
@@ -28,6 +34,8 @@
   --social-filter-glow: drop-shadow(0 0 8px rgba(153, 111, 227, 0.75));
   --theme-toggle-shine: rgba(153, 111, 227, 0.28);
   --theme-toggle-glow: rgba(153, 111, 227, 0.18);
+  --skill-pill-text: #444444;
+  --skill-pill-bg: #eaeaea;
 }
 
 /* Light mode: transparent button + tinted moon */
