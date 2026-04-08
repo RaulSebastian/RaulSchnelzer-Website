@@ -42,13 +42,13 @@
   --featured-highlight: radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.05), transparent 18%);
   --featured-glow: rgba(0, 255, 191, 0.08);
 
-  /* Skill pill palette */
-  --skill-pill-a: #00ffbf;
-  --skill-pill-b: #1798d2;
-  --skill-pill-c: #8133e1;
-  --skill-pill-d: #ffa600;
-  --skill-pill-e: #ff0062;
-  --skill-pill-f: #af0bd8;
+  /* Accent palette */
+  --accent-palette-a: #00ffbf;
+  --accent-palette-b: #1798d2;
+  --accent-palette-c: #8133e1;
+  --accent-palette-d: #ffa600;
+  --accent-palette-e: #ff0062;
+  --accent-palette-f: #af0bd8;
 }
 
 /* ─── RESET & BASE ───────────────────────────────────────────── */
@@ -773,8 +773,8 @@ button {
 }
 
 .skill-pill {
-  --skill-pill-fill: var(--skill-pill-a);
-  --skill-pill-fill-2: var(--skill-pill-b);
+  --accent-border-start: var(--accent-palette-a);
+  --accent-border-end: var(--accent-palette-b);
   display: inline-flex;
   align-items: center;
   min-height: 34px;
@@ -802,8 +802,8 @@ button {
   padding: 1px;
   background: linear-gradient(
     45deg,
-    color-mix(in srgb, var(--skill-pill-fill) 80%, transparent) 0%,
-    color-mix(in srgb, var(--skill-pill-fill-2) 80%, transparent) 100%
+    color-mix(in srgb, var(--accent-border-start) 80%, transparent) 0%,
+    color-mix(in srgb, var(--accent-border-end) 80%, transparent) 100%
   );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
@@ -812,33 +812,33 @@ button {
 }
 
 .skill-pill:nth-child(6n + 1) {
-  --skill-pill-fill: var(--skill-pill-a);
-  --skill-pill-fill-2: var(--skill-pill-b);
+  --accent-border-start: var(--accent-palette-a);
+  --accent-border-end: var(--accent-palette-b);
 }
 
 .skill-pill:nth-child(6n + 2) {
-  --skill-pill-fill: var(--skill-pill-b);
-  --skill-pill-fill-2: var(--skill-pill-c);
+  --accent-border-start: var(--accent-palette-b);
+  --accent-border-end: var(--accent-palette-c);
 }
 
 .skill-pill:nth-child(6n + 3) {
-  --skill-pill-fill: var(--skill-pill-d);
-  --skill-pill-fill-2: var(--skill-pill-e);
+  --accent-border-start: var(--accent-palette-d);
+  --accent-border-end: var(--accent-palette-e);
 }
 
 .skill-pill:nth-child(6n + 4) {
-  --skill-pill-fill: var(--skill-pill-e);
-  --skill-pill-fill-2: var(--skill-pill-f);
+  --accent-border-start: var(--accent-palette-e);
+  --accent-border-end: var(--accent-palette-f);
 }
 
 .skill-pill:nth-child(6n + 5) {
-  --skill-pill-fill: var(--skill-pill-a);
-  --skill-pill-fill-2: var(--skill-pill-c);
+  --accent-border-start: var(--accent-palette-a);
+  --accent-border-end: var(--accent-palette-c);
 }
 
 .skill-pill:nth-child(6n + 6) {
-  --skill-pill-fill: var(--skill-pill-d);
-  --skill-pill-fill-2: var(--skill-pill-f);
+  --accent-border-start: var(--accent-palette-d);
+  --accent-border-end: var(--accent-palette-f);
 }
 
 .skill-pill:hover {
@@ -854,8 +854,8 @@ button {
 .skill-pill:hover::before {
   background: linear-gradient(
     45deg,
-    color-mix(in srgb, color-mix(in srgb, var(--skill-pill-fill) 86%, white 14%) 80%, transparent) 0%,
-    color-mix(in srgb, color-mix(in srgb, var(--skill-pill-fill-2) 86%, white 14%) 80%, transparent) 100%
+    color-mix(in srgb, color-mix(in srgb, var(--accent-border-start) 86%, white 14%) 80%, transparent) 0%,
+    color-mix(in srgb, color-mix(in srgb, var(--accent-border-end) 86%, white 14%) 80%, transparent) 100%
   );
 }
 
@@ -885,6 +885,7 @@ button {
 }
 
 .timeline-entry {
+  --timeline-accent: var(--accent-palette-a);
   position: relative;
   display: flex;
   align-items: flex-start;
@@ -907,7 +908,7 @@ button {
   width: 16px;
   height: 16px;
   border-radius: 50%;
-  background: var(--g-cool);
+  background: var(--timeline-accent);
   position: relative;
   flex-shrink: 0;
 }
@@ -916,17 +917,21 @@ button {
   position: absolute;
   inset: -4px;
   border-radius: 50%;
-  border: 2px solid rgba(0, 255, 191, 0.3);
+  border: 2px solid color-mix(in srgb, var(--timeline-accent) 30%, transparent);
   animation: ringPulse 2.5s ease-in-out infinite;
 }
 
 .timeline-card {
+  --timeline-border-start: var(--timeline-accent);
+  --timeline-border-end: var(--timeline-accent);
+  --timeline-bg-tint: transparent;
   position: relative;
+  max-width: 70vw;
   flex: 1;
   padding: 28px 32px;
-  border-radius: var(--radius-sm);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) var(--radius-sm);
   background:
-    linear-gradient(180deg, var(--featured-sheen-top), var(--featured-sheen-bottom)),
+    linear-gradient(75deg, var(--timeline-bg-tint) 0%, transparent 50%, var(--featured-sheen-bottom) 100%),
     radial-gradient(circle at 0% 0%, var(--featured-tint-start), transparent 40%),
     radial-gradient(circle at 100% 100%, var(--featured-tint-end), transparent 44%),
     var(--bg-card);
@@ -940,8 +945,7 @@ button {
               transform var(--t), box-shadow var(--t);
 }
 
-.service-card--featured::before,
-.timeline-card::before {
+.service-card--featured::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -950,6 +954,33 @@ button {
   background: var(--featured-outline);
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.timeline-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  border-style: solid;
+  border-width: 1px 1px 1px 3px;
+  border-color: transparent;
+  background: linear-gradient(
+    180deg,
+    var(--timeline-border-start) 0%,
+    var(--timeline-border-end) 100%
+  );
+  background-origin: border-box;
+  background-clip: border-box;
+  -webkit-mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#fff 0 0) padding-box,
+    linear-gradient(#fff 0 0);
   mask-composite: exclude;
   pointer-events: none;
   opacity: 0.75;
@@ -967,15 +998,65 @@ button {
 
 .timeline-card:hover {
   background:
-    linear-gradient(180deg, var(--featured-sheen-top-hover), var(--featured-sheen-bottom-hover)),
-    radial-gradient(circle at 0% 0%, var(--featured-tint-start-hover), transparent 42%),
-    radial-gradient(circle at 100% 100%, var(--featured-tint-end-hover), transparent 46%),
-    var(--bg-card-hover);
-  border-color: var(--featured-border-strong);
-  transform: translateX(4px);
+    linear-gradient(180deg, var(--timeline-bg-tint), var(--featured-sheen-bottom-hover));
+  transform: translateX(10px);
   box-shadow:
     0 24px 48px rgba(0, 0, 0, 0.28),
     0 0 28px var(--featured-glow);
+}
+
+.timeline-entry:nth-child(6n + 1) {
+  --timeline-accent: var(--accent-palette-a);
+}
+
+.timeline-entry:nth-child(6n + 2) {
+  --timeline-accent: var(--accent-palette-b);
+}
+
+.timeline-entry:nth-child(6n + 3) {
+  --timeline-accent: var(--accent-palette-d);
+}
+
+.timeline-entry:nth-child(6n + 4) {
+  --timeline-accent: var(--accent-palette-e);
+}
+
+.timeline-entry:nth-child(6n + 5) {
+  --timeline-accent: var(--accent-palette-a);
+}
+
+.timeline-entry:nth-child(6n + 6) {
+  --timeline-accent: var(--accent-palette-f);
+}
+
+.timeline > .timeline-entry:nth-child(2) .timeline-card {
+  --timeline-border-start: #01fcbf;
+  --timeline-border-end: #09d2c4;
+  --timeline-bg-tint: rgba(0, 255, 255, 0.15);
+}
+
+.timeline > .timeline-entry:nth-child(3) .timeline-card {
+  --timeline-border-start: #09d2c4;
+  --timeline-border-end: #218fd2;
+  --timeline-bg-tint: rgba(8, 162, 209, 0.15);
+}
+
+.timeline > .timeline-group:nth-child(4) > .timeline-entry--grouped:first-child .timeline-card {
+  --timeline-border-start: #218fd2;
+  --timeline-border-end: #5060d8;
+  --timeline-bg-tint: rgba(2, 19, 237, 0.07);
+}
+
+.timeline > .timeline-group:nth-child(4) > .timeline-entry--grouped:last-child .timeline-card {
+  --timeline-border-start: #776de6;
+  --timeline-border-end: #7e36df;
+  --timeline-bg-tint: rgba(118, 108, 230, 0.15);
+}
+
+.timeline > .timeline-entry:nth-child(5) .timeline-card--solo {
+  --timeline-border-start: #821ffb;
+  --timeline-border-end: #52218e;
+  --timeline-bg-tint: rgba(129, 30, 250, 0.15);
 }
 
 .timeline-card:hover::after {
@@ -1129,9 +1210,20 @@ button {
 }
 
 .timeline-card--grouped {
-  border-left: 1px solid var(--featured-border);
-  border-radius: var(--radius-sm);
   padding: 20px 24px;
+}
+
+.timeline-group > .timeline-entry--grouped:first-child .timeline-card--grouped {
+  border-radius: var(--radius-sm) var(--radius-sm) var(--radius-sm) 0;
+}
+
+.timeline-group > .timeline-entry--grouped:last-child .timeline-card--grouped {
+  border-radius: 0 var(--radius-sm) var(--radius-sm) var(--radius-sm);
+}
+
+.timeline-card--solo {
+  border-radius: var(--radius-sm);
+  padding: 14px 32px;
 }
 
 @keyframes ringPulse {
