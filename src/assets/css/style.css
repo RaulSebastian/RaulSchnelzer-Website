@@ -931,7 +931,7 @@ button {
   padding: 28px 32px;
   border-radius: 0 var(--radius-sm) var(--radius-sm) var(--radius-sm);
   background:
-    linear-gradient(75deg, var(--timeline-bg-tint) 0%, transparent 50%, var(--featured-sheen-bottom) 100%),
+    linear-gradient(115deg, var(--timeline-bg-tint) 0%, transparent 50%, var(--featured-sheen-bottom) 100%),
     radial-gradient(circle at 0% 0%, var(--featured-tint-start), transparent 40%),
     radial-gradient(circle at 100% 100%, var(--featured-tint-end), transparent 44%),
     var(--bg-card);
@@ -951,7 +951,11 @@ button {
   inset: 0;
   border-radius: inherit;
   padding: 1px;
-  background: var(--featured-outline);
+  background: linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--accent-border-start) 80%, transparent) 0%,
+    color-mix(in srgb, var(--accent-border-end) 80%, transparent) 100%
+  );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -1369,13 +1373,16 @@ button {
 }
 
 .service-card--featured {
+  --accent-border-start: var(--accent-palette-a);
+  --accent-border-end: var(--accent-palette-b);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-a) 10%, transparent);
   position: relative;
   padding: 32px 30px;
   border-radius: 24px;
   background:
-    linear-gradient(180deg, var(--featured-sheen-top), var(--featured-sheen-bottom)),
+    linear-gradient(180deg, var(--accent-bg), var(--featured-sheen-bottom)),
     radial-gradient(circle at 0% 0%, var(--featured-tint-start), transparent 40%),
-    radial-gradient(circle at 100% 100%, var(--featured-tint-end), transparent 44%),
+    radial-gradient(circle at 100% 100%, var(--bg-alt), transparent 44%),
     var(--bg-card);
   border: none;
   box-shadow:
@@ -1398,11 +1405,10 @@ button {
 }
 
 .service-card--featured:hover {
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-a) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-b) 19%, transparent);
   background:
-    linear-gradient(180deg, var(--featured-sheen-top-hover), var(--featured-sheen-bottom-hover)),
-    radial-gradient(circle at 0% 0%, var(--featured-tint-start-hover), transparent 42%),
-    radial-gradient(circle at 100% 100%, var(--featured-tint-end-hover), transparent 46%),
-    var(--bg-card-hover);
+    linear-gradient(115deg, var(--accent-hover-start) 0%, transparent 50%, var(--accent-hover-end) 100%);
   border-color: var(--featured-border-strong);
   transform: translateY(-6px);
   box-shadow:
@@ -1413,6 +1419,54 @@ button {
 .service-card--featured:hover::after {
   transform: scale(1.01);
   opacity: 0.8;
+}
+
+.service-card--featured:nth-child(6n + 1) {
+  --accent-border-start: var(--accent-palette-a);
+  --accent-border-end: var(--accent-palette-b);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-a) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-b) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-a) 10%, transparent);
+}
+
+.service-card--featured:nth-child(6n + 2) {
+  --accent-border-start: var(--accent-palette-b);
+  --accent-border-end: var(--accent-palette-c);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-b) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-c) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-b) 10%, transparent);
+}
+
+.service-card--featured:nth-child(6n + 3) {
+  --accent-border-start: var(--accent-palette-d);
+  --accent-border-end: var(--accent-palette-e);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-d) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-e) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-d) 10%, transparent);
+}
+
+.service-card--featured:nth-child(6n + 4) {
+  --accent-border-start: var(--accent-palette-e);
+  --accent-border-end: var(--accent-palette-f);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-e) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-f) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-e) 10%, transparent);
+}
+
+.service-card--featured:nth-child(6n + 5) {
+  --accent-border-start: var(--accent-palette-a);
+  --accent-border-end: var(--accent-palette-c);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-a) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-c) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-c) 10%, transparent);
+}
+
+.service-card--featured:nth-child(6n + 6) {
+  --accent-border-start: var(--accent-palette-d);
+  --accent-border-end: var(--accent-palette-f);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-d) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-f) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-d) 10%, transparent);
 }
 
 .service-icon {
