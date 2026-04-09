@@ -286,18 +286,19 @@
 
     headers.forEach(header => {
       const category = header.parentElement;
+      const panel = $('.skill-pills', category);
+
+      function syncState() {
+        const isCollapsed = category.classList.contains('collapsed');
+        header.setAttribute('aria-expanded', String(!isCollapsed));
+        if (panel) panel.setAttribute('aria-hidden', String(isCollapsed));
+      }
+
+      syncState();
 
       header.addEventListener('click', () => {
-        const isCollapsed = category.classList.contains('collapsed');
-        category.classList.toggle('collapsed', !isCollapsed);
-        header.setAttribute('aria-expanded', String(isCollapsed));
-      });
-
-      header.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          header.click();
-        }
+        category.classList.toggle('collapsed');
+        syncState();
       });
     });
   }
@@ -314,6 +315,7 @@
     function openOverlay(id) {
       const overlay = $('#' + id);
       if (!overlay) return;
+      overlay.inert = false;
       overlay.classList.add('open');
       overlay.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
@@ -328,6 +330,7 @@
       if (!overlay) return;
       overlay.classList.remove('open');
       overlay.setAttribute('aria-hidden', 'true');
+      overlay.inert = true;
       document.body.style.overflow = '';
     }
 

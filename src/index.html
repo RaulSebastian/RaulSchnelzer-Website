@@ -17,12 +17,17 @@
   <div class="nav-inner">
     <a href="#" class="nav-logo" id="nav-logo" aria-label="Raul Schnelzer — Home">
       <img
-        src="assets/images/logo-dark.png"
-        alt="RS Logo"
+        src="assets/images/logo-dark-72.png"
+        alt="RS"
+        aria-hidden="true"
         class="nav-logo-img"
-        data-theme-logo
-        data-logo-light="assets/images/logo-light.png"
-        data-logo-dark="assets/images/logo-dark.png"
+        width="72"
+        height="72"
+        fetchpriority="high"
+        decoding="async"
+        data-theme-logo‚
+        data-logo-light="assets/images/logo-light-256.png"
+        data-logo-dark="assets/images/logo-dark-256.png"
       >
     </a>
     <div class="nav-name">Raul Schnelzer<span class="nav-name-break"> Software Solutions</span></div>
@@ -61,6 +66,7 @@
   </div>
 </div>
 
+<main id="main-content">
 <section id="hero" aria-label="Hero">
   <div class="hero-bg-gradient" aria-hidden="true"></div>
   <div class="hero-content">
@@ -113,8 +119,8 @@
         <p class="about-greeting">Hi, I'm Raul!</p>
         <p>
           I am a creativity-driven and passionate developer who aspires towards
-          better software solutions. I thrive on challenge and constantly set
-          goals for myself to improve my knowledge, soft-skills, learning new
+          better software solutions. I thrive on challenges and constantly set
+          goals for myself to improve my knowledge, soft skills, learning new
           methodologies and technologies.
         </p>
         <p>
@@ -141,15 +147,15 @@
   <div class="section-inner">
     <div class="section-label reveal">What I know</div>
     <h2 class="section-title reveal" id="skills-title">Skills</h2>
-    <div class="skills-categories" role="tablist" aria-label="Skill categories">
+    <div class="skills-categories" aria-label="Skill categories">
 
       <div class="skill-category reveal">
-        <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+        <button class="skill-category-header" type="button" aria-expanded="true" aria-controls="skills-architecture">
           <span class="skill-cat-dot" style="background:#28ffa4"></span>
           <span class="skill-cat-name">Architecture &amp; System Design</span>
           <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
-        </div>
-        <div class="skill-pills" role="tabpanel">
+        </button>
+        <div class="skill-pills" id="skills-architecture" role="region" aria-label="Architecture and System Design skills">
           <span class="skill-pill">Domain-Driven Design (DDD)</span><span class="skill-pill">Distributed Systems</span>
           <span class="skill-pill">Event-Driven Architecture</span><span
           class="skill-pill">Enterprise Integration</span>
@@ -160,12 +166,12 @@
       </div>
 
       <div class="skill-category reveal">
-        <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+        <button class="skill-category-header" type="button" aria-expanded="true" aria-controls="skills-ai">
           <span class="skill-cat-dot" style="background:aquamarine"></span>
           <span class="skill-cat-name">AI &amp; Intelligent Systems</span>
           <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
-        </div>
-        <div class="skill-pills" role="tabpanel">
+        </button>
+        <div class="skill-pills" id="skills-ai" role="region" aria-label="AI and Intelligent Systems skills">
           <span class="skill-pill">LLM Integration</span><span
           class="skill-pill">Retrieval-Augmented Generation (RAG)</span>
           <span class="skill-pill">AI Workflow Automation</span><span class="skill-pill">Fine-Tuning</span>
@@ -175,12 +181,12 @@
       </div>
 
       <div class="skill-category reveal">
-        <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+        <button class="skill-category-header" type="button" aria-expanded="true" aria-controls="skills-data">
           <span class="skill-cat-dot" style="background:#00d0ff"></span>
           <span class="skill-cat-name">Data &amp; Analytics</span>
           <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
-        </div>
-        <div class="skill-pills" role="tabpanel">
+        </button>
+        <div class="skill-pills" id="skills-data" role="region" aria-label="Data and Analytics skills">
           <span class="skill-pill">Data Modeling</span><span class="skill-pill">Data Pipelines</span>
           <span class="skill-pill">ETL / ELT</span><span class="skill-pill">SQL &amp; NoSQL Systems</span>
           <span class="skill-pill">Analytics &amp; Reporting</span><span class="skill-pill">Pandas</span>
@@ -189,12 +195,12 @@
       </div>
 
       <div class="skill-category reveal">
-        <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+        <button class="skill-category-header" type="button" aria-expanded="true" aria-controls="skills-cloud">
           <span class="skill-cat-dot" style="background:#1465ff"></span>
           <span class="skill-cat-name">Cloud &amp; Infrastructure</span>
           <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
-        </div>
-        <div class="skill-pills" role="tabpanel">
+        </button>
+        <div class="skill-pills" id="skills-cloud" role="region" aria-label="Cloud and Infrastructure skills">
           <span class="skill-pill">Azure</span><span class="skill-pill">Cloud Architecture</span>
           <span class="skill-pill">Kubernetes</span><span class="skill-pill">Docker</span>
           <span class="skill-pill">CI/CD Pipelines</span><span class="skill-pill">Infrastructure as Code</span>
@@ -203,12 +209,12 @@
       </div>
 
       <div class="skill-category reveal">
-        <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+        <button class="skill-category-header" type="button" aria-expanded="true" aria-controls="skills-engineering">
           <span class="skill-cat-dot" style="background:#9800ff"></span>
           <span class="skill-cat-name">Engineering</span>
           <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
-        </div>
-        <div class="skill-pills" role="tabpanel">
+        </button>
+        <div class="skill-pills" id="skills-engineering" role="region" aria-label="Engineering skills">
           <span class="skill-pill">C# / .NET</span><span class="skill-pill">TypeScript</span>
           <span class="skill-pill">Python</span><span class="skill-pill">Full-Stack Development</span>
           <span class="skill-pill">API Design</span><span class="skill-pill">Backend Systems</span>
@@ -216,12 +222,12 @@
       </div>
 
       <div class="skill-category reveal">
-        <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+        <button class="skill-category-header" type="button" aria-expanded="true" aria-controls="skills-solutions">
           <span class="skill-cat-dot" style="background:#ff0062"></span>
           <span class="skill-cat-name">Solution Expertise</span>
           <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
-        </div>
-        <div class="skill-pills" role="tabpanel">
+        </button>
+        <div class="skill-pills" id="skills-solutions" role="region" aria-label="Solution Expertise skills">
           <span class="skill-pill">Enterprise Systems</span><span class="skill-pill">AI-Driven Applications</span>
           <span class="skill-pill">Data-Intensive Systems</span><span class="skill-pill">Integration Platforms</span>
           <span class="skill-pill">Cloud-Native Applications</span><span class="skill-pill">Automation Solutions</span>
@@ -229,12 +235,12 @@
       </div>
 
       <div class="skill-category reveal">
-        <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+        <button class="skill-category-header" type="button" aria-expanded="true" aria-controls="skills-frontend">
           <span class="skill-cat-dot" style="background:orange"></span>
           <span class="skill-cat-name">Frontend &amp; UX</span>
           <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
-        </div>
-        <div class="skill-pills" role="tabpanel">
+        </button>
+        <div class="skill-pills" id="skills-frontend" role="region" aria-label="Frontend and UX skills">
           <span class="skill-pill">Single Page Applications</span><span
           class="skill-pill">Cross-Platform Applications</span>
           <span class="skill-pill">UI Architecture</span><span class="skill-pill">User-Centered Design</span>
@@ -243,12 +249,12 @@
       </div>
 
       <div class="skill-category reveal">
-        <div class="skill-category-header" role="tab" aria-expanded="true" tabindex="0">
+        <button class="skill-category-header" type="button" aria-expanded="true" aria-controls="skills-ways-of-working">
           <span class="skill-cat-dot" style="background:#559737"></span>
           <span class="skill-cat-name">Ways of Working</span>
           <span class="skill-cat-toggle" aria-hidden="true">&#8250;</span>
-        </div>
-        <div class="skill-pills" role="tabpanel">
+        </button>
+        <div class="skill-pills" id="skills-ways-of-working" role="region" aria-label="Ways of Working skills">
           <span class="skill-pill">Pragmatic Architecture</span><span class="skill-pill">Iterative Delivery</span>
           <span class="skill-pill">Test-Driven Development</span><span class="skill-pill">Pair Programming</span>
           <span class="skill-pill">Technical Leadership</span>
@@ -456,27 +462,27 @@
       <div class="social-row reveal">
         <a href="https://linkedin.com/in/raul-schnelzer" class="social-link" target="_blank" rel="noreferrer noopener"
            aria-label="LinkedIn">
-          <img src="assets/icons/LinkedInIcon.png" alt="LinkedIn" class="social-icon">
+          <img src="assets/icons/LinkedInIcon-40h.png" alt="" aria-hidden="true" class="social-icon" height="40">
           <span>LinkedIn</span>
         </a>
         <a href="https://www.xing.com/profile/Raul_Schnelzer/portfolio" class="social-link" target="_blank"
            rel="noreferrer noopener" aria-label="Xing">
-          <img src="assets/icons/XingIcon.png" alt="Xing" class="social-icon">
+          <img src="assets/icons/XingIcon-40h.png" alt="" aria-hidden="true" class="social-icon" height="40">
           <span>Xing</span>
         </a>
         <a href="https://stackoverflow.com/users/story/3205951/" class="social-link" target="_blank"
            rel="noreferrer noopener" aria-label="Stack Overflow">
-          <img src="assets/icons/StackOverflowIcon.png" alt="Stack Overflow" class="social-icon social-icon--invert">
+          <img src="assets/icons/StackOverflowIcon-40h.png" alt="" aria-hidden="true" class="social-icon social-icon--invert" height="40">
           <span>Stack Overflow</span>
         </a>
         <a href="https://github.com/RaulSebastian" class="social-link" target="_blank" rel="noreferrer noopener"
            aria-label="GitHub">
-          <img src="assets/icons/GitHubIcon.png" alt="GitHub" class="social-icon social-icon--invert">
+          <img src="assets/icons/GitHubIcon-40h.png" alt="" aria-hidden="true" class="social-icon social-icon--invert" height="40">
           <span>GitHub</span>
         </a>
         <a href="https://api.whatsapp.com/send?phone=+491735227934" class="social-link" target="_blank"
            rel="noreferrer noopener" aria-label="WhatsApp">
-          <img src="assets/icons/WhatsAppIcon.png" alt="WhatsApp" class="social-icon">
+          <img src="assets/icons/WhatsAppIcon-40h.png" alt="" aria-hidden="true" class="social-icon" height="40">
           <span>WhatsApp</span>
         </a>
       </div>
@@ -484,17 +490,23 @@
     </div>
   </div>
 </section>
+</main>
 
 <footer id="footer" role="contentinfo">
   <div class="footer-inner">
     <div class="footer-brand">
       <img
-        src="assets/images/logo-dark.png"
+        src="assets/images/logo-dark-36.png"
         alt="RS"
+        aria-hidden="true"
         class="footer-logo"
+        width="36"
+        height="36"
+        loading="lazy"
+        decoding="async"
         data-theme-logo
-        data-logo-light="assets/images/logo-light.png"
-        data-logo-dark="assets/images/logo-dark.png"
+        data-logo-light="assets/images/logo-light-256.png"
+        data-logo-dark="assets/images/logo-dark-256.png"
       >
       <div class="footer-brand-copy">
         <div class="footer-headline">Raul Schnelzer Software Solutions</div>
@@ -520,7 +532,7 @@
   </div>
 </footer>
 
-<div id="legal-overlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true"
+<div id="legal-overlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true" inert
      aria-labelledby="legal-overlay-title">
   <div class="overlay-panel">
     <button class="overlay-close" id="close-legal" aria-label="Close Legal Notice">&#10005;</button>
@@ -565,7 +577,7 @@
   </div>
 </div>
 
-<div id="privacy-overlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true"
+<div id="privacy-overlay" class="overlay" aria-hidden="true" role="dialog" aria-modal="true" inert
      aria-labelledby="privacy-overlay-title">
   <div class="overlay-panel">
     <button class="overlay-close" id="close-privacy" aria-label="Close Privacy Policy">&#10005;</button>

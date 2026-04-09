@@ -121,6 +121,7 @@ button {
 }
 
 .nav-logo-img {
+  width: 67px;
   height: 67px;
   object-fit: contain;
   display: block;
@@ -712,6 +713,11 @@ button {
 }
 
 .skill-category-header {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
   display: flex;
   align-items: center;
   gap: 14px;
@@ -1726,6 +1732,7 @@ button {
 }
 
 .footer-logo {
+  width: 36px;
   height: 36px;
   object-fit: contain;
   display: block;
