@@ -7,8 +7,8 @@ on:
     branches: ["main"]
 
 jobs:
-  build:
-    name: Build
+  validate:
+    name: Validate
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -23,5 +23,5 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build bundled assets
-        run: npm run build
+      - name: Run formatting, linting, and build checks
+        run: npm run validate

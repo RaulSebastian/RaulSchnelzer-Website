@@ -12,10 +12,12 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: radial-gradient(ellipse 80% 60% at 50% 80%,
-  rgba(129, 51, 225, 0.18) 0%,
-  rgba(23, 152, 210, 0.1) 40%,
-  transparent 70%);
+  background: radial-gradient(
+    ellipse 80% 60% at 50% 80%,
+    rgba(129, 51, 225, 0.18) 0%,
+    rgba(23, 152, 210, 0.1) 40%,
+    transparent 70%
+  );
   pointer-events: none;
 }
 
@@ -51,14 +53,24 @@
 }
 
 .hero-keyword {
-  background-image: linear-gradient(135deg, var(--accent) 0%, #1798d2 48%, #8133e1 100%);
+  background-image: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    #1798d2 48%,
+    #8133e1 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
 }
 
 .hero-keyword--ideas {
-  background-image: linear-gradient(135deg, #ffa600 0%, #ff0062 52%, #af0bd8 100%);
+  background-image: linear-gradient(
+    135deg,
+    #ffa600 0%,
+    #ff0062 52%,
+    #af0bd8 100%
+  );
 }
 
 .hero-tagline {
@@ -81,7 +93,11 @@
   font-size: 16px;
   font-weight: 500;
   color: var(--text);
-  transition: background var(--t), border-color var(--t), transform var(--t), box-shadow var(--t);
+  transition:
+    background var(--t),
+    border-color var(--t),
+    transform var(--t),
+    box-shadow var(--t);
   animation: fadeUp 1s ease 0.6s both;
 }
 

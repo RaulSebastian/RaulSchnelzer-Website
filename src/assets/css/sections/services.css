@@ -14,8 +14,11 @@
   border-radius: var(--radius-sm);
   background: var(--bg-card);
   border: 1px solid var(--border);
-  transition: background var(--t), border-color var(--t),
-  transform var(--t), box-shadow var(--t);
+  transition:
+    background var(--t),
+    border-color var(--t),
+    transform var(--t),
+    box-shadow var(--t);
   cursor: default;
 }
 
@@ -35,7 +38,11 @@
   border-radius: 24px;
   background:
     linear-gradient(180deg, var(--accent-bg), var(--featured-sheen-bottom)),
-    radial-gradient(circle at 0% 0%, var(--featured-tint-start), transparent 40%),
+    radial-gradient(
+      circle at 0% 0%,
+      var(--featured-tint-start),
+      transparent 40%
+    ),
     radial-gradient(circle at 100% 100%, var(--bg-alt), transparent 44%),
     var(--bg-card);
   border: none;
@@ -54,15 +61,29 @@
   inset: 0;
   background: var(--featured-overlay), var(--featured-highlight);
   pointer-events: none;
-  transition: transform var(--t), opacity var(--t);
+  transition:
+    transform var(--t),
+    opacity var(--t);
   opacity: 0.55;
 }
 
 .service-card--featured:hover {
-  --accent-hover-start: color-mix(in srgb, var(--accent-palette-a) 25%, transparent);
-  --accent-hover-end: color-mix(in srgb, var(--accent-palette-b) 19%, transparent);
-  background:
-    linear-gradient(115deg, var(--accent-hover-start) 0%, transparent 50%, var(--accent-hover-end) 100%);
+  --accent-hover-start: color-mix(
+    in srgb,
+    var(--accent-palette-a) 25%,
+    transparent
+  );
+  --accent-hover-end: color-mix(
+    in srgb,
+    var(--accent-palette-b) 19%,
+    transparent
+  );
+  background: linear-gradient(
+    115deg,
+    var(--accent-hover-start) 0%,
+    transparent 50%,
+    var(--accent-hover-end) 100%
+  );
   border-color: var(--featured-border-strong);
   transform: translateY(-6px);
   box-shadow:
@@ -78,48 +99,96 @@
 .service-card--featured:nth-child(6n + 1) {
   --accent-border-start: var(--accent-palette-a);
   --accent-border-end: var(--accent-palette-b);
-  --accent-hover-start: color-mix(in srgb, var(--accent-palette-a) 25%, transparent);
-  --accent-hover-end: color-mix(in srgb, var(--accent-palette-b) 17%, transparent);
+  --accent-hover-start: color-mix(
+    in srgb,
+    var(--accent-palette-a) 25%,
+    transparent
+  );
+  --accent-hover-end: color-mix(
+    in srgb,
+    var(--accent-palette-b) 17%,
+    transparent
+  );
   --accent-bg: color-mix(in srgb, var(--accent-palette-a) 10%, transparent);
 }
 
 .service-card--featured:nth-child(6n + 2) {
   --accent-border-start: var(--accent-palette-a);
   --accent-border-end: var(--accent-palette-c);
-  --accent-hover-start: color-mix(in srgb, var(--accent-palette-a) 25%, transparent);
-  --accent-hover-end: color-mix(in srgb, var(--accent-palette-c) 17%, transparent);
+  --accent-hover-start: color-mix(
+    in srgb,
+    var(--accent-palette-a) 25%,
+    transparent
+  );
+  --accent-hover-end: color-mix(
+    in srgb,
+    var(--accent-palette-c) 17%,
+    transparent
+  );
   --accent-bg: color-mix(in srgb, var(--accent-palette-c) 10%, transparent);
 }
 
 .service-card--featured:nth-child(6n + 3) {
   --accent-border-start: var(--accent-palette-d);
   --accent-border-end: var(--accent-palette-e);
-  --accent-hover-start: color-mix(in srgb, var(--accent-palette-d) 25%, transparent);
-  --accent-hover-end: color-mix(in srgb, var(--accent-palette-e) 17%, transparent);
+  --accent-hover-start: color-mix(
+    in srgb,
+    var(--accent-palette-d) 25%,
+    transparent
+  );
+  --accent-hover-end: color-mix(
+    in srgb,
+    var(--accent-palette-e) 17%,
+    transparent
+  );
   --accent-bg: color-mix(in srgb, var(--accent-palette-d) 10%, transparent);
 }
 
 .service-card--featured:nth-child(6n + 4) {
   --accent-border-start: var(--accent-palette-b);
   --accent-border-end: var(--accent-palette-c);
-  --accent-hover-start: color-mix(in srgb, var(--accent-palette-b) 25%, transparent);
-  --accent-hover-end: color-mix(in srgb, var(--accent-palette-c) 17%, transparent);
+  --accent-hover-start: color-mix(
+    in srgb,
+    var(--accent-palette-b) 25%,
+    transparent
+  );
+  --accent-hover-end: color-mix(
+    in srgb,
+    var(--accent-palette-c) 17%,
+    transparent
+  );
   --accent-bg: color-mix(in srgb, var(--accent-palette-b) 10%, transparent);
 }
 
 .service-card--featured:nth-child(6n + 5) {
   --accent-border-start: var(--accent-palette-e);
   --accent-border-end: var(--accent-palette-f);
-  --accent-hover-start: color-mix(in srgb, var(--accent-palette-e) 25%, transparent);
-  --accent-hover-end: color-mix(in srgb, var(--accent-palette-f) 17%, transparent);
+  --accent-hover-start: color-mix(
+    in srgb,
+    var(--accent-palette-e) 25%,
+    transparent
+  );
+  --accent-hover-end: color-mix(
+    in srgb,
+    var(--accent-palette-f) 17%,
+    transparent
+  );
   --accent-bg: color-mix(in srgb, var(--accent-palette-e) 10%, transparent);
 }
 
 .service-card--featured:nth-child(6n + 6) {
   --accent-border-start: var(--accent-palette-d);
   --accent-border-end: var(--accent-palette-f);
-  --accent-hover-start: color-mix(in srgb, var(--accent-palette-d) 25%, transparent);
-  --accent-hover-end: color-mix(in srgb, var(--accent-palette-f) 17%, transparent);
+  --accent-hover-start: color-mix(
+    in srgb,
+    var(--accent-palette-d) 25%,
+    transparent
+  );
+  --accent-hover-end: color-mix(
+    in srgb,
+    var(--accent-palette-f) 17%,
+    transparent
+  );
   --accent-bg: color-mix(in srgb, var(--accent-palette-d) 10%, transparent);
 }
 
@@ -160,14 +229,21 @@
   font-size: 18px;
   color: var(--text);
   background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05)),
+    linear-gradient(
+      180deg,
+      rgba(255, 255, 255, 0.14),
+      rgba(255, 255, 255, 0.05)
+    ),
     rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.08),
     0 8px 24px rgba(0, 0, 0, 0.22);
   filter: none;
-  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+  transition:
+    transform var(--t),
+    box-shadow var(--t),
+    border-color var(--t);
 }
 
 .service-card--featured:hover .service-icon--featured {

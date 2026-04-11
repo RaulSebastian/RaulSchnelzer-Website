@@ -7,10 +7,24 @@
   "scripts": {
     "build:css": "node ./src/scripts/build-css.mjs",
     "build:js": "node ./src/scripts/build-js.mjs",
-    "build": "npm run build:css && npm run build:js"
+    "build": "npm run build:css && npm run build:js",
+    "format": "prettier --write \".github/workflows/*.yml\" \".htmlvalidate.json\" \".stylelintrc.json\" \"eslint.config.mjs\" \"package.json\" \"README.md\" \"CONTRIBUTING.md\" \"src/**/*.{css,html,js,mjs}\"",
+    "format:check": "prettier --check \".github/workflows/*.yml\" \".htmlvalidate.json\" \".stylelintrc.json\" \"eslint.config.mjs\" \"package.json\" \"README.md\" \"CONTRIBUTING.md\" \"src/**/*.{css,html,js,mjs}\"",
+    "lint:js": "eslint \"src/assets/js/**/*.js\" \"src/scripts/**/*.mjs\"",
+    "lint:css": "stylelint \"src/assets/css/**/*.css\"",
+    "lint:html": "html-validate \"src/**/*.html\"",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "validate": "npm run format:check && npm run lint && npm run build"
   },
   "devDependencies": {
+    "@eslint/js": "^10.0.1",
     "esbuild": "^0.25.11",
-    "lightningcss": "^1.30.2"
+    "eslint": "^10.2.0",
+    "globals": "^17.4.0",
+    "html-validate": "^10.12.0",
+    "lightningcss": "^1.30.2",
+    "prettier": "^3.8.2",
+    "stylelint": "^17.6.0",
+    "stylelint-config-standard": "^40.0.0"
   }
 }

@@ -8,7 +8,7 @@ import {
   initFloatingFooter,
   initMobileMenu,
   initNavScroll,
-  initSmoothAnchors
+  initSmoothAnchors,
 } from "./navigation.js";
 import { initTheme, toggleTheme } from "./theme.js";
 import { initDurationBadges, setFooterYear } from "./timeline.js";
@@ -17,7 +17,7 @@ import {
   initOverlays,
   initQuoteFlyIn,
   initScrollReveal,
-  initSkillsAccordion
+  initSkillsAccordion,
 } from "./ui.js";
 
 function init() {

@@ -17,7 +17,9 @@
   opacity: 0;
   transform: translateY(100%);
   pointer-events: none;
-  transition: opacity var(--t-quick), transform var(--t-quick);
+  transition:
+    opacity var(--t-quick),
+    transform var(--t-quick);
 }
 
 .footer-float.footer-float--visible {
@@ -111,7 +113,9 @@
   gap: 10px;
 }
 
-.footer-link:hover { color: var(--text); }
+.footer-link:hover {
+  color: var(--text);
+}
 
 .footer-sep {
   color: var(--text-label);

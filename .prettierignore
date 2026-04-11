@@ -1,0 +1,4 @@
+node_modules
+package-lock.json
+src/assets/css/style.min.css
+src/assets/js/main.min.js

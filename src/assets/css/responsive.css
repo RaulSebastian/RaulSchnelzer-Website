@@ -10,11 +10,25 @@
     padding-right: var(--mobile-page-gutter);
   }
 
-  .nav-links { display: none; }
-  .hamburger-btn { display: flex; }
-  .nav-actions { margin-left: auto; }
-  .nav-name { font-size: 14px; white-space: normal; line-height: 1.3; }
-  .nav-name-break { display: block; font-size: 14px; margin-left: 0; }
+  .nav-links {
+    display: none;
+  }
+  .hamburger-btn {
+    display: flex;
+  }
+  .nav-actions {
+    margin-left: auto;
+  }
+  .nav-name {
+    font-size: 14px;
+    white-space: normal;
+    line-height: 1.3;
+  }
+  .nav-name-break {
+    display: block;
+    font-size: 14px;
+    margin-left: 0;
+  }
 
   .services-grid--featured {
     grid-template-columns: 1fr;
@@ -34,7 +48,10 @@
     justify-content: center;
   }
 
-  .about-photo { width: 200px; height: 200px; }
+  .about-photo {
+    width: 200px;
+    height: 200px;
+  }
 
   .about-text {
     padding: 24px;
@@ -47,11 +64,17 @@
     letter-spacing: -1.5px;
   }
 
-  .hero-name { letter-spacing: -3px; }
+  .hero-name {
+    letter-spacing: -3px;
+  }
 
-  .services-grid { grid-template-columns: 1fr 1fr; }
+  .services-grid {
+    grid-template-columns: 1fr 1fr;
+  }
 
-  .social-row { justify-content: center; }
+  .social-row {
+    justify-content: center;
+  }
 
   .footer-float {
     left: 0;
@@ -143,8 +166,12 @@
     --mobile-page-gutter: 30px;
   }
 
-  .services-grid { grid-template-columns: 1fr; }
-  .certs-grid    { grid-template-columns: 1fr; }
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+  .certs-grid {
+    grid-template-columns: 1fr;
+  }
 
   .skill-cat-name {
     font-size: 16px;
@@ -160,18 +187,29 @@
     padding: 4px 10px;
   }
 
-  .hero-name { letter-spacing: -2px; }
+  .hero-name {
+    letter-spacing: -2px;
+  }
 
-  .nav-name-break { font-size: 9px; }
+  .nav-name-break {
+    font-size: 9px;
+  }
 
-  #back-to-top { bottom: 20px; right: 20px; }
+  #back-to-top {
+    bottom: 20px;
+    right: 20px;
+  }
 }
 
 /* ─── REDUCED MOTION ─────────────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     transition-duration: 0.01ms !important;
   }
-  html { scroll-behavior: auto; }
+  html {
+    scroll-behavior: auto;
+  }
 }

@@ -4,32 +4,32 @@
 
 /* ─── LIGHT THEME ────────────────────────────────────────────── */
 [data-theme="light"] {
-  --bg:            #fbfbfd;
-  --bg-alt:        #f2f2f7;
-  --bg-card:       rgba(0, 0, 0, 0.04);
+  --bg: #fbfbfd;
+  --bg-alt: #f2f2f7;
+  --bg-card: rgba(0, 0, 0, 0.04);
   --bg-card-hover: rgba(0, 0, 0, 0.07);
-  --bg-overlay:    rgba(255, 255, 255, 0.96);
-  --text:          #1d1d1f;
-  --text-muted:    rgba(29, 29, 31, 0.55);
-  --text-label:    rgba(29, 29, 31, 0.4);
-  --border:        rgba(0, 0, 0, 0.1);
-  --border-hover:  rgba(0, 0, 0, 0.25);
-  --nav-bg:        rgba(242, 242, 247, 0.6);
-  --accent:        #996fe3;
-  --pill-bg:       rgba(0, 0, 0, 0.06);
-  --pill-hover:    rgba(153, 111, 227, 0.14);
-  --pill-surface:    rgba(23, 152, 210, 0.08);
+  --bg-overlay: rgba(255, 255, 255, 0.96);
+  --text: #1d1d1f;
+  --text-muted: rgba(29, 29, 31, 0.55);
+  --text-label: rgba(29, 29, 31, 0.4);
+  --border: rgba(0, 0, 0, 0.1);
+  --border-hover: rgba(0, 0, 0, 0.25);
+  --nav-bg: rgba(242, 242, 247, 0.6);
+  --accent: #996fe3;
+  --pill-bg: rgba(0, 0, 0, 0.06);
+  --pill-hover: rgba(153, 111, 227, 0.14);
+  --pill-surface: rgba(23, 152, 210, 0.08);
   --pill-surface-hover: rgba(23, 152, 210, 0.13);
-  --pill-border:     rgba(23, 152, 210, 0.16);
+  --pill-border: rgba(23, 152, 210, 0.16);
   --pill-border-strong: rgba(129, 51, 225, 0.24);
-  --pill-highlight:  rgba(255, 255, 255, 0.72);
-  --pill-glow:       rgba(23, 152, 210, 0.1);
+  --pill-highlight: rgba(255, 255, 255, 0.72);
+  --pill-glow: rgba(23, 152, 210, 0.1);
   --badge-active-bg: rgba(153, 111, 227, 0.12);
   --badge-active-border: rgba(153, 111, 227, 0.28);
   --badge-active-text: #6f46c5;
-  --shadow:        0 24px 64px rgba(0, 0, 0, 0.12);
-  --shadow-sm:     0 8px 24px rgba(0, 0, 0, 0.08);
-  --glow:          0 0 32px rgba(153, 111, 227, 0.28);
+  --shadow: 0 24px 64px rgba(0, 0, 0, 0.12);
+  --shadow-sm: 0 8px 24px rgba(0, 0, 0, 0.08);
+  --glow: 0 0 32px rgba(153, 111, 227, 0.28);
   --social-filter: none;
   --social-filter-glow: drop-shadow(0 0 8px rgba(153, 111, 227, 0.75));
   --theme-toggle-shine: rgba(153, 111, 227, 0.28);
@@ -49,8 +49,11 @@
 }
 
 /* Show/hide sun and moon */
-[data-theme="light"] .icon-sun { display: none; }
+[data-theme="light"] .icon-sun {
+  display: none;
+}
 [data-theme="light"] .icon-moon {
   display: block;
-  filter: brightness(0) saturate(100%) invert(14%) sepia(7%) saturate(658%) hue-rotate(202deg) brightness(94%) contrast(92%);
+  filter: brightness(0) saturate(100%) invert(14%) sepia(7%) saturate(658%)
+    hue-rotate(202deg) brightness(94%) contrast(92%);
 }

@@ -9,7 +9,10 @@
   flex-shrink: 0;
   overflow: hidden;
   isolation: isolate;
-  transition: box-shadow var(--t), transform var(--t), opacity var(--t);
+  transition:
+    box-shadow var(--t),
+    transform var(--t),
+    opacity var(--t);
 }
 
 .theme-btn::before {
@@ -18,11 +21,18 @@
   inset: 7px;
   border-radius: 50%;
   background:
-    radial-gradient(circle at 30% 30%, var(--theme-toggle-shine), transparent 58%),
+    radial-gradient(
+      circle at 30% 30%,
+      var(--theme-toggle-shine),
+      transparent 58%
+    ),
     linear-gradient(135deg, rgba(255, 255, 255, 0.18), transparent 62%);
   opacity: 0.7;
   transform: scale(0.92);
-  transition: opacity var(--t), transform var(--t), filter var(--t);
+  transition:
+    opacity var(--t),
+    transform var(--t),
+    filter var(--t);
   z-index: 0;
 }
 
@@ -42,7 +52,10 @@
   display: block;
   position: relative;
   z-index: 1;
-  transition: transform var(--t), filter var(--t), opacity var(--t);
+  transition:
+    transform var(--t),
+    filter var(--t),
+    opacity var(--t);
 }
 
 .theme-btn:hover .icon-sun,
