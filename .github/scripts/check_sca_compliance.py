@@ -83,6 +83,7 @@ def validate_exceptions(entries: list[dict]) -> dict[str, dict]:
 def fetch_dependabot_alerts() -> list[dict]:
     token = os.environ.get("GITHUB_TOKEN")
     repository = os.environ.get("GITHUB_REPOSITORY")
+    event_name = os.environ.get("GITHUB_EVENT_NAME", "")
     if not token or not repository:
         print("Skipping Dependabot alert verification because GitHub context is unavailable.")
         return []
@@ -107,6 +108,12 @@ def fetch_dependabot_alerts() -> list[dict]:
                 batch = json.loads(response.read().decode("utf-8"))
         except urllib.error.HTTPError as exc:
             body = exc.read().decode("utf-8", errors="replace")
+            if exc.code == 403 and event_name == "pull_request":
+                print(
+                    "Skipping Dependabot alert verification for pull_request because "
+                    f"the workflow token cannot access repository alerts ({body})."
+                )
+                return []
             fail(f"Unable to query Dependabot alerts ({exc.code}): {body}")
         except urllib.error.URLError as exc:
             fail(f"Unable to query Dependabot alerts: {exc}")
