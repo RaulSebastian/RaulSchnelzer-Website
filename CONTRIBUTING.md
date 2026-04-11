@@ -189,3 +189,6 @@ Labels starting with `size:` describe the estimated effort in T-Shirt sizes.
 | `closed: duplicate` |  Issues which are duplicates of other issues, i.e. they have been reported before. |
 | `closed: wontfix` |  I decided not to fix these issues for now, either because they're working as intended or for some other reason. |
 | `closed: invalid` |  Issues which aren't valid (e.g. user errors). |
+
+[good-first-issue]: https://github.com/raulschnelzer/RaulSchnelzer-Website/labels/good%20first%20issue
+[help-wanted]: https://github.com/raulschnelzer/RaulSchnelzer-Website/labels/help-wanted

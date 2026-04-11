@@ -1,0 +1,177 @@
+﻿@media (max-width: 768px) {
+  :root {
+    --nav-h: 52px;
+    --footer-float-h: 136px;
+    --mobile-page-gutter: clamp(32px, 8vw, 44px);
+  }
+
+  .content-section {
+    padding-left: var(--mobile-page-gutter);
+    padding-right: var(--mobile-page-gutter);
+  }
+
+  .nav-links { display: none; }
+  .hamburger-btn { display: flex; }
+  .nav-actions { margin-left: auto; }
+  .nav-name { font-size: 14px; white-space: normal; line-height: 1.3; }
+  .nav-name-break { display: block; font-size: 14px; margin-left: 0; }
+
+  .services-grid--featured {
+    grid-template-columns: 1fr;
+  }
+
+  .service-card--featured {
+    min-height: auto;
+  }
+
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .about-photo-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .about-photo { width: 200px; height: 200px; }
+
+  .about-text {
+    padding: 24px;
+    text-align: justify;
+  }
+
+  .quote-text {
+    font-size: clamp(42px, 12vw, 72px);
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+  }
+
+  .hero-name { letter-spacing: -3px; }
+
+  .services-grid { grid-template-columns: 1fr 1fr; }
+
+  .social-row { justify-content: center; }
+
+  .footer-float {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 14px 12px;
+  }
+
+  .footer-inner {
+    width: 100%;
+    max-width: 100vw;
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+
+  .footer-brand {
+    order: 2;
+    width: 100%;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+  }
+
+  .footer-brand-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .footer-logo {
+    margin-top: -5px;
+    flex-shrink: 0;
+  }
+
+  .footer-headline {
+    max-width: calc(100vw - 76px);
+    font-size: clamp(13px, 3.7vw, 14px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .footer-links,
+  .footer-links--nav {
+    justify-content: center;
+    flex-wrap: nowrap;
+    max-width: 100%;
+  }
+
+  .footer-links--legal {
+    justify-content: center;
+    align-self: flex-start;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .footer-copy {
+    max-width: calc(100vw - 76px);
+    font-size: clamp(11px, 3vw, 13px);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: left;
+  }
+
+  .footer-links--nav {
+    order: 1;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .footer-links--nav .footer-link {
+    font-size: clamp(13px, 3.8vw, 16px);
+  }
+
+  .footer-link {
+    font-size: clamp(13px, 3.6vw, 15px);
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --mobile-page-gutter: 30px;
+  }
+
+  .services-grid { grid-template-columns: 1fr; }
+  .certs-grid    { grid-template-columns: 1fr; }
+
+  .skill-cat-name {
+    font-size: 16px;
+  }
+
+  .skill-pills {
+    padding: 0 20px 20px;
+  }
+
+  .skill-pill {
+    font-size: 12px;
+    min-height: auto;
+    padding: 4px 10px;
+  }
+
+  .hero-name { letter-spacing: -2px; }
+
+  .nav-name-break { font-size: 9px; }
+
+  #back-to-top { bottom: 20px; right: 20px; }
+}
+
+/* ─── REDUCED MOTION ─────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}

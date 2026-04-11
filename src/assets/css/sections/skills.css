@@ -1,0 +1,186 @@
+﻿/* ─── SKILLS ─────────────────────────────────────────────────── */
+.skills-categories {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+.skill-category {
+  border: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  transition: background var(--t-quick);
+}
+
+.skill-category + .skill-category {
+  margin-top: -1px;
+}
+
+.skill-category:first-child {
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+}
+
+.skill-category:last-child {
+  border-bottom-left-radius: var(--radius);
+  border-bottom-right-radius: var(--radius);
+}
+
+.skill-category:hover {
+  background: var(--bg-card);
+}
+
+.skill-category-header {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 28px;
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--t-quick);
+}
+
+.skill-category-header:hover {
+  background: var(--bg-card);
+}
+
+.skill-cat-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.skill-cat-name {
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--text);
+  flex: 1;
+}
+
+.skill-cat-toggle {
+  font-size: 20px;
+  color: var(--text-muted);
+  transition: transform var(--t-quick);
+  line-height: 1;
+}
+
+.skill-category.collapsed .skill-cat-toggle {
+  transform: rotate(0deg);
+}
+
+.skill-category:not(.collapsed) .skill-cat-toggle {
+  transform: rotate(90deg);
+}
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 24px 28px;
+  overflow: hidden;
+  max-height: 1000px;
+  transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease;
+  opacity: 1;
+}
+
+.skill-category.collapsed .skill-pills {
+  max-height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  opacity: 0;
+}
+
+.skill-pill {
+  --accent-border-start: var(--accent-palette-a);
+  --accent-border-end: var(--accent-palette-b);
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 7px 14px;
+  border-radius: 14px;
+  background: var(--skill-pill-bg);
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  color: var(--skill-pill-text);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.16),
+    0 10px 18px rgba(0, 0, 0, 0.16);
+  transition: background var(--t), border-color var(--t), color var(--t), transform var(--t), box-shadow var(--t);
+  cursor: default;
+  position: relative;
+  isolation: isolate;
+}
+
+.skill-pill::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    45deg,
+    color-mix(in srgb, var(--accent-border-start) 80%, transparent) 0%,
+    color-mix(in srgb, var(--accent-border-end) 80%, transparent) 100%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+.skill-pill:nth-child(6n + 1) {
+  --accent-border-start: var(--accent-palette-a);
+  --accent-border-end: var(--accent-palette-b);
+}
+
+.skill-pill:nth-child(6n + 2) {
+  --accent-border-start: var(--accent-palette-b);
+  --accent-border-end: var(--accent-palette-c);
+}
+
+.skill-pill:nth-child(6n + 3) {
+  --accent-border-start: var(--accent-palette-d);
+  --accent-border-end: var(--accent-palette-e);
+}
+
+.skill-pill:nth-child(6n + 4) {
+  --accent-border-start: var(--accent-palette-e);
+  --accent-border-end: var(--accent-palette-f);
+}
+
+.skill-pill:nth-child(6n + 5) {
+  --accent-border-start: var(--accent-palette-a);
+  --accent-border-end: var(--accent-palette-c);
+}
+
+.skill-pill:nth-child(6n + 6) {
+  --accent-border-start: var(--accent-palette-d);
+  --accent-border-end: var(--accent-palette-f);
+}
+
+.skill-pill:hover {
+  color: var(--text);
+  filter: drop-shadow(0 2px 4px var(--accent));
+  transform: translateY(-2px) scale(1.02);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.22),
+    0 14px 26px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.skill-pill:hover::before {
+  background: linear-gradient(
+    45deg,
+    color-mix(in srgb, color-mix(in srgb, var(--accent-border-start) 86%, white 14%) 80%, transparent) 0%,
+    color-mix(in srgb, color-mix(in srgb, var(--accent-border-end) 86%, white 14%) 80%, transparent) 100%
+  );
+}
