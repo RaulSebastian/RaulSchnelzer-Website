@@ -19,7 +19,9 @@ export function initScrollReveal() {
     });
   }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
 
-  items.forEach(el => obs.observe(el));
+  items.forEach(el => {
+    obs.observe(el);
+  });
 }
 
 export function initBackToTop() {
@@ -192,8 +194,12 @@ export function initQuoteFlyIn() {
     });
   }, { threshold: [0, 0.2, 1], rootMargin: "0px 0px -12% 0px" });
 
-  introQuotes.forEach(el => introObs.observe(el));
-  outroQuotes.forEach(el => outroObs.observe(el));
+  introQuotes.forEach(el => {
+    introObs.observe(el);
+  });
+  outroQuotes.forEach(el => {
+    outroObs.observe(el);
+  });
 
   let ticking = false;
 

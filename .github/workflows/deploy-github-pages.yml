@@ -30,7 +30,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.workflow_run.head_sha }}
+          repository: ${{ github.repository }}
+          ref: refs/heads/main
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:

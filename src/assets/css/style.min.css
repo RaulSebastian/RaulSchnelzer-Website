@@ -1972,12 +1972,12 @@ button {
   --accent-bg: color-mix(in srgb, var(--accent-palette-a) 10%, transparent);
 }
 
-.service-card--featured:nth-child(6n + 4) {
-  --accent-border-start: var(--accent-palette-b);
+.service-card--featured:nth-child(6n + 2) {
+  --accent-border-start: var(--accent-palette-a);
   --accent-border-end: var(--accent-palette-c);
-  --accent-hover-start: color-mix(in srgb, var(--accent-palette-b) 25%, transparent);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-a) 25%, transparent);
   --accent-hover-end: color-mix(in srgb, var(--accent-palette-c) 17%, transparent);
-  --accent-bg: color-mix(in srgb, var(--accent-palette-b) 10%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-c) 10%, transparent);
 }
 
 .service-card--featured:nth-child(6n + 3) {
@@ -1988,20 +1988,20 @@ button {
   --accent-bg: color-mix(in srgb, var(--accent-palette-d) 10%, transparent);
 }
 
+.service-card--featured:nth-child(6n + 4) {
+  --accent-border-start: var(--accent-palette-b);
+  --accent-border-end: var(--accent-palette-c);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-b) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-c) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-b) 10%, transparent);
+}
+
 .service-card--featured:nth-child(6n + 5) {
   --accent-border-start: var(--accent-palette-e);
   --accent-border-end: var(--accent-palette-f);
   --accent-hover-start: color-mix(in srgb, var(--accent-palette-e) 25%, transparent);
   --accent-hover-end: color-mix(in srgb, var(--accent-palette-f) 17%, transparent);
   --accent-bg: color-mix(in srgb, var(--accent-palette-e) 10%, transparent);
-}
-
-.service-card--featured:nth-child(6n + 2) {
-  --accent-border-start: var(--accent-palette-a);
-  --accent-border-end: var(--accent-palette-c);
-  --accent-hover-start: color-mix(in srgb, var(--accent-palette-a) 25%, transparent);
-  --accent-hover-end: color-mix(in srgb, var(--accent-palette-c) 17%, transparent);
-  --accent-bg: color-mix(in srgb, var(--accent-palette-c) 10%, transparent);
 }
 
 .service-card--featured:nth-child(6n + 6) {

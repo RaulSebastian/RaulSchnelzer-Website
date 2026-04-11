@@ -104,7 +104,9 @@ export function initActiveNav() {
     });
   }, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
 
-  sections.forEach(section => obs.observe(section));
+  sections.forEach(section => {
+    obs.observe(section);
+  });
 }
 
 export function initMobileMenu() {
@@ -122,7 +124,9 @@ export function initMobileMenu() {
     btn.classList.add("open");
     btn.setAttribute("aria-expanded", "true");
     document.body.style.overflow = "hidden";
-    links.forEach(link => link.setAttribute("tabindex", "0"));
+    links.forEach(link => {
+      link.setAttribute("tabindex", "0");
+    });
   }
 
   function closeMenu() {
@@ -133,14 +137,18 @@ export function initMobileMenu() {
     btn.classList.remove("open");
     btn.setAttribute("aria-expanded", "false");
     document.body.style.overflow = "";
-    links.forEach(link => link.setAttribute("tabindex", "-1"));
+    links.forEach(link => {
+      link.setAttribute("tabindex", "-1");
+    });
   }
 
   btn.addEventListener("click", () => {
     menu.open ? closeMenu() : openMenu();
   });
 
-  links.forEach(link => link.addEventListener("click", closeMenu));
+  links.forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
   if (closeBtn) closeBtn.addEventListener("click", closeMenu);
 
   document.addEventListener("keydown", event => {
@@ -151,7 +159,9 @@ export function initMobileMenu() {
     btn.classList.remove("open");
     btn.setAttribute("aria-expanded", "false");
     document.body.style.overflow = "";
-    links.forEach(link => link.setAttribute("tabindex", "-1"));
+    links.forEach(link => {
+      link.setAttribute("tabindex", "-1");
+    });
     menu.classList.remove("open");
   });
 }
