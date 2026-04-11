@@ -17,7 +17,7 @@
       }
     },
     {
-      "route": "/main.js",
+      "route": "/main.min.js",
       "headers": {
         "Cache-Control": "public, max-age=604800"
       }

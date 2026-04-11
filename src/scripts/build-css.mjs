@@ -6,8 +6,8 @@ import { bundle } from "lightningcss";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = resolve(__dirname, "..");
-const inputFile = join(rootDir, "assets/css/site.css");
-const outputFile = join(rootDir, "assets/css/site.min.css");
+const inputFile = join(rootDir, "assets/css/style.css");
+const outputFile = join(rootDir, "assets/css/style.min.css");
 
 const { code } = bundle({
   filename: inputFile,

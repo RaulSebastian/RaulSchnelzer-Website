@@ -3,5 +3,14 @@
   "version": "3.0.0",
   "private": true,
   "description": "Static personal website for raulschnelzer.de",
-  "license": "MIT"
+  "license": "MIT",
+  "scripts": {
+    "build:css": "node ./src/scripts/build-css.mjs",
+    "build:js": "node ./src/scripts/build-js.mjs",
+    "build": "npm run build:css && npm run build:js"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.11",
+    "lightningcss": "^1.30.2"
+  }
 }

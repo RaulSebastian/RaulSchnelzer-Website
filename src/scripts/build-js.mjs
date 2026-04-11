@@ -6,8 +6,8 @@ import * as esbuild from "esbuild";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const rootDir = resolve(__dirname, "..");
-const inputFile = join(rootDir, "assets/js/site.js");
-const outputFile = join(rootDir, "assets/js/site.min.js");
+const inputFile = join(rootDir, "main.js");
+const outputFile = join(rootDir, "main.min.js");
 
 await mkdir(dirname(outputFile), { recursive: true });
 
