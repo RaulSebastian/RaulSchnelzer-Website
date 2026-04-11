@@ -290,8 +290,6 @@ button {
   padding: 0;
   border: 0;
   background: transparent;
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -341,6 +339,13 @@ button {
 
 .mobile-menu-close-line:last-child {
   transform: rotate(-45deg);
+}
+
+.mobile-menu-divider {
+  width: min(280px, calc(100vw - 96px));
+  height: 1px;
+  margin: 12px 0 16px;
+  background: color-mix(in srgb, var(--text-muted) 45%, transparent);
 }
 
 .mobile-link {
