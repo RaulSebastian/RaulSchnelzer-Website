@@ -1,11 +1,9 @@
 # RaulSchnelzer.de
 
 ![release](https://img.shields.io/github/v/tag/raulsebastian/RaulSchnelzer-Website?label=release&sort=semver&color=blueviolet)
-[![Azure Static Web Apps CI/CD](https://github.com/RaulSebastian/RaulSchnelzer-Website/actions/workflows/azure-static-web-apps-blue-tree-0fb5a0703.yml/badge.svg)](https://github.com/RaulSebastian/RaulSchnelzer-Website/actions/workflows/azure-static-web-apps-blue-tree-0fb5a0703.yml)
-
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RaulSchnelzerWebsite&metric=alert_status)](https://sonarcloud.io/dashboard?id=RaulSchnelzerWebsite)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/ceb34606a75c480db7cffb83868d57fc)](https://www.codacy.com/manual/RaulSebastian/RaulSchnelzer-Website?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RaulSebastian/RaulSchnelzer-Website&amp;utm_campaign=Badge_Grade)
-[![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/3785/badge)](https://bestpractices.coreinfrastructure.org/projects/3785)
+[![OpenSSF Baseline](https://www.bestpractices.dev/projects/3785/baseline)](https://www.bestpractices.dev/projects/3785)
 ![code size](https://img.shields.io/github/languages/code-size/RaulSebastian/RaulSchnelzer-Website)
 
 [![Glo Board](https://img.shields.io/badge/Glo%20Board-backlog-informational)](https://app.gitkraken.com/glo/board/XmQ8LJf66wARrMgz)
@@ -23,6 +21,11 @@
 
 Read [how to contribute](CONTRIBUTING.md).
 
+## Security and Compliance
+
+The project's SCA vulnerability and license remediation requirements are documented in [docs/sca-remediation-policy.md](docs/sca-remediation-policy.md).
+Approved temporary exceptions must be recorded in [docs/sca-exceptions.json](docs/sca-exceptions.json).
+
 ## Backlog
 
 **Glo Boards**
@@ -37,11 +40,20 @@ Read [how to contribute](CONTRIBUTING.md).
 
 ### Hosted on
 
-[![Azure](/docs/assets/azure_logo.png)](https://azure.microsoft.com/)
+- Preview deployments are available on GitHub Pages.
+- Production is served as a statically hosted website at [raulschnelzer.de](https://raulschnelzer.de).
 
 ### Made with
 
-[![angular logo](https://angular.io/assets/images/logos/angular/logo-nav@2x.png)](https://angular.io/)
+[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
+[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+- No frontend framework required
+
+### Worth knowing
+
+- This repository contains a static personal website rather than a server-rendered application.
+- The site includes a custom domain, responsive layout, and light/dark theme support.
 
 ---
 
