@@ -6,6 +6,32 @@ function easeInOutCubic(t) {
   return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
 }
 
+function getNavHeight() {
+  return (
+    Number.parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
+      10,
+    ) || 56
+  );
+}
+
+function getAnchorScrollTop(target) {
+  const preferredTarget = target.matches(".content-section")
+    ? $(".section-title, .section-label, .section-inner", target) || target
+    : target;
+
+  if (target.id === "about") {
+    return target.getBoundingClientRect().top + globalThis.scrollY;
+  }
+
+  return (
+    preferredTarget.getBoundingClientRect().top +
+    globalThis.scrollY -
+    getNavHeight() -
+    16
+  );
+}
+
 export function initNavScroll() {
   const nav = $("#nav");
   if (!nav) return;
@@ -162,30 +188,33 @@ export function initMobileMenu() {
   const links = $$(".mobile-link, .mobile-sub-link");
   if (!btn || !menu) return;
 
+  function setMenuLinkTabIndex(value) {
+    links.forEach((link) => {
+      link.setAttribute("tabindex", value);
+    });
+  }
+
+  function syncMenuState(isOpen) {
+    menu.classList.toggle("open", isOpen);
+    btn.classList.toggle("open", isOpen);
+    btn.setAttribute("aria-expanded", String(isOpen));
+    document.body.style.overflow = isOpen ? "hidden" : "";
+    setMenuLinkTabIndex(isOpen ? "0" : "-1");
+  }
+
   function openMenu() {
     if (typeof menu.showModal === "function" && !menu.open) {
       menu.showModal();
     }
-    menu.classList.add("open");
-    btn.classList.add("open");
-    btn.setAttribute("aria-expanded", "true");
-    document.body.style.overflow = "hidden";
-    links.forEach((link) => {
-      link.setAttribute("tabindex", "0");
-    });
+    syncMenuState(true);
   }
 
   function closeMenu() {
-    menu.classList.remove("open");
     if (typeof menu.close === "function" && menu.open) {
       menu.close();
+      return;
     }
-    btn.classList.remove("open");
-    btn.setAttribute("aria-expanded", "false");
-    document.body.style.overflow = "";
-    links.forEach((link) => {
-      link.setAttribute("tabindex", "-1");
-    });
+    syncMenuState(false);
   }
 
   btn.addEventListener("click", () => {
@@ -202,13 +231,7 @@ export function initMobileMenu() {
   });
 
   menu.addEventListener("close", () => {
-    btn.classList.remove("open");
-    btn.setAttribute("aria-expanded", "false");
-    document.body.style.overflow = "";
-    links.forEach((link) => {
-      link.setAttribute("tabindex", "-1");
-    });
-    menu.classList.remove("open");
+    syncMenuState(false);
   });
 }
 
@@ -221,23 +244,7 @@ function scrollToAnchorTarget(href, behavior = "smooth") {
   const target = $(href);
   if (!target) return false;
 
-  const navH =
-    Number.parseInt(
-      getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
-      10,
-    ) || 56;
-  const preferredTarget = target.matches(".content-section")
-    ? $(".section-title, .section-label, .section-inner", target) || target
-    : target;
-  const top =
-    target.id === "about"
-      ? target.getBoundingClientRect().top + globalThis.scrollY
-      : preferredTarget.getBoundingClientRect().top +
-        globalThis.scrollY -
-        navH -
-        16;
-
-  globalThis.scrollTo({ top, behavior });
+  globalThis.scrollTo({ top: getAnchorScrollTop(target), behavior });
   return true;
 }
 
@@ -248,22 +255,7 @@ function slowScrollToAnchorTarget(href) {
 
   const target = $(href);
   if (!target) return false;
-
-  const navH =
-    Number.parseInt(
-      getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
-      10,
-    ) || 56;
-  const preferredTarget = target.matches(".content-section")
-    ? $(".section-title, .section-label, .section-inner", target) || target
-    : target;
-  const destination =
-    target.id === "about"
-      ? target.getBoundingClientRect().top + globalThis.scrollY
-      : preferredTarget.getBoundingClientRect().top +
-        globalThis.scrollY -
-        navH -
-        16;
+  const destination = getAnchorScrollTop(target);
 
   if (heroScrollFrame) {
     cancelAnimationFrame(heroScrollFrame);
