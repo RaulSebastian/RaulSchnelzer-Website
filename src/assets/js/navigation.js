@@ -88,17 +88,23 @@ export function initActiveNav() {
   const links = $$(".nav-link");
   if (!sections.length || !links.length) return;
 
+  const aboutSection = $("#about");
+  const skillsSection = $("#skills");
   const linkMap = {};
   links.forEach(link => {
     linkMap[link.getAttribute("href").replace("#", "")] = link;
   });
 
+  function clearActiveLinks() {
+    links.forEach(link => {
+      link.classList.remove("active");
+    });
+  }
+
   const obs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting && linkMap[entry.target.id]) {
-        links.forEach(link => {
-          link.classList.remove("active");
-        });
+        clearActiveLinks();
         linkMap[entry.target.id].classList.add("active");
       }
     });
@@ -107,6 +113,28 @@ export function initActiveNav() {
   sections.forEach(section => {
     obs.observe(section);
   });
+
+  function syncActiveStateAtTop() {
+    if (!aboutSection || !linkMap.about) return;
+
+    const aboutTop = aboutSection.getBoundingClientRect().top + globalThis.scrollY;
+    const skillsTop = skillsSection
+      ? skillsSection.getBoundingClientRect().top + globalThis.scrollY
+      : Number.POSITIVE_INFINITY;
+
+    if (globalThis.scrollY < Math.max(aboutTop - 1, 0)) {
+      clearActiveLinks();
+      return;
+    }
+
+    if (globalThis.scrollY < Math.max(skillsTop - 1, 0)) {
+      clearActiveLinks();
+      linkMap.about.classList.add("active");
+    }
+  }
+
+  syncActiveStateAtTop();
+  globalThis.addEventListener("scroll", syncActiveStateAtTop, { passive: true });
 }
 
 export function initMobileMenu() {
