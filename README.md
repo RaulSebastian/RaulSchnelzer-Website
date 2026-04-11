@@ -15,7 +15,7 @@
 
 ### production slot: [raulschnelzer.de](https://raulschnelzer.de)
 
-### preview slot: [preview.raulschnelzer.de](https://preview.raulschnelzer.de)
+### ~~preview slot: [preview.raulschnelzer.de](https://preview.raulschnelzer.de)~~
 
 ## Contributing
 
