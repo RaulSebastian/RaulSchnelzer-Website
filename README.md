@@ -2,7 +2,7 @@
 
 ![release](https://img.shields.io/github/v/tag/raulsebastian/RaulSchnelzer-Website?label=release&sort=semver&color=blueviolet)
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=RaulSchnelzerWebsite&metric=alert_status)](https://sonarcloud.io/dashboard?id=RaulSchnelzerWebsite)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ceb34606a75c480db7cffb83868d57fc)](https://www.codacy.com/manual/RaulSebastian/RaulSchnelzer-Website?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=RaulSebastian/RaulSchnelzer-Website&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/ceb34606a75c480db7cffb83868d57fc)](https://www.codacy.com/manual/RaulSebastian/RaulSchnelzer-Website?utm_source=github.com&utm_medium=referral&utm_content=RaulSebastian/RaulSchnelzer-Website&utm_campaign=Badge_Grade)
 [![OpenSSF Baseline](https://www.bestpractices.dev/projects/3785/baseline)](https://www.bestpractices.dev/projects/3785)
 ![code size](https://img.shields.io/github/languages/code-size/RaulSebastian/RaulSchnelzer-Website)
 
@@ -48,6 +48,7 @@ Approved temporary exceptions must be recorded in [docs/sca-exceptions.json](doc
 [![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/HTML)
 [![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://developer.mozilla.org/en-US/docs/Web/CSS)
 [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+
 - No frontend framework required
 
 ### Worth knowing

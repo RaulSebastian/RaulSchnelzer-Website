@@ -54,4 +54,6 @@
   border-top: 1px solid var(--border);
 }
 
-.about-text p + p { margin-top: 16px; }
+.about-text p + p {
+  margin-top: 16px;
+}

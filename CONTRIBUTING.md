@@ -36,11 +36,11 @@ Bugs are tracked as [GitHub issues](https://guides.github.com/features/issues/).
 
 Explain the problem and include additional details to help reproduce the problem:
 
-* Use a clear and descriptive title for the issue to identify the problem.
-* **Describe the exact steps which reproduce the problem** in as many details as possible. For example, start by explaining how you started and what steps you took.
-* Mention the browser and OS you used.
-* Explain which behavior you observed and which you expected to see instead.
-* Include screenshots and animated GIFs which show you following the described steps and clearly demonstrate the problem. 
+- Use a clear and descriptive title for the issue to identify the problem.
+- **Describe the exact steps which reproduce the problem** in as many details as possible. For example, start by explaining how you started and what steps you took.
+- Mention the browser and OS you used.
+- Explain which behavior you observed and which you expected to see instead.
+- Include screenshots and animated GIFs which show you following the described steps and clearly demonstrate the problem.
 
 ### Suggesting Feature Requests
 
@@ -50,29 +50,34 @@ Before creating a feature request, please check if a similar **Issue** already e
 
 Feature Requests suggestions are tracked as [GitHub issues](https://guides.github.com/features/issues/) and labeled `Enhancement`. If you have a feature request, provide the following information:
 
-* Use a clear and descriptive title for the issue to identify the suggestion.
-* Provide a step-by-step description of the suggested enhancement.
-* Provide specific examples to demonstrate the steps. 
-* Include screenshots or a mockup
+- Use a clear and descriptive title for the issue to identify the suggestion.
+- Provide a step-by-step description of the suggested enhancement.
+- Provide specific examples to demonstrate the steps.
+- Include screenshots or a mockup
 
 ### Your First Code Contribution
 
 Unsure where to begin contributing to Atom? You can start by looking through these `beginner` and `help-wanted` issues:
 
-* [good first issue][good-first-issue] - issues which should only require a few lines of code, and a test or two.
-* [Help wanted issues][help-wanted] - issues which should be a bit more involved than `beginner` issues.
+- [good first issue][good-first-issue] - issues which should only require a few lines of code, and a test or two.
+- [Help wanted issues][help-wanted] - issues which should be a bit more involved than `beginner` issues.
 
 #### Local development
 
 The project supports fully local development and debugging/testing.
 
+Install dependencies with `npm ci`, then use these checks before opening a pull request:
+
+- `npm run validate` runs formatting checks, JavaScript linting, CSS linting, HTML validation, and the asset build.
+- `npm run format` applies Prettier formatting locally.
+
 ### Pull Requests
 
 The process described here has several goals:
 
-* Maintain quality
-* Fix problems that are important
-* Enable a sustainable system to review contributions
+- Maintain quality
+- Fix problems that are important
+- Enable a sustainable system to review contributions
 
 Please follow these steps to have your contribution considered by the maintainers:
 
@@ -90,34 +95,34 @@ Pull requests and release branches must pass the repository's SCA status checks 
 
 ### Git Commit Messages
 
-* Use the present tense ("Add feature" not "Added feature")
-* Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
-* Limit the first line to 72 characters or less
-* Reference issues and pull requests liberally after the first line
-* When only changing documentation, include `[ci skip]` in the commit title
-* Consider starting the commit message with an applicable emoji:
-  * :art: `:art:` when improving the format/structure of the code
-  * :racehorse: `:racehorse:` when improving performance
-  * :non-potable_water: `:non-potable_water:` when plugging memory leaks
-  * :memo: `:memo:` when writing docs
-  * :penguin: `:penguin:` when fixing something on Linux
-  * :apple: `:apple:` when fixing something on macOS
-  * :checkered_flag: `:checkered_flag:` when fixing something on Windows
-  * :bug: `:bug:` when fixing a bug
-  * :fire: `:fire:` when removing code or files
-  * :green_heart: `:green_heart:` when fixing the CI build
-  * :white_check_mark: `:white_check_mark:` when adding tests
-  * :lock: `:lock:` when dealing with security
-  * :arrow_up: `:arrow_up:` when upgrading dependencies
-  * :arrow_down: `:arrow_down:` when downgrading dependencies
-  * :shirt: `:shirt:` when removing linter warnings
+- Use the present tense ("Add feature" not "Added feature")
+- Use the imperative mood ("Move cursor to..." not "Moves cursor to...")
+- Limit the first line to 72 characters or less
+- Reference issues and pull requests liberally after the first line
+- When only changing documentation, include `[ci skip]` in the commit title
+- Consider starting the commit message with an applicable emoji:
+  - :art: `:art:` when improving the format/structure of the code
+  - :racehorse: `:racehorse:` when improving performance
+  - :non-potable_water: `:non-potable_water:` when plugging memory leaks
+  - :memo: `:memo:` when writing docs
+  - :penguin: `:penguin:` when fixing something on Linux
+  - :apple: `:apple:` when fixing something on macOS
+  - :checkered_flag: `:checkered_flag:` when fixing something on Windows
+  - :bug: `:bug:` when fixing a bug
+  - :fire: `:fire:` when removing code or files
+  - :green_heart: `:green_heart:` when fixing the CI build
+  - :white_check_mark: `:white_check_mark:` when adding tests
+  - :lock: `:lock:` when dealing with security
+  - :arrow_up: `:arrow_up:` when upgrading dependencies
+  - :arrow_down: `:arrow_down:` when downgrading dependencies
+  - :shirt: `:shirt:` when removing linter warnings
 
 ### JavaScript Styleguide
 
 All JavaScript should adhere to [JavaScript Standard Style](https://standardjs.com/).
 
-* Prefer the object spread operator (`{...anotherObj}`) to `Object.assign()`
-* Inline `export`s with expressions whenever possible
+- Prefer the object spread operator (`{...anotherObj}`) to `Object.assign()`
+- Inline `export`s with expressions whenever possible
 
 ```js
   // Use this:
@@ -130,21 +135,21 @@ All JavaScript should adhere to [JavaScript Standard Style](https://standardjs.c
 
   }
   export default ClassName
-  ```
+```
 
-* Place requires in the following order:
-  * Built in Node Modules (such as `path`)
-  * Built in Atom and Electron Modules (such as `atom`, `remote`)
-  * Local Modules (using relative paths)
-* Place class properties in the following order:
-  * Class methods and properties (methods starting with `static`)
-  * Instance methods and properties
+- Place requires in the following order:
+  - Built in Node Modules (such as `path`)
+  - Built in Atom and Electron Modules (such as `atom`, `remote`)
+  - Local Modules (using relative paths)
+- Place class properties in the following order:
+  - Class methods and properties (methods starting with `static`)
+  - Instance methods and properties
 
 ### Specs Styleguide
 
-* Include thoughtfully-worded, well-structured [Jasmine](https://jasmine.github.io/) specs in the `./spec` folder.
-* Treat `describe` as a noun or situation.
-* Treat `it` as a statement about state or how an operation changes state.
+- Include thoughtfully-worded, well-structured [Jasmine](https://jasmine.github.io/) specs in the `./spec` folder.
+- Treat `describe` as a noun or situation.
+- Treat `it` as a statement about state or how an operation changes state.
 
 #### Example
 
@@ -159,11 +164,11 @@ describe 'a dog', ->
 
 ### Documentation Styleguide
 
-* Use [Markdown](https://daringfireball.net/projects/markdown).
-* Reference methods and classes in markdown with the custom `{}` notation:
-  * Reference classes with `{ClassName}`
-  * Reference instance methods with `{ClassName::methodName}`
-  * Reference class methods with `{ClassName.methodName}`
+- Use [Markdown](https://daringfireball.net/projects/markdown).
+- Reference methods and classes in markdown with the custom `{}` notation:
+  - Reference classes with `{ClassName}`
+  - Reference instance methods with `{ClassName::methodName}`
+  - Reference class methods with `{ClassName.methodName}`
 
 ## Additional Notes
 
@@ -176,19 +181,19 @@ This section lists the labels we use to help us track and manage issues and pull
 Labels starting with `closed:` describe the reason for closing an issue.
 Labels starting with `size:` describe the estimated effort in T-Shirt sizes.
 
-| Label name | Description |
-| --- | --- |
-| `enhancement` |  Feature requests. |
-| `bug` |  Confirmed bugs or reports that are very likely to be bugs. |
-| `question` |  Questions more than bug reports or feature requests (e.g. how do I do X). |
-| `feedback` |  General feedback more than bug reports or feature requests. |
-| `help-wanted` |  I would appreciate help from anyone in resolving these issues. |
-| `good first issue` |  Less complex issues which would be good first issues to work on for users who want to contribute. |
-| `refactor` | Redesign or existing features. |
-| `closed: resolved` | Issue has been solved. |
-| `closed: duplicate` |  Issues which are duplicates of other issues, i.e. they have been reported before. |
-| `closed: wontfix` |  I decided not to fix these issues for now, either because they're working as intended or for some other reason. |
-| `closed: invalid` |  Issues which aren't valid (e.g. user errors). |
+| Label name          | Description                                                                                                     |
+| ------------------- | --------------------------------------------------------------------------------------------------------------- |
+| `enhancement`       | Feature requests.                                                                                               |
+| `bug`               | Confirmed bugs or reports that are very likely to be bugs.                                                      |
+| `question`          | Questions more than bug reports or feature requests (e.g. how do I do X).                                       |
+| `feedback`          | General feedback more than bug reports or feature requests.                                                     |
+| `help-wanted`       | I would appreciate help from anyone in resolving these issues.                                                  |
+| `good first issue`  | Less complex issues which would be good first issues to work on for users who want to contribute.               |
+| `refactor`          | Redesign or existing features.                                                                                  |
+| `closed: resolved`  | Issue has been solved.                                                                                          |
+| `closed: duplicate` | Issues which are duplicates of other issues, i.e. they have been reported before.                               |
+| `closed: wontfix`   | I decided not to fix these issues for now, either because they're working as intended or for some other reason. |
+| `closed: invalid`   | Issues which aren't valid (e.g. user errors).                                                                   |
 
 [good-first-issue]: https://github.com/raulschnelzer/RaulSchnelzer-Website/labels/good%20first%20issue
 [help-wanted]: https://github.com/raulschnelzer/RaulSchnelzer-Website/labels/help-wanted

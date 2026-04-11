@@ -17,7 +17,7 @@ function parseYearMonth(value) {
 
   return {
     year: Number(match[1]),
-    month: Number(match[2])
+    month: Number(match[2]),
   };
 }
 
@@ -36,7 +36,7 @@ function formatDuration(start, end) {
 }
 
 export function initDurationBadges() {
-  $$("[data-duration-badge]").forEach(badge => {
+  $$("[data-duration-badge]").forEach((badge) => {
     const start = parseYearMonth(badge.dataset.start);
     const end = parseYearMonth(badge.dataset.end);
     if (!start || !end) return;

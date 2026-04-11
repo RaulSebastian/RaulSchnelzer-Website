@@ -8,11 +8,14 @@ const cssDir = join(rootDir, "assets/css");
 const outputFile = join(cssDir, "style.min.css");
 
 function stripImports(source) {
-  return source.replaceAll(/@import\s+(?:url\()?["'][^"')]+["']\)?\s*;?\s*/g, "");
+  return source.replaceAll(
+    /@import\s+(?:url\()?["'][^"')]+["']\)?\s*;?\s*/g,
+    "",
+  );
 }
 
 function stripBom(source) {
-  return source.replaceAll('\uFEFF', "");
+  return source.replaceAll("\uFEFF", "");
 }
 
 function rewriteAssetUrls(filePath, source) {
@@ -36,71 +39,73 @@ function rewriteAssetUrls(filePath, source) {
 }
 
 const orderedCssFiles = await Promise.all([
-  readFile(join(cssDir, "style.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "style.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "style.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "landing.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "landing.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "landing.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "footer.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "footer.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "footer.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "navigation.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "navigation.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "navigation.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "section.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "section.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "section.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "theme.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "theme.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "theme.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "responsive.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "responsive.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "responsive.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "sections/about.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "sections/about.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "sections/about.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "sections/contact.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "sections/contact.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "sections/contact.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "sections/experience.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "sections/experience.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "sections/experience.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "sections/quote.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "sections/quote.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "sections/quote.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "sections/skills.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "sections/skills.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "sections/skills.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "sections/services.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "sections/services.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "sections/services.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "themes/dark-theme.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "themes/dark-theme.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "themes/dark-theme.css"),
-    source
+    source,
   })),
-  readFile(join(cssDir, "themes/light-theme.css"), "utf8").then(source => ({
+  readFile(join(cssDir, "themes/light-theme.css"), "utf8").then((source) => ({
     absoluteFilePath: join(cssDir, "themes/light-theme.css"),
-    source
-  }))
+    source,
+  })),
 ]);
 
-const concatenatedSource = orderedCssFiles.map(({ absoluteFilePath, source }) => {
-  return rewriteAssetUrls(absoluteFilePath, stripImports(stripBom(source)));
-}).join("\n");
+const concatenatedSource = orderedCssFiles
+  .map(({ absoluteFilePath, source }) => {
+    return rewriteAssetUrls(absoluteFilePath, stripImports(stripBom(source)));
+  })
+  .join("\n");
 
 await mkdir(dirname(outputFile), { recursive: true });
 await writeFile(outputFile, concatenatedSource);

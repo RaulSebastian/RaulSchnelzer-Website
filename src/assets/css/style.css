@@ -1,13 +1,14 @@
 /* =============================================================
    Raul Schnelzer — style.css  v3.0.0
    ============================================================= */
-@import url('./navigation.css');
-@import url('./landing.css');
-@import url('sections/about.css');
+@import url("./navigation.css");
+@import url("./landing.css");
+@import url("sections/about.css");
 
 :root {
-  --font: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
-          "Helvetica Neue", Arial, sans-serif;
+  --font:
+    -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI",
+    "Helvetica Neue", Arial, sans-serif;
 
   /* Spacing */
   --section-py: clamp(80px, 12vh, 140px);
@@ -26,7 +27,12 @@
   /* Gradient accents (shared) */
   --accent: #00ffbf;
   --accent2: #8133e1;
-  --g-cool: linear-gradient(135deg, var(--accent) 0%, #1798d2 50%, #8133e1 100%);
+  --g-cool: linear-gradient(
+    135deg,
+    var(--accent) 0%,
+    #1798d2 50%,
+    #8133e1 100%
+  );
   --g-warm: linear-gradient(135deg, #ffa600 0%, #ff0062 50%, #af0bd8 100%);
 
   /* Featured surface system */
@@ -40,9 +46,24 @@
   --featured-sheen-bottom-hover: rgba(153, 112, 227, 0.2);
   --featured-border: rgba(255, 255, 255, 0.1);
   --featured-border-strong: rgba(255, 255, 255, 0.16);
-  --featured-outline: linear-gradient(135deg, rgba(0, 255, 191, 0.32), rgba(255, 255, 255, 0.04), rgba(129, 51, 225, 0.32));
-  --featured-overlay: linear-gradient(135deg, rgba(255, 255, 255, 0.04), transparent 28%, transparent 72%, rgba(255, 255, 255, 0.03));
-  --featured-highlight: radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.05), transparent 18%);
+  --featured-outline: linear-gradient(
+    135deg,
+    rgba(0, 255, 191, 0.32),
+    rgba(255, 255, 255, 0.04),
+    rgba(129, 51, 225, 0.32)
+  );
+  --featured-overlay: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.04),
+    transparent 28%,
+    transparent 72%,
+    rgba(255, 255, 255, 0.03)
+  );
+  --featured-highlight: radial-gradient(
+    circle at 82% 18%,
+    rgba(255, 255, 255, 0.05),
+    transparent 18%
+  );
   --featured-glow: rgba(0, 255, 191, 0.08);
 
   /* Accent palette */
@@ -55,7 +76,13 @@
 }
 
 /* ─── RESET & BASE ───────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
 
 html {
   scroll-behavior: smooth;
@@ -68,20 +95,30 @@ body {
   background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
-  transition: background-color var(--t), color var(--t);
+  transition:
+    background-color var(--t),
+    color var(--t);
   overflow-x: hidden;
 }
 
 a {
   color: inherit;
   text-decoration: none;
-  transition: color var(--t), opacity var(--t);
+  transition:
+    color var(--t),
+    opacity var(--t);
   -webkit-tap-highlight-color: transparent;
 }
 
-img { display: block; max-width: 100%; height: auto; }
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
 
-ul { list-style: none; }
+ul {
+  list-style: none;
+}
 
 button {
   cursor: pointer;
@@ -95,7 +132,9 @@ button {
 .reveal {
   opacity: 0;
   transform: translateY(32px);
-  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
 }
 
 .reveal.visible {
@@ -104,8 +143,15 @@ button {
 }
 
 @keyframes ringPulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50%       { opacity: 0.8; transform: scale(1.15); }
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.8;
+    transform: scale(1.15);
+  }
 }
 
 /* ─── OVERLAYS ───────────────────────────────────────────────── */
@@ -163,7 +209,9 @@ button {
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  transition: background var(--t), color var(--t);
+  transition:
+    background var(--t),
+    color var(--t);
 }
 .overlay-close:hover {
   background: var(--border);
@@ -216,12 +264,18 @@ button {
 .overlay-section a {
   color: var(--accent);
 }
-.overlay-section a:hover { opacity: 0.75; }
+.overlay-section a:hover {
+  opacity: 0.75;
+}
 
-.overlay-section strong { color: var(--text); }
+.overlay-section strong {
+  color: var(--text);
+}
 
 /* ─── ACCENT UTILITY ─────────────────────────────────────────── */
-.accent { color: var(--accent); }
+.accent {
+  color: var(--accent);
+}
 
 .quote-fly {
   opacity: 0;
@@ -240,16 +294,34 @@ button {
 
 /* ─── KEYFRAMES ──────────────────────────────────────────────── */
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to   { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes bounce {
-  0%, 100% { transform: translateY(0); }
-  50%       { transform: translateY(6px); }
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
 }
 
 @keyframes scrollPulse {
-  0%, 100% { opacity: 0.3; transform: scale(1); }
-  50%       { opacity: 1;   transform: scale(1.6); }
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.6);
+  }
 }

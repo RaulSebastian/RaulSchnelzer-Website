@@ -19,8 +19,9 @@ function storeTheme(theme) {
 }
 
 function syncThemeLogos(theme) {
-  $$("[data-theme-logo]").forEach(img => {
-    const nextSrc = theme === "light" ? img.dataset.logoLight : img.dataset.logoDark;
+  $$("[data-theme-logo]").forEach((img) => {
+    const nextSrc =
+      theme === "light" ? img.dataset.logoLight : img.dataset.logoDark;
     if (nextSrc) img.setAttribute("src", nextSrc);
   });
 }
@@ -38,7 +39,9 @@ export function initTheme() {
     return;
   }
 
-  const prefersDark = globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
+  const prefersDark = globalThis.matchMedia(
+    "(prefers-color-scheme: dark)",
+  ).matches;
   applyTheme(prefersDark ? "dark" : "light");
 }
 

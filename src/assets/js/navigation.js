@@ -14,7 +14,10 @@ export function initNavScroll() {
   let ticking = false;
 
   function syncNavState() {
-    document.body.classList.toggle("nav-is-hidden", nav.classList.contains("nav--hidden"));
+    document.body.classList.toggle(
+      "nav-is-hidden",
+      nav.classList.contains("nav--hidden"),
+    );
   }
 
   function update() {
@@ -33,12 +36,16 @@ export function initNavScroll() {
 
   update();
 
-  globalThis.addEventListener("scroll", () => {
-    if (!ticking) {
-      requestAnimationFrame(update);
-      ticking = true;
-    }
-  }, { passive: true });
+  globalThis.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    },
+    { passive: true },
+  );
 }
 
 export function initFloatingFooter() {
@@ -59,15 +66,20 @@ export function initFloatingFooter() {
 
   function updateVisibility() {
     const isAtTop = globalThis.scrollY < 24;
-    const shouldShow = (isAtTop || document.body.classList.contains("nav-is-hidden")) && !footerInView;
+    const shouldShow =
+      (isAtTop || document.body.classList.contains("nav-is-hidden")) &&
+      !footerInView;
     floatFooter.classList.toggle("footer-float--visible", shouldShow);
     ticking = false;
   }
 
-  const footerObserver = new IntersectionObserver(entries => {
-    footerInView = entries.some(entry => entry.isIntersecting);
-    updateVisibility();
-  }, { threshold: 0.01 });
+  const footerObserver = new IntersectionObserver(
+    (entries) => {
+      footerInView = entries.some((entry) => entry.isIntersecting);
+      updateVisibility();
+    },
+    { threshold: 0.01 },
+  );
 
   footerObserver.observe(footer);
 
@@ -84,40 +96,44 @@ export function initFloatingFooter() {
 }
 
 export function initActiveNav() {
-  const sections = $$("section[id], div[id]").filter(el => el.id);
+  const sections = $$("section[id], div[id]").filter((el) => el.id);
   const links = $$(".nav-link");
   if (!sections.length || !links.length) return;
 
   const aboutSection = $("#about");
   const skillsSection = $("#skills");
   const linkMap = {};
-  links.forEach(link => {
+  links.forEach((link) => {
     linkMap[link.getAttribute("href").replace("#", "")] = link;
   });
 
   function clearActiveLinks() {
-    links.forEach(link => {
+    links.forEach((link) => {
       link.classList.remove("active");
     });
   }
 
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting && linkMap[entry.target.id]) {
-        clearActiveLinks();
-        linkMap[entry.target.id].classList.add("active");
-      }
-    });
-  }, { rootMargin: "-40% 0px -55% 0px", threshold: 0 });
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && linkMap[entry.target.id]) {
+          clearActiveLinks();
+          linkMap[entry.target.id].classList.add("active");
+        }
+      });
+    },
+    { rootMargin: "-40% 0px -55% 0px", threshold: 0 },
+  );
 
-  sections.forEach(section => {
+  sections.forEach((section) => {
     obs.observe(section);
   });
 
   function syncActiveStateAtTop() {
     if (!aboutSection || !linkMap.about) return;
 
-    const aboutTop = aboutSection.getBoundingClientRect().top + globalThis.scrollY;
+    const aboutTop =
+      aboutSection.getBoundingClientRect().top + globalThis.scrollY;
     const skillsTop = skillsSection
       ? skillsSection.getBoundingClientRect().top + globalThis.scrollY
       : Number.POSITIVE_INFINITY;
@@ -134,7 +150,9 @@ export function initActiveNav() {
   }
 
   syncActiveStateAtTop();
-  globalThis.addEventListener("scroll", syncActiveStateAtTop, { passive: true });
+  globalThis.addEventListener("scroll", syncActiveStateAtTop, {
+    passive: true,
+  });
 }
 
 export function initMobileMenu() {
@@ -152,7 +170,7 @@ export function initMobileMenu() {
     btn.classList.add("open");
     btn.setAttribute("aria-expanded", "true");
     document.body.style.overflow = "hidden";
-    links.forEach(link => {
+    links.forEach((link) => {
       link.setAttribute("tabindex", "0");
     });
   }
@@ -165,7 +183,7 @@ export function initMobileMenu() {
     btn.classList.remove("open");
     btn.setAttribute("aria-expanded", "false");
     document.body.style.overflow = "";
-    links.forEach(link => {
+    links.forEach((link) => {
       link.setAttribute("tabindex", "-1");
     });
   }
@@ -174,12 +192,12 @@ export function initMobileMenu() {
     menu.open ? closeMenu() : openMenu();
   });
 
-  links.forEach(link => {
+  links.forEach((link) => {
     link.addEventListener("click", closeMenu);
   });
   if (closeBtn) closeBtn.addEventListener("click", closeMenu);
 
-  document.addEventListener("keydown", event => {
+  document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && menu.open) closeMenu();
   });
 
@@ -187,7 +205,7 @@ export function initMobileMenu() {
     btn.classList.remove("open");
     btn.setAttribute("aria-expanded", "false");
     document.body.style.overflow = "";
-    links.forEach(link => {
+    links.forEach((link) => {
       link.setAttribute("tabindex", "-1");
     });
     menu.classList.remove("open");
@@ -203,16 +221,21 @@ function scrollToAnchorTarget(href, behavior = "smooth") {
   const target = $(href);
   if (!target) return false;
 
-  const navH = Number.parseInt(
-    getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
-    10
-  ) || 56;
+  const navH =
+    Number.parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
+      10,
+    ) || 56;
   const preferredTarget = target.matches(".content-section")
     ? $(".section-title, .section-label, .section-inner", target) || target
     : target;
-  const top = target.id === "about"
-    ? target.getBoundingClientRect().top + globalThis.scrollY
-    : preferredTarget.getBoundingClientRect().top + globalThis.scrollY - navH - 16;
+  const top =
+    target.id === "about"
+      ? target.getBoundingClientRect().top + globalThis.scrollY
+      : preferredTarget.getBoundingClientRect().top +
+        globalThis.scrollY -
+        navH -
+        16;
 
   globalThis.scrollTo({ top, behavior });
   return true;
@@ -226,16 +249,21 @@ function slowScrollToAnchorTarget(href) {
   const target = $(href);
   if (!target) return false;
 
-  const navH = Number.parseInt(
-    getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
-    10
-  ) || 56;
+  const navH =
+    Number.parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
+      10,
+    ) || 56;
   const preferredTarget = target.matches(".content-section")
     ? $(".section-title, .section-label, .section-inner", target) || target
     : target;
-  const destination = target.id === "about"
-    ? target.getBoundingClientRect().top + globalThis.scrollY
-    : preferredTarget.getBoundingClientRect().top + globalThis.scrollY - navH - 16;
+  const destination =
+    target.id === "about"
+      ? target.getBoundingClientRect().top + globalThis.scrollY
+      : preferredTarget.getBoundingClientRect().top +
+        globalThis.scrollY -
+        navH -
+        16;
 
   if (heroScrollFrame) {
     cancelAnimationFrame(heroScrollFrame);
@@ -249,7 +277,7 @@ function slowScrollToAnchorTarget(href) {
   function step(now) {
     const progress = Math.min((now - startTime) / duration, 1);
     const eased = easeInOutCubic(progress);
-    globalThis.scrollTo({ top: startTop + (delta * eased), behavior: "auto" });
+    globalThis.scrollTo({ top: startTop + delta * eased, behavior: "auto" });
 
     if (progress < 1) {
       heroScrollFrame = requestAnimationFrame(step);
@@ -264,7 +292,11 @@ function slowScrollToAnchorTarget(href) {
 
 function updateUrlHash(href) {
   if (href === "#") {
-    globalThis.history.pushState(null, "", globalThis.location.pathname + globalThis.location.search);
+    globalThis.history.pushState(
+      null,
+      "",
+      globalThis.location.pathname + globalThis.location.search,
+    );
     return;
   }
 
@@ -272,8 +304,8 @@ function updateUrlHash(href) {
 }
 
 export function initSmoothAnchors() {
-  $$('a[href^="#"]').forEach(link => {
-    link.addEventListener("click", event => {
+  $$('a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
       const href = link.getAttribute("href");
       if (!href) return;
 

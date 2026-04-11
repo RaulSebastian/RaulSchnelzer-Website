@@ -4,22 +4,25 @@ export function initScrollReveal() {
   const items = $$(".reveal");
   if (!items.length) return;
 
-  const obs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const parent = entry.target.parentElement;
-        const siblings = parent ? $$(".reveal", parent) : [entry.target];
-        const idx = siblings.indexOf(entry.target);
-        const delay = idx * 80;
-        setTimeout(() => {
-          entry.target.classList.add("visible");
-        }, delay);
-        obs.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.12, rootMargin: "0px 0px -40px 0px" });
+  const obs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const parent = entry.target.parentElement;
+          const siblings = parent ? $$(".reveal", parent) : [entry.target];
+          const idx = siblings.indexOf(entry.target);
+          const delay = idx * 80;
+          setTimeout(() => {
+            entry.target.classList.add("visible");
+          }, delay);
+          obs.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -40px 0px" },
+  );
 
-  items.forEach(el => {
+  items.forEach((el) => {
     obs.observe(el);
   });
 }
@@ -46,7 +49,7 @@ export function initBackToTop() {
 export function initSkillsAccordion() {
   const headers = $$(".skill-category-header");
 
-  headers.forEach(header => {
+  headers.forEach((header) => {
     const category = header.parentElement;
     const panel = $(".skill-pills", category);
 
@@ -68,10 +71,10 @@ export function initSkillsAccordion() {
 export function initOverlays() {
   const overlayHashById = new Map([
     ["privacy-overlay", "#privacy"],
-    ["legal-overlay", "#legal"]
+    ["legal-overlay", "#legal"],
   ]);
   const overlayIdByHash = new Map(
-    [...overlayHashById.entries()].map(([id, hash]) => [hash, id])
+    [...overlayHashById.entries()].map(([id, hash]) => [hash, id]),
   );
 
   function openOverlay(id) {
@@ -102,21 +105,25 @@ export function initOverlays() {
 
   function clearOverlayHash(id) {
     if (overlayHashById.get(id) !== globalThis.location.hash) return;
-    globalThis.history.pushState(null, "", globalThis.location.pathname + globalThis.location.search);
+    globalThis.history.pushState(
+      null,
+      "",
+      globalThis.location.pathname + globalThis.location.search,
+    );
   }
 
   function syncOverlayFromHash() {
     const targetOverlayId = overlayIdByHash.get(globalThis.location.hash);
 
-    $$(".overlay.open").forEach(overlay => {
+    $$(".overlay.open").forEach((overlay) => {
       if (overlay.id !== targetOverlayId) closeOverlay(overlay.id);
     });
 
     if (targetOverlayId) openOverlay(targetOverlayId);
   }
 
-  $$("#open-privacy, #open-privacy-mob").forEach(el => {
-    el.addEventListener("click", event => {
+  $$("#open-privacy, #open-privacy-mob").forEach((el) => {
+    el.addEventListener("click", (event) => {
       event.preventDefault();
       setOverlayHash("#privacy");
       syncOverlayFromHash();
@@ -130,8 +137,8 @@ export function initOverlays() {
     });
   }
 
-  $$("#open-legal, #open-legal-mob").forEach(el => {
-    el.addEventListener("click", event => {
+  $$("#open-legal, #open-legal-mob").forEach((el) => {
+    el.addEventListener("click", (event) => {
       event.preventDefault();
       setOverlayHash("#legal");
       syncOverlayFromHash();
@@ -145,8 +152,8 @@ export function initOverlays() {
     });
   }
 
-  $$(".overlay").forEach(overlay => {
-    overlay.addEventListener("click", event => {
+  $$(".overlay").forEach((overlay) => {
+    overlay.addEventListener("click", (event) => {
       if (event.target === overlay) {
         closeOverlay(overlay.id);
         clearOverlayHash(overlay.id);
@@ -154,9 +161,9 @@ export function initOverlays() {
     });
   });
 
-  document.addEventListener("keydown", event => {
+  document.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
-      $$(".overlay.open").forEach(overlay => {
+      $$(".overlay.open").forEach((overlay) => {
         closeOverlay(overlay.id);
         clearOverlayHash(overlay.id);
       });
@@ -174,49 +181,58 @@ export function initQuoteFlyIn() {
 
   if (!allQuotes.length) return;
 
-  const introObs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.intersectionRatio >= 0.55) {
-        entry.target.classList.add("in-view");
-      } else if (entry.intersectionRatio <= 0.08) {
-        entry.target.classList.remove("in-view");
-      }
-    });
-  }, { threshold: [0, 0.08, 0.3, 0.55, 1] });
+  const introObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio >= 0.55) {
+          entry.target.classList.add("in-view");
+        } else if (entry.intersectionRatio <= 0.08) {
+          entry.target.classList.remove("in-view");
+        }
+      });
+    },
+    { threshold: [0, 0.08, 0.3, 0.55, 1] },
+  );
 
-  const outroObs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.intersectionRatio >= 0.2) {
-        entry.target.classList.add("in-view");
-      } else {
-        entry.target.classList.remove("in-view");
-      }
-    });
-  }, { threshold: [0, 0.2, 1], rootMargin: "0px 0px -12% 0px" });
+  const outroObs = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.intersectionRatio >= 0.2) {
+          entry.target.classList.add("in-view");
+        } else {
+          entry.target.classList.remove("in-view");
+        }
+      });
+    },
+    { threshold: [0, 0.2, 1], rootMargin: "0px 0px -12% 0px" },
+  );
 
-  introQuotes.forEach(el => {
+  introQuotes.forEach((el) => {
     introObs.observe(el);
   });
-  outroQuotes.forEach(el => {
+  outroQuotes.forEach((el) => {
     outroObs.observe(el);
   });
 
   let ticking = false;
 
   function updateQuoteFade() {
-    const navH = Number.parseInt(
-      getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
-      10
-    ) || 56;
+    const navH =
+      Number.parseInt(
+        getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
+        10,
+      ) || 56;
     const stickyTop = navH + 24;
 
-    allQuotes.forEach(quote => {
+    allQuotes.forEach((quote) => {
       const section = quote.closest(".quote-section");
       if (!section) return;
 
       const sectionRect = section.getBoundingClientRect();
       const distanceToEnd = sectionRect.bottom - stickyTop;
-      const fadeDistance = section.classList.contains("quote-outro") ? 820 : 180;
+      const fadeDistance = section.classList.contains("quote-outro")
+        ? 820
+        : 180;
       const opacity = Math.max(0, Math.min(1, distanceToEnd / fadeDistance));
       quote.style.setProperty("--quote-opacity", opacity.toFixed(3));
     });

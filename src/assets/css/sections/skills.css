@@ -87,7 +87,10 @@
   padding: 24px 28px;
   overflow: hidden;
   max-height: 1000px;
-  transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.3s ease;
+  transition:
+    max-height 0.4s ease,
+    padding 0.4s ease,
+    opacity 0.3s ease;
   opacity: 1;
 }
 
@@ -114,7 +117,12 @@
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.16),
     0 10px 18px rgba(0, 0, 0, 0.16);
-  transition: background var(--t), border-color var(--t), color var(--t), transform var(--t), box-shadow var(--t);
+  transition:
+    background var(--t),
+    border-color var(--t),
+    color var(--t),
+    transform var(--t),
+    box-shadow var(--t);
   cursor: default;
   position: relative;
   isolation: isolate;
@@ -131,7 +139,9 @@
     color-mix(in srgb, var(--accent-border-start) 80%, transparent) 0%,
     color-mix(in srgb, var(--accent-border-end) 80%, transparent) 100%
   );
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
   pointer-events: none;
@@ -180,7 +190,17 @@
 .skill-pill:hover::before {
   background: linear-gradient(
     45deg,
-    color-mix(in srgb, color-mix(in srgb, var(--accent-border-start) 86%, white 14%) 80%, transparent) 0%,
-    color-mix(in srgb, color-mix(in srgb, var(--accent-border-end) 86%, white 14%) 80%, transparent) 100%
+    color-mix(
+        in srgb,
+        color-mix(in srgb, var(--accent-border-start) 86%, white 14%) 80%,
+        transparent
+      )
+      0%,
+    color-mix(
+        in srgb,
+        color-mix(in srgb, var(--accent-border-end) 86%, white 14%) 80%,
+        transparent
+      )
+      100%
   );
 }

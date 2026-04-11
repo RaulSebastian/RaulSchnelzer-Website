@@ -1,4 +1,6 @@
-﻿#contact { min-height: 70vh; }
+﻿#contact {
+  min-height: 70vh;
+}
 .contact-tagline {
   font-size: clamp(16px, 1.8vw, 18px);
   color: var(--text-muted);
@@ -60,7 +62,9 @@
   transition: opacity var(--t);
 }
 
-.contact-link:hover { opacity: 0.75; }
+.contact-link:hover {
+  opacity: 0.75;
+}
 
 .social-row {
   display: flex;
