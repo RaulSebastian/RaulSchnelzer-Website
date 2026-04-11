@@ -9,7 +9,12 @@ on:
       - master
 
 jobs:
+  sca-policy:
+    uses: ./.github/workflows/sca-policy-compliance.yml
+    secrets: inherit
+
   build-and-deploy:
+    needs: sca-policy
     runs-on: ubuntu-latest
 
     steps:

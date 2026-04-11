@@ -85,6 +85,8 @@ Please follow these steps to have your contribution considered by the maintainer
 ### Quality checks
 
 The code should follow default [SonarQube](https://sonarcloud.io/dashboard?id=RaulSchnelzerWebsite) and [Codacy](https://app.codacy.com/manual/RaulSebastian/RaulSchnelzer-Website/dashboard) recommendations.
+Dependency vulnerability and license findings should be handled according to the [SCA Findings Remediation Policy](docs/sca-remediation-policy.md).
+Pull requests and release branches must pass the repository's SCA status checks before release.
 
 ### Git Commit Messages
 
