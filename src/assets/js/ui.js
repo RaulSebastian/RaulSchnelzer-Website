@@ -27,16 +27,16 @@ export function initBackToTop() {
   if (!btn) return;
 
   function update() {
-    if (window.scrollY > 400) {
+    if (globalThis.scrollY > 400) {
       btn.classList.add("visible");
     } else {
       btn.classList.remove("visible");
     }
   }
 
-  window.addEventListener("scroll", update, { passive: true });
+  globalThis.addEventListener("scroll", update, { passive: true });
   btn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    globalThis.scrollTo({ top: 0, behavior: "smooth" });
   });
   update();
 }
@@ -95,16 +95,16 @@ export function initOverlays() {
   }
 
   function setOverlayHash(hash) {
-    window.history.pushState(null, "", hash);
+    globalThis.history.pushState(null, "", hash);
   }
 
   function clearOverlayHash(id) {
-    if (overlayHashById[id] !== window.location.hash) return;
-    window.history.pushState(null, "", window.location.pathname + window.location.search);
+    if (overlayHashById[id] !== globalThis.location.hash) return;
+    globalThis.history.pushState(null, "", globalThis.location.pathname + globalThis.location.search);
   }
 
   function syncOverlayFromHash() {
-    const targetOverlayId = overlayIdByHash[window.location.hash];
+    const targetOverlayId = overlayIdByHash[globalThis.location.hash];
 
     $$(".overlay.open").forEach(overlay => {
       if (overlay.id !== targetOverlayId) closeOverlay(overlay.id);
@@ -161,7 +161,7 @@ export function initOverlays() {
     }
   });
 
-  window.addEventListener("hashchange", syncOverlayFromHash);
+  globalThis.addEventListener("hashchange", syncOverlayFromHash);
   syncOverlayFromHash();
 }
 
@@ -198,7 +198,10 @@ export function initQuoteFlyIn() {
   let ticking = false;
 
   function updateQuoteFade() {
-    const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 56;
+    const navH = Number.parseInt(
+      getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
+      10
+    ) || 56;
     const stickyTop = navH + 24;
 
     allQuotes.forEach(quote => {
@@ -222,7 +225,7 @@ export function initQuoteFlyIn() {
     }
   }
 
-  window.addEventListener("scroll", requestFadeUpdate, { passive: true });
-  window.addEventListener("resize", requestFadeUpdate);
+  globalThis.addEventListener("scroll", requestFadeUpdate, { passive: true });
+  globalThis.addEventListener("resize", requestFadeUpdate);
   updateQuoteFade();
 }

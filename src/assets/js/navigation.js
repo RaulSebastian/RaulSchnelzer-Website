@@ -2,11 +2,15 @@ import { $, $$ } from "./dom.js";
 
 let heroScrollFrame = 0;
 
+function easeInOutCubic(t) {
+  return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+}
+
 export function initNavScroll() {
   const nav = $("#nav");
   if (!nav) return;
 
-  let lastY = window.scrollY;
+  let lastY = globalThis.scrollY;
   let ticking = false;
 
   function syncNavState() {
@@ -14,7 +18,7 @@ export function initNavScroll() {
   }
 
   function update() {
-    const y = window.scrollY;
+    const y = globalThis.scrollY;
     if (y < 80) {
       nav.classList.remove("nav--hidden");
     } else if (y > lastY + 4) {
@@ -29,7 +33,7 @@ export function initNavScroll() {
 
   update();
 
-  window.addEventListener("scroll", () => {
+  globalThis.addEventListener("scroll", () => {
     if (!ticking) {
       requestAnimationFrame(update);
       ticking = true;
@@ -54,7 +58,7 @@ export function initFloatingFooter() {
   let ticking = false;
 
   function updateVisibility() {
-    const isAtTop = window.scrollY < 24;
+    const isAtTop = globalThis.scrollY < 24;
     const shouldShow = (isAtTop || document.body.classList.contains("nav-is-hidden")) && !footerInView;
     floatFooter.classList.toggle("footer-float--visible", shouldShow);
     ticking = false;
@@ -74,8 +78,8 @@ export function initFloatingFooter() {
     }
   }
 
-  window.addEventListener("scroll", requestUpdate, { passive: true });
-  window.addEventListener("resize", requestUpdate);
+  globalThis.addEventListener("scroll", requestUpdate, { passive: true });
+  globalThis.addEventListener("resize", requestUpdate);
   updateVisibility();
 }
 
@@ -152,58 +156,60 @@ export function initMobileMenu() {
 
 function scrollToAnchorTarget(href, behavior = "smooth") {
   if (href === "#") {
-    window.scrollTo({ top: 0, behavior });
+    globalThis.scrollTo({ top: 0, behavior });
     return true;
   }
 
   const target = $(href);
   if (!target) return false;
 
-  const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 56;
+  const navH = Number.parseInt(
+    getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
+    10
+  ) || 56;
   const preferredTarget = target.matches(".content-section")
     ? $(".section-title, .section-label, .section-inner", target) || target
     : target;
   const top = target.id === "about"
-    ? target.getBoundingClientRect().top + window.scrollY
-    : preferredTarget.getBoundingClientRect().top + window.scrollY - navH - 16;
+    ? target.getBoundingClientRect().top + globalThis.scrollY
+    : preferredTarget.getBoundingClientRect().top + globalThis.scrollY - navH - 16;
 
-  window.scrollTo({ top, behavior });
+  globalThis.scrollTo({ top, behavior });
   return true;
 }
 
 function slowScrollToAnchorTarget(href) {
-  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  if (globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     return scrollToAnchorTarget(href, "auto");
   }
 
   const target = $(href);
   if (!target) return false;
 
-  const navH = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--nav-h")) || 56;
+  const navH = Number.parseInt(
+    getComputedStyle(document.documentElement).getPropertyValue("--nav-h"),
+    10
+  ) || 56;
   const preferredTarget = target.matches(".content-section")
     ? $(".section-title, .section-label, .section-inner", target) || target
     : target;
   const destination = target.id === "about"
-    ? target.getBoundingClientRect().top + window.scrollY
-    : preferredTarget.getBoundingClientRect().top + window.scrollY - navH - 16;
+    ? target.getBoundingClientRect().top + globalThis.scrollY
+    : preferredTarget.getBoundingClientRect().top + globalThis.scrollY - navH - 16;
 
   if (heroScrollFrame) {
     cancelAnimationFrame(heroScrollFrame);
   }
 
-  const startTop = window.scrollY;
+  const startTop = globalThis.scrollY;
   const delta = destination - startTop;
   const duration = 1150;
   const startTime = performance.now();
 
-  function easeInOutCubic(t) {
-    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-  }
-
   function step(now) {
     const progress = Math.min((now - startTime) / duration, 1);
     const eased = easeInOutCubic(progress);
-    window.scrollTo({ top: startTop + (delta * eased), behavior: "auto" });
+    globalThis.scrollTo({ top: startTop + (delta * eased), behavior: "auto" });
 
     if (progress < 1) {
       heroScrollFrame = requestAnimationFrame(step);
@@ -218,11 +224,11 @@ function slowScrollToAnchorTarget(href) {
 
 function updateUrlHash(href) {
   if (href === "#") {
-    window.history.pushState(null, "", window.location.pathname + window.location.search);
+    globalThis.history.pushState(null, "", globalThis.location.pathname + globalThis.location.search);
     return;
   }
 
-  window.history.pushState(null, "", href);
+  globalThis.history.pushState(null, "", href);
 }
 
 export function initSmoothAnchors() {
@@ -247,16 +253,16 @@ export function initSmoothAnchors() {
   });
 
   function syncHashNavigation() {
-    const { hash } = window.location;
+    const { hash } = globalThis.location;
     if (!hash || hash === "#") return;
     if (!$(hash)) return;
 
-    window.scrollTo({ top: 0, behavior: "auto" });
+    globalThis.scrollTo({ top: 0, behavior: "auto" });
     requestAnimationFrame(() => {
       scrollToAnchorTarget(hash);
     });
   }
 
-  window.addEventListener("hashchange", syncHashNavigation);
+  globalThis.addEventListener("hashchange", syncHashNavigation);
   syncHashNavigation();
 }

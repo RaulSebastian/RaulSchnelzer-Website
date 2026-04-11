@@ -25,16 +25,16 @@ const orderedRelativeFiles = [
 ];
 
 function stripImports(source) {
-  return source.replace(/@import\s+(?:url\()?["'][^"')]+["']\)?\s*;?\s*/g, "");
+  return source.replaceAll(/@import\s+(?:url\()?["'][^"')]+["']\)?\s*;?\s*/g, "");
 }
 
 function stripBom(source) {
-  return source.replace(/\uFEFF/g, "");
+  return source.replaceAll(/\uFEFF/g, "");
 }
 
 function rewriteAssetUrls(filePath, source) {
-  return source.replace(/url\(([^)]+)\)/g, (fullMatch, rawValue) => {
-    const value = rawValue.trim().replace(/^['"]|['"]$/g, "");
+  return source.replaceAll(/url\(([^)]+)\)/g, (fullMatch, rawValue) => {
+    const value = rawValue.trim().replaceAll(/^['"]|['"]$/g, "");
 
     if (
       !value ||
@@ -46,7 +46,7 @@ function rewriteAssetUrls(filePath, source) {
     }
 
     const assetPath = resolve(dirname(filePath), value);
-    const rewritten = relative(cssDir, assetPath).replace(/\\/g, "/");
+    const rewritten = relative(cssDir, assetPath).replaceAll("\\", "/");
     return `url("${rewritten}")`;
   });
 }

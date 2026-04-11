@@ -26,7 +26,7 @@ function syncThemeLogos(theme) {
 }
 
 export function applyTheme(theme) {
-  document.documentElement.setAttribute("data-theme", theme);
+  document.documentElement.dataset.theme = theme;
   syncThemeLogos(theme);
   storeTheme(theme);
 }
@@ -38,11 +38,11 @@ export function initTheme() {
     return;
   }
 
-  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const prefersDark = globalThis.matchMedia("(prefers-color-scheme: dark)").matches;
   applyTheme(prefersDark ? "dark" : "light");
 }
 
 export function toggleTheme() {
-  const current = document.documentElement.getAttribute("data-theme");
+  const { theme: current } = document.documentElement.dataset;
   applyTheme(current === "dark" ? "light" : "dark");
 }
