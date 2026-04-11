@@ -4,11 +4,11 @@ on:
   workflow_call:
   pull_request:
     branches:
-      - master
+      - main
       - develop
   push:
     branches:
-      - master
+      - main
       - develop
 
 permissions:
