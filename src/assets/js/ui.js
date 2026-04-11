@@ -64,12 +64,12 @@ export function initSkillsAccordion() {
 }
 
 export function initOverlays() {
-  const overlayHashById = {
-    "privacy-overlay": "#privacy",
-    "legal-overlay": "#legal"
-  };
-  const overlayIdByHash = Object.fromEntries(
-    Object.entries(overlayHashById).map(([id, hash]) => [hash, id])
+  const overlayHashById = new Map([
+    ["privacy-overlay", "#privacy"],
+    ["legal-overlay", "#legal"]
+  ]);
+  const overlayIdByHash = new Map(
+    [...overlayHashById.entries()].map(([id, hash]) => [hash, id])
   );
 
   function openOverlay(id) {
@@ -99,12 +99,12 @@ export function initOverlays() {
   }
 
   function clearOverlayHash(id) {
-    if (overlayHashById[id] !== globalThis.location.hash) return;
+    if (overlayHashById.get(id) !== globalThis.location.hash) return;
     globalThis.history.pushState(null, "", globalThis.location.pathname + globalThis.location.search);
   }
 
   function syncOverlayFromHash() {
-    const targetOverlayId = overlayIdByHash[globalThis.location.hash];
+    const targetOverlayId = overlayIdByHash.get(globalThis.location.hash);
 
     $$(".overlay.open").forEach(overlay => {
       if (overlay.id !== targetOverlayId) closeOverlay(overlay.id);

@@ -96,7 +96,9 @@ export function initActiveNav() {
   const obs = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting && linkMap[entry.target.id]) {
-        links.forEach(link => link.classList.remove("active"));
+        links.forEach(link => {
+          link.classList.remove("active");
+        });
         linkMap[entry.target.id].classList.add("active");
       }
     });

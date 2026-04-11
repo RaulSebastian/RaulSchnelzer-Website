@@ -1,10 +1,10 @@
 import { $$ } from "./dom.js";
 
-const THEME_KEY = "rs-theme";
+const THEME_STORAGE_ID = "rs-theme";
 
 function getStoredTheme() {
   try {
-    return localStorage.getItem(THEME_KEY);
+    return localStorage.getItem(THEME_STORAGE_ID);
   } catch {
     return null;
   }
@@ -12,7 +12,7 @@ function getStoredTheme() {
 
 function storeTheme(theme) {
   try {
-    localStorage.setItem(THEME_KEY, theme);
+    localStorage.setItem(THEME_STORAGE_ID, theme);
   } catch {
     // noop
   }
