@@ -72,6 +72,6 @@ jobs:
 
       - name: Validate SCA policy compliance
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
           GITHUB_REPOSITORY: ${{ github.repository }}
         run: python .github/scripts/check_sca_compliance.py

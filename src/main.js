@@ -208,12 +208,15 @@
   function initMobileMenu() {
     const btn = $('#hamburger');
     const menu = $('#mobile-menu');
+    const closeBtn = $('#mobile-menu-close');
     const links = $$('.mobile-link, .mobile-sub-link');
     if (!btn || !menu) return;
 
     function openMenu() {
+      if (typeof menu.showModal === 'function' && !menu.open) {
+        menu.showModal();
+      }
       menu.classList.add('open');
-      menu.setAttribute('aria-hidden', 'false');
       btn.classList.add('open');
       btn.setAttribute('aria-expanded', 'true');
       document.body.style.overflow = 'hidden';
@@ -222,7 +225,9 @@
 
     function closeMenu() {
       menu.classList.remove('open');
-      menu.setAttribute('aria-hidden', 'true');
+      if (typeof menu.close === 'function' && menu.open) {
+        menu.close();
+      }
       btn.classList.remove('open');
       btn.setAttribute('aria-expanded', 'false');
       document.body.style.overflow = '';
@@ -230,13 +235,22 @@
     }
 
     btn.addEventListener('click', () => {
-      menu.classList.contains('open') ? closeMenu() : openMenu();
+      menu.open ? closeMenu() : openMenu();
     });
 
     links.forEach(l => l.addEventListener('click', closeMenu));
+    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
 
     document.addEventListener('keydown', e => {
-      if (e.key === 'Escape' && menu.classList.contains('open')) closeMenu();
+      if (e.key === 'Escape' && menu.open) closeMenu();
+    });
+
+    menu.addEventListener('close', () => {
+      btn.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      links.forEach(l => l.setAttribute('tabindex', '-1'));
+      menu.classList.remove('open');
     });
   }
 
