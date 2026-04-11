@@ -22,6 +22,22 @@ def fail(message: str) -> None:
     sys.exit(1)
 
 
+def parse_next_link(link_header: str | None) -> str | None:
+    if not link_header:
+        return None
+
+    for part in link_header.split(","):
+        section = part.strip()
+        if 'rel="next"' not in section:
+            continue
+        start = section.find("<")
+        end = section.find(">", start + 1)
+        if start != -1 and end != -1:
+            return section[start + 1 : end]
+
+    return None
+
+
 def load_exceptions() -> list[dict]:
     if not EXCEPTIONS_FILE.exists():
         fail(f"Missing exception registry: {EXCEPTIONS_FILE}")
@@ -89,13 +105,14 @@ def fetch_dependabot_alerts() -> list[dict]:
         return []
 
     alerts = []
-    page = 1
+    next_url = (
+        f"https://api.github.com/repos/{repository}/dependabot/alerts?"
+        f"{urllib.parse.urlencode({'state': 'open', 'per_page': 100})}"
+    )
 
-    while True:
-        query = urllib.parse.urlencode({"state": "open", "per_page": 100, "page": page})
-        url = f"https://api.github.com/repos/{repository}/dependabot/alerts?{query}"
+    while next_url:
         request = urllib.request.Request(
-            url,
+            next_url,
             headers={
                 "Accept": "application/vnd.github+json",
                 "Authorization": f"Bearer {token}",
@@ -106,6 +123,7 @@ def fetch_dependabot_alerts() -> list[dict]:
         try:
             with urllib.request.urlopen(request) as response:
                 batch = json.loads(response.read().decode("utf-8"))
+                next_url = parse_next_link(response.headers.get("Link"))
         except urllib.error.HTTPError as exc:
             body = exc.read().decode("utf-8", errors="replace")
             if exc.code == 403 and event_name == "pull_request":
@@ -122,7 +140,6 @@ def fetch_dependabot_alerts() -> list[dict]:
             break
 
         alerts.extend(batch)
-        page += 1
 
     print(f"Fetched {len(alerts)} open Dependabot alert(s).")
     return alerts
