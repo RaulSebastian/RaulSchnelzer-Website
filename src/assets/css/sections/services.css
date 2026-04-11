@@ -1,0 +1,202 @@
+﻿.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.services-grid--featured {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.service-card {
+  padding: 32px 28px;
+  border-radius: var(--radius-sm);
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  transition: background var(--t), border-color var(--t),
+  transform var(--t), box-shadow var(--t);
+  cursor: default;
+}
+
+.service-card:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-sm), var(--glow);
+}
+
+.service-card--featured {
+  --accent-border-start: var(--accent-palette-a);
+  --accent-border-end: var(--accent-palette-b);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-a) 10%, transparent);
+  position: relative;
+  padding: 32px 30px;
+  border-radius: 24px;
+  background:
+    linear-gradient(180deg, var(--accent-bg), var(--featured-sheen-bottom)),
+    radial-gradient(circle at 0% 0%, var(--featured-tint-start), transparent 40%),
+    radial-gradient(circle at 100% 100%, var(--bg-alt), transparent 44%),
+    var(--bg-card);
+  border: none;
+  box-shadow:
+    0 16px 40px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  min-height: 220px;
+}
+
+.service-card--featured::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--featured-overlay), var(--featured-highlight);
+  pointer-events: none;
+  transition: transform var(--t), opacity var(--t);
+  opacity: 0.55;
+}
+
+.service-card--featured:hover {
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-a) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-b) 19%, transparent);
+  background:
+    linear-gradient(115deg, var(--accent-hover-start) 0%, transparent 50%, var(--accent-hover-end) 100%);
+  border-color: var(--featured-border-strong);
+  transform: translateY(-6px);
+  box-shadow:
+    0 24px 48px rgba(0, 0, 0, 0.34),
+    0 0 28px var(--featured-glow);
+}
+
+.service-card--featured:hover::after {
+  transform: scale(1.01);
+  opacity: 0.8;
+}
+
+.service-card--featured:nth-child(6n + 1) {
+  --accent-border-start: var(--accent-palette-a);
+  --accent-border-end: var(--accent-palette-b);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-a) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-b) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-a) 10%, transparent);
+}
+
+.service-card--featured:nth-child(6n + 2) {
+  --accent-border-start: var(--accent-palette-b);
+  --accent-border-end: var(--accent-palette-c);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-b) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-c) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-b) 10%, transparent);
+}
+
+.service-card--featured:nth-child(6n + 3) {
+  --accent-border-start: var(--accent-palette-d);
+  --accent-border-end: var(--accent-palette-e);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-d) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-e) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-d) 10%, transparent);
+}
+
+.service-card--featured:nth-child(6n + 4) {
+  --accent-border-start: var(--accent-palette-e);
+  --accent-border-end: var(--accent-palette-f);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-e) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-f) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-e) 10%, transparent);
+}
+
+.service-card--featured:nth-child(6n + 5) {
+  --accent-border-start: var(--accent-palette-a);
+  --accent-border-end: var(--accent-palette-c);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-a) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-c) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-c) 10%, transparent);
+}
+
+.service-card--featured:nth-child(6n + 6) {
+  --accent-border-start: var(--accent-palette-d);
+  --accent-border-end: var(--accent-palette-f);
+  --accent-hover-start: color-mix(in srgb, var(--accent-palette-d) 25%, transparent);
+  --accent-hover-end: color-mix(in srgb, var(--accent-palette-f) 17%, transparent);
+  --accent-bg: color-mix(in srgb, var(--accent-palette-d) 10%, transparent);
+}
+
+.service-icon {
+  font-size: 32px;
+  margin-bottom: 16px;
+  display: block;
+  filter: grayscale(0.3);
+  transition: transform var(--t);
+}
+
+.service-card:hover .service-icon {
+  transform: scale(1.1);
+}
+
+.service-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.service-kicker {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.6px;
+  text-transform: uppercase;
+  color: var(--text-label);
+}
+
+.service-icon--featured {
+  width: 44px;
+  height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 14px;
+  margin-bottom: 0;
+  font-size: 18px;
+  color: var(--text);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.05)),
+    rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 24px rgba(0, 0, 0, 0.22);
+  filter: none;
+  transition: transform var(--t), box-shadow var(--t), border-color var(--t);
+}
+
+.service-card--featured:hover .service-icon--featured {
+  transform: translateY(-1px) scale(1.04);
+  border-color: rgba(255, 255, 255, 0.16);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 10px 28px rgba(0, 0, 0, 0.24),
+    0 0 16px rgba(0, 255, 191, 0.08);
+}
+
+.service-name {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.service-card--featured .service-name {
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 600;
+  letter-spacing: -0.6px;
+  line-height: 1.15;
+  margin-bottom: 14px;
+}
+
+.service-desc {
+  max-width: 34ch;
+  font-size: 15px;
+  line-height: 1.75;
+  color: var(--text-muted);
+}

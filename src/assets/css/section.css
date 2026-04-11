@@ -1,0 +1,42 @@
+﻿.content-section {
+  padding: var(--section-py) 24px;
+  background: var(--bg);
+  transition: background var(--t);
+}
+
+.content-section--alt {
+  background: var(--bg-alt);
+}
+
+#about {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+#about .section-inner {
+  width: 100%;
+}
+
+.section-inner {
+  max-width: var(--max-w);
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text-label);
+  margin-bottom: 12px;
+}
+
+.section-title {
+  font-size: clamp(40px, 7vw, 80px);
+  font-weight: 700;
+  letter-spacing: -2px;
+  line-height: 1;
+  color: var(--text);
+  margin-bottom: 56px;
+}
