@@ -2,6 +2,7 @@ name: Deploy static content to Pages
 
 on:
   workflow_run:
+    pull_request:
     workflows: ["CI"]
     types: [completed]
     branches: ["main"]
@@ -31,7 +32,7 @@ jobs:
         uses: actions/checkout@v4
         with:
           repository: ${{ github.repository }}
-          ref: refs/heads/main
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
