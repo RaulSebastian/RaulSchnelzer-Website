@@ -3,9 +3,6 @@ name: Deploy static content to Pages
 on:
   workflow_run:
     pull_request:
-    workflows: ["CI"]
-    types: [completed]
-    branches: ["main"]
 
 # Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
