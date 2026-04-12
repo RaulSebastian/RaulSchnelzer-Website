@@ -13,7 +13,7 @@ on:
 
 permissions:
   contents: read
-  pull-requests: write
+  pull-requests: read
   security-events: read
 
 jobs:
@@ -46,6 +46,9 @@ jobs:
     if: github.event_name == 'pull_request' && needs.detect-dependency-files.outputs.has_dependency_files == 'true'
     needs: detect-dependency-files
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
