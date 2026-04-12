@@ -11,9 +11,6 @@ on:
       - main
       - develop
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 permissions:
   contents: read
   pull-requests: read
@@ -49,6 +46,9 @@ jobs:
     if: github.event_name == 'pull_request' && needs.detect-dependency-files.outputs.has_dependency_files == 'true'
     needs: detect-dependency-files
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -57,8 +57,12 @@ jobs:
         uses: actions/dependency-review-action@v4
         with:
           fail-on-severity: high
-          deny-licenses: GPL-2.0, GPL-3.0, AGPL-1.0, AGPL-3.0
+          fail-on-scopes: runtime
+          license-check: true
+          allow-licenses: MIT, Apache-2.0, BSD-2-Clause, BSD-3-Clause, ISC
           comment-summary-in-pr: always
+          retry-on-snapshot-warnings: true
+          retry-on-snapshot-warnings-timeout: 120
 
   release-readiness:
     name: SCA Release Readiness
@@ -75,6 +79,7 @@ jobs:
 
       - name: Validate SCA policy compliance
         env:
-          GITHUB_TOKEN: ${{ github.token }}
+          GITHUB_TOKEN: ${{ secrets.SCA_ALERTS_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
+          GITHUB_EVENT_NAME: ${{ github.event_name }}
         run: python .github/scripts/check_sca_compliance.py
